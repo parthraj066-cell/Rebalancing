@@ -160,7 +160,7 @@ section.tabpane.on{display:block;animation:paneIn .25s ease-out}
 .ph{position:relative;aspect-ratio:16/9;max-width:100%;background:#E5E5EA;overflow:hidden}
 .ph img{width:100%;height:100%;object-fit:cover;display:block}
 .ph:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,0) 32%);pointer-events:none}
-.ph .noimg{position:absolute;inset:0;display:grid;place-items:center;color:#AEAEB2;font-size:15px;font-weight:600}
+.ph .noimg{position:absolute;inset:0;display:grid;place-items:center;color:#C7C7CC;background:linear-gradient(160deg,#F2F2F7,#E5E5EA)}
 .cred{position:absolute;right:8px;bottom:6px;z-index:2;font-size:10.5px;line-height:1.25;color:#fff;opacity:.5;text-decoration:none;max-width:72%;text-align:right;text-shadow:0 1px 2px rgba(0,0,0,.6)}
 .slotchip{position:absolute;left:12px;top:10px;z-index:2;display:flex;gap:6px;align-items:center}
 .slotchip span{color:#fff;font-size:13px;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.35)}
@@ -2413,6 +2413,38 @@ function hhmm(h){ h=((h%24)+24)%24; var hr=Math.floor(h), mn=Math.round((h-hr)*6
 /* ===================== LOOKUP ===================== */
 var RMAP={}; REC.forEach(function(r){RMAP[r.c]=r;});
 REC.forEach(function(r){ if(typeof PHOTO!=='undefined'&&PHOTO[r.c]){ var p=PHOTO[r.c]; r.img=p; if(!p.u&&typeof PHOTOFILE!=='undefined') p.u=PHOTOFILE[p.f]||''; if(!p.u) r.img=null; } });
+/* Photos hosted beside the app: photos/index.json and photos/<code>.jpg in the
+   GitHub Pages repository. When present they replace the embedded photos; the
+   embedded one (img0) stays as the fallback if a hosted file fails to load. */
+var PHOTOKEY='rebalancing.photos';
+function repoPhotoObj(code,e){
+  var f=String(e.file||(code+'.jpg'));
+  return {u:'photos/'+encodeURIComponent(f)+(e.rev!=null&&e.rev!==''?'?r='+encodeURIComponent(e.rev):''),
+    by:String(e.credit||'AI-generated image'), src:String(e.source||'ai'), href:String(e.link||''), lic:String(e.licence||''), shows:String(e.alt||''), repo:1};
+}
+function applyRepoPhotos(man){
+  if(!man||!man.photos||typeof man.photos!=='object') return 0;
+  var n=0;
+  REC.forEach(function(r){ if(!('img0' in r)) r.img0=r.img||null; var e=man.photos[r.c];
+    if(e&&typeof e==='object'){ r.img=repoPhotoObj(r.c,e); n++; } else r.img=r.img0; });
+  return n;
+}
+function loadRepoPhotos(){
+  var prev=null;
+  try{ prev=localStorage.getItem(PHOTOKEY); if(prev) applyRepoPhotos(JSON.parse(prev)); }catch(e){}
+  if(!/^https?:$/.test(location.protocol)||typeof fetch!=='function') return Promise.resolve(false);
+  var p; try{ p=fetch(new URL('photos/index.json',location.href).href,{cache:'no-cache'}); }catch(e){ return Promise.resolve(false); }
+  return Promise.resolve(p).then(function(res){ if(!res) throw new Error('none'); if(!res.ok) throw new Error(String(res.status)); return res.text(); })
+    .then(function(t){ var man=JSON.parse(t); if(t===prev) return false; try{ localStorage.setItem(PHOTOKEY,t); }catch(e){} return applyRepoPhotos(man)>=0; })
+    .catch(function(){ return false; });
+}
+/* a hosted photo that fails falls back to the embedded one, then to the plain tile */
+document.addEventListener('error',function(ev){
+  var t=ev.target; if(!t||t.tagName!=='IMG') return; var c=t.getAttribute('data-c'); if(!c) return;
+  var r=RMAP[c], fb=r&&r.img0&&r.img0.u;
+  if(fb&&t.getAttribute('src')!==fb){ t.setAttribute('src',fb); var cr=t.parentNode&&t.parentNode.querySelector('.cred'); if(cr) cr.textContent=credLine(r.img0); }
+  else { var ph=t.parentNode; t.remove(); if(ph&&ph.classList&&ph.classList.contains('ph')&&!ph.querySelector('.noimg')) ph.insertAdjacentHTML('afterbegin',NOIMG); var cr2=ph&&ph.querySelector&&ph.querySelector('.cred'); if(cr2) cr2.remove(); }
+},true);
 
 /* ===================== KITCHEN GEAR =====================
    r.gear lists requirements; 'oven|airfryer' means either will do.
@@ -2459,17 +2491,26 @@ function minChipRow(act, cur){
 
 /* ===================== PHOTOS ===================== */
 function photoOf(r){ return r&&r.img?r.img:null; }
+var NOIMG='<div class="noimg" aria-hidden="true"><svg viewBox="0 0 48 48" width="44" height="44"><circle cx="24" cy="24" r="17" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>';
 function photoBlock(r,opts){
   opts=opts||{};
   var im=photoOf(r), h='<div class="ph'+(opts.cls?' '+opts.cls:'')+'">';
-  if(im) h+='<img src="'+im.u+'" alt="'+esc(im.shows||r.t)+'" decoding="async"'+(opts.lazy?' loading="lazy"':'')+'>';
-  else h+='<div class="noimg">'+esc(r?r.c:'')+'</div>';
+  if(im) h+='<img src="'+esc(im.u)+'" data-c="'+esc(r.c)+'" alt="'+esc(im.shows||r.t)+'" decoding="async"'+(opts.lazy?' loading="lazy"':'')+'>';
+  else h+=NOIMG;
   if(opts.inner) h+=opts.inner;
-  if(im&&!opts.nocred) h+='<a class="cred" href="'+esc(im.href)+'" target="_blank" rel="noopener">'+esc(credLine(im))+'</a>';
+  if(im&&!opts.nocred) h+=(im.href?'<a class="cred" href="'+esc(im.href)+'" target="_blank" rel="noopener">':'<span class="cred">')+esc(credLine(im))+(im.href?'</a>':'</span>');
   return h+'</div>';
 }
-function credLine(im){ return im.src==='unsplash'?(im.by+' / Unsplash'):(im.by+', '+im.lic+', Wikimedia Commons'); }
-function thumb(r){ var im=photoOf(r); return im?'<img class="thumb" src="'+im.u+'" alt="" decoding="async">':'<span class="thumb"></span>'; }
+function credLine(im){
+  var by=im.by||'';
+  if(im.src==='ai') return by||'AI-generated image';
+  if(im.src==='unsplash') return by+' / Unsplash';
+  if(im.src==='pexels') return by+' / Pexels';
+  if(im.src==='pixabay') return by+' / Pixabay';
+  if(im.src==='wikimedia'||im.lic) return by+(im.lic?', '+im.lic:'')+', Wikimedia Commons';
+  return by;
+}
+function thumb(r){ var im=photoOf(r); return im?'<img class="thumb" src="'+esc(im.u)+'" data-c="'+esc(r.c)+'" alt="" decoding="async">':'<span class="thumb"></span>'; }
 
 /* ===================== DAY SHAPES =====================
    A shape is the day's working pattern. It moves the three meal times
@@ -4102,9 +4143,9 @@ function manualSheet(){
 function photoCredits(){
   var rows=REC.filter(function(r){return r.img;});
   if(!rows.length) return '<p class="tiny" style="padding-top:6px">No photographs in this build.</p>';
-  var h='<p class="tiny" style="padding-top:6px">Each photo shows the dish or a close cousin of it. Unsplash photos are under the Unsplash License; Wikimedia Commons photos are under the licence named.</p><ul class="ings">';
+  var h='<p class="tiny" style="padding-top:6px">Photos marked AI-generated were made for this app from each recipe; real photographs show the dish or a close cousin of it. Unsplash and Pexels photos are under their own free licences; Wikimedia Commons photos are under the licence named.</p><ul class="ings">';
   rows.forEach(function(r){ var im=r.img;
-    h+='<li><b>'+esc(r.c)+'</b> '+esc(r.t)+'<br><span class="tiny">'+esc(im.shows||'')+(im.shows?'. ':'')+'<a href="'+esc(im.href)+'" target="_blank" rel="noopener">'+esc(credLine(im))+'</a>'+(im.licurl?' · <a href="'+esc(im.licurl)+'" target="_blank" rel="noopener">licence</a>':'')+'</span></li>'; });
+    h+='<li><b>'+esc(r.c)+'</b> '+esc(r.t)+'<br><span class="tiny">'+esc(im.shows||'')+(im.shows?'. ':'')+(im.href?'<a href="'+esc(im.href)+'" target="_blank" rel="noopener">'+esc(credLine(im))+'</a>':esc(credLine(im)))+(im.licurl?' · <a href="'+esc(im.licurl)+'" target="_blank" rel="noopener">licence</a>':'')+'</span></li>'; });
   return h+'</ul>';
 }
 /* ===================== CARDS FOR PANCHAYAT ===================== */
@@ -4539,7 +4580,7 @@ function drawRoad(){
     var iso0=todayISO(), sh=SHAPES[shapeOf(iso0)];
     h+='<h1>'+esc(sh.n)+'</h1><div class="shape" style="pointer-events:none">'+shapeSvg(iso0)+'</div>';
     h+='<div class="platesrow">'+['b','l','d'].map(function(k){ var r=rec(effSlot(iso0,k).c);
-      return '<div>'+(r&&r.img?'<img src="'+r.img.u+'" alt="">':'<div style="aspect-ratio:1;background:var(--surface2)"></div>')+'<span><b>'+SLOTNAME[k]+' · '+hhmm(sh.t[k])+'</b>'+esc(r?r.t:'')+'</span></div>'; }).join('')+'</div>';
+      return '<div>'+(r&&r.img?'<img src="'+esc(r.img.u)+'" data-c="'+esc(r.c)+'" alt="">':'<div style="aspect-ratio:1;background:var(--surface2)"></div>')+'<span><b>'+SLOTNAME[k]+' · '+hhmm(sh.t[k])+'</b>'+esc(r?r.t:'')+'</span></div>'; }).join('')+'</div>';
     h+=ekbBlock(principleOfDay());
   }
   h+='</div><div class="road-nav">'+(RD>0?'<button class="btn ghost" data-act="roadback" aria-label="Back">'+ICON.back+'</button>':'<span></span>')+'<button class="btn full" data-act="roadnext" style="min-height:54px;font-family:var(--display);font-size:19px">'+(RD===RD_N-1?'Start today':'Next')+'</button></div>';
@@ -4721,7 +4762,9 @@ $('#btnGuide').onclick=manualSheet;
 /* ===================== BOOT ===================== */
 load();
 applyTheme();
+var PHOTOS_READY=loadRepoPhotos();
 go('today');
+PHOTOS_READY.then(function(changed){ if(changed) render(); });
 (function(){
   var linked=/[?#&]connect=/.test((location.search||'')+(location.hash||''));
   function decide(){

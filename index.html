@@ -183,6 +183,16 @@ section.tabpane.on{display:block}
 .sec .plain{flex:none;min-height:0;position:relative}
 .sec .plain::after{content:"";position:absolute;left:-8px;right:-8px;top:-12px;bottom:-12px}
 .sec .sub2{display:block;margin-top:2px}
+.sec .pull{flex:none}
+/* a pull-down over a native select (the swap sheet's time): the tint label shows, the select takes the 44 pt tap */
+.pullsel select{position:absolute;top:-12px;bottom:-12px;left:-6px;right:-6px;width:auto;height:auto;opacity:0;padding:0;margin:0;border:0;cursor:pointer;z-index:1}
+.pullsel:focus-within{outline:2px solid var(--tint);outline-offset:2px;border-radius:var(--r-thumb)}
+/* the swap sheet (recipePicker): the two off-plan answers, then "Or another meal" */
+.pk-step{margin:0 0 8px}
+.pk-sec.pk-first{margin-top:8px}
+.pk-sec.has-sub{margin-bottom:0}
+.pk-sub{margin:2px 0 8px}
+.chips.pk-chips{margin-bottom:11px}   /* 16 from the chips to the list, as the mockup (5 of it is the row's padding) */
 .foot{margin:8px 16px 0}
 
 /* ---------- cards and inset grouped lists (2.6) ---------- */
@@ -300,6 +310,11 @@ label.lab{display:block;font-size:13px;line-height:18px;font-weight:400;letter-s
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .togg{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;position:relative;z-index:0}
 .togg+.togg{border-top:.5px solid var(--sep)}
+/* switch rows sit in a white inset list, so an off switch's light track has a white row behind it (2.6) */
+.list > .togg{padding:11px 16px;min-height:44px}
+.list > .togg+.togg{border-top:0}
+.list > .togg+.togg::after{content:"";position:absolute;top:0;left:16px;right:0;height:.5px;background:var(--sep)}
+.list > .togg:has(> .sw[data-act])::before{left:0;right:0}
 .togg-l{font-size:17px;line-height:22px}
 .togg-l small{display:block;color:var(--ink2);font-size:13px;line-height:18px;letter-spacing:var(--tr-foot);margin-top:0}
 /* a switch row is one target (a tap anywhere flips it), so the whole row shows the press, out to the card edge */
@@ -389,6 +404,8 @@ p.recl{margin:0}
 .pc-top .pc-head{margin:0 0 14px}
 .pc-top .pc-tok{margin:0 0 12px}
 .slot{border-top:.5px solid var(--sep);margin:0 -16px -16px;padding:14px 16px 16px}
+/* a second slot (the regression's row under the morning question, 6.2): only the last one runs into the card's padding */
+.slot:not(:last-child){margin-bottom:0}
 .pc-bare > .slot:first-child{border-top:0;margin-top:-16px}
 .slot .q{margin:0 0 12px}
 .slot.rowslot{padding:0}
@@ -420,6 +437,19 @@ p.recl{margin:0}
   .meals .btnrow{grid-column:1 / -1;grid-row:2;margin:14px 16px 16px}
   .meals .mrow{grid-column:1 / -1}
 }
+/* the same steps when "Ate it" would still end under the tab bar (renderToday measures it): fit1 the 112 pt photo,
+   fit2 the thumbnail beside the caption; past those, the morning question sits under the next meal's buttons */
+.meals.fit1 > .ph{height:112px}
+.meals.fit2{display:grid;grid-template-columns:84px minmax(0,1fr)}
+.meals.fit2 > .ph{width:56px;height:56px;margin:16px 0 0 16px;border-radius:var(--r-thumb);grid-column:1;grid-row:1}
+.meals.fit2 > .ph .cred{display:none}
+.meals.fit2 .nm-b{display:contents}
+.meals.fit2 .nm-x{grid-column:2;grid-row:1;padding:16px 16px 0 0;align-self:center}
+.meals.fit2 .nm-t{margin-bottom:0}
+.meals.fit2 .btnrow{grid-column:1 / -1;grid-row:2;margin:14px 16px 16px}
+.meals.fit2 .mrow{grid-column:1 / -1}
+.meals > .slot{margin:0;grid-column:1 / -1}
+.meals > .slot + .mrow::before{left:0}
 /* a compact meal row: 64 pt, the 44 pt thumbnail, the caption over a one-line title, the 44 pt check */
 .mrow{display:flex;align-items:center;min-height:64px;padding-right:4px;position:relative;background:var(--surface);transition:background-color 250ms ease-out}
 .mrow::before{content:"";position:absolute;top:0;left:72px;right:0;height:.5px;background:var(--sep)}
@@ -541,10 +571,12 @@ a.cred .who,a.cred .lic,a.cred:not(:has(span)){pointer-events:auto}
 .pslot .pc.ws{color:var(--ink);font-weight:600}
 .p7card .th-l:first-child{margin-top:0}
 .collect{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
-.gearrow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.gearrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+@media (max-width:359px){ .gearrow{grid-template-columns:repeat(3,minmax(0,1fr))} }   /* "Microwave" fits its tile */
+.gearbtn .gl{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .gearbtn{background:var(--fill);border:0;border-radius:var(--r-ctl);padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--ink2);font-size:11px;line-height:13px;letter-spacing:var(--tr-cap);font-weight:400;min-height:64px;min-width:0}
 .gearbtn svg{width:26px;height:26px}
-.gearbtn.on{background:var(--tint);color:var(--on-tint)}
+.gearbtn.on{background:var(--ink);color:var(--on-tint)}   /* selected as a chip is: ink (2.1, 2.8); blue is for tapping only */
 ol.steps{margin:8px 0 0;padding-left:24px}
 ol.steps li{margin-bottom:12px;font-size:17px;line-height:22px}
 ul.ings{list-style:none;margin:8px 0 0;padding:0}
@@ -552,11 +584,9 @@ ul.ings li{padding:12px 0;font-size:17px;line-height:22px}
 ul.ings li+li{border-top:.5px solid var(--sep)}
 .note{background:var(--surface);padding:12px 16px;border-radius:var(--r-ctl);font-size:15px;line-height:20px;letter-spacing:var(--tr-sub);margin-top:12px}
 .note.blue,.note.green,.note.ui,.note.red{background:var(--surface)}
-div.ekb{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start;background:var(--surface);border-radius:var(--r-ctl);padding:12px 16px;margin:12px 0}
-div.ekb svg{width:28px;height:28px;color:var(--ink2)}
-div.ekb b{display:block;font-size:13px;line-height:18px;font-weight:600;color:var(--ink2);margin-bottom:0}
-div.ekb p{margin:0;font-size:15px;line-height:20px;letter-spacing:var(--tr-sub)}
-div.ekb .src{font-size:13px;line-height:18px;letter-spacing:var(--tr-foot);color:var(--ink2);margin-top:4px}
+/* the recipe sheet's Ekberg note: one disclosure row in an inset list, as the pattern sheet has them */
+.rs-disc{margin:12px 0}
+.rs-disc .xp-src{margin-top:4px}
 .rcode{font-family:var(--f-num);font-size:13px;line-height:18px;font-weight:600;background:var(--fill);color:var(--ink2);border-radius:var(--r-thumb);padding:4px 8px;flex:none}
 .rcard{border-radius:var(--r-ctl);background:var(--surface);margin-bottom:12px;overflow:hidden}
 .rhead{padding:12px 16px;cursor:pointer;display:flex;gap:12px;align-items:center;min-height:48px}
@@ -627,8 +657,13 @@ img.card-canvas{width:100%;height:auto;border-radius:var(--r-ctl);display:block}
 svg.chart,.chart{width:100%;height:auto;display:block;overflow:visible}
 /* the log: a month of neutral days, each with the week strip's three marks */
 .heat{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0}
-.hcell{min-height:48px;border:0;border-radius:var(--r-ctl);background:none;padding:4px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:13px;line-height:18px;color:var(--ink2);font-family:var(--f-num);font-weight:600;letter-spacing:0}
-.hcell.today{box-shadow:inset 0 0 0 1.5px var(--sep);color:var(--ink)}
+/* a day that has happened is a button with its marks; a day still to come, or before day 1, is its numeral only in
+   ink2 and opens nothing; today is the week strip's ink disc (2.10) */
+.hcell{min-height:48px;border:0;border-radius:var(--r-ctl);background:none;padding:4px 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;font-size:13px;line-height:18px;color:var(--ink);font-family:var(--f-num);font-weight:600;letter-spacing:0;position:relative}
+.hcell > span:first-child{width:28px;height:28px;border-radius:50%;display:grid;place-items:center}
+.hcell.later{color:var(--ink2)}
+.hcell.today > span:first-child{background:var(--ink);color:var(--on-tint)}
+button.hcell:active{background:var(--hl)}
 .wkdays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;margin-bottom:4px}
 .wkdays span{text-align:center;font-size:13px;line-height:18px;color:var(--ink2);font-weight:600}
 .mini-table{width:100%;border-collapse:collapse;font-size:15px;line-height:20px}
@@ -704,6 +739,8 @@ div.kv:not(.list) > b{font-family:var(--f-num);font-weight:600;text-align:right;
 .toast.on{opacity:1;transform:translateX(-50%);transition:transform var(--dur-snappy) var(--spring-snappy),opacity var(--dur-snappy) var(--spring-snappy)}
 .toast.two{border-radius:var(--r-card)}
 .toast > .tt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-width:0}
+/* a record line is never cut: below 360 pt a toast may take a third line (radius 16, as on two) */
+@media (max-width:359px){ .toast > .tt{-webkit-line-clamp:3} }
 .toast .rn{font-family:var(--f-num);font-weight:600}
 .toast svg{flex:none;display:block}
 /* the optional leading mark, 16 pt: a gold dot for back on plan at the next meal, a tint check disc for on plan */
@@ -737,6 +774,7 @@ div.kv:not(.list) > b{font-family:var(--f-num);font-weight:600;text-align:right;
 .wc-top:active{background:var(--hl);transition:none}
 .wc-top:focus-visible{outline:2px solid var(--tint);outline-offset:-4px}
 .wc-v{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.wc-v.wc-none{min-height:34px;align-items:center}   /* no weigh-ins: the headline takes the value's line box, so both cards keep one rhythm */
 .wc-v .t-value{font-family:var(--f-num);font-variant-numeric:tabular-nums}
 .wc-chart{margin:10px 0 12px}
 .wc-chart:last-child{margin-bottom:0}
@@ -778,7 +816,13 @@ div.kv:not(.list) > b{font-family:var(--f-num);font-weight:600;text-align:right;
 .wsum .wc-lines:empty{display:none}
 .mks.paused .t-sub{color:var(--ink2)}
 .stcard .st-all{width:auto;display:inline-flex;margin-top:12px}
-.stcard .track{margin-top:4px}
+.stcard .track{margin:4px 0 12px}
+.stg-bar{height:4px;border-radius:2px;background:var(--fill2);overflow:hidden}
+.stg-bar i{display:block;height:100%;min-width:4px;border-radius:2px;background:var(--ink)}
+.stg-labs{position:relative;height:13px;margin-top:6px}
+.stg-labs span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.stg-labs .s0{transform:none} .stg-labs .s9{left:auto!important;right:0;transform:none}
+.stcard .st-n{margin:0 0 2px}
 /* the Log sheet: a month of days, seven columns at least 44 wide at 390 */
 .logcard{padding:8px 8px 16px}
 .mv-h{display:flex;align-items:center;gap:4px;margin:0 0 4px}
@@ -792,7 +836,7 @@ div.kv:not(.list) > b{font-family:var(--f-num);font-weight:600;text-align:right;
 .bl-tab{padding:8px 16px}
 /* ---------- THE WEEKLY REVIEW (3.3): the body of the #road sheet as cards ---------- */
 .rv-week{padding-top:8px}
-.rv-wk{margin:0 -4px}
+.rv-wk{margin:8px -4px 0}
 .rv-wk .wkc{height:56px;cursor:default}
 .rv-hr{border-top:.5px solid var(--sep);margin:6px -16px 14px}
 .rv-p{margin:0}
@@ -2377,7 +2421,7 @@ var GEARICON={
 function gearButtons(act){
   var g=S.profile.gear||{};
   return '<div class="gearrow">'+GEAR.map(function(x){
-    return '<button class="gearbtn'+(g[x[0]]?' on':'')+'" data-act="'+(act||'gearset')+'" data-g="'+x[0]+'" aria-pressed="'+(g[x[0]]?'true':'false')+'">'+GEARICON[x[0]]+x[1]+'</button>';
+    return '<button class="gearbtn'+(g[x[0]]?' on':'')+'" data-act="'+(act||'gearset')+'" data-g="'+x[0]+'" aria-pressed="'+(g[x[0]]?'true':'false')+'">'+GEARICON[x[0]]+'<span class="gl">'+x[1]+'</span></button>';
   }).join('')+'</div>';
 }
 function gearChipRow(){ return gearButtons('gearset'); }
@@ -3239,7 +3283,7 @@ function dotLine(p2,anim,o){
   var closed=!!(anim&&anim.rec&&(anim.rec.kind==='next'||(anim.rec.kind==='off'&&anim.prevAll!=null&&(p2.closedAll||0)>anim.prevAll)));
   var dots=dotRow(d,{size:12,gap:6,pop:closed,shift:closed&&anim.prevN>=10}), line=PAT.backLine(p2,false).replace(/\.$/,'');
   if(o.line) return dots+recordLine(line);
-  return '<div class="dotline">'+dots+(o.bare?'':recordLine(line.replace(/^Back on plan at the next meal: /,'')))+'</div><div class="t-foot c2 dlab">Back on plan at the next meal</div>';
+  return '<div class="dotline">'+dots+(o.bare?'':recordLine(line.replace(/^Back on plan at the next meal: /,'')))+'</div>'+(o.nolab?'':'<div class="t-foot c2 dlab">Back on plan at the next meal</div>');
 }
 /* the card's bold line (3.1, O1): PAT.headline's sentence, except that when rule 4 picks the cravings sentence (P6),
    that sentence becomes the slot row, a link to Cravings, and the headline is the next rule's, so the card's bold line
@@ -3256,13 +3300,15 @@ function todayLead(g){
 /* the pattern card (3.1): the headline, the two tokens, the dot row and its label, then one footer slot. The top
    section links to Patterns (a role=link div: it holds block content) unless the slot row already goes there, so each
    destination has one target; before the first reading it is static. */
-function patternCard(g,anim,slot,lead){
-  var p1=g.P1, p3=g.P3, ready=(p1&&p1.state!=='early')||(p3&&p3.state!=='early'), link=ready&&!/data-tab="patterns"/.test(slot||'');
+function patternCard(g,anim,slot,lead,o){
+  o=o||{}; var nolab=o.nolab;
+  /* o.moved: the footer slot sits under the next meal's buttons (the smallest phones); it still decides the link */
+  var p1=g.P1, p3=g.P3, ready=(p1&&p1.state!=='early')||(p3&&p3.state!=='early'), link=ready&&!/data-tab="patterns"/.test((slot||'')+(o.moved||''));
   lead=lead||todayLead(g);
   var h='<section class="pcard card" aria-label="Your patterns"><div class="pc-top"'+(link?' role="link" tabindex="0" data-act="tab" data-tab="patterns" aria-label="Patterns, last 4 weeks"':'')+'>';
   h+='<div class="card-head"><p class="t-head pc-head">'+nb(esc(lead.text))+'</p>'+(link?ICON.chev:'')+'</div>';
   h+='<div class="tokens pc-tok">'+token('P1',p1)+token('P3',p3)+'</div>';
-  h+='<div class="pc-dots" id="pcDots">'+dotLine(g.P2,anim,{bare:lead.kind==='backonplan'})+'</div></div>';
+  h+='<div class="pc-dots" id="pcDots">'+dotLine(g.P2,anim,{bare:lead.kind==='backonplan',nolab:nolab})+'</div></div>';
   return h+(slot||'')+'</section>';
 }
 function nextSlotOf(iso0){ var d=S.days[iso0], sl=['b','l','d']; for(var i=0;i<3;i++){ var x=d&&d.m&&d.m[sl[i]]; if(!(x&&x.st)) return sl[i]; } return null; }
@@ -3298,9 +3344,9 @@ function slotMeta(iso0,k,eff,r){
    56 pt thumbnail under 760), its caption (.nm-lab slot and time, .nm-m minutes or why), its title, Ate it and Other;
    then the other meals as compact rows. When all three are logged the photo section goes, and tomorrow's breakfast
    is a row of its own with its own caption, so no label heads today's rows. */
-function mealsCard(iso0,anim){
-  var nk=nextSlotOf(iso0), h='<section class="meals card" aria-label="Meals today">';
-  if(nk) h+=nextMealCard(iso0,nk,anim);
+function mealsCard(iso0,anim,o){
+  o=o||{}; var nk=nextSlotOf(iso0), fc=o.fit>=2?' fit2':o.fit>=1?' fit1':'', h='<section class="meals card'+fc+'" aria-label="Meals today">';
+  if(nk) h+=nextMealCard(iso0,nk,anim)+(o.after||'');
   ['b','l','d'].forEach(function(k){ if(k!==nk) h+=compactRow(iso0,k,anim); });
   if(!nk) h+=tomorrowRow(iso0);
   return h+'</section>';
@@ -3408,30 +3454,53 @@ function renderToday(anim){
     /* another day, opened from the day sheet: its three meals as rows, to log or fix */
     h+='<div class="card editbar"><p class="t-sub">Editing '+esc(prettyDate(iso0))+'.</p><button class="btn gray small" data-act="goToday">Back to today</button></div>';
     h+='<section class="meals card" aria-label="Meals">'+['b','l','d'].map(function(k){ return compactRow(iso0,k,anim); }).join('')+'</section>';
-  } else {
-    /* the footer slot holds one thing: the morning question while it is unanswered (then "Log what it was" after
-       Something), else the one row */
-    var lead=g?todayLead(g):null, slot=morningCard(iso0)||oneRow(iso0,g,lead);
-    if(g) h+=patternCard(g,anim,slot,lead);
-    else if(slot) h+='<section class="pcard card pc-bare">'+slot+'</section>';
-    h+=mealsCard(iso0,anim);
   }
-  h+=weekStrip(iso0);
-  var pane=$('#pane-today'); pane.innerHTML=h;
+  var pane=$('#pane-today');
+  if(!isToday){ pane.innerHTML=h+weekStrip(iso0); }
+  else {
+    /* the footer slot: the morning question while it is unanswered, else the one row. A Slipping pattern's link row is
+       on Today every day while it lasts (design_final 6.2), so it also shows under the question, and under "Log what
+       it was" after Something, where the rest of the one row also follows */
+    var lead=g?todayLead(g):null, mc=morningCard(iso0), r1=oneRow(iso0,g,lead), q=/id="morn"/.test(mc);
+    var slot=!mc?r1:mc+(q?(/data-tab="patterns"/.test(r1)?r1:''):r1), tail=weekStrip(iso0);
+    /* "Ate it" stays above the tab bar (S8, S8c): when it would not, the layout steps down, measured once the card is
+       in the page: 1 the 112 pt photo; 2 the 56 pt thumbnail beside the caption (as the 840 and 760 pt rules do);
+       3 the footer slot (the morning question, the row) moves under the next meal's buttons; 4 the dots' label goes
+       when the headline is the P2 sentence, which already says what the dots are (their aria-label keeps it) */
+    var nk0=!!nextSlotOf(iso0);
+    for(var fit=0; fit<=4; fit++){
+      var mv=fit>=3&&!!slot&&nk0, b='';
+      if(g) b+=patternCard(g,anim,mv?'':slot,lead,{nolab:fit>=4&&lead.kind==='backonplan',moved:mv?slot:''});
+      else if(slot&&!mv) b+='<section class="pcard card pc-bare">'+slot+'</section>';
+      b+=mealsCard(iso0,anim,{fit:fit,after:mv?slot:''});
+      pane.innerHTML=h+b+tail;
+      if(fit===4||todayFits(pane)) break;
+    }
+  }
   /* a record line's number that changed on a tap cross-fades; nothing counts up */
   var dl=$('#pcDots'), txt=dl?dl.textContent:'';
   if(anim&&dl&&LASTDOTS&&txt!==LASTDOTS) $$('.rn',dl).forEach(function(el){ fadeInEl(el,150); });
   LASTDOTS=txt;
   ltAfter('today');
 }
-/* the morning answer (2.16): the slot cross-fades (150 ms) to what follows it, or, when nothing follows, the card
-   closes up and the blocks under it slide up on the snappy spring. h0: the slot's height before the answer. */
-function slotAfter(h0){
-  var s=$('#pane-today .pcard .slot');
-  if(s){ fadeInEl(s,150); return; }
+/* does "Ate it" end above the tab bar, with 8 pt to spare, with the page at its top? (Nothing to measure while the
+   pane is hidden or has no layout, as in a test without a browser: it fits.) */
+function todayFits(pane){
+  var a=pane.querySelector('.meals .btnrow [data-act=ate]'), tb=$('.tabbar'); if(!a||!tb) return true;
+  var r=a.getBoundingClientRect(); if(!r.height) return true;
+  return r.bottom+(window.scrollY||window.pageYOffset||0)<=tb.getBoundingClientRect().top-8;
+}
+/* the morning answer (2.16): the slot cross-fades (150 ms) to what takes the question's place, or, when nothing new does,
+   the question closes up and what was under it slides up on the snappy spring. h0: the question's height before the
+   answer; before: the texts of the card's slots then; inMeals: the question sat under the next meal's buttons (the
+   smallest phones), where the card cross-fades instead. */
+function slotAfter(h0,before,inMeals){
+  if(inMeals){ fadeInEl($('#pane-today .meals'),150); return; }
+  var ss=$$('#pane-today .pcard .slot'), s=ss[0];
+  if(s&&(before||[]).indexOf(s.textContent)<0){ fadeInEl(s,150); return; }
   if(!h0) return;
   if(RM){ fadeInEl($('#pane-today .pcard'),150); return; }
-  var els=$$('#pane-today > .meals, #pane-today > .wk');
+  var els=ss.concat($$('#pane-today > .meals, #pane-today > .wk'));
   springTo(h0,0,'snappy',function(x){ els.forEach(function(e){ e.style.transform=x>.5?'translateY('+x.toFixed(1)+'px)':''; }); });
 }
 /* "Week N" (the Patterns subtitle and the weekly card, in place of the streak): the app's own Monday-to-Sunday weeks,
@@ -3561,19 +3630,31 @@ function pickerList(){
     return (r.tag||[]).indexOf(f)>=0;
   });
 }
+/* the swap sheet (2.7, 3.9), opened by Today's Other: the two off-plan answers first, as action rows in tint (I ate
+   something else, Skipped); then "Or another meal" with the day's rule under it ("Any meal works on a day off.") and
+   the time as a pull-down, the kind chips and the plan meals that fit the day and the kitchen. The week planner and
+   "change all three" open the same list without the answers. */
+var SHAPEAT={off:'on a day off',early:'on an early shift',day:'on a day shift',late:'on a late shift',night:'on a night shift',double:'on a two-job day'};
+var PICKMIN=[[0,'Any time'],[5,'5 min'],[10,'10 min'],[20,'20 min'],[30,'30 min']];
+function pickTimePull(){
+  var lab=PICKMIN.filter(function(x){ return x[0]===PICK.min; })[0]||PICKMIN[0];
+  return '<label class="pull pullsel"><span class="pl-l t-body">'+esc(lab[1])+'</span>'+PULLDOWN+'<select data-ch="pmin" aria-label="Time">'+PICKMIN.map(function(x){ return '<option value="'+x[0]+'"'+(x[0]===PICK.min?' selected':'')+'>'+esc(x[1])+'</option>'; }).join('')+'</select></label>';
+}
 function recipePicker(k,opts){
   opts=opts||{};
   PICK.mode=opts.mode||'today'; PICK.k=k; PICK.dnum=opts.dnum||0; PICK.queue=opts.queue||null; PICK.f='all'; PICK.min=0; PICK.fit=true;
-  var title=SLOTNAME[k]+(PICK.mode==='plan'?' · '+DAYNAME[PICK.dnum]:'');
+  var title=SLOTNAME[k]+(PICK.mode==='plan'?' · '+DAYNAME[PICK.dnum]:''), ans=PICK.mode==='today'&&!PICK.queue, sub='';
   var h='<div class="sheet-h"><h2>'+title+'</h2>'+closeBtn()+'</div>';
-  if(PICK.queue) h+='<div class="tiny" style="margin-bottom:10px">Step '+(4-PICK.queue.length)+' of 3</div>';
-  if(PICK.mode==='today'){ var sh=SHAPES[shapeOf(curDate())], need=sh.need[k];
-    h+='<div class="togg" style="padding-top:0"><div class="togg-l">Fits the '+esc(sh.n.toLowerCase())+'<small>'+(need==='any'?'Any meal works today.':'Only meals that work '+({quick:'in eight minutes or with no cooking',box:'packed and carried',night:'eaten late at work, cold or reheated'}[need])+'.')+'</small></div><button class="sw'+(PICK.fit?' on':'')+'" role="switch" aria-checked="'+(PICK.fit?'true':'false')+'" data-act="pfit" aria-label="Fit to shift"><i></i></button></div>'; }
-  h+='<div class="chips scroll" style="margin:6px 0 8px">'+minChipRow('pmin',PICK.min)+'</div>';
-  h+='<div class="chips scroll" style="margin-bottom:10px">'+[['all','All'],['new','Not cooked yet'],['nocook','No cooking'],['tofu','Tofu'],['cheap','Cheapest'],['fibre','High fibre']].map(function(x){return '<button class="chip'+(x[0]==='all'?' on':'')+'" data-filter="'+x[0]+'">'+x[1]+'</button>';}).join('')+'</div>';
-  h+='<div class="tiny" style="margin-bottom:8px">Only meals your kitchen can make. Change the kitchen in Meals or Settings.</div>';
-  if(PICK.mode==='today'&&!PICK.queue) h+='<div class="pair"><button class="btn ghost" data-act="offplan" data-k="'+k+'">I ate something else</button><button class="btn ghost" data-act="skip" data-k="'+k+'">Skipped</button></div>';
+  if(PICK.queue) h+='<p class="t-foot c2 pk-step">Step '+(4-PICK.queue.length)+' of 3</p>';
+  if(ans) h+='<div class="list pk-acts"><button class="row act" data-act="offplan" data-k="'+k+'"><span class="m"><span class="t-body">I ate something else</span></span>'+ICON.chev+'</button>'+
+    '<button class="row act" data-act="skip" data-k="'+k+'"><span class="m"><span class="t-body">Skipped</span></span></button></div>';
+  if(PICK.mode==='today'){ var shk=shapeOf(curDate()), need=SHAPES[shk].need[k];
+    sub=need==='any'?'Any meal works '+SHAPEAT[shk]+'.':'Only meals that work '+({quick:'in eight minutes or with no cooking',box:'packed and carried',night:'eaten late at work, cold or reheated'}[need])+'.'; }
+  /* the day's rule runs the full width under the header row, so the pull-down never squeezes it at 320 */
+  h+='<div class="sec pk-sec'+(ans?'':' pk-first')+(sub?' has-sub':'')+'"><h2 class="t-title3">'+(ans?'Or another meal':'Choose a meal')+'</h2>'+pickTimePull()+'</div>'+(sub?'<p class="t-sub c2 pk-sub">'+esc(sub)+'</p>':'');
+  h+='<div class="chips pk-chips">'+[['all','All'],['new','Not cooked yet'],['nocook','No cooking'],['tofu','Tofu'],['cheap','Cheapest'],['fibre','High fibre']].map(function(x){return '<button class="chip'+(x[0]==='all'?' on':'')+'" data-filter="'+x[0]+'" aria-pressed="'+(x[0]==='all'?'true':'false')+'">'+x[1]+'</button>';}).join('')+'</div>';
   h+='<div class="list" id="pickList">'+pickRows(pickerList())+'</div>';
+  h+='<p class="t-foot c2 foot">Only meals your kitchen can make. Change the kitchen in Meals or Settings.</p>';
   openSheet(h);
 }
 function pickRows(list){
@@ -3585,9 +3666,11 @@ function pickRows(list){
     return '<div class="li'+(r.c===cur?' on':'')+'" data-act="pick" data-c="'+r.c+'" role="button" tabindex="0">'+thumb(r)+'<div class="lmain"><div class="lname">'+esc(r.t)+'</div><div class="lmeta">'+Math.round(m[0])+' g protein · '+Math.round(m[2])+' g carbs · '+Math.round(m[3])+' g fibre · '+(r.min?r.min+' min':'no cook')+(cooked[r.c]?'':' · new to you')+(lowCap&&m[2]>share?' · over the day’s carb share':'')+'</div></div><div class="lcost">'+(r.out?'':money(costOf(r,S.profile.serves||1)))+'</div></div>';
   }).join('');
 }
+/* the recipe's Ekberg note: a plain disclosure row, as the pattern sheet has them, with the quote and its source in the
+   detail (no glyph: the row's title says whose note it is) */
 function ekbBlock(line){
   if(!line) return '';
-  return '<div class="ekb">'+EKB_ICON+'<div><b>'+esc(line.h||'Dr Ekberg')+'</b><p>'+esc(line.t)+'</p>'+(line.src?'<div class="src">'+esc(line.src)+'</div>':'')+'</div></div>';
+  return '<div class="list disc rs-disc">'+discRow(line.h||'Dr Ekberg',ekbDetail(line))+'</div>';
 }
 function recipeSheet(c){
   var r=rec(c); if(!r) return;
@@ -3636,22 +3719,16 @@ function daysToStage(n,ix){ var s=STAGES[ix]; if(!s||n>=s.at) return 0; return M
 function checksSorted(){ return Object.keys(S.checks||{}).sort().map(function(k){ return {k:k,kg:S.checks[k].kg,waist:S.checks[k].waist}; }).filter(function(c){return c.kg||c.waist;}); }
 function latestKg(){ var c=checksSorted().filter(function(x){return x.kg;}); return c.length?c[c.length-1].kg:(S.profile.kg0||null); }
 function latestWaist(){ var c=checksSorted().filter(function(x){return x.waist;}); return c.length?c[c.length-1].waist:null; }
+/* the first twelve weeks (3.9): a 4 pt ink progress bar on a fill2 track, the stages' starts under it in Caption 2
+   (Start, Day 4, ...), evenly spaced, with progress between them read in on-plan days. No rings: a circle in this app
+   is a to-do check, a dot of the dot row or an award (2.10). */
 function stageTrack(n){
-  var ix=stageIx(n), W=340, H=58, L=18, R=322, step=(R-L)/(STAGES.length-1);
-  /* nodes evenly spaced; progress interpolates between them, so day 3 and day 84 both read */
-  function X(v){ for(var i=0;i<STAGES.length-1;i++){ var a=STAGES[i].at,b=STAGES[i+1].at; if(v<b) return L+(i+Math.max(0,(v-a)/(b-a)))*step; } return R; }
-  var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Stage '+(ix+1)+' of '+STAGES.length+'">';
-  s+='<line x1="'+L+'" y1="20" x2="'+R+'" y2="20" stroke="var(--fill2)" stroke-width="6" stroke-linecap="round"/>';
-  s+='<line x1="'+L+'" y1="20" x2="'+X(n).toFixed(1)+'" y2="20" stroke="var(--ink)" stroke-width="6" stroke-linecap="round"/>';
-  /* progress in ink, as Prep's rings: gold is the dot row's and the awards' (2.1) */
-  STAGES.forEach(function(st,i){ var x=X(st.at);
-    s+='<circle cx="'+x.toFixed(1)+'" cy="20" r="'+(i===ix?9:7)+'" fill="'+(i<=ix?'var(--ink)':'var(--surface)')+'" stroke="'+(i<=ix?'var(--surface)':'var(--mark)')+'" stroke-width="2"/>';
-    s+='<text x="'+x.toFixed(1)+'" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="'+(i<=ix?'var(--on-tint)':'var(--ink2)')+'" font-family="ui-rounded,SF Pro Rounded,-apple-system,system-ui,sans-serif">'+(i+1)+'</text>';
-    s+='<text x="'+x.toFixed(1)+'" y="48" text-anchor="'+(i===0?'start':i===STAGES.length-1?'end':'middle')+'" font-size="11" fill="var(--ink2)" font-family="-apple-system,system-ui,sans-serif">'+(st.at===0?'Start':'Day '+st.at)+'</text>';
-  });
-  var near=STAGES.some(function(st){ return Math.abs(X(st.at)-X(n))<12; });
-  if(!near) s+='<circle cx="'+X(n).toFixed(1)+'" cy="20" r="5" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/>';
-  return s+'</svg>';
+  var ix=stageIx(n), N=STAGES.length;
+  /* the stage starts are evenly spaced; progress between two of them is read in on-plan days */
+  function F(v){ for(var i=0;i<N-1;i++){ var a=STAGES[i].at,b=STAGES[i+1].at; if(v<b) return (i+Math.max(0,(v-a)/(b-a)))/(N-1); } return 1; }
+  var h='<div class="stg" role="img" aria-label="'+esc('Stage '+(ix+1)+' of '+N+': '+STAGES[ix].n)+'"><div class="stg-bar"><i style="width:'+(F(n)*100).toFixed(1)+'%"></i></div><div class="stg-labs t-cap c2" aria-hidden="true">';
+  STAGES.forEach(function(st,i){ h+='<span class="'+(i===0?'s0':i===N-1?'s9':'')+'" style="left:'+(i/(N-1)*100).toFixed(1)+'%">'+(st.at===0?'Start':'Day '+st.at)+'</span>'; });
+  return h+'</div></div>';
 }
 
 /* ===================== words (6.1, R8) ===================== */
@@ -4201,7 +4278,11 @@ function levelsMode(fv,g){
    bottom (the first anchored to the plot's start, the first of each year with its year), the weigh-ins in --weighin,
    the trend in ink ending in a dot with a halo; the future as a neutral band (P10 to P90) with a dashed middle; marker
    lines dotted with labels on a halo, the healthy line dashed green. x runs from the start to the later of the next
-   dated marker's P90 and 26 weeks ahead, at most 3 years; opts.trendOnly ends it at today and draws no band. */
+   dated marker's P90 and 26 weeks ahead, at most 3 years; where a line under the chart says where weight levels out
+   (a marker of kind 'level'), on to the week the band's middle settles (within 0.5 kg of its last value, at most 3
+   years), so the chart ends where the copy's "most likely around" is. The band starts at the trend's end dot (the
+   forecast is Monday's; a weigh-in since then has moved the dot). opts.trendOnly ends x at today and draws no band;
+   opts.labels caps the labelled marker lines (Weight details: the healthy line and the next marker first). */
 function weightPath(fv,opts){
   opts=opts||{}; var v=fv.view, fc=fv.fc, pts=fv.points||[], st=S.profile.start, td=Math.max(0,daysBetween(st,appToday()));
   if(!pts.length) return '';
@@ -4210,6 +4291,9 @@ function weightPath(fv,opts){
   var xEnd=td+182, nx=null;
   v.lines.forEach(function(l){ if(!nx&&(l.kind==='range'||l.kind==='possible')) nx=l; });
   if(nx){ var s0=fc.stations.filter(function(x){ return x.id===nx.id; })[0]; if(s0&&isFinite(s0.p90)) xEnd=Math.max(xEnd,Tn+s0.p90); }
+  if(band.length&&v.lines.some(function(l){ return l.kind==='level'; })){ var bl=band[band.length-1].p50, sw=band[band.length-1].wk;
+    for(var bi=band.length-1; bi>=0&&Math.abs(band[bi].p50-bl)<=.5; bi--) sw=band[bi].wk;
+    xEnd=Math.max(xEnd,Tn+7*sw); }
   xEnd=Math.min(xEnd,td+3*365);
   var t0=Math.min(0,pts[0].t);
   if(opts.trendOnly) xEnd=Math.max(t0+28,pts[pts.length-1].t,td);
@@ -4237,20 +4321,26 @@ function weightPath(fv,opts){
     if(i){ if(xx+w>pw){ anc='end'; xx=pw; if(xx-w<right+10) return; } else if(xx<right+10) return; }
     lastY=yr; right=anc==='start'?xx+w:xx;
     s+='<text class="wx" x="'+xx.toFixed(1)+'" y="'+(H-5)+'" font-size="11" fill="var(--ink2)" text-anchor="'+anc+'" '+F+'>'+lab+'</text>'; });
-  /* the band from the anchor Monday on, joined to the trend, with its dashed middle */
-  if(band.length){ var top=[[X(Tn),Y(fv.fc.trendNow)]], bot=[], mid=[[X(Tn),Y(fv.fc.trendNow)]];
-    band.forEach(function(b){ top.push([X(Tn+7*b.wk),Y(b.p10)]); bot.push([X(Tn+7*b.wk),Y(b.p90)]); mid.push([X(Tn+7*b.wk),Y(b.p50)]); });
+  /* the band from the trend's end dot on, with its dashed middle; data-end is the middle where the chart ends */
+  var lp=pts[pts.length-1], fut=band.filter(function(b){ return Tn+7*b.wk>lp.t; });
+  if(fut.length){ var top=[[X(lp.t),Y(lp.level)]], bot=[], mid=[[X(lp.t),Y(lp.level)]];
+    fut.forEach(function(b){ top.push([X(Tn+7*b.wk),Y(b.p10)]); bot.push([X(Tn+7*b.wk),Y(b.p90)]); mid.push([X(Tn+7*b.wk),Y(b.p50)]); });
     var poly=top.concat(bot.reverse()).map(function(p){ return p[0].toFixed(1)+','+p[1].toFixed(1); }).join(' ');
-    s+='<g class="wp-band"><polygon points="'+poly+'" fill="var(--band)"/><path d="M'+mid.map(function(p){ return p[0].toFixed(1)+' '+p[1].toFixed(1); }).join('L')+'" fill="none" stroke="var(--ink2)" stroke-width="1.5" stroke-dasharray="3 3"/></g>'; }
-  /* markers in range: the healthy line dashed green, the others dotted, labelled at the plot's right end on a halo */
-  var lastLabY=-99;
-  fc.stations.slice().sort(function(a,b){ return a.kg-b.kg; }).forEach(function(m){ if(m.kg<ymin||m.kg>ymax) return; var yy=Y(m.kg), hw=/b25/.test(m.id);
+    s+='<g class="wp-band" data-end="'+fut[fut.length-1].p50.toFixed(1)+'"><polygon points="'+poly+'" fill="var(--band)"/><path d="M'+mid.map(function(p){ return p[0].toFixed(1)+' '+p[1].toFixed(1); }).join('L')+'" fill="none" stroke="var(--ink2)" stroke-width="1.5" stroke-dasharray="3 3"/></g>'; }
+  /* markers in range: the healthy line dashed green, the others dotted, labelled at the plot's right end on a halo.
+     With opts.labels, only that many carry a label: the healthy line, the next marker not yet reached, then the
+     nearest to today's trend; the rest are dotted lines with no label (the Markers list names them) */
+  var lastLabY=-99, inR=fc.stations.filter(function(m){ return m.kg>=ymin&&m.kg<=ymax; }), lab=null;
+  if(opts.labels){ var nowKg=lp.level, nxt=v.lines.filter(function(l){ return l.kind!=='reached'&&l.kind!=='close'; })[0];
+    var pri=inR.slice().sort(function(a,b){ function rk(m){ return /b25/.test(m.id)?0:nxt&&m.id===nxt.id?1:2; } return rk(a)-rk(b)||Math.abs(a.kg-nowKg)-Math.abs(b.kg-nowKg); });
+    lab={}; pri.slice(0,opts.labels).forEach(function(m){ lab[m.id]=1; }); }
+  inR.sort(function(a,b){ return a.kg-b.kg; }).forEach(function(m){ var yy=Y(m.kg), hw=/b25/.test(m.id);
     s+='<path d="M0 '+yy.toFixed(1)+'H'+pw+'" stroke="'+(hw?'var(--up)':'var(--mark)')+'" stroke-width="1.5" stroke-dasharray="'+(hw?'5 4':'2 3')+'"/>';
-    if(Math.abs(yy-lastLabY)>=13&&yy-5>=11){ s+='<text x="'+(pw-4)+'" y="'+(yy-5).toFixed(1)+'" font-size="11" font-weight="600" fill="'+(hw?'var(--up)':'var(--ink2)')+'" text-anchor="end" stroke="var(--halo)" stroke-width="3" paint-order="stroke" '+F+'>'+esc(hw?'Healthy weight':m.lab.replace(' and under ',', ').replace(/^Under /,''))+'</text>'; lastLabY=yy; } });
+    if((!lab||lab[m.id])&&Math.abs(yy-lastLabY)>=13&&yy-5>=11){ s+='<text x="'+(pw-4)+'" y="'+(yy-5).toFixed(1)+'" font-size="11" font-weight="600" fill="'+(hw?'var(--up)':'var(--ink2)')+'" text-anchor="end" stroke="var(--halo)" stroke-width="3" paint-order="stroke" '+F+'>'+esc(hw?'Healthy weight':m.lab.replace(' and under ',', ').replace(/^Under /,''))+'</text>'; lastLabY=yy; } });
   /* weigh-ins, then the trend through them */
   pts.forEach(function(p){ s+='<circle cx="'+X(p.t).toFixed(1)+'" cy="'+Y(p.kg).toFixed(1)+'" r="2.4" fill="var(--weighin)"/>'; });
   if(pts.length>1) s+='<path class="wp-trend" pathLength="1" d="M'+pts.map(function(p){ return X(p.t).toFixed(1)+' '+Y(p.level).toFixed(1); }).join('L')+'" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
-  var lp=pts[pts.length-1]; s+='<circle cx="'+X(lp.t).toFixed(1)+'" cy="'+Y(lp.level).toFixed(1)+'" r="4.5" fill="var(--ink)" stroke="var(--halo)" stroke-width="2"/>';
+  s+='<circle cx="'+X(lp.t).toFixed(1)+'" cy="'+Y(lp.level).toFixed(1)+'" r="4.5" fill="var(--ink)" stroke="var(--halo)" stroke-width="2"/>';
   return s+'</svg>';
 }
 /* the weight card (3.2): "99.2 kg, trend" in Value with the chevron to Weight details, the chart, its lines. The card is
@@ -4259,7 +4349,7 @@ function weightPath(fv,opts){
 function weightCard(fv,g,draw,o){
   o=o||{}; var v=fv.view, lv=!o.nolv&&levelsMode(fv,g), val=weightValue(fv);
   var h='<section class="card wcard'+(v.state==='paused'?' paused':'')+'" aria-label="Where your weight is heading"><div class="wc-top" role="link" tabindex="0" data-act="wdetails" aria-label="Weight details">';
-  h+='<div class="card-head"><p class="wc-v">'+(val?'<span class="t-value">'+esc(val.v)+'</span> <span class="t-sub c2">'+esc(val.u)+'</span>':'<span class="t-head">No weigh-ins yet</span>')+'</p>'+ICON.chev+'</div>';
+  h+='<div class="card-head"><p class="wc-v'+(val?'':' wc-none')+'">'+(val?'<span class="t-value">'+esc(val.v)+'</span> <span class="t-sub c2">'+esc(val.u)+'</span>':'<span class="t-head">No weigh-ins yet</span>')+'</p>'+ICON.chev+'</div>';
   var ch=weightPath(fv,{draw:draw,trendOnly:lv}); if(ch) h+='<div class="wc-chart">'+ch+'</div>';
   var ls=lv?(v.state==='flat'?[flatText(fv,g)]:[]):weightLines(fv,g);
   h+='<div class="wc-lines">'+ls.map(function(x){ return '<p class="t-sub">'+esc(x)+'</p>'; }).join('')+(lv?'<p class="t-sub" id="rgLevel"></p>':'')+'</div>';
@@ -4289,8 +4379,8 @@ function weightSheet(){
   var fv=FC.get(), g=null; try{ g=PAT.get(); }catch(e){ g=null; }
   var v=fv.view, p=S.profile, paused=v.state==='paused', val=weightValue(fv,{bmi:1}), say=[];
   var h='<div class="sheet-h"><button class="lead" data-act="checkin">Weigh in</button><h2>Weight details</h2>'+closeBtn()+'</div>';
-  h+='<section class="card wsum'+(paused?' wcard paused':'')+'"><p class="wc-v">'+(val?'<span class="t-value">'+esc(val.v)+'</span> <span class="t-sub c2">'+esc(val.u)+'</span>':'<span class="t-head">No weigh-ins yet</span>')+'</p>';
-  var ch=weightPath(fv,{h:196}); if(ch) h+='<div class="wc-chart">'+ch+'</div>';
+  h+='<section class="card wsum'+(paused?' wcard paused':'')+'"><p class="wc-v'+(val?'':' wc-none')+'">'+(val?'<span class="t-value">'+esc(val.v)+'</span> <span class="t-sub c2">'+esc(val.u)+'</span>':'<span class="t-head">No weigh-ins yet</span>')+'</p>';
+  var ch=weightPath(fv,{h:196,labels:2}); if(ch) h+='<div class="wc-chart">'+ch+'</div>';
   if(!fv.trend) say.push('One a week, before food, starts the trend.');
   if(paused) say.push('From '+PAT.longDate(v.paused.from)+'. Log a week and weigh in to bring it up to date.');
   if(v.state==='flat') say.push(flatText(fv,g));
@@ -4299,11 +4389,15 @@ function weightSheet(){
     if(first3!=null&&first3-fl.observedLossWk>=.2&&fl.observedLossWk>0) say.push('Loss is slower than in the first months: about '+fl.observedLossWk.toFixed(1)+' kg a week now, from about '+first3.toFixed(1)+' in the first three months. A lighter body uses less energy, so the same plates leave a smaller gap.'); }
   var take=paused?'':whatItTakes(v,g); if(take) say.push(take);
   h+='<div class="wc-lines">'+say.map(function(x){ return '<p class="t-sub c2">'+esc(x)+'</p>'; }).join('')+'</div></section>';
-  var tm=trendMondays(), mk=[];
-  v.lines.forEach(function(l){ var t=markerStatus(l,v,g,fv,markerHist(l.kg,tm),paused);
-    mk.push('<div class="row two mk"><span class="m"><span class="t-body">'+esc(l.lab+', '+kgStr(l.kg)+' kg')+'</span><span class="t-sub c2">'+esc(t)+'</span></span></div>'); });
+  /* a status that two or more markers share word for word ("Dates come after four weekly weigh-ins across four
+     weeks.") is said once, as the list's footer, and those rows give their name and kilograms only */
+  var tm=trendMondays(), mk=[], st=v.lines.map(function(l){ return markerStatus(l,v,g,fv,markerHist(l.kg,tm),paused); }), cnt={}, foot='';
+  st.forEach(function(t){ cnt[t]=(cnt[t]||0)+1; });
+  v.lines.forEach(function(l,i){ var t=st[i], one=cnt[t]>=2&&l.kind!=='reached'&&l.kind!=='close'; if(one) foot=t;
+    mk.push(one?'<div class="row mk"><span class="m"><span class="t-body">'+esc(l.lab+', '+kgStr(l.kg)+' kg')+'</span></span></div>':
+      '<div class="row two mk"><span class="m"><span class="t-body">'+esc(l.lab+', '+kgStr(l.kg)+' kg')+'</span><span class="t-sub c2">'+esc(t)+'</span></span></div>'); });
   if(!p.heightCm) mk.push('<div class="row two mk"><span class="m"><span class="t-body">Healthy weight</span><span class="t-sub c2">Add your height to set this line.</span></span></div>');
-  if(mk.length) h+=secHead('Markers')+'<div class="list mks'+(paused?' paused':'')+'">'+mk.join('')+'</div>';
+  if(mk.length) h+=secHead('Markers')+'<div class="list mks'+(paused?' paused':'')+'">'+mk.join('')+'</div>'+(foot?'<p class="t-foot c2 foot mk-foot">'+esc(foot)+'</p>':'');
   var wst=fv.waist||{}, lw=latestWaist(), wrow='';
   if(wst.state==='ready') wrow='<div class="row two"><span class="m"><span class="t-body">Waist '+Math.round(wst.cm)+'&nbsp;cm</span><span class="t-sub c2">'+esc('Half your height is '+Math.round(wst.target)+' cm.'+(wst.showRatio?' Waist to height '+wst.ratio.toFixed(2)+', '+(wst.band==='healthy'?'in the healthy range':wst.band)+'.':''))+'</span></span></div>';
   else if(lw) wrow='<div class="row two"><span class="m"><span class="t-body">Waist '+Math.round(lw)+'&nbsp;cm</span><span class="t-sub c2">With your height, the waist-to-height line shows here.</span></span></div>';
@@ -4311,7 +4405,7 @@ function weightSheet(){
   h+=secHead('Waist')+'<div class="list">'+wrow+'</div><p class="t-foot c2 foot">'+esc(WHTR.note+' NICE uses waist to height for people with a BMI under 35.')+'</p>';
   var dayN=daysBetween(p.start,appToday())+1;
   if(dayN<=84){ var n=adaptDays(), stg=STAGES[stageIx(n)];
-    h+=secHead('The first twelve weeks')+'<section class="card stcard"><div class="track">'+stageTrack(n)+'</div><p class="t-sub">'+esc(stg.n+'. '+stg.body)+' The first drop is mostly water and stored carbohydrate.</p><button class="btn gray small st-all" data-act="stages">All five stages</button></section>'; }
+    h+=secHead('The first twelve weeks')+'<section class="card stcard"><div class="track">'+stageTrack(n)+'</div><p class="t-foot w6 st-n">'+esc(stg.n)+'</p><p class="t-sub">'+esc(stg.body)+' The first drop is mostly water and stored carbohydrate.</p><button class="btn gray small st-all" data-act="stages">All five stages</button></section>'; }
   h+=discList([discRow('Rule of thumb','<p class="t-sub">'+esc(RULEOFTHUMB)+'</p>'),discRow('How this is worked out',HOWTEXT.map(function(t){ return '<p class="t-sub">'+esc(t)+'</p>'; }).join(''),'howworked')]);
   openSheet(h);
 }
@@ -4437,7 +4531,7 @@ function reviewChange(g){
   var slip=slipping(g), f=S.ui.focus, L, P;
   if(f&&f.mon===g.mon){ L=leverInfo(f.lever,g,{ctx:f.ctx}); return RVCHG+leverCard(ucFirst(L.name),'Taken for this week.'); }
   if(slip.length){ L=leverInfo(regressionLever(slip[0],g),g);
-    return RVCHG+leverCard(ucFirst(L.back||L.name),L.rline,'',changeButtons(L),{gainId:'rvGain'}); }
+    return RVCHG+leverCard(ucFirst(L.back||L.name),L.rline,'',changeButtons(L)); }
   var hl=harderLever(g);
   if(hl){ L=leverInfo(hl,g); P=leverParts(L.line);
     return RVCHG+leverCard(P.t,P.s,'',changeButtons(L),{gainId:'rvGain'}); }
@@ -4514,7 +4608,7 @@ function reviewAsync(){
     else el.textContent=line; });
   if($('#rvLever')||$('#rvGain')) FC.levers(function(lv){
     var slip=slipping(g), el=$('#rvLever'), eg=$('#rvGain'); if(!lv) return;
-    var own=slip.length?regressionLever(slip[0],g):harderLever(g);
+    var own=slip.length?null:harderLever(g);
     if(eg&&own){ var gt=ownGain(own,g,lv); if(gt) eg.textContent=' '+gt; }
     if(el){ if(!lv.choice){ el.innerHTML=''; return; }
       var r2=lv.list.filter(function(x){ return x.id===lv.choice.id; })[0]||{}, L=leverInfo(lv.choice.id,g,{ctx:r2.ctx,reason:r2.reason,kind:r2.kind}), P=leverParts(L.line);
@@ -4570,7 +4664,8 @@ function monthView(){
   for(var i=0;i<start;i++) h+='<div></div>';
   for(var dd=1;dd<=dim;dd++){
     var k=HIST.y+'-'+pad(HIST.m+1)+'-'+pad(dd);
-    h+='<button class="hcell'+(k===today?' today':'')+'" data-act="hday" data-k="'+k+'" aria-label="'+esc(prettyDate(k))+'"><span>'+dd+'</span>'+dayDots(k)+'</button>';
+    if(k>today||(S.profile.start&&k<S.profile.start)){ h+='<div class="hcell later" aria-hidden="true"><span>'+dd+'</span></div>'; continue; }
+    h+='<button class="hcell'+(k===today?' today':'')+'" data-act="hday" data-k="'+k+'" aria-label="'+esc(prettyDate(k))+(k===today?', today':'')+'"'+(k===today?' aria-current="date"':'')+'><span>'+dd+'</span>'+dayDots(k)+'</button>';
   }
   return h+'</div><p class="t-foot c2 mv-foot">Tap a day to read or fix it.</p>';
 }
@@ -4584,7 +4679,8 @@ function dayDetail(k){
   ['b','l','d'].forEach(function(sk){
     var s=d.m&&d.m[sk], r=s&&s.c?rec(s.c):null, st=s&&s.st;
     var what=!st?'Not logged':st==='skip'?'Skipped':st==='off'?(s.off||'Something else')+', off plan'+(s.trig?' ('+REASONW[s.trig]+')':''):(r?r.t:'On plan');
-    var mk=st==='on'?'<span class="mchk on" role="img" aria-label="On plan"><i>'+ICON.check+'</i></span>':st?'<span class="mchk was" role="img" aria-label="'+(st==='skip'?'Skipped':'Off plan')+'"><i>'+(st==='skip'?ICON.minus:ICON.x)+'</i></span>':'<span class="mchk" role="img" aria-label="Not logged"><i></i></span>';
+    /* a meal not logged draws nothing beside "Not logged": the empty ring is a to-do check, and nothing here is a control */
+    var mk=st==='on'?'<span class="mchk on" role="img" aria-label="On plan"><i>'+ICON.check+'</i></span>':st?'<span class="mchk was" role="img" aria-label="'+(st==='skip'?'Skipped':'Off plan')+'"><i>'+(st==='skip'?ICON.minus:ICON.x)+'</i></span>':'';
     h+='<div class="row two"><div class="m"><span class="t-body">'+SLOTNAME[sk]+'</span><span class="t-sub c2">'+esc(what)+'</span></div>'+mk+'</div>';
   });
   h+='</div>';
@@ -5584,7 +5680,7 @@ function bloodResults(which){
   var hd='<div class="sheet-h"><h2>'+esc(rd.label)+' results</h2>'+closeBtn()+'</div>';
   hd+='<p class="sub">Add the report as a photo or PDF, and type in the numbers if you can. Leave out anything not tested.</p>';
   hd+='<div class="fgroup"><label class="lab" for="repFile">The report</label><input type="file" id="repFile" accept="image/*,application/pdf"></div>';
-  hd+='<div class="togg" style="padding-top:0"><div class="togg-l">Also save it to the backup<small>Reports go to the same private GitHub backup as the log, which the person who set up the app can open. Switch this off to keep this report on the phone only.</small></div><button class="sw'+(S.ui.repCloud===false?'':' on')+'" role="switch" aria-checked="'+(S.ui.repCloud===false?'false':'true')+'" data-act="repcloud" aria-label="Save reports to the backup"><i></i></button></div>';
+  hd+='<div class="list"><div class="togg"><div class="togg-l">Also save it to the backup<small>Reports go to the same private GitHub backup as the log, which the person who set up the app can open. Switch this off to keep this report on the phone only.</small></div><button class="sw'+(S.ui.repCloud===false?'':' on')+'" role="switch" aria-checked="'+(S.ui.repCloud===false?'false':'true')+'" data-act="repcloud" aria-label="Save reports to the backup"><i></i></button></div></div>';
   if(x.reps&&x.reps.length) hd+='<div class="list" style="margin-bottom:12px">'+x.reps.map(function(f){ return '<div class="li"><div class="lmain"><div class="lname">'+esc(f.name)+'</div><div class="lmeta">'+Math.round(f.size/1024)+' KB · '+(f.cloud?(f.pushed?'on the phone and in the backup':'waiting to reach the backup'):'on this phone only')+'</div></div></div>'; }).join('')+'</div>';
   var fl=x.flags||{};
   hd+='<div class="row2">'+BLOODFIELDS.map(function(f){ var flag=FLAGFIELDS.indexOf(f[0])>=0;
@@ -5961,7 +6057,7 @@ function renderMeals(){
 function recFiltersSheet(){
   var h='<div class="sheet-h"><h2>Filters</h2>'+closeBtn()+'</div>';
   h+='<label class="lab">My kitchen</label>'+gearButtons('gearset');
-  h+='<div class="togg" style="margin:6px 0 10px"><div class="togg-l">Show meals I cannot make</div><button class="sw'+(RFILT.all?' on':'')+'" role="switch" aria-checked="'+(RFILT.all?'true':'false')+'" data-act="rall" aria-label="Show meals I cannot make"><i></i></button></div>';
+  h+='<div class="list" style="margin:12px 0"><div class="togg"><div class="togg-l">Show meals I cannot make</div><button class="sw'+(RFILT.all?' on':'')+'" role="switch" aria-checked="'+(RFILT.all?'true':'false')+'" data-act="rall" aria-label="Show meals I cannot make"><i></i></button></div></div>';
   h+='<label class="lab">Time</label><div class="chips wrap" style="margin-bottom:16px">'+minChipRow('rmin',RFILT.min)+'</div>';
   h+='<label class="lab">Kind</label><div class="chips wrap">';
   [['all','Any'],['overnight','Overnight'],['new','Not cooked yet'],['nocook','No cooking'],['onegear','One appliance'],['tofu','Tofu'],['fibre','High fibre'],['cheap','Cheapest'],['batch','Batch'],['out','Eating out']].forEach(function(x){ h+='<button class="chip'+(RFILT.tag===x[0]?' on':'')+'" data-act="rtag" data-t="'+x[0]+'">'+x[1]+'</button>'; });
@@ -6677,7 +6773,13 @@ function navSync(){
 /* where IntersectionObserver is missing, the same test on scroll */
 window.addEventListener('scroll',function(){ if(typeof IntersectionObserver!=='function') navSet(navPast(NAV.row,navTop())); },{passive:true});
 /* a rotation or a resize: the date lines refit (long or short form) and the bar re-measures the status bar */
-window.addEventListener('resize',function(){ $$('.tabpane').forEach(function(p){ ltFit(p); }); navSync(); });
+var LASTVP=[window.innerWidth||0,window.innerHeight||0];
+window.addEventListener('resize',function(){ $$('.tabpane').forEach(function(p){ ltFit(p); }); navSync();
+  /* a rotation, or a new viewport height, can change Today's fit (renderToday keeps "Ate it" above the tab bar). A
+     browser bar that shows and hides on scroll moves the height by less than 100, and is left alone, so Today never
+     lays itself out again under a scrolling finger */
+  var vw=window.innerWidth||0, vh=window.innerHeight||0;
+  if(vw!==LASTVP[0]||Math.abs(vh-LASTVP[1])>=100){ LASTVP=[vw,vh]; if(TAB==='today'&&$('#pane-today').classList.contains('on')&&!sheetOpen()) renderToday(); } });
 /* ===================== THEME ===================== */
 function effTheme(){
   var a=document.documentElement.getAttribute('data-theme');
@@ -6703,9 +6805,9 @@ function settingsSheet(){
   h+='</div></div>';
   h+='<div class="fgroup"><label class="lab" for="setBudget">Weekly budget per person, A$</label><input type="number" inputmode="decimal" id="setBudget" value="'+(p.budgetPP||100)+'"></div>';
   h+='<div class="fgroup"><label class="lab">Weight and height</label><div class="sub" style="margin-bottom:8px">'+(p.kg0?p.kg0+' kg start':'No start weight')+(latestKg()&&latestKg()!==p.kg0?', latest '+latestKg()+' kg':'')+(p.heightCm?', '+p.heightCm+' cm':', no height yet')+'.</div><button class="btn sm soft" data-act="checkin">Weigh-in and height</button></div>';
-  h+='<div class="togg"><div class="togg-l">Show the weekly review<small>At the first open of each week: last week, your patterns, one change to try, and any awards. Review, at the top of Patterns, opens it all week.</small></div><button class="sw'+(S.ui.reviewOn!==false?' on':'')+'" role="switch" aria-checked="'+(S.ui.reviewOn!==false?'true':'false')+'" data-act="reviewtoggle" aria-label="Show the weekly review"><i></i></button></div>';
+  h+='<div class="list tgl"><div class="togg"><div class="togg-l">Show the weekly review<small>At the first open of each week: last week, your patterns, one change to try, and any awards. Review, at the top of Patterns, opens it all week.</small></div><button class="sw'+(S.ui.reviewOn!==false?' on':'')+'" role="switch" aria-checked="'+(S.ui.reviewOn!==false?'true':'false')+'" data-act="reviewtoggle" aria-label="Show the weekly review"><i></i></button></div>';
   h+='<div class="togg"><div class="togg-l">Use NICE\u2019s lower BMI thresholds<small>For some family backgrounds, including South Asian, NICE uses lower BMI thresholds. Worth checking with your GP. When on, the markers are under BMI 32.5, under BMI 27.5 and a healthy weight under 23.</small></div><button class="sw'+(p.bmiLower?' on':'')+'" role="switch" aria-checked="'+(p.bmiLower?'true':'false')+'" data-act="bmilower" aria-label="Use NICE\u2019s lower BMI thresholds"><i></i></button></div>';
-  h+='<div class="togg"><div class="togg-l">Weight on the shared card<small>Off: the weekly card for PANCHAYAT shows your patterns only. On: it also shows your weight trend in kilograms.</small></div><button class="sw'+(S.ui.shareWeight?' on':'')+'" role="switch" aria-checked="'+(S.ui.shareWeight?'true':'false')+'" data-act="shareweight" aria-label="Weight on the shared card"><i></i></button></div>';
+  h+='<div class="togg"><div class="togg-l">Weight on the shared card<small>Off: the weekly card for PANCHAYAT shows your patterns only. On: it also shows your weight trend in kilograms.</small></div><button class="sw'+(S.ui.shareWeight?' on':'')+'" role="switch" aria-checked="'+(S.ui.shareWeight?'true':'false')+'" data-act="shareweight" aria-label="Weight on the shared card"><i></i></button></div></div>';
   h+='<div class="rule"></div><h3>Backups</h3>'+backupStatus();
   h+='<div class="btnset" style="margin-top:10px"><button class="btn sm" data-act="backupnow">Back up now</button><button class="btn sm ghost" data-act="snapshots">Earlier copies</button><button class="btn sm ghost" data-act="bkfile">Save a backup file</button></div>';
   h+='<div class="btnset" style="margin-top:8px"><button class="btn sm ghost" data-act="export">Copy backup text</button><button class="btn sm ghost" data-act="import">Restore</button></div>';
@@ -6978,7 +7080,7 @@ document.addEventListener('click',function(ev){
   if(t.hasAttribute('data-filter')){
     PICK.f=t.getAttribute('data-filter');
     $('#pickList').innerHTML=pickRows(pickerList());
-    $$('#sheet [data-filter]').forEach(function(b){b.classList.toggle('on',b===t);});
+    $$('#sheet [data-filter]').forEach(function(b){b.classList.toggle('on',b===t); b.setAttribute('aria-pressed',b===t?'true':'false');});
     return;
   }
   switch(a){
@@ -7028,8 +7130,8 @@ document.addEventListener('click',function(ev){
     case 'offsave': { var kk2=t.getAttribute('data-k'), v=($('#offTxt')?$('#offTxt').value:'').trim(), tg=OFFTRIG; closeSheet(); setSlot(kk2,'off',null,v||'Something else',{trig:tg}); break; }
     case 'skip': { var ks=t.getAttribute('data-k'); closeSheet(); setSlot(ks,'skip'); break; }
     /* the morning question about yesterday evening: writes nosnack and eve on yesterday's date */
-    case 'eve': { var ty=appToday(), yk=addDays(ty,-1), dy=day(yk,true), ev=+t.getAttribute('data-v'), sl0=$('#pane-today .pcard .slot'), sh0=sl0?sl0.offsetHeight:0; buzz();
-      dy.nosnack=ev===1; dy.eve=1; save(false,yk); renderToday(); slotAfter(sh0); recordToast('eve',{k:ty,v:ev}); break; }
+    case 'eve': { var ty=appToday(), yk=addDays(ty,-1), dy=day(yk,true), ev=+t.getAttribute('data-v'), mo=$('#morn'), sh0=mo?mo.offsetHeight:0, inM=!!(mo&&mo.closest('.meals')), sb0=$$('#pane-today .pcard .slot').map(function(x){ return x.textContent; }); buzz();
+      dy.nosnack=ev===1; dy.eve=1; save(false,yk); renderToday(); slotAfter(sh0,sb0,inM); recordToast('eve',{k:ty,v:ev}); break; }
     case 'evelog': eveLogSheet(); break;
     case 'evecr': { var ck=t.getAttribute('data-k'); day(ck,true).cr.push({id:t.getAttribute('data-id'),res:false}); save(false,ck); closeSheet(); render(); toast('Logged for yesterday evening.'); break; }
     case 'noteday': noteSheet(t.getAttribute('data-k')); break;
@@ -7157,6 +7259,12 @@ document.addEventListener('keydown',function(ev){
   if(ev.key==='Escape'){ if(sheetOpen()) closeSheet(); else if($('#road').classList.contains('on')) closeReview(); return; }
   var role=ev.target&&ev.target.getAttribute&&ev.target.getAttribute('role');
   if(((ev.key==='Enter'||ev.key===' ')&&role==='button')||(ev.key==='Enter'&&role==='link')){ ev.preventDefault(); ev.target.click(); }
+});
+/* the swap sheet's time pull-down (a native select under its tint label) */
+document.addEventListener('change',function(ev){
+  var t=ev.target; if(!t||!t.matches||!t.matches('select[data-ch=pmin]')) return;
+  PICK.min=+t.value||0; var l=t.parentNode&&t.parentNode.querySelector('.pl-l'), o=PICKMIN.filter(function(x){ return x[0]===PICK.min; })[0];
+  if(l&&o) l.textContent=o[1]; if($('#pickList')) $('#pickList').innerHTML=pickRows(pickerList());
 });
 document.addEventListener('input',function(ev){
   var t=ev.target;

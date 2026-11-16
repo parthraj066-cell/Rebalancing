@@ -1452,61 +1452,61 @@ var TIERS=[{n:1,lab:'No sugar',sub:'Protein and fat, no sugar. These stop a crav
            {n:3,lab:'A measured portion',sub:'A small serve of the food itself. Eat it sitting down and log it.'}];
 var CRAVE=[
 /* ================= SWEETS AND DESSERTS ================= */
-{id:'chocbar',n:'Chocolate bar',cat:'sugar',nova:4,sugar:27,kcal:260,cost:3.50,
+{id:'chocbar',n:'Chocolate bar',cat:'sugar',f:'sweet',nova:4,sugar:27,kcal:260,cost:3.50,serve:'One 50 g milk chocolate bar',net:28,k:'Kit Kat, Cadbury, Mars, Snickers, Twix, Dairy Milk, Bounty',
  why:'A 50 g milk bar is about 27 g of sugar and 260 calories. It is mostly sugar, milk solids and vegetable fat, and it does little to fill you up.',
  alts:[
- {t:'85% dark chocolate, 15 g',w:'Three squares (15 g), eaten slowly with a black coffee. The bitterness makes it hard to eat much.',c:2.9,s:1.7,m:0,g:'pantry',tier:1,kc:86},
+ {t:'85% dark chocolate, 15 g',w:'Three squares (15 g), eaten slowly with a black coffee. The bitterness makes it hard to eat much.',c:2.9,s:1.7,m:0,g:'pantry',tier:1,kc:86,caf:1},
  {t:'Almonds and dark chocolate',w:'20 g almonds (about 16) and 15 g of 85% chocolate (three squares), bagged together. The crunch and the bitterness together usually stop the craving.',c:4,s:2.5,m:0,g:'pantry',tier:1,kc:202},
- {t:'Dark chocolate peanut butter cup',w:'Melt 10 g of 85% chocolate, pour half into a paper cupcake case, add 10 g peanut butter (2 tsp), cover with the rest and freeze 10 minutes. Make four at once and keep them frozen.',c:3.1,s:1.6,m:12,g:'freezer',tier:1,kc:117},
+ {t:'Dark chocolate peanut butter cup',w:'Melt 10 g of 85% chocolate, pour half into a paper cupcake case, add 10 g peanut butter (2 tsp), cover with the rest and freeze 10 minutes. Make four at once and keep them frozen.',c:3.1,s:1.6,m:12,g:'freezer',tier:1,kc:117,ahead:1},
  {t:'Hot cocoa with cream and chilli',w:'Whisk 5 g cocoa (2 tsp) into 150 mL hot almond milk with 30 mL cream, cinnamon, a pinch of salt and a pinch of chilli if you like the heat. A hot chocolate drink with about 1 g of sugar.',c:2.4,s:1,m:3,g:'pantry',tier:1,kc:136},
- {t:'Cocoa peanut whip (B13)',w:'Whip 150 g Chobani yoghurt with 15 g peanut butter (1 tbsp) and 5 g cocoa (2 tsp) until it holds like mousse: a smaller B13, eaten from a glass with a spoon, with 20 g of protein.',c:8.8,s:6.8,m:2,g:'fridge',tier:2,kc:205},
+ {t:'Cocoa peanut whip',w:'Whip 150 g Chobani yoghurt with 15 g peanut butter (1 tbsp) and 5 g cocoa (2 tsp) until it holds like mousse: a smaller B13, eaten from a glass with a spoon, with 20 g of protein.',c:8.8,s:6.8,m:2,g:'fridge',tier:2,kc:205,rc:'B13'},
  {t:'Two squares of the real bar, then put it away',w:'Two squares, no more than 20 g, then the rest goes in the cupboard: about 11 g of sugar and 104 calories. Buy the small bar, because two squares is harder to stop at with a family block in the house.',c:12,s:11,m:0,g:'shop',tier:3,kc:104}]},
-{id:'timtam',n:'Tim Tams or other biscuits',cat:'sugar',nova:4,sugar:25,kcal:290,cost:4.50,
+{id:'timtam',n:'Tim Tams or other biscuits',cat:'sugar',f:'sweet',nova:4,sugar:25,kcal:290,cost:4.50,serve:'Three Original Tim Tam biscuits (3 x 18.3 g)',net:35,k:'Arnott\'s, Oreo, Marie, Parle-G, cookies, Monte Carlo',
  why:'The biscuit is flour, sugar and palm oil under a chocolate coat. Three biscuits are about 25 g of sugar and 290 calories, and two are about 17 g.',
  alts:[
- {t:'Almonds with the coffee',w:'30 g (about 25 almonds), bagged in advance. Keep the tea break and swap the biscuit for the almonds.',c:1.7,s:1.3,m:0,g:'pantry',tier:1,kc:174},
+ {t:'Almonds with the coffee',w:'30 g (about 25 almonds), bagged in advance. Keep the tea break and swap the biscuit for the almonds.',c:1.7,s:1.3,m:0,g:'pantry',tier:1,kc:174,caf:1},
  {t:'Cheese cubes and a dark square',w:'30 g tasty cheese in cubes and 10 g of 85% chocolate (two squares). Good with tea or after dinner.',c:2.2,s:1.2,m:1,g:'fridge',tier:1,kc:182},
  {t:'Coconut cocoa bites',w:'20 g coconut flakes, 5 g cocoa (2 tsp) and 15 g peanut butter (1 tbsp) pressed into three balls, then 20 minutes in the freezer. Eat all three.',c:4.1,s:2,m:20,g:'pantry',tier:1,kc:232},
- {t:'Chia pudding, half a jar',w:'Half a jar of peanut butter chia pudding made the night before (12 g chia, 125 mL almond milk, 75 g Chobani yoghurt, 8 g peanut butter, cinnamon). Thick and cold, with 5 g of fibre.',c:4.4,s:3.4,m:0,g:'fridge',tier:2,kc:177},
+ {t:'Chia pudding, half a jar',w:'Half a jar of peanut butter chia pudding made the night before (12 g chia, 125 mL almond milk, 75 g Chobani yoghurt, 8 g peanut butter, cinnamon). Thick and cold, with 5 g of fibre.',c:4.4,s:3.4,m:0,g:'fridge',tier:2,kc:177,ahead:1},
  {t:'Walnuts dipped in dark chocolate',w:'Melt 10 g of 85% chocolate (two squares) in a cup in the microwave for 30 seconds, dip 20 g walnut halves (about 8) and set them on baking paper in the freezer for 2 minutes. Crunchy and bittersweet with a cup of tea, about 3 g of carbs.',c:2.8,s:1.6,m:4,g:'pantry',tier:1,kc:191},
- {t:'Two biscuits on a plate with tea',w:'Put two on a plate and the packet back in the cupboard before you sit down. Two Tim Tam biscuits are 24 g of carbs, 17 g of sugar and 190 calories.',c:24,s:17,m:1,g:'pantry',tier:3,kc:190}]},
-{id:'icecream',n:'Ice cream',cat:'sugar',nova:4,sugar:30,kcal:330,cost:6.00,
+ {t:'Two biscuits on a plate with tea',w:'Put two on a plate and the packet back in the cupboard before you sit down. Two Tim Tam biscuits are 24 g of carbs, 17 g of sugar and 190 calories.',c:24,s:17,m:1,g:'pantry',tier:3,kc:190,caf:1}]},
+{id:'icecream',n:'Ice cream',cat:'sugar',f:'cold',nova:4,sugar:30,kcal:330,cost:6.00,serve:'Two scoops, about 140 g',net:32,k:'gelato, tub, Connoisseur, Peters',
  why:'Ice cream combines fat and sugar, a mix that is rare in whole foods and easy to overeat. Keeping the fat and dropping the sugar removes most of the pull.',
  alts:[
  {t:'Frozen berries under cold cream',w:'Pour 30 mL cold cream over 50 g frozen berries in a cup and stir; the cream thickens and half-freezes on the berries within a minute. Eat it with a teaspoon.',c:4.7,s:3.9,m:1,g:'freezer',tier:2,kc:127},
  {t:'Chocolate chip coconut cream',w:'Stir 50 mL fridge-cold coconut cream with 3 g cocoa (1 tsp), a drop of vanilla and a pinch of salt until thick, fold in 5 g of 85% chocolate chopped small and put the cup in the freezer for 3 minutes. It sets thick and cold with chocolate chips through it, about 2 g of sugar. The rest of the can keeps about 4 days in the fridge.',c:2.9,s:2.2,m:4,g:'fridge',tier:1,kc:153},
- {t:'No-sugar kulfi cup',w:'Stir 40 mL cream into 40 g Chobani yoghurt with a pinch of cardamom and a few saffron threads, top with 5 g crushed almonds and freeze in a small cup for two hours. Cardamom and cold cream, with no sugar added. Make three cups at once and keep them frozen; take one out 10 minutes before eating so it softens.',c:3.1,s:3,m:120,g:'fridge',tier:1,kc:193},
+ {t:'No-sugar kulfi cup',w:'Stir 40 mL cream into 40 g Chobani yoghurt with a pinch of cardamom and a few saffron threads, top with 5 g crushed almonds and freeze in a small cup for two hours. Cardamom and cold cream, with no sugar added. Make three cups at once and keep them frozen; take one out 10 minutes before eating so it softens.',c:3.1,s:3,m:120,g:'freezer',tier:1,kc:193,ahead:1},
  {t:'Frozen berry and yoghurt mash',w:'Stir 40 g frozen berries hard into 120 g Chobani yoghurt until it goes thick and cold. Eat it with a teaspoon.',c:7.8,s:7.2,m:2,g:'freezer',tier:2,kc:104},
- {t:'Frozen yoghurt bark',w:'Spread 120 g Chobani yoghurt on baking paper, scatter 30 g berries and 10 g chopped almonds over, freeze an hour and snap into pieces. Keep a bag of the pieces in the freezer.',c:7.6,s:7,m:60,g:'freezer',tier:2,kc:157},
+ {t:'Frozen yoghurt bark',w:'Spread 120 g Chobani yoghurt on baking paper, scatter 30 g berries and 10 g chopped almonds over, freeze an hour and snap into pieces. Keep a bag of the pieces in the freezer.',c:7.6,s:7,m:60,g:'freezer',tier:2,kc:157,ahead:1},
  {t:'One scoop in a bowl',w:'One scoop in a bowl and the tub back in the freezer: about 15 g of sugar and 165 calories. Eating from the tub usually means three scoops or more.',c:16,s:15,m:1,g:'shop',tier:3,kc:165}]},
-{id:'magnum',n:'Magnum, Gaytime, Paddle Pop or other ice cream on a stick',cat:'sugar',nova:4,sugar:18,kcal:245,cost:4.50,
+{id:'magnum',n:'Magnum, Gaytime, Paddle Pop or other ice cream on a stick',cat:'sugar',f:'cold',nova:4,sugar:18,kcal:245,cost:4.50,serve:'One Magnum Classic ice cream, 76 to 82 g',net:20,k:'Cornetto, Drumstick, Golden Gaytime, choc top',
  why:'A chocolate shell over a core of sugar and vegetable fat. About 18 g of sugar and 245 calories each.',
  alts:[
- {t:'Dark chocolate shell cream cup',w:'Whip 50 mL cream, spoon it into a paper cupcake case, pour 10 g melted 85% chocolate over the top and freeze 30 minutes. The chocolate sets into a shell that cracks like a Magnum ice cream. Make four at once and keep them frozen.',c:3.4,s:2.6,m:32,g:'fridge',tier:1,kc:228},
+ {t:'Dark chocolate shell cream cup',w:'Whip 50 mL cream, spoon it into a paper cupcake case, pour 10 g melted 85% chocolate over the top and freeze 30 minutes. The chocolate sets into a shell that cracks like a Magnum ice cream. Make four at once and keep them frozen.',c:3.4,s:2.6,m:32,g:'freezer',tier:1,kc:228,ahead:1},
  {t:'Strawberries in a dark chocolate shell',w:'Melt 10 g of 85% chocolate (two squares) in the microwave for 30 seconds. Hold 6 fresh strawberries (about 60 g) by their green tops, dip each one, and set them on a plate in the freezer for 3 minutes, until the chocolate sets and cracks like the coating on a Magnum ice cream. About 4 g of sugar.',c:4.8,s:4,m:5,g:'fresh',tier:2,kc:79},
- {t:'Frozen yoghurt bark with dark chocolate',w:'Spread 120 g Chobani yoghurt on baking paper, shave 10 g of 85% chocolate over, freeze flat for an hour and snap into pieces. Keep a bag of the pieces in the freezer.',c:6.7,s:5.9,m:60,g:'freezer',tier:2,kc:142},
+ {t:'Frozen yoghurt bark with dark chocolate',w:'Spread 120 g Chobani yoghurt on baking paper, shave 10 g of 85% chocolate over, freeze flat for an hour and snap into pieces. Keep a bag of the pieces in the freezer.',c:6.7,s:5.9,m:60,g:'freezer',tier:2,kc:142,ahead:1},
  {t:'Cocoa peanut whip, frozen 20 minutes',w:'Whip 150 g Chobani yoghurt with 15 g peanut butter (1 tbsp) and 5 g cocoa (2 tsp), then freeze 20 minutes until it scoops like soft-serve. 20 g of protein.',c:8.8,s:6.8,m:22,g:'fridge',tier:2,kc:205},
- {t:'Frozen grapes, ten of them',w:'Ten grapes (about 50 g), frozen on a tray. Cold and sweet, with about 8 g of sugar.',c:8.6,s:7.8,m:0,g:'freezer',tier:2,kc:35},
+ {t:'Frozen grapes, ten of them',w:'Ten grapes (about 50 g), frozen on a tray. Cold and sweet, with about 8 g of sugar.',c:8.6,s:7.8,m:0,g:'freezer',tier:2,kc:35,ahead:1},
  {t:'One Magnum Mini ice cream',w:'If it has to be the real thing, eat one Magnum Mini Classic ice cream (47 g): 12 g of sugar and 152 calories, against 18 g and 245 for a full stick.',c:13,s:12,m:0,g:'shop',tier:3,kc:152}]},
-{id:'donut',n:'Krispy Kreme or bakery donut',cat:'sugar',nova:4,sugar:20,kcal:340,cost:4.00,
+{id:'donut',n:'Krispy Kreme or bakery donut',cat:'sugar',f:'sweet',nova:4,sugar:20,kcal:340,cost:4.00,serve:'One iced or filled donut, about 75 g',net:37,k:'doughnut, Donut King',
  why:'Refined flour fried in vegetable oil, then iced or filled. An iced or filled donut is about 20 g of sugar and 340 calories; a Krispy Kreme Original Glazed donut is about 12 g and 183.',
  alts:[
  {t:'Almond meal mug cake',w:'Mix 30 g almond meal (3 tbsp), 1 egg, 5 g cocoa, cinnamon, a pinch of salt and a pinch of baking powder in a mug and microwave 90 seconds. Eat it warm.',c:3.1,s:1.6,m:3,g:'pantry',tier:1,kc:265},
  {t:'Cinnamon butter toast',w:'One slice of Herman Brot bread toasted, with 10 g butter (2 tsp) and a good shake of cinnamon while it is hot. Warm and buttery, 3 g of carbs.',c:2.9,s:0.5,m:4,g:'pantry',tier:1,kc:170},
- {t:'Cinnamon coffee with cream',w:'A long black with 30 mL cream and cinnamon on top. Order it at the counter in place of the donut.',c:1,s:0.9,m:0,g:'out',tier:1,kc:103},
- {t:'Flat white and walk out',w:'If the cafe stop is the habit, order a regular flat white (about 150 mL milk, 7 g of milk sugar) and skip the food counter.',c:7.2,s:7.2,m:0,g:'out',tier:2,kc:92},
+ {t:'Cinnamon coffee with cream',w:'A long black with 30 mL cream and cinnamon on top. Order it at the counter in place of the donut.',c:1,s:0.9,m:0,g:'out',tier:1,kc:103,caf:1},
+ {t:'Flat white and walk out',w:'If the cafe stop is the habit, order a regular flat white (about 150 mL milk, 7 g of milk sugar) and skip the food counter.',c:7.2,s:7.2,m:0,g:'out',tier:2,kc:92,caf:1},
  {t:'Strawberries and whipped cream',w:'100 g strawberries (about six) with 30 mL cream whipped with a drop of vanilla. Thawed frozen berries work when strawberries are dear.',c:6.6,s:5.8,m:3,g:'fresh',tier:2,kc:134},
  {t:'One Original Glazed donut, no filling',w:'If you are at the counter anyway, one Krispy Kreme Original Glazed donut (49 g) is 183 calories, 23 g of carbs and 12 g of sugar. Filled and iced ones run to about 340 calories.',c:23,s:12,m:0,g:'out',tier:3,kc:183}]},
-{id:'muffin',n:'Cafe muffin or banana bread',cat:'sugar',nova:4,sugar:38,kcal:450,cost:6.50,
+{id:'muffin',n:'Cafe muffin or banana bread',cat:'sugar',f:'sweet',nova:4,sugar:38,kcal:450,cost:6.50,serve:'One cafe muffin, about 120 g',net:62,k:'cake, banana bread, croissant',
  why:'A 120 g cafe muffin is about 60 g of carbohydrate and 38 g of sugar, most of it from refined flour and sugar.',
  alts:[
- {t:'Two egg muffins (B12)',w:'Two from the B12 batch of six (6 eggs, 70 g feta, 90 g baby spinach and 50 g cheese), warmed 40 seconds. Handheld, with a coffee.',c:2.3,s:1,m:1,g:'fridge',tier:1,kc:306},
+ {t:'Two egg muffins',w:'Two from the B12 batch of six (6 eggs, 70 g feta, 90 g baby spinach and 50 g cheese), warmed 40 seconds. Handheld, with a coffee.',c:2.3,s:1,m:1,g:'fridge',tier:1,kc:306,rc:'B12',ahead:1,caf:1},
  {t:'Almond meal mug cake',w:'30 g almond meal (3 tbsp), 1 egg, 20 g frozen berries, cinnamon and a pinch of baking powder, mixed in a mug and microwaved 90 seconds. Warm and cake-like, with 4 g of carbs.',c:3.7,s:2.7,m:3,g:'pantry',tier:1,kc:264},
- {t:'Side of halloumi at the cafe',w:'At the cafe, order a side of grilled halloumi (about 60 g) with the coffee in place of the muffin. Hot, salty and 13 g of protein.',c:1.2,s:1.2,m:0,g:'out',tier:1,kc:198},
+ {t:'Side of halloumi at the cafe',w:'At the cafe, order a side of grilled halloumi (about 60 g) with the coffee in place of the muffin. Hot, salty and 13 g of protein.',c:1.2,s:1.2,m:0,g:'out',tier:1,kc:198,caf:1},
  {t:'Yoghurt, berries, cinnamon',w:'120 g Chobani yoghurt, 40 g berries and a shake of cinnamon in a glass. It looks like dessert and has 12 g of protein.',c:8.1,s:7.2,m:2,g:'fridge',tier:2,kc:106},
- {t:'Warm cinnamon walnuts',w:'Toast 20 g walnuts (about 8 halves) in 5 g butter with cinnamon, a pinch of nutmeg and salt for 3 minutes, and eat them warm with the coffee. The spice of banana bread, with about 1.8 g of carbs.',c:1.8,s:0.6,m:3,g:'pantry',tier:1,kc:171},
+ {t:'Warm cinnamon walnuts',w:'Toast 20 g walnuts (about 8 halves) in 5 g butter with cinnamon, a pinch of nutmeg and salt for 3 minutes, and eat them warm with the coffee. The spice of banana bread, with about 1.8 g of carbs.',c:1.8,s:0.6,m:3,g:'pantry',tier:1,kc:171,caf:1},
  {t:'Half a muffin, the rest bagged',w:'Ask for a paper bag, cut it in half at the counter and bag the other half for tomorrow. Half is about 19 g of sugar, 31 g of carbs and 225 calories.',c:31,s:19,m:0,g:'out',tier:3,kc:225}]},
-{id:'cheesecake',n:'Cheesecake or a slice of cake',cat:'sugar',nova:4,sugar:31,kcal:450,cost:8.00,
+{id:'cheesecake',n:'Cheesecake or a slice of cake',cat:'sugar',f:'sweet',nova:4,sugar:31,kcal:450,cost:8.00,serve:'One cafe slice, about 140 g',net:35,k:'cake, brownie, slice, tart',
  why:'Most of the carbohydrate comes from the biscuit base and about 31 g of sugar in a cafe slice.',
  alts:[
  {t:'Lemon cream with crushed almonds',w:'Whip 40 mL cream with the zest of half a lemon and a drop of vanilla, then top with 10 g crushed almonds. The flavour of the filling without the biscuit base.',c:1.9,s:1.7,m:4,g:'fridge',tier:1,kc:194},
@@ -1514,26 +1514,26 @@ var CRAVE=[
  {t:'Cheesecake toast',w:'Toast one slice of Herman Brot bread, spread it with 40 g cottage cheese mashed with lemon zest and vanilla, and top with 30 g thawed berries. The crunchy base, fresh cheese and fruit of the slice, with 16 g of protein.',c:6.1,s:3.6,m:4,g:'fridge',tier:2,kc:149},
  {t:'Cheesecake in a glass',w:'Whip 100 g Chobani yoghurt with 30 mL cream, lemon zest and vanilla, and top with 10 g crushed almonds.',c:5.6,s:5.5,m:4,g:'fridge',tier:2,kc:233},
  {t:'Berries and whipped cream',w:'60 g berries (thawed frozen ones are fine) under 30 mL cream whipped with a drop of vanilla.',c:5.4,s:4.5,m:3,g:'freezer',tier:2,kc:132},
- {t:'Half the slice, with coffee, out of the house',w:'For birthdays. Eat half at the table with everyone else: about 15 g of sugar, 18 g of carbs and 225 calories.',c:17.5,s:15.5,m:0,g:'out',tier:3,kc:225}]},
-{id:'lollies',n:'Lollies, gummies, snakes',cat:'sugar',nova:4,sugar:23,kcal:165,cost:4.00,
+ {t:'Half the slice, with coffee, out of the house',w:'For birthdays. Eat half at the table with everyone else: about 15 g of sugar, 18 g of carbs and 225 calories.',c:17.5,s:15.5,m:0,g:'out',tier:3,kc:225,caf:1}]},
+{id:'lollies',n:'Lollies, gummies, snakes',cat:'sugar',f:'sweet',nova:4,sugar:23,kcal:165,cost:4.00,serve:'A 50 g handful of jelly snakes',net:37,k:'Allen\'s, Natural Confectionery, candy, Skittles, gummy bears',
  why:'Sugar and glucose syrup with no fat or protein to fill you up. A 50 g handful of snakes is about 23 g of sugar and 37 g of carbohydrate. Many gummies are set with gelatine, so check the label.',
  alts:[
  {t:'Olives, 20 g',w:'About six kalamata olives, eaten one at a time like lollies. Salt and fat, no sugar.',c:0.3,s:0,m:0,g:'pantry',tier:1,kc:23},
  {t:'Cucumber with salt, chilli and lemon',w:'One Lebanese cucumber cut into sticks, with chilli salt and a squeeze of lemon. For when you want something to keep eating.',c:4.9,s:2.6,m:2,g:'fresh',tier:1,kc:23},
  {t:'Roasted saunf, one teaspoon',w:'Dry-roast fennel seeds in a pan for a minute and keep a small jar of them. Chew one teaspoon (3 g) slowly; it tastes sweet and has under half a gram of carbs.',c:0.4,s:0,m:3,g:'pantry',tier:1,kc:10},
- {t:'Frozen berries, eaten frozen',w:'40 g straight from the freezer, one at a time. Cold, sour and slow to eat, about 2 g of sugar.',c:3,s:2.4,m:0,g:'freezer',tier:2,kc:20},
- {t:'Frozen grapes, ten of them',w:'Ten grapes (about 50 g), frozen on a tray. They chew like a lolly, with about 8 g of sugar.',c:8.6,s:7.8,m:0,g:'freezer',tier:2,kc:35},
+ {t:'Frozen berries, eaten frozen',w:'40 g straight from the freezer, one at a time. Cold, sour and slow to eat, about 2 g of sugar.',c:3,s:2.4,m:0,g:'freezer',tier:2,kc:20,lead:1},
+ {t:'Frozen grapes, ten of them',w:'Ten grapes (about 50 g), frozen on a tray. They chew like a lolly, with about 8 g of sugar.',c:8.6,s:7.8,m:0,g:'freezer',tier:2,kc:35,ahead:1},
  {t:'Five lollies, then the bag away',w:'Five small lollies (about 15 g) into your hand and the bag back in the cupboard: about 7 g of sugar and 11 g of carbs, against 23 g of sugar for a 50 g handful.',c:11,s:7,m:0,g:'shop',tier:3,kc:49}]},
-{id:'nutella',n:'Nutella or chocolate spread out of the jar',cat:'sugar',nova:4,sugar:21,kcal:200,cost:1.00,
+{id:'nutella',n:'Nutella or chocolate spread out of the jar',cat:'sugar',f:'sweet',nova:4,sugar:21,kcal:200,cost:1.00,serve:'Two tablespoons, about 37 g',net:21,k:'chocolate spread, spoon',
  why:'Sugar is the first ingredient and palm oil the second; hazelnut is about 13 per cent. Two tablespoons is about 21 g of sugar.',
  alts:[
  {t:'Peanut butter and cocoa, one tablespoon',w:'16 g natural peanut butter (1 tbsp) mixed with 2.5 g cocoa (1 tsp) and a pinch of salt, eaten off the spoon. Same colour, a tenth of the sugar.',c:2.4,s:0.8,m:1,g:'pantry',tier:1,kc:100},
  {t:'85% chocolate with almond butter',w:'Melt 10 g of 85% chocolate over 15 g almond butter (1 tbsp), 20 seconds in the microwave, and eat it with a spoon. Peanut butter works the same way and costs less.',c:3.2,s:1.8,m:2,g:'pantry',tier:1,kc:150},
  {t:'Hazelnuts and dark chocolate',w:'15 g hazelnuts (about 10) with 10 g of 85% chocolate, eaten together. The two flavours of Nutella hazelnut spread, with about 1.7 g of sugar.',c:3,s:1.7,m:0,g:'pantry',tier:1,kc:152},
- {t:'Cocoa peanut whip (B13)',w:'Whip 150 g Chobani yoghurt with 15 g peanut butter (1 tbsp) and 5 g cocoa (2 tsp): a smaller B13, as thick as the spread, with 20 g of protein.',c:8.8,s:6.8,m:2,g:'fridge',tier:2,kc:205},
+ {t:'Cocoa peanut whip',w:'Whip 150 g Chobani yoghurt with 15 g peanut butter (1 tbsp) and 5 g cocoa (2 tsp): a smaller B13, as thick as the spread, with 20 g of protein.',c:8.8,s:6.8,m:2,g:'fridge',tier:2,kc:205,rc:'B13'},
  {t:'Cocoa ricotta with toasted hazelnuts',w:'Toast 5 g chopped hazelnuts in a dry pan for 2 minutes. Stir 3 g cocoa (1 tsp), a drop of vanilla and a pinch of salt into 80 g ricotta until smooth and chocolate-coloured, and scatter the hazelnuts on top. Ricotta is slightly sweet from its milk sugar, which softens the bitter cocoa: about 4 g of carbs and 3 g of sugar.',c:3.9,s:3.2,m:4,g:'fridge',tier:2,kc:149},
  {t:'One heaped teaspoon, jar away',w:'One heaped teaspoon (about 10 g), then the jar goes back in the cupboard: 6 g of sugar and 53 calories. Two tablespoons from the jar is about 21 g of sugar.',c:5.8,s:5.6,m:0,g:'pantry',tier:3,kc:53}]},
-{id:'jam',n:'Jam or honey on white toast',cat:'sugar',nova:4,sugar:20,kcal:260,cost:1.00,
+{id:'jam',n:'Jam or honey on white toast',cat:'sugar',f:'filling',nova:4,sugar:20,kcal:260,cost:1.00,serve:'Two slices of white toast with jam or honey',net:50,k:'honey, Vegemite toast, crumpets',
  why:'White bread plus jam is two fast carbohydrates at once, about 50 g of them, and nothing to slow either down.',
  alts:[
  {t:'Herman Brot bread with butter and salt',w:'One slice toasted with 10 g butter (2 tsp) and flaky salt. 3 g of carbs and 12 g of protein in the slice itself.',c:2.6,s:0.5,m:3,g:'pantry',tier:1,kc:168},
@@ -1542,71 +1542,71 @@ var CRAVE=[
  {t:'Warm berries over ricotta',w:'Microwave 40 g frozen mixed berries for 1 minute until they run, then spoon them over 80 g ricotta with a shake of cinnamon. It eats like jam and cream with no bread, about 6 g of carbs.',c:6,s:5.7,m:2,g:'fridge',tier:2,kc:131},
  {t:'Coconut flour roti with warm berries',w:'Make one coconut flour roti: mix 15 g coconut flour, 5 g psyllium husk and a pinch of salt with about 50 mL just-boiled water, press it thin and cook it 1 minute a side in 3 g ghee. Spread it with 5 g butter and spoon over 30 g frozen berries microwaved for 40 seconds and mashed with 3 g chia seeds. It eats like warm toast and jam, at about 5 g of carbs.',c:5.2,s:4.9,m:8,g:'pantry',tier:2,kc:153},
  {t:'One teaspoon of honey on the toast',w:'One slice of Herman Brot bread, 5 g butter and one level teaspoon of honey (7 g), eaten at the table. About 6 g of sugar against 20 for white toast and jam.',c:8.3,s:6.2,m:3,g:'pantry',tier:3,kc:153}]},
-{id:'flavyog',n:'Flavoured yoghurt, Chobani Flip',cat:'sugar',nova:4,sugar:20,kcal:180,cost:2.50,
+{id:'flavyog',n:'Flavoured yoghurt, Chobani Flip',cat:'sugar',f:'cold',nova:4,sugar:20,kcal:180,cost:2.50,serve:'One 140 g Chobani Flip',net:22,k:'yogurt, Yoplait, Ski, YoPro',
  why:'A 140 g Chobani Flip has 17 to 22 g of sugar, by flavour. Plain Greek yoghurt has about 4 g per 100 g.',
  alts:[
  {t:'Cottage cheese with chilli and olive oil',w:'100 g cottage cheese with 5 mL olive oil (1 tsp), chilli flakes and salt. For when you want something creamy.',c:3.4,s:2.7,m:1,g:'fridge',tier:1,kc:139},
  {t:'Vanilla cream with toasted almonds',w:'Whip 40 mL cream with a drop of vanilla and top with 10 g almonds toasted two minutes in a dry pan.',c:1.9,s:1.8,m:4,g:'fridge',tier:1,kc:197},
- {t:'Coconut cream pot with passionfruit',w:'Bring 100 mL coconut cream, 100 mL almond milk, 1 g agar powder (sold as china grass at the Indian grocer) and a drop of vanilla to the boil, stirring, and boil for 1 minute. Pour it into two small cups and set them in the fridge for 30 minutes, then top one with the pulp of half a fresh passionfruit, the way a Chobani Flip tips in its topping. Use fresh passionfruit, since the tinned pulp has added sugar. One cup is about 3 g of carbs and 3 g of sugar, and the second keeps for 3 days.',c:3.2,s:2.6,m:35,g:'fridge',tier:2,kc:134},
- {t:'Plain Chobani yoghurt with berries and cinnamon',w:'120 g plain Chobani yoghurt, 30 g berries and cinnamon. About a third of the sugar in a flavoured pot, all of it from the yoghurt and fruit.',c:7.2,s:6.6,m:1,g:'fridge',tier:2,kc:100},
+ {t:'Coconut cream pot with passionfruit',w:'Bring 100 mL coconut cream, 100 mL almond milk, 1 g agar powder (sold as china grass at the Indian grocer) and a drop of vanilla to the boil, stirring, and boil for 1 minute. Pour it into two small cups and set them in the fridge for 30 minutes, then top one with the pulp of half a fresh passionfruit, the way a Chobani Flip tips in its topping. Use fresh passionfruit, since the tinned pulp has added sugar. One cup is about 3 g of carbs and 3 g of sugar, and the second keeps for 3 days.',c:3.2,s:2.6,m:35,g:'fridge',tier:2,kc:134,ahead:1},
+ {t:'Plain Chobani yoghurt with berries and cinnamon',w:'120 g plain Chobani yoghurt, 30 g berries and cinnamon. About a third of the sugar in a flavoured pot, all of it from the yoghurt and fruit.',c:7.2,s:6.6,m:1,g:'fridge',tier:2,kc:100,lead:1},
  {t:'Plain Chobani yoghurt with cocoa and hemp seeds',w:'120 g plain Chobani yoghurt with 3 g cocoa (1 tsp) and 10 g hemp seeds. Chocolate-flavoured, with 16 g of protein.',c:5.7,s:5,m:1,g:'fridge',tier:2,kc:146},
  {t:'Mint and cucumber raita',w:'100 g Chobani yoghurt, 60 g grated cucumber, chopped mint, salt and a pinch of roasted cumin (jeera). Cold and savoury, 10 g of protein.',c:5.9,s:5,m:4,g:'fridge',tier:2,kc:81}]},
-{id:'muesli',n:'Muesli bar or snack bar',cat:'sugar',nova:4,sugar:5,kcal:122,cost:2.50,
+{id:'muesli',n:'Muesli bar or snack bar',cat:'sugar',f:'sweet',nova:4,sugar:5,kcal:122,cost:2.50,serve:'One 31 g Uncle Tobys Chewy Choc Chip bar',net:19,k:'Uncle Tobys, protein bar, Carman\'s, Nice and Natural',
  why:'Oats and rice crisps held together with glucose syrup. A 31 g chewy bar is about 19 g of carbohydrate and 5 g of sugar, so it is the carbs that break the day. A protein bar with under 10 g of net carbs and 8 g of sugar on the label is not this craving. Most bars reach those numbers with sugar alcohols or sweeteners, so treat one as a step down, the way the soft drink entry treats Coke No Sugar cola.',
  alts:[
  {t:'Bagged almonds, 30 g',w:'Portion them into small bags at the start of the week so you never eat from the big bag. Keep one in your work bag.',c:1.7,s:1.3,m:0,g:'pantry',tier:1,kc:174},
  {t:'Two boiled eggs',w:'About 63 cents each and 13 g of protein for the pair. Peel them at home and carry them in a container.',c:0.8,s:0.4,m:0,g:'fridge',tier:1,kc:144},
  {t:'Cheese and nuts, 30 g each',w:'30 g tasty cheese and 30 g almonds in one container: 14 g of protein and about 2 g of carbs.',c:2,s:1.4,m:1,g:'fridge',tier:1,kc:298},
- {t:'No-sugar nut and coconut bar',w:'Mix 60 g coconut flakes, 60 g chopped almonds, 30 g pepitas, 50 g peanut butter and 20 g melted butter with a pinch of salt, press into a lined container, chill an hour and cut six bars. One bar is 2 g of carbs.',c:2.4,s:1.5,m:10,g:'fridge',tier:1,kc:225},
+ {t:'No-sugar nut and coconut bar',w:'Mix 60 g coconut flakes, 60 g chopped almonds, 30 g pepitas, 50 g peanut butter and 20 g melted butter with a pinch of salt, press into a lined container, chill an hour and cut six bars. One bar is 2 g of carbs.',c:2.4,s:1.5,m:10,g:'fridge',tier:1,kc:225,ahead:1},
  {t:'Half a punnet of strawberries',w:'At the supermarket, buy a punnet of strawberries in place of the box of bars. Rinse half of it (about 125 g, eight or nine berries) into a container for the shift: something sweet to eat on the break, with about 6 g of sugar and 40 calories.',c:7.1,s:6.1,m:0,g:'shop',tier:2,kc:40},
  {t:'Half a bar, wrapped back up',w:'If it has to be the bar, eat half and wrap the rest for tomorrow. Half is about 9 g of carbs, 3 g of sugar and 61 calories.',c:9.4,s:2.7,m:0,g:'shop',tier:3,kc:61}]},
-{id:'cereal',n:'Cereal at 11 pm',cat:'sugar',nova:4,sugar:30,kcal:420,cost:1.50,
+{id:'cereal',n:'Cereal at 11 pm',cat:'sugar',f:'filling',nova:4,sugar:30,kcal:420,cost:1.50,serve:'Two 40 g bowls of sugary cereal with milk',net:62,k:'Nutri-Grain, Coco Pops, Froot Loops, corn flakes',
  why:'Cereals such as Nutri-Grain, Coco Pops, even Weet-Bix with sugar: fast carbohydrate and almost no protein. A late-night serve is often two bowls: about 60 g of carbohydrate and 30 g of sugar with the milk.',
  alts:[
  {t:'Crunchy nut and coconut bowl',w:'15 g chopped almonds, 10 g pepitas and 10 g coconut flakes in a bowl with 200 mL cold almond milk and cinnamon. It keeps the bowl and spoon, with 2 g of carbs.',c:2.3,s:1.4,m:2,g:'pantry',tier:1,kc:238},
  {t:'Hot cinnamon chia bowl',w:'Stir 20 g chia (about 5 tsp) into 150 mL almond milk with cinnamon, microwave 90 seconds, stir, rest 5 minutes and add 10 mL cream. Hot and thick, with 7 g of fibre.',c:0.8,s:0.3,m:6,g:'pantry',tier:1,kc:152},
- {t:'Frozen frittata slice',w:'One slice from the frozen batch, two minutes in the microwave. 17 g of protein keeps you full until bed.',c:2.6,s:1.4,m:2,g:'freezer',tier:1,kc:230},
+ {t:'Frozen frittata slice',w:'One slice from the frozen batch, two minutes in the microwave. 17 g of protein keeps you full until bed.',c:2.6,s:1.4,m:2,g:'freezer',tier:1,kc:230,ahead:1},
  {t:'Yoghurt, berries, almonds',w:'120 g Chobani yoghurt, 30 g berries and 15 g almonds in a bowl. The bowl-and-spoon habit with 15 g of protein.',c:7.9,s:7.3,m:2,g:'fridge',tier:2,kc:186},
  {t:'Makhana in cold almond milk',w:'Dry-roast 10 g makhana (about a third of a cup) in a pan for 4 minutes, then tip it into a bowl with 200 mL cold almond milk and cinnamon. It eats like puffed rice cereal; 10 g is about 8 g of carbs, so weigh it. Count it in the day’s 45 g.',c:8.2,s:0.4,m:5,g:'pantry',tier:2,kc:64},
  {t:'Peppermint tea, then bed',w:'If you are home for the night: make a peppermint tea, brush your teeth and go to bed. Short sleep raises appetite the next day. On a night shift, eat the night-shift snack box instead.',c:0,s:0,m:3,g:'free',tier:1,kc:0}]},
-{id:'indiansweet',n:'Gulab jamun, barfi, ladoo',cat:'sugar',nova:3,sugar:40,kcal:316,cost:3.00,
+{id:'indiansweet',n:'Gulab jamun, barfi, ladoo',cat:'sugar',f:'sweet',nova:3,sugar:40,kcal:316,cost:3.00,serve:'Two gulab jamun with syrup, about 100 g',net:55,k:'mithai, jalebi, rasgulla, halwa, Diwali sweets',
  why:'Sugar syrup, milk solids and flour, fried in ghee or oil. One gulab jamun with its syrup is about 20 g of sugar, and two is the usual serve: about 40 g of sugar and 316 calories.',
  alts:[
  {t:'Shrikhand, no added sugar',w:'150 g Chobani yoghurt with ground cardamom, a few saffron threads soaked in a spoon of warm water and 10 g chopped almonds. The only sugar is the yoghurt\'s own.',c:6.6,s:6.4,m:3,g:'fridge',tier:2,kc:163},
  {t:'Paneer with cardamom and cocoa',w:'Mash 60 g paneer with 3 g cocoa (1 tsp), cardamom and 10 mL cream, press it flat and cut squares. It has the crumbly texture of barfi.',c:2.1,s:1.6,m:4,g:'fridge',tier:1,kc:200},
- {t:'Masala chai with cream, no sugar',w:'Black tea simmered with crushed cardamom, ginger and cinnamon, finished with 30 mL cream. Keep the chai and leave out the sugar.',c:0.9,s:0.9,m:5,g:'fridge',tier:1,kc:102},
+ {t:'Masala chai with cream, no sugar',w:'Black tea simmered with crushed cardamom, ginger and cinnamon, finished with 30 mL cream. Keep the chai and leave out the sugar.',c:0.9,s:0.9,m:5,g:'fridge',tier:1,kc:102,caf:1},
  {t:'Saffron cardamom malai',w:'Whip 40 mL cream with a pinch of cardamom and three or four saffron threads, then top with 10 g crushed almonds. The cardamom and saffron of rabri, with no sugar.',c:1.8,s:1.6,m:4,g:'fridge',tier:1,kc:194},
  {t:'Coconut ladoo, no sugar',w:'Toast 20 g desiccated coconut in 5 g ghee (1 tsp) for 2 minutes, take it off the heat and stir in 10 g almond butter, 10 mL cream and a pinch of cardamom. Press it into three small balls and chill them in the fridge for 10 minutes to set. About 2.2 g of sugar for the three.',c:2.5,s:2.2,m:15,g:'pantry',tier:1,kc:273},
- {t:'One piece at the family table',w:'At festivals, take one piece on a plate, then have chai without sugar. One gulab jamun with its syrup is about 20 g of sugar, so make it the only one.',c:27,s:20,m:0,g:'free',tier:3,kc:158}]},
-{id:'iceblock',n:'Zooper Dooper or other ice block',cat:'sugar',nova:4,sugar:11,kcal:90,cost:1.50,
+ {t:'One piece at the family table',w:'At festivals, take one piece on a plate, then have chai without sugar. One gulab jamun with its syrup is about 20 g of sugar, so make it the only one.',c:27,s:20,m:0,g:'free',tier:3,kc:158,caf:1}]},
+{id:'iceblock',n:'Zooper Dooper or other ice block',cat:'sugar',f:'cold',nova:4,sugar:11,kcal:90,cost:1.50,serve:'One Zooper Dooper or other ice block, 70 mL',net:11,k:'icy pole, Calippo, slushie',
  why:'An ice block is mostly water and sugar, with colouring. About 11 g of sugar each, and they are small and cheap, so it is easy to eat several on a hot day.',
  alts:[
- {t:'Frozen cocoa cream cubes',w:'Whisk 50 mL cream, 3 g cocoa and 50 mL almond milk, freeze in an ice cube tray and eat half the cubes (about three). Cold and bitter-chocolate, with no sugar in them. Keep a tray in the freezer.',c:1.1,s:0.8,m:120,g:'freezer',tier:1,kc:92},
+ {t:'Frozen cocoa cream cubes',w:'Whisk 50 mL cream, 3 g cocoa and 50 mL almond milk, freeze in an ice cube tray and eat half the cubes (about three). Cold and bitter-chocolate, with no sugar in them. Keep a tray in the freezer.',c:1.1,s:0.8,m:120,g:'freezer',tier:1,kc:92,ahead:1},
  {t:'Soda water with lemon over ice',w:'A tall glass of ice, soda water and a squeeze of lemon. Very cold and fizzy, with no sugar.',c:0.7,s:0.3,m:1,g:'free',tier:1,kc:2},
  {t:'Cucumber, mint and lemon cooler',w:'Grate 100 g cucumber into a tall glass packed with ice, add torn mint, 15 mL lemon juice and a pinch of salt, and top up with soda water. Eat the cucumber with a spoon at the end.',c:4.2,s:2,m:3,g:'fresh',tier:1,kc:19},
  {t:'Frozen berries straight from the bag',w:'40 g eaten frozen, one at a time. Cold and sweet-sour, about 2 g of sugar.',c:3,s:2.4,m:0,g:'freezer',tier:2,kc:20},
- {t:'Frozen yoghurt in an ice cube tray',w:'Chobani yoghurt with a berry in each cube, frozen in a tray. Four cubes (about 80 g) is 8 g of protein; keep a box in the freezer.',c:4,s:3.8,m:60,g:'freezer',tier:2,kc:61},
- {t:'Frozen watermelon cubes, 100 g',w:'Cut watermelon into cubes and freeze them on a tray. 100 g is very cold and about 6 g of sugar.',c:7.2,s:6.2,m:0,g:'freezer',tier:2,kc:30}]},
-{id:'custard',n:'Custard or rice pudding',cat:'sugar',nova:4,sugar:30,kcal:210,cost:3.00,
+ {t:'Frozen yoghurt in an ice cube tray',w:'Chobani yoghurt with a berry in each cube, frozen in a tray. Four cubes (about 80 g) is 8 g of protein; keep a box in the freezer.',c:4,s:3.8,m:60,g:'freezer',tier:2,kc:61,ahead:1},
+ {t:'Frozen watermelon cubes, 100 g',w:'Cut watermelon into cubes and freeze them on a tray. 100 g is very cold and about 6 g of sugar.',c:7.2,s:6.2,m:0,g:'freezer',tier:2,kc:30,ahead:1}]},
+{id:'custard',n:'Custard or rice pudding',cat:'sugar',f:'cold',nova:4,sugar:30,kcal:210,cost:3.00,serve:'A 200 g bowl of Pauls vanilla custard',net:33,k:'pudding, kheer, crème caramel',
  why:'Custard is milk thickened with starch and sweetened with sugar. A 200 g bowl of custard is about 30 g of sugar and 33 g of carbohydrate.',
  alts:[
- {t:'Chia pudding, warm',w:'15 g chia set overnight in 150 mL almond milk with cinnamon and vanilla, microwaved 40 seconds with 15 mL cream stirred in. Custard texture without the starch.',c:1,s:0.5,m:2,g:'fridge',tier:1,kc:146},
+ {t:'Chia pudding, warm',w:'15 g chia set overnight in 150 mL almond milk with cinnamon and vanilla, microwaved 40 seconds with 15 mL cream stirred in. Custard texture without the starch.',c:1,s:0.5,m:2,g:'fridge',tier:1,kc:146,ahead:1},
  {t:'Microwave egg custard cup',w:'Whisk 1 egg, 40 mL cream, 80 mL almond milk, vanilla and nutmeg in a mug, microwave 60 seconds at half power, stir, then 30 to 60 seconds more until just set.',c:1.9,s:1.5,m:4,g:'fridge',tier:1,kc:222},
- {t:'Coffee jelly with cream',w:'Boil 250 mL strong black coffee with agar powder (about 1 g, or as the pack says for 250 mL) for 2 minutes and set it in the fridge. Eat half, cubed, with 30 mL cream poured over; use decaf within six hours of sleep.',c:1.3,s:0.9,m:35,g:'fridge',tier:1,kc:104},
+ {t:'Coffee jelly with cream',w:'Boil 250 mL strong black coffee with agar powder (about 1 g, or as the pack says for 250 mL) for 2 minutes and set it in the fridge. Eat half, cubed, with 30 mL cream poured over; use decaf within six hours of sleep.',c:1.3,s:0.9,m:35,g:'fridge',tier:1,kc:104,ahead:1,caf:1},
  {t:'Whipped cream and cocoa over berries',w:'60 g berries with 30 mL cream whipped with 2 g cocoa. Thick and cold, about 5 g of sugar.',c:5.8,s:4.5,m:3,g:'freezer',tier:2,kc:137},
  {t:'Makhana kheer, no sugar',w:'Simmer 10 g makhana in 150 mL almond milk and 30 mL cream with cardamom for 8 minutes, crushing a few, then top with 5 g chopped almonds. Kheer is India’s rice pudding, and this one uses makhana for the rice. Keep it to 10 g of makhana, about 9 g of carbs in the bowl. Count it in the day’s 45 g.',c:9.3,s:1.5,m:10,g:'pantry',tier:2,kc:187},
  {t:'Half a tub, in a bowl',w:'Spoon 100 g, half a usual bowl, into a dish and put the tub back in the fridge: about 15 g of sugar and 105 calories.',c:17,s:15,m:0,g:'shop',tier:3,kc:105}]},
-{id:'chai',n:'Sweet chai, chai latte and biscuits',cat:'sugar',nova:4,sugar:19,kcal:200,cost:0.80,
+{id:'chai',n:'Sweet chai, chai latte and biscuits',cat:'sugar',f:'drink',nova:4,sugar:19,kcal:200,cost:0.80,serve:'A cup of milky chai with 2 tsp sugar and three or four Marie or Parle-G biscuits (25 g)',net:30,k:'tea, Parle-G, Marie biscuits, chai latte',
  why:'Two teaspoons of sugar in a cup of milky chai and three or four Marie or Parle-G biscuits come to about 19 g of sugar and 30 g of carbohydrate. A cafe chai latte is made from a sweetened syrup or powder. Masala chai with no sugar fits the plan.',
  alts:[
- {t:'Masala chai with cream, no sugar',w:'Black tea simmered with crushed cardamom, ginger and cinnamon, finished with 30 mL cream. Keep the chai and leave out the sugar.',c:0.9,s:0.9,m:5,g:'fridge',tier:1,kc:102},
- {t:'Almond jeera biscuits, no sugar',w:'Bake a tin on your day off: mix 60 g almond meal, 18 g soft ghee, 1 egg white, 1 tsp cumin or ajwain seeds and a pinch of salt, press into six small rounds and bake 12 to 15 minutes at 160 C. Let them cool on the tray, where they firm up enough to dunk, like the jeera biscuits Indian bakeries sell for chai. Two are about 1 g of carbs and 181 calories.',c:1.1,s:0.9,m:0,g:'pantry',tier:1,kc:181},
- {t:'Peanuts in the shell with the chai',w:'The street-stall pairing: 40 g roasted peanuts in the shell (about 28 g of nuts), shelled one at a time while you drink the chai. About 1.7 g of carbs and 159 calories. Supermarkets and the Indian grocer sell them in the shell.',c:1.7,s:1.4,m:0,g:'pantry',tier:1,kc:159},
- {t:'Chai or a small flat white, no syrup',w:'At an Indian cafe or sweet shop, ask for masala chai with no sugar before it is poured; most shops sweeten the whole pot, so if it is already sweet, order black tea with milk instead. At other cafes the chai latte is made from a sweetened syrup or powder, so order a small flat white with cinnamon on top. Either is about 7 g of milk sugar and 93 calories.',c:7.5,s:7.2,m:0,g:'out',tier:2,kc:93},
- {t:'Herman Brot bread rusks to dunk',w:'Cut 3 slices of Herman Brot bread into fingers, brush them with 15 g melted ghee and a pinch of cinnamon, and dry them in the air fryer or oven at 150 C for 10 to 12 minutes, until hard right through. Cool them and keep them in a jar. One slice’s worth (four fingers) holds up in hot chai like a rusk, about 2.6 g of carbs.',c:2.6,s:0.7,m:0,g:'pantry',tier:1,kc:141},
- {t:'Unsweetened chai and one Marie biscuit',w:'Make the chai with no sugar in the pot and put one Marie biscuit on the saucer, then put the packet away before you sit down. About 11 g of carbs and 98 calories, against about 30 g for sweet chai with three or four biscuits.',c:11.2,s:6.5,m:5,g:'pantry',tier:3,kc:98}]},
+ {t:'Masala chai with cream, no sugar',w:'Black tea simmered with crushed cardamom, ginger and cinnamon, finished with 30 mL cream. Keep the chai and leave out the sugar.',c:0.9,s:0.9,m:5,g:'fridge',tier:1,kc:102,caf:1},
+ {t:'Almond jeera biscuits, no sugar',w:'Bake a tin on your day off: mix 60 g almond meal, 18 g soft ghee, 1 egg white, 1 tsp cumin or ajwain seeds and a pinch of salt, press into six small rounds and bake 12 to 15 minutes at 160 C. Let them cool on the tray, where they firm up enough to dunk, like the jeera biscuits Indian bakeries sell for chai. Two are about 1 g of carbs and 181 calories.',c:1.1,s:0.9,m:0,g:'pantry',tier:1,kc:181,ahead:1},
+ {t:'Peanuts in the shell with the chai',w:'The street-stall pairing: 40 g roasted peanuts in the shell (about 28 g of nuts), shelled one at a time while you drink the chai. About 1.7 g of carbs and 159 calories. Supermarkets and the Indian grocer sell them in the shell.',c:1.7,s:1.4,m:0,g:'pantry',tier:1,kc:159,caf:1},
+ {t:'Chai or a small flat white, no syrup',w:'At an Indian cafe or sweet shop, ask for masala chai with no sugar before it is poured; most shops sweeten the whole pot, so if it is already sweet, order black tea with milk instead. At other cafes the chai latte is made from a sweetened syrup or powder, so order a small flat white with cinnamon on top. Either is about 7 g of milk sugar and 93 calories.',c:7.5,s:7.2,m:0,g:'out',tier:2,kc:93,caf:1},
+ {t:'Herman Brot bread rusks to dunk',w:'Cut 3 slices of Herman Brot bread into fingers, brush them with 15 g melted ghee and a pinch of cinnamon, and dry them in the air fryer or oven at 150 C for 10 to 12 minutes, until hard right through. Cool them and keep them in a jar. One slice’s worth (four fingers) holds up in hot chai like a rusk, about 2.6 g of carbs.',c:2.6,s:0.7,m:0,g:'pantry',tier:1,kc:141,ahead:1,caf:1},
+ {t:'Unsweetened chai and one Marie biscuit',w:'Make the chai with no sugar in the pot and put one Marie biscuit on the saucer, then put the packet away before you sit down. About 11 g of carbs and 98 calories, against about 30 g for sweet chai with three or four biscuits.',c:11.2,s:6.5,m:5,g:'pantry',tier:3,kc:98,caf:1}]},
 /* ================= CHIPS AND SAVOURY SNACKS ================= */
-{id:'chips',n:'Potato chips',cat:'packet',nova:4,sugar:1,kcal:246,cost:4.50,
+{id:'chips',n:'Potato chips',cat:'packet',f:'crunchy',nova:4,sugar:1,kcal:246,cost:4.50,serve:'One 45 g bag of Smith\'s Crinkle Cut Original',net:23,k:'crisps, Smith\'s, Kettle, Red Rock Deli, Lay\'s',
  why:'Potato starch, seed oil and salt, easy to keep eating past fullness. A 45 g bag is about 23 g of carbohydrate and a 170 g share bag about 87 g. The swaps keep the salt and the crunch.',
  alts:[
  {t:'Cheese crisps',w:'30 g tasty cheese in small piles on baking paper, 180 C for six minutes or 60 to 90 seconds in the microwave. Cool until they snap.',c:0.3,s:0.1,m:8,g:'fridge',tier:1,kc:124},
@@ -1615,16 +1615,16 @@ var CRAVE=[
  {t:'Cucumber with salt, chilli and lemon',w:'One Lebanese cucumber in thick rounds with chilli salt and lemon: cold crunch for 5 g of carbs.',c:4.9,s:2.6,m:2,g:'fresh',tier:1,kc:23},
  {t:'Ghee makhana with chaat masala',w:'Roast 10 g makhana (about a third of a cup) in 3 g ghee on low heat for 5 minutes, then toss with chaat masala and salt. It crunches like a chip; weigh it, because 10 g is 7.7 g of carbs. Count it in the day’s 45 g.',c:7.7,s:0.4,m:6,g:'pantry',tier:2,kc:62},
  {t:'A small bag, on a plate',w:'Buy a 20 g bag, or weigh 20 g, and tip it onto a plate: about 10 g of carbs and 109 calories.',c:10,s:0.2,m:0,g:'shop',tier:3,kc:109}]},
-{id:'doritos',n:'Corn chips such as Doritos, Twisties and Cheezels',cat:'packet',nova:4,sugar:2,kcal:250,cost:5.00,
+{id:'doritos',n:'Corn chips such as Doritos, Twisties and Cheezels',cat:'packet',f:'crunchy',nova:4,sugar:2,kcal:250,cost:5.00,serve:'About 50 g',net:29,k:'Twisties, Cheezels, Burger Rings, tortilla',
  why:'Corn starch, oil and flavouring powder. The swaps keep the crunch and the seasoning without the corn.',
  alts:[
  {t:'Cheese crisps with masala dust',w:'Bake 30 g tasty cheese in small piles at 180 C for six minutes (or microwave 60 to 90 seconds), then dust with chaat masala and chilli while hot.',c:0.5,s:0.1,m:8,g:'fridge',tier:1,kc:127},
  {t:'Roasted spiced almonds',w:'30 g almonds with smoked paprika, chilli and salt, three minutes in a dry pan.',c:1.7,s:1.3,m:4,g:'pantry',tier:1,kc:174},
  {t:'Cheese-crisp nachos',w:'Cheese crisps from 30 g tasty cheese, topped with 30 g passata, 15 g crumbled feta and sliced jalapeno, three minutes under the grill.',c:2.6,s:1.8,m:12,g:'fridge',tier:1,kc:176},
  {t:'Capsicum strips with chutney',w:'60 g capsicum and 30 g cucumber in strips, for scooping 20 g coriander chutney (yoghurt stirred with chopped coriander, green chilli, lemon and salt).',c:4.6,s:3.9,m:3,g:'fridge',tier:2,kc:37},
- {t:'Tofu-skin chips with chilli and lime',w:'Make a batch on your day off: wet two dried beancurd sheets (tofu skin, from the Asian grocer; a pack keeps for months) under the tap for a few seconds, cut them into corn-chip triangles, brush with a little oil and air fry at 180 C for 5 to 6 minutes until puffed and crisp, then dust with chilli powder, grated lime zest and salt. Keep them in an airtight jar for up to 5 days. A 15 g serve is about 2.5 g of carbs and 91 calories, with 7 g of protein.',c:2.5,s:0.2,m:0,g:'pantry',tier:1,kc:91},
+ {t:'Tofu-skin chips with chilli and lime',w:'Make a batch on your day off: wet two dried beancurd sheets (tofu skin, from the Asian grocer; a pack keeps for months) under the tap for a few seconds, cut them into corn-chip triangles, brush with a little oil and air fry at 180 C for 5 to 6 minutes until puffed and crisp, then dust with chilli powder, grated lime zest and salt. Keep them in an airtight jar for up to 5 days. A 15 g serve is about 2.5 g of carbs and 91 calories, with 7 g of protein.',c:2.5,s:0.2,m:0,g:'pantry',tier:1,kc:91,ahead:1},
  {t:'20 g of corn chips on a plate',w:'Weigh 20 g onto a plate and close the bag: 12 g of carbs and 104 calories.',c:12,s:0.4,m:0,g:'shop',tier:3,kc:104}]},
-{id:'pringles',n:'Pringles chips, Shapes and Jatz crackers, rice crackers',cat:'packet',nova:4,sugar:3,kcal:200,cost:4.00,
+{id:'pringles',n:'Pringles chips, Shapes and Jatz crackers, rice crackers',cat:'packet',f:'crunchy',nova:4,sugar:3,kcal:200,cost:4.00,serve:'40 g of Pringles chips, Shapes and Jatz crackers, or 25 g of rice crackers',net:21,k:'Shapes, Jatz, crackers, rice crackers, Cruskits',
  why:'Refined flour or dehydrated potato in a cracker shape. Rice crackers raise blood sugar faster than table sugar does.',
  alts:[
  {t:'Cheese slices with mustard',w:'Two slices of tasty cheese (40 g) with Dijon mustard, rolled up. The cracker topping without the cracker.',c:0.5,s:0.2,m:1,g:'fridge',tier:1,kc:169},
@@ -1633,7 +1633,7 @@ var CRAVE=[
  {t:'Herman Brot bread toasted hard, half a slice',w:'Half a slice cut thin and toasted twice until it snaps like a cracker. 1.3 g of carbs; top it with cheese or a smear of butter.',c:1.3,s:0.3,m:3,g:'pantry',tier:1,kc:48},
  {t:'Roasted seaweed snack, one pack',w:'One 5 g pack from the Asian aisle of the supermarket: thin crisp sheets, about 27 calories and 1 g of carbs. Buy plain or sea salt flavour, since some flavours contain prawn or fish.',c:1,s:0.1,m:0,g:'shop',tier:1,kc:27},
  {t:'Roasted papad with cracked pepper',w:'One medium urad dal papad (about 12 g) from the Indian grocer, held over the gas flame with tongs or microwaved for about 60 seconds until it blisters all over, with cracked pepper on top. Thin and crisp like a cracker, about 5 g of carbs and 45 calories. Papads vary, so check the pack, and add no salt.',c:5,s:0,m:2,g:'pantry',tier:2,kc:45}]},
-{id:'popcorn',n:'Microwave or cinema popcorn',cat:'packet',nova:4,sugar:1,kcal:400,cost:3.00,
+{id:'popcorn',n:'Microwave or cinema popcorn',cat:'packet',f:'crunchy',nova:4,sugar:1,kcal:400,cost:3.00,serve:'One 85 g microwave bag, butter flavour',net:40,k:'cinema, movie popcorn',
  why:'An 85 g microwave bag is about 40 g of carbohydrate, with the oil, salt and flavouring that make it easy to finish. Plain popcorn is a whole grain: 15 g of kernels popped in a pan makes about two cups with 9.5 g of carbs, and it is one of the swaps. Weigh the kernels; a big bowl is over the day\'s room.',
  alts:[
  {t:'Roasted edamame',w:'100 g frozen edamame with salt, 200 C for 12 minutes or 10 in the air fryer. The same handful-at-a-time habit, with 11 g of protein.',c:3.5,s:2.2,m:14,g:'freezer',tier:1,kc:120},
@@ -1642,25 +1642,25 @@ var CRAVE=[
  {t:'Cheese crisps',w:'30 g tasty cheese baked at 180 C for six minutes or microwaved 60 to 90 seconds into crisps: salty and crunchy, in a set portion.',c:0.3,s:0.1,m:8,g:'fridge',tier:1,kc:124},
  {t:'Sunflower seeds in the shell, 30 g',w:'Weigh 30 g of plain salted sunflower seeds in the shell into one bowl, with a second bowl for the shells, and crack them one at a time. Middle Eastern and Asian grocers sell them; the caramel and coconut ones are sugared, so check the label on any flavoured pack. That is about 15 g of kernels: 0.6 g of carbs and 88 calories, eaten as slowly as a bowl of popcorn.',c:0.6,s:0.4,m:0,g:'pantry',tier:1,kc:88},
  {t:'Popcorn, 15 g, popped in a pan',w:'Pop 15 g kernels (a heaped tablespoon) in 3 g ghee or oil in a covered pot, then toss with 3 g melted butter and salt. About two cups, 9.5 g of carbs and 107 calories, against about 40 g of carbs in an 85 g microwave bag. Weigh the kernels, and count it in the day’s 45 g.',c:9.5,s:0.1,m:5,g:'pantry',tier:2,kc:107}]},
-{id:'namkeen',n:'Bhujia, sev or namkeen mix',cat:'packet',nova:3,sugar:1,kcal:280,cost:1.00,
+{id:'namkeen',n:'Bhujia, sev or namkeen mix',cat:'packet',f:'crunchy',nova:3,sugar:1,kcal:280,cost:1.00,serve:'A 50 g bowl of aloo bhujia',net:23,k:'Haldiram\'s, bhujia, sev, mixture, chakli',
  why:'Gram flour and potato fried in oil with salt and spices. A 50 g bowl of aloo bhujia is about 23 g of carbohydrate and 280 calories, and even a 30 g handful is about 13 g of carbohydrate.',
  alts:[
- {t:'Seed and coconut chivda from the jar',w:'Make a jar on Sunday: 100 g pepitas, 80 g sunflower seeds and 50 g peanuts fried for 4 minutes in 20 g ghee with curry leaves, hing, turmeric, chilli and salt, with 50 g coconut flakes added for the last minute, then cooled. A 30 g serve (a small bowl) is 1.4 g of carbs and 185 calories, against about 23 g of carbs in a 50 g bowl of bhujia.',c:1.4,s:1,m:0,g:'pantry',tier:1,kc:185},
+ {t:'Seed and coconut chivda from the jar',w:'Make a jar on Sunday: 100 g pepitas, 80 g sunflower seeds and 50 g peanuts fried for 4 minutes in 20 g ghee with curry leaves, hing, turmeric, chilli and salt, with 50 g coconut flakes added for the last minute, then cooled. A 30 g serve (a small bowl) is 1.4 g of carbs and 185 calories, against about 23 g of carbs in a 50 g bowl of bhujia.',c:1.4,s:1,m:0,g:'pantry',tier:1,kc:185,ahead:1},
  {t:'Kurkuri bhindi in the air fryer',w:'Slice 100 g okra thin lengthways, toss it with 5 mL oil, chaat masala, chilli powder and salt, and air fry at 190 C for 12 to 15 minutes, shaking twice, until crisp. No besan coating, about 4.4 g of carbs. Okra is at the Indian grocer and sometimes at Coles.',c:4.4,s:1.5,m:15,g:'fresh',tier:1,kc:77},
  {t:'Salted pistachios in the shell',w:'In place of the bhujia packet, buy salted pistachios in the shell (Aldi, Coles or the Indian grocer), count out about 35 (40 g in the shell) and leave the rest in the bag. Shelling them one at a time slows you down; that is about 20 g of nuts, 3.5 g of carbs and 114 calories.',c:3.5,s:1.5,m:0,g:'shop',tier:1,kc:114},
  {t:'Masala popcorn, 10 g of kernels',w:'Pop 10 g of kernels (weigh them) in a covered pot with 3 g ghee, turmeric, chilli powder and salt, shaking the pot as it pops. A little over a cup, 6.4 g of carbs and 67 calories. Count it in the day’s 45 g.',c:6.4,s:0.1,m:5,g:'pantry',tier:2,kc:67},
  {t:'Bean sprout chaat',w:'Microwave 100 g bean sprouts (the long mung bean sprouts sold in bags at Coles and Woolworths) for 1 minute, then toss with 30 g chopped tomato, 15 g onion, 15 g roasted peanuts, lemon juice, coriander, chilli and chaat masala. About 7.9 g of carbs and 133 calories. The short sprouted moong from the Indian grocer has more starch, so use the long ones, and leave off the sev.',c:7.9,s:6.6,m:4,g:'fresh',tier:2,kc:133},
  {t:'20 g of bhujia in a small bowl',w:'Weigh 20 g of bhujia (about 3 tablespoons) into a small bowl, clip the packet and put it away before you sit down. About 9.5 g of carbs and 113 calories, against about 23 g and 280 for a 50 g bowl.',c:9.5,s:0.4,m:0,g:'shop',tier:3,kc:113}]},
-{id:'dimsim',n:'Spring rolls and party food',cat:'packet',nova:4,sugar:17,kcal:315,cost:8.00,
+{id:'dimsim',n:'Spring rolls and party food',cat:'packet',f:'crunchy',nova:4,sugar:17,kcal:315,cost:8.00,serve:'Six cocktail vegetable spring rolls with a tablespoon of sweet chilli sauce',net:54,k:'dim sims, party pies, sausage rolls, finger food',
  why:'A wheat wrapper, a starch filling and a sweet dipping sauce. Six cocktail spring rolls with a tablespoon of sweet chilli are about 54 g of carbohydrate and 17 g of sugar. Most dim sims are made with meat.',
  alts:[
  {t:'Lettuce cups with spiced tofu',w:'Crumble 100 g firm tofu into a hot pan with 5 mL oil, chilli, turmeric and salt, then spoon it into cos leaves with lemon over.',c:2.7,s:1.4,m:10,g:'fridge',tier:1,kc:175},
  {t:'Tofu bites with sriracha mayo',w:'Cube 100 g firm tofu, pat it dry and air fry at 200 C for 12 minutes (or pan-fry), then dip in 10 g mayo mixed with 5 mL sriracha.',c:2.3,s:1.3,m:14,g:'fridge',tier:1,kc:192},
- {t:'Tofu-skin rolls with cabbage, air fried',w:'Make a batch on your day off: fry 120 g finely shredded cabbage and 60 g chopped mushrooms with garlic, 5 mL soy and white pepper for 4 minutes and let it cool. Wet a 25 g dried beancurd sheet (tofu skin, from the Asian grocer) for a few seconds until soft, cut it into six rectangles, roll each around a spoon of the filling, brush with 10 mL oil and air fry at 200 C for 8 minutes. Keep them in the fridge for 3 days; three reheat crisp in the air fryer in 4 minutes. Three are about 4.6 g of carbs and 118 calories.',c:4.6,s:2.7,m:4,g:'fridge',tier:1,kc:118},
+ {t:'Tofu-skin rolls with cabbage, air fried',w:'Make a batch on your day off: fry 120 g finely shredded cabbage and 60 g chopped mushrooms with garlic, 5 mL soy and white pepper for 4 minutes and let it cool. Wet a 25 g dried beancurd sheet (tofu skin, from the Asian grocer) for a few seconds until soft, cut it into six rectangles, roll each around a spoon of the filling, brush with 10 mL oil and air fry at 200 C for 8 minutes. Keep them in the fridge for 3 days; three reheat crisp in the air fryer in 4 minutes. Three are about 4.6 g of carbs and 118 calories.',c:4.6,s:2.7,m:4,g:'fridge',tier:1,kc:118,ahead:1},
  {t:'Rolled masala omelette, sliced',w:'Beat 2 eggs with 15 g finely chopped onion, green chilli and coriander, cook thin in a pan with 3 mL oil, scatter 15 g cheese over, roll it up and cut bite-size pieces.',c:2.1,s:1.1,m:8,g:'fridge',tier:1,kc:237},
  {t:'Feta, olive and tomato picks',w:'Thread 30 g feta cubes, 4 kalamata olives (20 g) and 4 cherry tomatoes (50 g) onto toothpicks with a pinch of dried oregano. Cold party food from the fridge in 2 minutes, about 2.9 g of carbs.',c:2.9,s:2.5,m:2,g:'fridge',tier:1,kc:130},
  {t:'Two mini vegetable spring rolls',w:'Two cocktail-size vegetable spring rolls (20 g each) with soy sauce for dipping instead of sweet chilli sauce: 14 g of carbs and 89 calories.',c:14,s:1,m:15,g:'shop',tier:3,kc:89}]},
-{id:'samosa',n:'Samosa, pakora, bhaji, chaat',cat:'packet',nova:3,sugar:3,kcal:300,cost:3.50,
+{id:'samosa',n:'Samosa, pakora, bhaji, chaat',cat:'packet',f:'crunchy',nova:3,sugar:3,kcal:300,cost:3.50,serve:'One shop samosa, 100 to 120 g',net:31,k:'pakora, bhaji, chaat, kachori, vada pav',
  why:'Potato and refined flour, deep fried, usually with a sweet tamarind chutney over the top. Chaat such as pani puri, bhel and papdi chaat is fried puri and sev with the same tamarind and date chutney. One shop samosa is about 31 g of carbohydrate.',
  alts:[
  {t:'Paneer pakoras in almond batter',w:'Slice 80 g paneer into fingers, dip them in a thick paste of 15 g almond meal, a pinch of psyllium, ajwain, chilli, turmeric, salt and water, and pan-fry in 5 g ghee in a non-stick pan for about 3 minutes a side until golden. Squeeze lemon over and eat them hot.',c:2.9,s:2.4,m:12,g:'fridge',tier:1,kc:353},
@@ -1669,7 +1669,7 @@ var CRAVE=[
  {t:'Paneer tikka with chutney',w:'100 g paneer and tofu tikka from the Sunday tray, reheated in a hot pan or the air fryer for 4 minutes so the edges char, with 20 g coriander chutney. The samosa spices and the chutney, with no flour.',c:5.5,s:4.1,m:6,g:'fridge',tier:2,kc:209},
  {t:'Masala papad, roasted',w:'At an Indian restaurant, order masala papad in place of the samosa and ask for it roasted: a papad under chopped onion, tomato, green chilli and coriander. At home, roast one urad papad (about 12 g) over the gas flame or for 45 seconds in the microwave and top it with 15 g each of chopped onion and tomato, lemon and chaat masala. About 7 g of carbs and 57 calories.',c:7,s:1.2,m:0,g:'out',tier:2,kc:57},
  {t:'One samosa, with chutney not tamarind',w:'At the shop or the Indian grocer, one cocktail-size samosa (about 40 g) with coriander chutney on the side. Leave the tamarind and date chutney, which is mostly sugar. About 13 g of carbs and 134 calories, against about 31 g for a full-size shop samosa.',c:12.8,s:1.5,m:0,g:'out',tier:3,kc:134}]},
-{id:'maccas',n:'Hot chips or Maccas fries',cat:'packet',nova:4,sugar:0,kcal:296,cost:5.00,
+{id:'maccas',n:'Hot chips or Maccas fries',cat:'packet',f:'crunchy',nova:4,sugar:0,kcal:296,cost:5.00,serve:'One medium McDonald\'s Australia fries',net:31,k:'McDonald\'s, fries, hot chips, Hungry Jack\'s, KFC chips',
  why:'A medium serve of McDonald\'s fries is about 34 g of carbohydrate and 296 calories, and a large about 52 g and 450. The swaps keep the salt and the crunch and remove the starch.',
  alts:[
  {t:'Halloumi fries',w:'Cut 100 g halloumi (about half a block) into batons and fry in a dry non-stick pan for 2 to 3 minutes a side until golden, or air fry at 200 C for 8 minutes. Squeeze lemon over and add dried oregano and chilli flakes; 22 g of protein.',c:2.3,s:2.1,m:8,g:'fridge',tier:1,kc:331},
@@ -1678,7 +1678,7 @@ var CRAVE=[
  {t:'Roasted cauliflower, chicken salt',w:'Toss 200 g cauliflower florets (a quarter of a head) with 10 mL oil (2 tsp), roast at 220 C for 25 minutes or air fry at 200 C for 15, then shake chicken salt over. Most Australian chicken salt has no chicken in it, but a few brands use chicken broth or chicken flavour, so read the label.',c:6,s:3.8,m:25,g:'fresh',tier:2,kc:132},
  {t:'Two seaweed snack packs in your bag',w:'Keep two 5 g packs of roasted seaweed snack (the Asian aisle at Woolworths or Coles) in your bag or locker for the drive-through moment; a hot car spoils them. Buy plain or sea salt flavour, since some flavours contain prawn or fish. Salty and crisp, about 2 g of carbs and 54 calories for both.',c:2,s:0.2,m:0,g:'pantry',tier:1,kc:54},
  {t:'A small fries, eaten slowly, nothing else',w:'Order a small fries only, with no burger, drink or sauce, and eat it at a table. A small is about 24 g of carbs and 206 calories, against about 450 for a large.',c:24,s:0.3,m:0,g:'out',tier:3,kc:206}]},
-{id:'noodles',n:'Two-minute noodles such as Mi Goreng or a Maggi noodle packet',cat:'packet',nova:4,sugar:7,kcal:380,cost:1.20,
+{id:'noodles',n:'Two-minute noodles such as Mi Goreng or a Maggi noodle packet',cat:'packet',f:'filling',nova:4,sugar:7,kcal:380,cost:1.20,serve:'One 80 to 85 g pack of Mi Goreng instant noodles',net:49,k:'Maggi, Mi Goreng, Indomie, ramen, cup noodles',
  why:'Fried wheat and a flavour sachet: 7 g of protein, 50 g of carbohydrate, and you are hungry again within an hour.',
  alts:[
  {t:'Konjac noodle mi goreng',w:'Rinse 250 g konjac noodles (Slendier, in the health or Asian aisle at Woolworths and Coles, about $4 for 400 g) and dry-fry them for 3 minutes until they squeak. Add 10 mL soy, 5 mL sesame oil, garlic and sriracha, and top with 2 boiled eggs from the fridge, halved, and spring onion.',c:4.4,s:1.4,m:5,g:'pantry',tier:1,kc:223},
@@ -1688,43 +1688,43 @@ var CRAVE=[
  {t:'Miso soup with silken tofu',w:'Whisk 15 g white miso paste (1 tbsp) into 250 mL water from a just-boiled kettle, add 100 g silken tofu in cubes and sliced spring onion, and eat it from the mug with a spoon. Hot and salty, about 4.9 g of carbs. Read the labels: many instant miso sachets contain bonito, which is fish, and so do pastes made with dashi.',c:4.9,s:1.9,m:2,g:'fridge',tier:1,kc:90},
  {t:'Half a pack, with two eggs',w:'Cook half a block of Mi Goreng instant noodles with half the seasoning, and add 2 fried eggs and a handful of shredded cabbage or bok choy. Half a pack is about 25 g of carbs, against 49 g for the whole pack.',c:27,s:5.1,m:5,g:'pantry',tier:3,kc:347}]},
 /* ================= SUGARY DRINKS ================= */
-{id:'icedcoffee',n:'Farmers Union iced coffee',cat:'drink',nova:4,sugar:52,kcal:390,cost:5.20,
+{id:'icedcoffee',n:'Farmers Union iced coffee',cat:'drink',f:'drink',nova:4,sugar:52,kcal:390,cost:5.20,serve:'One 600 mL carton',net:52,k:'Farmers Union, Dare, Ice Break, coffee milk',
  why:'About 52 g of sugar in a 600 mL carton, more than this plan allows in a whole day. South Australia drinks more of it than anywhere else.',
  alts:[
- {t:'Long black with 30 mL cream',w:'Pour a long black over ice and add 30 mL cream: an iced coffee with 0.9 g of sugar.',c:0.9,s:0.9,m:2,g:'fridge',tier:1,kc:102},
- {t:'Cold brew with cream and cocoa',w:'Steep 40 g ground coffee in 500 mL cold water overnight in a jar and strain. Pour a glass over ice with 30 mL cream and 2 g cocoa, for much less than the carton costs.',c:1.3,s:0.9,m:5,g:'fridge',tier:1,kc:107},
- {t:'Iced almond milk latte',w:'A shot of espresso (or 1 tsp instant coffee in a splash of hot water), 150 mL unsweetened almond milk and ice.',c:0.3,s:0,m:2,g:'pantry',tier:1,kc:21},
+ {t:'Long black with 30 mL cream',w:'Pour a long black over ice and add 30 mL cream: an iced coffee with 0.9 g of sugar.',c:0.9,s:0.9,m:2,g:'fridge',tier:1,kc:102,caf:1},
+ {t:'Cold brew with cream and cocoa',w:'Steep 40 g ground coffee in 500 mL cold water overnight in a jar and strain. Pour a glass over ice with 30 mL cream and 2 g cocoa, for much less than the carton costs.',c:1.3,s:0.9,m:5,g:'fridge',tier:1,kc:107,ahead:1,caf:1},
+ {t:'Iced almond milk latte',w:'A shot of espresso (or 1 tsp instant coffee in a splash of hot water), 150 mL unsweetened almond milk and ice.',c:0.3,s:0,m:2,g:'pantry',tier:1,kc:21,caf:1},
  {t:'Iced rooibos with cream',w:'Brew two rooibos tea bags in 150 mL boiling water for 3 minutes, pour it over a glass of ice and stir in 30 mL cream and a drop of vanilla. Cold and creamy like the carton, with no caffeine, so it suits the drive home from a late shift.',c:1.3,s:0.9,m:4,g:'pantry',tier:1,kc:105},
- {t:'Chobani yoghurt pot and a black coffee',w:'If the iced coffee is your breakfast, have a plain Chobani yoghurt pot (about 160 g) and a black coffee: 16 g of protein.',c:6.4,s:6.4,m:1,g:'fridge',tier:2,kc:112},
+ {t:'Chobani yoghurt pot and a black coffee',w:'If the iced coffee is your breakfast, have a plain Chobani yoghurt pot (about 160 g) and a black coffee: 16 g of protein.',c:6.4,s:6.4,m:1,g:'fridge',tier:2,kc:112,caf:1},
  {t:'Iced cocoa shaken in a jar',w:'Whisk 5 g cocoa (2 tsp) into 1 tbsp hot water until smooth, then shake it hard in a lidded jar with 150 mL cold full-cream milk and a handful of ice. A cold chocolate milk with about 7 g of sugar, all of it the milk’s own, against 52 g in a 600 mL Farmers Union iced coffee carton.',c:8.2,s:7.3,m:3,g:'fridge',tier:2,kc:103}]},
-{id:'softdrink',n:'Coke or other soft drink',cat:'drink',nova:4,sugar:64,kcal:258,cost:4.00,
+{id:'softdrink',n:'Coke or other soft drink',cat:'drink',f:'drink',nova:4,sugar:64,kcal:258,cost:4.00,serve:'One 600 mL Coca-Cola Classic',net:64,k:'Coke, Pepsi, Sprite, Fanta, Solo, lemonade, cola',
  why:'A 600 mL bottle is about 64 g of sugar, more than the plan\'s whole day of carbs.',
  alts:[
  {t:'Soda water with lemon and ice',w:'Fizzy and cold, with no sugar. Keep a bottle of soda water in the fridge and a lemon in the fruit bowl.',c:0.7,s:0.3,m:1,g:'free',tier:1,kc:2},
  {t:'Soda water with a splash of apple cider vinegar',w:'10 mL (2 tsp) apple cider vinegar in a glass of soda water over ice. Sour and sharp, closer to a soft drink than plain water is.',c:0,s:0,m:1,g:'pantry',tier:1,kc:2},
- {t:'Cold black tea, unsweetened',w:'Brew it strong, chill it and keep a bottle in the fridge. Pour it over ice with a slice of lemon.',c:0,s:0,m:5,g:'free',tier:1,kc:0},
+ {t:'Cold black tea, unsweetened',w:'Brew it strong, chill it and keep a bottle in the fridge. Pour it over ice with a slice of lemon.',c:0,s:0,m:5,g:'free',tier:1,kc:0,ahead:1,caf:1},
  {t:'Salted water',w:'A quarter teaspoon of salt (about 1.5 g) in 600 mL water; on a long shift it can settle the craving. Skip the salt if your blood pressure is high.',c:0,s:0,m:1,g:'free',tier:1,kc:0},
  {t:'Salted nimbu soda with cumin',w:'The juice of half a lime or lemon (about 15 mL), a pinch of black salt and a pinch of roasted cumin (jeera) in a glass of soda water over ice. The salted version of the Indian street drink.',c:1.3,s:0.3,m:2,g:'fresh',tier:1,kc:5},
- {t:'Coke No Sugar cola, one can',w:'If it has to be cola, one cold 375 mL can of Coke No Sugar cola with a meal (within six hours of sleep, soda water with lime or lemon instead). The WHO advises against relying on sweeteners for weight loss, so use it to step down from the real one.',c:0,s:0,m:0,g:'shop',tier:3,kc:1}]},
-{id:'energy',n:'Energy drinks such as V or Monster',cat:'drink',nova:4,sugar:53,kcal:230,cost:4.50,
+ {t:'Coke No Sugar cola, one can',w:'If it has to be cola, one cold 375 mL can of Coke No Sugar cola with a meal (within six hours of sleep, soda water with lime or lemon instead). The WHO advises against relying on sweeteners for weight loss, so use it to step down from the real one.',c:0,s:0,m:0,g:'shop',tier:3,kc:1,caf:1}]},
+{id:'energy',n:'Energy drinks such as V or Monster',cat:'drink',f:'drink',nova:4,sugar:53,kcal:230,cost:4.50,serve:'One 500 mL can of V',net:53,k:'Red Bull, Monster, V, Mother, Rockstar',
  why:'A 500 mL can of V is about 53 g of sugar. The sugar-free ones still have the caffeine, which disrupts sleep late at night, and poor sleep raises appetite the next day.',
  alts:[
- {t:'Black coffee before the shift only',w:'Caffeine has a half-life of about five hours. Have the last one six hours before you plan to sleep.',c:0,s:0,m:2,g:'free',tier:1,kc:0},
+ {t:'Black coffee before the shift only',w:'Caffeine has a half-life of about five hours. Have the last one six hours before you plan to sleep.',c:0,s:0,m:2,g:'free',tier:1,kc:0,caf:1},
  {t:'Salted water through the shift',w:'A quarter teaspoon of salt (about 1.5 g) in a 600 mL bottle, sipped through the shift; late in a shift, thirst can feel like tiredness. Skip the salt if your blood pressure is high.',c:0,s:0,m:1,g:'free',tier:1,kc:0},
- {t:'Green tea',w:'About a third of the caffeine of a coffee, and it lasts an hour of sipping. Keep tea bags in your locker.',c:0,s:0,m:3,g:'free',tier:1,kc:0},
- {t:'The night-shift snack box (S1) at the halfway point',w:'Eat the night-shift snack box (2 boiled eggs, 30 g cheese, 20 g almonds and half a Lebanese cucumber) at the halfway break, before the slump.',c:4.3,s:2.6,m:0,g:'fridge',tier:1,kc:394},
- {t:'Remedy kombucha, one can',w:'A 330 mL can from the supermarket or servo fridge: fizzy and sour, 0 g of sugar on the label and about 10 calories.',c:1,s:0,m:0,g:'shop',tier:1,kc:10},
- {t:'Sugar-free can, early in the shift',w:'If it has to be an energy drink, one 250 mL can of Red Bull Sugarfree energy drink (80 mg of caffeine) in the first hour of the shift. None after the halfway point if you sleep after work.',c:0,s:0,m:0,g:'shop',tier:3,kc:8}]},
-{id:'bubbletea',n:'Bubble tea, thickshake, slushie',cat:'drink',nova:4,sugar:57,kcal:450,cost:8.00,
+ {t:'Green tea',w:'About a third of the caffeine of a coffee, and it lasts an hour of sipping. Keep tea bags in your locker.',c:0,s:0,m:3,g:'free',tier:1,kc:0,caf:1},
+ {t:'The night-shift snack box at the halfway point',w:'Eat the night-shift snack box (2 boiled eggs, 30 g cheese, 20 g almonds and half a Lebanese cucumber) at the halfway break, before the slump.',c:4.3,s:2.6,m:0,g:'fridge',tier:1,kc:394,rc:'S1'},
+ {t:'Remedy kombucha, one can',w:'A 330 mL can from the supermarket or servo fridge: fizzy and sour, 0 g of sugar on the label and about 10 calories.',c:1,s:0,m:0,g:'shop',tier:1,kc:10,caf:1},
+ {t:'Sugar-free can, early in the shift',w:'If it has to be an energy drink, one 250 mL can of Red Bull Sugarfree energy drink (80 mg of caffeine) in the first hour of the shift. None after the halfway point if you sleep after work.',c:0,s:0,m:0,g:'shop',tier:3,kc:8,caf:1}]},
+{id:'bubbletea',n:'Bubble tea, thickshake, slushie',cat:'drink',f:'drink',nova:4,sugar:57,kcal:450,cost:8.00,serve:'One large (946 mL) milk tea with tapioca pearls',net:70,k:'boba, milk tea, thickshake, slushie, frappe',
  why:'A large milk tea with tapioca pearls is about 57 g of sugar, and the pearls add starch on top.',
  alts:[
  {t:'Peanut butter shake',w:'Blend 250 mL almond milk, 16 g peanut butter (1 tbsp), cinnamon and a handful of ice until thick.',c:2.6,s:0.8,m:3,g:'pantry',tier:1,kc:131},
- {t:'Iced masala chai with cream',w:'Brew strong chai with cardamom and ginger, cool it, pour it over ice and add 30 mL cream. Milk tea with no sugar and no pearls.',c:0.9,s:0.9,m:8,g:'fridge',tier:1,kc:102},
- {t:'Iced coffee with cream, if the group is going',w:'Order an iced long black with a dash of cream so you can go with the group without the sugar.',c:0.9,s:0.9,m:0,g:'out',tier:1,kc:102},
+ {t:'Iced masala chai with cream',w:'Brew strong chai with cardamom and ginger, cool it, pour it over ice and add 30 mL cream. Milk tea with no sugar and no pearls.',c:0.9,s:0.9,m:8,g:'fridge',tier:1,kc:102,caf:1},
+ {t:'Iced coffee with cream, if the group is going',w:'Order an iced long black with a dash of cream so you can go with the group without the sugar.',c:0.9,s:0.9,m:0,g:'out',tier:1,kc:102,caf:1},
  {t:'Chocolate protein shake, real version',w:'Blend 150 g Chobani yoghurt, 150 mL almond milk, 5 g cocoa (2 tsp) and ice until thick. 17 g of protein.',c:7.3,s:6.1,m:3,g:'fridge',tier:2,kc:137},
- {t:'Order 0% sugar, no pearls',w:'At the bubble tea shop, order fresh milk tea at 0% sugar with no pearls or jelly. The milk brings about 7 g of its own sugar.',c:7.2,s:7.2,m:0,g:'out',tier:2,kc:92},
- {t:'Order it half sugar, no pearls',w:'A regular (about 500 mL) at half sugar with no pearls is roughly 15 g of sugar, against 57 g in a large with pearls. Most shops will do it if you ask.',c:18,s:15,m:0,g:'out',tier:3,kc:130}]},
-{id:'juice',n:'Cordial, sports drink, Boost juice or other juice',cat:'drink',nova:4,sugar:30,kcal:180,cost:5.00,
+ {t:'Order 0% sugar, no pearls',w:'At the bubble tea shop, order fresh milk tea at 0% sugar with no pearls or jelly. The milk brings about 7 g of its own sugar.',c:7.2,s:7.2,m:0,g:'out',tier:2,kc:92,caf:1},
+ {t:'Order it half sugar, no pearls',w:'A regular (about 500 mL) at half sugar with no pearls is roughly 15 g of sugar, against 57 g in a large with pearls. Most shops will do it if you ask.',c:18,s:15,m:0,g:'out',tier:3,kc:130,caf:1}]},
+{id:'juice',n:'Cordial, sports drink, Boost juice or other juice',cat:'drink',f:'drink',nova:4,sugar:30,kcal:180,cost:5.00,serve:'350 mL of orange juice; a 600 mL Gatorade is 36 g of sugars',net:41,k:'Boost, Gatorade, Powerade, cordial, Golden Circle',
  why:'Liquid sugar with the fibre removed: 350 mL of orange juice is about 30 g of sugar. Plain juice is minimally processed (NOVA group 1), and its sugar still counts as free sugar, the same as added sugar. Sports drinks such as Gatorade are made for long, hard exercise.',
  alts:[
  {t:'Water with lemon and mint',w:'A litre bottle with lemon slices and a handful of mint, kept in the fridge. The flavour without the 30 g of sugar.',c:0.7,s:0.3,m:2,g:'free',tier:1,kc:2},
@@ -1733,71 +1733,71 @@ var CRAVE=[
  {t:'Soda water with 40 g frozen berries',w:'Drop 40 g frozen berries into a bottle of soda water and let them thaw; it turns pink and faintly sweet. Eat the berries at the end.',c:3,s:2.4,m:5,g:'freezer',tier:2,kc:20},
  {t:'One kiwifruit with a teaspoon',w:'One kiwifruit (about 70 g) cut in half and eaten with a teaspoon: the fruit with its fibre, 6 g of sugar against 30 for a glass of juice.',c:8.2,s:6.3,m:1,g:'fresh',tier:2,kc:43},
  {t:'100 mL juice with soda water',w:'100 mL orange juice topped up with soda water and ice: a tall glass with 8 g of sugar instead of about 30.',c:10,s:8.4,m:1,g:'shop',tier:3,kc:45}]},
-{id:'chocmilk',n:'Chocolate milk, Milo malt drink, iced coffee sachets',cat:'drink',nova:4,sugar:21,kcal:240,cost:3.00,
+{id:'chocmilk',n:'Chocolate milk, Milo malt drink, iced coffee sachets',cat:'drink',f:'drink',nova:4,sugar:21,kcal:240,cost:3.00,serve:'20 g Milo powder (three heaped teaspoons) in a 250 mL glass of full-cream milk',net:24,k:'Milo, Nesquik, Oak, Big M, Moove',
  why:'Milo, a chocolate malt powder, is about 44 per cent sugar. Three heaped teaspoons (20 g) in a 250 mL glass of milk is about 21 g of sugar, 9 g of it from the Milo powder.',
  alts:[
  {t:'Cocoa in warm milk with cinnamon',w:'Whisk 5 g cocoa (2 tsp) into 200 mL warm almond milk with 20 mL cream, cinnamon and a pinch of salt. About 1 g of sugar.',c:2,s:0.7,m:3,g:'pantry',tier:1,kc:107},
- {t:'Coffee with cocoa and cream',w:'Coffee with 3 g cocoa (1 tsp) and 30 mL cream stirred in: a mocha with about 1 g of sugar.',c:1.5,s:1,m:2,g:'fridge',tier:1,kc:109},
+ {t:'Coffee with cocoa and cream',w:'Coffee with 3 g cocoa (1 tsp) and 30 mL cream stirred in: a mocha with about 1 g of sugar.',c:1.5,s:1,m:2,g:'fridge',tier:1,kc:109,caf:1},
  {t:'Chocolate peanut almond milk',w:'Stir 15 g peanut butter (1 tbsp) and 5 g cocoa (2 tsp) into 2 tbsp hot water until smooth, then add 250 mL cold almond milk and shake hard in a lidded jar. Cold chocolate milk with 0.8 g of sugar.',c:3.3,s:0.8,m:2,g:'pantry',tier:1,kc:135},
  {t:'Chocolate protein shake',w:'Blend 120 g Chobani yoghurt, 200 mL almond milk, 5 g cocoa (2 tsp) and ice. 14 g of protein.',c:6.2,s:4.9,m:3,g:'fridge',tier:2,kc:123},
  {t:'Hot cocoa with real milk',w:'150 mL full cream milk and 50 mL water heated with 5 g cocoa (2 tsp) and cinnamon, no sugar. The milk brings about 8 g of its own sugar.',c:8.2,s:7.7,m:3,g:'fridge',tier:2,kc:103},
  {t:'One heaped teaspoon of Milo powder',w:'One heaped teaspoon (about 7 g) stirred into 200 mL almond milk: about 3 g of sugar, against about 21 g for three heaped teaspoons in a glass of milk.',c:4.6,s:3.1,m:2,g:'pantry',tier:3,kc:56}]},
-{id:'upandgo',n:'Up&Go breakfast drink or similar',cat:'drink',nova:4,sugar:16,kcal:196,cost:3.00,
+{id:'upandgo',n:'Up&Go breakfast drink or similar',cat:'drink',f:'drink',nova:4,sugar:16,kcal:196,cost:3.00,serve:'One 250 mL Up&Go breakfast drink, Choc Ice flavour',net:29,k:'Up&Go, breakfast drink, Sustagen',
  why:'A 250 mL Up&Go breakfast drink is about 29 g of carbohydrate and 16 g of sugar, with 8 g of protein.',
  alts:[
- {t:'Two boiled eggs and a coffee',w:'Two eggs from the batch boiled earlier in the week, with chaat masala, and a coffee. Ready in two minutes.',c:0.9,s:0.4,m:2,g:'fridge',tier:1,kc:146},
+ {t:'Two boiled eggs and a coffee',w:'Two eggs from the batch boiled earlier in the week, with chaat masala, and a coffee. Ready in two minutes.',c:0.9,s:0.4,m:2,g:'fridge',tier:1,kc:146,ahead:1,caf:1},
  {t:'Chocolate peanut almond milk',w:'Stir 15 g peanut butter (1 tbsp) and 5 g cocoa (2 tsp) into 2 tbsp hot water until smooth, then add 250 mL cold almond milk and shake hard in a lidded jar. Drink it from the jar on the way out.',c:3.3,s:0.8,m:2,g:'pantry',tier:1,kc:135},
- {t:'Iced coffee in a jar with cream',w:'1 tsp instant coffee dissolved in a splash of hot water, then 200 mL almond milk, 20 mL cream and ice in a jar with a lid. Take it with you.',c:1,s:0.6,m:2,g:'fridge',tier:1,kc:96},
+ {t:'Iced coffee in a jar with cream',w:'1 tsp instant coffee dissolved in a splash of hot water, then 200 mL almond milk, 20 mL cream and ice in a jar with a lid. Take it with you.',c:1,s:0.6,m:2,g:'fridge',tier:1,kc:96,caf:1},
  {t:'Salted chaas in a bottle',w:'Whisk 75 g Chobani yoghurt with a splash of the water first so it does not clump, then shake it with the rest of 250 mL cold water, salt, a pinch of roasted cumin (jeera) and chopped mint in a bottle. It drinks like a thin, salty lassi with 8 g of protein.',c:3.2,s:3,m:2,g:'fridge',tier:1,kc:56},
- {t:'Chia pudding jar (B5)',w:'If an Up&Go breakfast drink is your breakfast, make the plan breakfast B5 in a jar the night before: whisk 16 g peanut butter and 150 g plain Chobani yoghurt Greek yoghurt into 250 mL almond milk, stir in 24 g chia seeds and 10 g hemp seeds, and refrigerate. Eat it from the jar on the way out. It has 32 g of protein and 11 g of carbs, against 8 g of protein in the Up&Go breakfast drink.',c:11,s:7.2,m:3,g:'fridge',tier:2,kc:0},
+ {t:'Chia pudding jar',w:'If an Up&Go breakfast drink is your breakfast, make the plan breakfast B5 in a jar the night before: whisk 16 g peanut butter and 150 g plain Chobani yoghurt Greek yoghurt into 250 mL almond milk, stir in 24 g chia seeds and 10 g hemp seeds, and refrigerate. Eat it from the jar on the way out. It has 32 g of protein and 11 g of carbs, against 8 g of protein in the Up&Go breakfast drink.',c:11,s:7.2,m:3,g:'fridge',tier:2,kc:0,rc:'B5',ahead:1},
  {t:'Berry yoghurt smoothie',w:'Blend (a stick blender in a tall jug works) 120 g Chobani yoghurt, 40 g frozen berries and 100 mL almond milk and pour it into a bottle. Thick and cold, with 13 g of protein.',c:8,s:7.2,m:3,g:'freezer',tier:2,kc:118}]},
 /* ================= CARBS AND SAUCES AT MEALS ================= */
-{id:'whitebread',n:'White bread, wraps, crumpets',cat:'meal',nova:4,sugar:4,kcal:260,cost:1.00,
+{id:'whitebread',n:'White bread, wraps, crumpets',cat:'meal',f:'meal',nova:4,sugar:4,kcal:260,cost:1.00,serve:'Two slices of white bread, buttered',net:33,k:'toast, wraps, crumpets, bagel, sandwich',
  why:'Two slices of supermarket white is about 30 g of carbohydrate and almost no fibre. The wrap is worse: one tortilla is 35.',
  alts:[
  {t:'Herman Brot bread, one slice',w:'One slice of Herman Brot lower-carb bread has 2.5 g of net carbs, 12 g of protein and 5 g of fibre, against about 15 g of carbs in a slice of white toast. It toasts and makes sandwiches the same way.',c:2.5,s:0.5,m:1,g:'pantry',tier:1,kc:0},
  {t:'Cos leaves as the wrap',w:'Use 3 or 4 large cos leaves (about 60 g) in place of a tortilla for anything that was going into a wrap: egg, tofu, halloumi or tikka with sauce. Overlap two leaves so it holds.',c:0.7,s:0.7,m:1,g:'fresh',tier:1,kc:0},
- {t:'Keto roti (P2)',w:'Heat one keto roti from the P2 batch for 20 seconds a side and use it as the flatbread or the wrap. It has about 2 g of carbs and 8 g of fibre and bends without cracking while it is warm.',c:1.6,s:1.3,m:2,g:'fridge',tier:1,kc:0},
+ {t:'Keto roti',w:'Heat one keto roti from the P2 batch for 20 seconds a side and use it as the flatbread or the wrap. It has about 2 g of carbs and 8 g of fibre and bends without cracking while it is warm.',c:1.6,s:1.3,m:2,g:'fridge',tier:1,kc:0,rc:'P2',ahead:1},
  {t:'90-second mug bread, toasted',w:'Mix 30 g almond meal, 1 egg, 1/4 tsp baking powder and a pinch of salt in a wide mug, microwave for 90 seconds, slice it in two and toast the halves. Spread with 10 g butter like a crumpet.',c:2,s:1.5,m:4,g:'pantry',tier:1,kc:0},
  {t:'Two-egg wrap',w:'Whisk 2 eggs with a pinch of salt, pour into a wide non-stick pan with 3 g butter, tilt to spread it thin, cook 1 minute, flip for 20 seconds and slide it out. Fill and roll it like a tortilla.',c:0.8,s:0.4,m:4,g:'fridge',tier:1,kc:0},
  {t:'One slice of white toast',w:'If it has to be white bread, toast one slice only, put the loaf away before it pops, and spread it with 5 g butter. One slice is about 15 g of carbs; a crumpet is about 17 g.',c:15,s:1,m:3,g:'pantry',tier:3,kc:0}]},
-{id:'rice',n:'Rice',cat:'meal',nova:1,sugar:0,kcal:205,cost:1.00,
+{id:'rice',n:'Rice',cat:'meal',f:'meal',nova:1,sugar:0,kcal:205,cost:1.00,serve:'One cup of cooked white rice, 158 g',net:44,k:'biryani, fried rice, pulao, jeera rice',
  why:'A cup of cooked rice is about 44 g of carbohydrate, more than twice a meal\'s 20 g. It is also what your family eats, so a small measured serve may work better than refusing it.',
  alts:[
  {t:'Cauliflower rice, properly dried',w:'Microwave 200 g frozen cauliflower rice for 4 minutes, squeeze it hard in a clean tea towel or sieve, then fry it in 5 g ghee with cumin seeds until the grains separate. Drying it stops it going soggy under curry.',c:6.2,s:3.8,m:8,g:'freezer',tier:2,kc:0},
  {t:'Konjac rice with cumin seeds',w:'Rinse 200 g konjac rice (Slendier Rice Style), dry-fry it in a hot pan for 3 minutes, then add 5 g ghee and toasted cumin seeds. It spoons like rice under dal or curry, with about 1 g of carbs.',c:1.2,s:0,m:5,g:'pantry',tier:1,kc:0},
- {t:'Keto roti instead',w:'One keto roti, warmed in a dry pan, to scoop the curry: about 2 g of carbs and 8 g of fibre, against about 45 g of carbs in a cup of cooked rice.',c:1.6,s:1.3,m:2,g:'fridge',tier:1,kc:0},
+ {t:'Keto roti',w:'One keto roti, warmed in a dry pan, to scoop the curry: about 2 g of carbs and 8 g of fibre, against about 44 g of carbs in a cup of cooked rice.',c:1.6,s:1.3,m:2,g:'fridge',tier:1,kc:0,rc:'P2',ahead:1},
  {t:'Curd rice with cauliflower',w:'Microwave 120 g frozen cauliflower rice, squeeze it dry and let it cool a little, then stir in 60 g plain Chobani yoghurt, salt and grated ginger. Pour a tadka of 5 g ghee, mustard seeds, curry leaves and a green chilli over the top. South Indian curd rice, cold or warm.',c:6.5,s:4.8,m:10,g:'freezer',tier:2,kc:0},
  {t:'Cauliflower fried rice, edamame, egg',w:'Fry 200 g frozen cauliflower rice in 10 g butter until dry, push it aside, scramble 3 eggs in the space, then add 100 g frozen edamame, 10 mL soy and spring onion. A full dinner in ten minutes with 35 g of protein.',c:12,s:6.9,m:10,g:'freezer',tier:2,kc:0},
  {t:'Two tablespoons, taken deliberately',w:'Two heaped tablespoons of cooked rice (about 50 g) under the curry, taken on purpose at a family meal. That is about 14 g of carbs, against about 45 g in a cup.',c:14,s:0,m:0,g:'free',tier:3,kc:0}]},
-{id:'naan',n:'Naan, paratha, roti',cat:'meal',nova:3,sugar:2,kcal:320,cost:3.00,
+{id:'naan',n:'Naan, paratha, roti',cat:'meal',f:'meal',nova:3,sugar:2,kcal:320,cost:3.00,serve:'One restaurant naan, about 90 g',net:45,k:'roti, paratha, chapati, kulcha',
  why:'A naan is about 45 g of carbohydrate and usually arrives buttered. A paratha adds the ghee at the factory.',
  alts:[
- {t:'Keto roti (P2)',w:'Warm one keto roti from the P2 batch in a dry pan and brush it with 5 g ghee (1 tsp) and a pinch of flaky salt, the way naan arrives at the table.',c:1.6,s:1.3,m:2,g:'fridge',tier:1,kc:0},
+ {t:'Keto roti',w:'Warm one keto roti from the P2 batch in a dry pan and brush it with 5 g ghee (1 tsp) and a pinch of flaky salt, the way naan arrives at the table.',c:1.6,s:1.3,m:2,g:'fridge',tier:1,kc:0,rc:'P2',ahead:1},
  {t:'Almond meal flatbread, one-off',w:'No batch made? Mix 30 g almond meal, 5 g psyllium husk, a pinch of salt and about 40 mL hot water, rest it 2 minutes, press it flat between baking paper and cook 2 minutes a side in a dry pan.',c:1.6,s:1.3,m:6,g:'pantry',tier:1,kc:0},
  {t:'Eat the curry with a spoon',w:'Skip the bread and eat the curry like a stew, with a spoon. One restaurant naan is about 45 g of carbs, a whole day’s allowance.',c:0,s:0,m:0,g:'free',tier:1,kc:0},
  {t:'Coconut flour roti, five minutes',w:'Mix 15 g coconut flour, 5 g psyllium husk and a pinch of salt with about 50 mL just-boiled water, rest it 1 minute, press it thin between two sheets of baking paper and cook it 1 minute a side in 3 g ghee. Soft enough to tear and scoop curry, about 2.9 g of carbs. Coconut flour is in the health food aisle at Coles and Woolworths.',c:2.9,s:2.8,m:5,g:'pantry',tier:1,kc:0},
  {t:'Paneer-stuffed keto paratha',w:'Make the almond meal dough (30 g almond meal, 5 g psyllium, hot water) and flatten it. Put 40 g grated paneer with green chilli, coriander and ajwain in the middle, fold the edges over, press flat, and cook in 5 g ghee for 2 to 3 minutes a side.',c:4.2,s:2.2,m:10,g:'pantry',tier:1,kc:0},
  {t:'One thin roti, no ghee',w:'At a family meal, one thin wholemeal roti (about 35 g) with the curry and no ghee on top. That is about 13 g of carbs, against about 45 g in a restaurant naan.',c:13,s:1,m:0,g:'free',tier:3,kc:0}]},
-{id:'pasta',n:'Pasta',cat:'meal',nova:1,sugar:6,kcal:800,cost:4.00,
+{id:'pasta',n:'Pasta',cat:'meal',f:'meal',nova:1,sugar:6,kcal:800,cost:4.00,serve:'A restaurant plate, about 300 g cooked pasta with sauce',net:87,k:'spaghetti, mac and cheese, lasagne, penne',
  why:'A restaurant serve is 80 to 100 g of carbohydrate, and the jarred sauce adds 6 g of sugar a serve on top.',
  alts:[
- {t:'Pesto zucchini noodles with tofu (D6)',w:'Make D6 for dinner: crisp tofu, zucchini noodles, basil pesto, cherry tomatoes, feta and sunflower seeds, ten minutes from the pan, with 40 g of protein.',c:12,s:7.6,m:10,g:'fridge',tier:2,kc:0},
+ {t:'Pesto zucchini noodles with tofu',w:'Make D6 for dinner: crisp tofu, zucchini noodles, basil pesto, cherry tomatoes, feta and sunflower seeds, ten minutes from the pan, with 40 g of protein.',c:12,s:7.6,m:10,g:'fridge',tier:2,kc:0,rc:'D6'},
  {t:'Cabbage ribbons with pesto and feta',w:'Cut 200 g cabbage into wide ribbons like pappardelle, soften them in a pan with 5 mL oil and a splash of water for 5 minutes, then stir through 20 g pesto and crumble 30 g feta on top. Cheaper than zucchini, and it holds the sauce.',c:8.2,s:7,m:10,g:'fridge',tier:2,kc:0},
- {t:'Creamy mushroom skillet over zucchini (D14)',w:'Fry 120 g sliced mushrooms and 150 g cubed tofu in 10 g butter with garlic, add 40 mL cream and 20 g grated cheese and let it thicken, then spoon it over 150 g zucchini noodles warmed for a minute in the same pan.',c:10,s:7.5,m:13,g:'fridge',tier:2,kc:0},
+ {t:'Creamy mushroom skillet over zucchini',w:'Fry 120 g sliced mushrooms and 150 g cubed tofu in 10 g butter with garlic, add 40 mL cream and 20 g grated cheese and let it thicken, then spoon it over 150 g zucchini noodles warmed for a minute in the same pan.',c:10,s:7.5,m:13,g:'fridge',tier:2,kc:0,rc:'D14'},
  {t:'Konjac fettuccine, garlic cream',w:'Rinse 200 g konjac fettuccine (Slendier) and dry-fry it for 3 minutes, then add 10 g butter, garlic, 40 mL cream and 30 g grated cheese and toss for a minute until the sauce coats it. Finish with plenty of black pepper; it twirls on a fork like pasta.',c:3.1,s:1.3,m:5,g:'pantry',tier:1,kc:0},
  {t:'Zucchini noodle salad with tofu and egg',w:'Toss 150 g zucchini noodles (a supermarket pack) with 10 mL olive oil, chilli flakes, a squeeze of lemon and salt, then add 100 g firm tofu in cubes, 2 boiled eggs from the fridge, halved, and 40 g crumbled feta. Eat it cold like a pasta salad, about 7.4 g of carbs and 32 g of protein.',c:7.4,s:6.5,m:2,g:'fresh',tier:2,kc:0},
  {t:'Half pasta, half zucchini',w:'Cook 20 g dry pasta (about 50 g cooked), toss it with 150 g zucchini noodles and 40 g warm passata, and top with 20 g grated cheese. It still eats like a bowl of pasta, at about 20 g of carbs against 80 to 100 g for a restaurant serve.',c:20,s:4.9,m:12,g:'pantry',tier:3,kc:0}]},
-{id:'cannedspag',n:'Canned spaghetti, baked beans, instant mash',cat:'meal',nova:4,sugar:12,kcal:300,cost:1.50,
+{id:'cannedspag',n:'Canned spaghetti, baked beans, instant mash',cat:'meal',f:'meal',nova:4,sugar:12,kcal:300,cost:1.50,serve:'A 220 g can of baked beans on a slice of white toast',net:44,k:'baked beans, Heinz, instant mash, spaghetti tin',
  why:'Baked beans are 10 g of sugar a can and canned spaghetti is worse. Instant mash is dehydrated potato with emulsifiers.',
  alts:[
  {t:'Tomato and paneer soup in a mug',w:'Stir 100 g passata, 10 g butter, 20 mL cream, smoked paprika, salt and pepper in a large mug, crumble in 100 g paneer and microwave for 90 seconds. Eat it with a slice of Herman Brot bread to dip, the way you would eat beans on toast. About 10 g of carbs and 32 g of protein.',c:10.4,s:7.9,m:2,g:'fridge',tier:2,kc:0},
  {t:'Cauliflower mash with butter',w:'Microwave 120 g cauliflower florets (fresh or frozen) with a splash of water for 5 minutes, drain well, then mash with a fork or stick blender with 10 g butter, 15 mL cream, 10 g cheese and salt. Smooth like instant mash, with 4 g of carbs.',c:4.2,s:2.8,m:10,g:'fridge',tier:1,kc:0},
  {t:'Smoky edamame beans on toast',w:'Simmer 100 g frozen edamame in 60 g passata with smoked paprika, onion powder, a pinch of salt and 5 g butter for 5 minutes until saucy, and spoon it over a slice of toasted Herman Brot bread. Beans on toast with 24 g of protein.',c:9.2,s:5.1,m:8,g:'freezer',tier:2,kc:0},
- {t:'Shakshuka (D2)',w:'A two-egg version of D2: soften 40 g capsicum and a little onion in 5 mL oil, add 100 g passata with cumin and smoked paprika and simmer 3 minutes, then crack in 2 eggs, cover and cook 5 minutes. Crumble 20 g feta over and eat it from the pan.',c:9.8,s:7.1,m:12,g:'pantry',tier:2,kc:0},
+ {t:'Shakshuka',w:'A two-egg version of D2: soften 40 g capsicum and a little onion in 5 mL oil, add 100 g passata with cumin and smoked paprika and simmer 3 minutes, then crack in 2 eggs, cover and cook 5 minutes. Crumble 20 g feta over and eat it from the pan.',c:9.8,s:7.1,m:12,g:'pantry',tier:2,kc:0,rc:'D2'},
  {t:'Konjac spaghetti in tomato',w:'Rinse 200 g konjac spaghetti, dry-fry it for 2 minutes, then stir in 50 g passata, 10 g butter and a pinch of salt and simmer for 2 minutes until it coats. Top with 20 g grated cheese; soft noodles in buttery tomato, close to the tinned kind.',c:3.8,s:2.5,m:5,g:'pantry',tier:1,kc:0},
  {t:'Half a can of beans, with eggs',w:'Heat half a 220 g can of baked beans (about 110 g) and serve it with 2 fried eggs; keep the other half in the fridge for the next day. The half can is about 14 g of carbs and 5 g of sugar.',c:15,s:5.6,m:5,g:'pantry',tier:3,kc:0}]},
-{id:'hashbrown',n:'Hash browns and frozen chips',cat:'meal',nova:4,sugar:1,kcal:280,cost:4.00,
+{id:'hashbrown',n:'Hash browns and frozen chips',cat:'meal',f:'meal',nova:4,sugar:1,kcal:280,cost:4.00,serve:'A 200 g plate of oven chips from frozen',net:44,k:'oven chips, McCain, wedges',
  why:'Potato, a starch coating and seed oil, par-fried at the factory and finished at home. A 200 g plate of oven chips is about 44 g of carbohydrate, more than a whole meal\'s 20 g.',
  alts:[
  {t:'Roasted cauliflower with salt',w:'150 g cauliflower in big pieces with 10 mL olive oil and salt, 200 C for 25 minutes until the edges catch.',c:4.5,s:2.9,m:28,g:'fresh',tier:1,kc:0},
@@ -1806,7 +1806,7 @@ var CRAVE=[
  {t:'Paneer tikka bites',w:'Coat 70 g paneer cubes in 20 g yoghurt, 2 g tikka spices (chilli, garam masala, kasuri methi) and salt, then air fry at 200 C for 8 minutes or pan-fry in 3 mL oil until the edges char.',c:2.5,s:2.2,m:10,g:'fridge',tier:1,kc:0},
  {t:'Avocado on the side at the cafe',w:'At the cafe, order a side of avocado (or grilled mushrooms) with the eggs in place of the hash brown. Half an avocado adds about 0.7 g of carbs to the plate.',c:0.7,s:0.6,m:0,g:'out',tier:1,kc:0},
  {t:'50 g of oven chips, bag away',w:'Bake 50 g of oven chips (a small handful) and put the bag back in the freezer: 11 g of carbs and 69 calories.',c:11,s:0.1,m:20,g:'freezer',tier:3,kc:0}]},
-{id:'garlicbread',n:'Garlic bread',cat:'meal',nova:4,sugar:3,kcal:350,cost:6.00,
+{id:'garlicbread',n:'Garlic bread',cat:'meal',f:'meal',nova:4,sugar:3,kcal:350,cost:6.00,serve:'Half a frozen garlic loaf, 113 g',net:47,k:'cheesy bread, herb bread',
  why:'Half a loaf has about 45 g of carbohydrate, plus margarine.',
  alts:[
  {t:'Keto roti with garlic butter',w:'Mash 10 g butter (2 tsp) with a crushed garlic clove and chopped parsley or coriander, spread it on a keto roti and toast in a dry pan for 30 seconds a side. Tear it like garlic bread.',c:3.6,s:1.5,m:4,g:'fridge',tier:1,kc:0},
@@ -1815,16 +1815,16 @@ var CRAVE=[
  {t:'Garlic aioli with capsicum and cucumber',w:'Stir half a crushed garlic clove and a squeeze of lemon into 15 g whole-egg mayonnaise and dip 40 g capsicum and 60 g cucumber strips in it, beside the pasta, pizza or soup. It gives the garlic of garlic bread with a crunch, about 4.4 g of carbs.',c:4.4,s:2.9,m:2,g:'fridge',tier:1,kc:0},
  {t:'Broccoli in chilli garlic butter',w:'Microwave 100 g broccoli florets with a splash of water for 3 minutes, drain, and toss them in 10 g butter melted with a crushed garlic clove, salt and chilli flakes. Green beans work the same way. About 4.6 g of carbs.',c:4.6,s:1.7,m:5,g:'fresh',tier:1,kc:0},
  {t:'One slice of frozen garlic bread',w:'Bake one slice (about 30 g) from a frozen loaf and put the rest back in the freezer before you eat. One slice is about 13 g of carbs; half a loaf is about 45 g.',c:13,s:0.8,m:10,g:'freezer',tier:3,kc:0}]},
-{id:'tomsauce',n:'Tomato sauce, BBQ sauce, ketchup',cat:'meal',nova:4,sugar:9,kcal:40,cost:0.30,
+{id:'tomsauce',n:'Tomato sauce, BBQ sauce, ketchup',cat:'meal',f:'meal',nova:4,sugar:9,kcal:40,cost:0.30,serve:'Two tablespoons, about 36 g (the 18 g tablespoon of swap tomsauce#6)',net:9,k:'ketchup, BBQ sauce, Masterfoods, mayo',
  why:'A quarter of tomato sauce is sugar. Two tablespoons is about 9 g of carbohydrate, enough to take a plan dinner past 20 g.',
  alts:[
  {t:'Sriracha',w:'One teaspoon (5 mL) on eggs, halloumi or tofu fries: about 1 g of sugar, and more heat than a tablespoon of tomato sauce.',c:0.7,s:0.7,m:0,g:'pantry',tier:1,kc:0},
  {t:'Mustard',w:'One teaspoon (5 g) of Dijon or hot English mustard on a toastie, halloumi or a cheese crisp. Almost no sugar.',c:0.1,s:0.1,m:0,g:'pantry',tier:1,kc:0},
- {t:'Coriander chutney (P3)',w:'Two tablespoons (30 g) from the P3 batch: Greek yoghurt blended with a bunch of coriander, green chilli, lemon and salt. It keeps five days in the fridge and suits anything fried.',c:1.8,s:1.5,m:5,g:'fridge',tier:1,kc:0},
+ {t:'Coriander chutney',w:'Two tablespoons (30 g) from the P3 batch: Greek yoghurt blended with a bunch of coriander, green chilli, lemon and salt. It keeps five days in the fridge and suits anything fried.',c:1.8,s:1.5,m:5,g:'fridge',tier:1,kc:0,rc:'P3',ahead:1},
  {t:'Passata with smoked paprika',w:'Simmer 30 g passata (2 tbsp) for 5 minutes with smoked paprika, a pinch of salt, a splash of vinegar and 5 g butter until thick, then use it like ketchup. A jar made on Sunday lasts the week.',c:1.6,s:1.2,m:6,g:'pantry',tier:1,kc:0},
  {t:'Peri peri mayo',w:'Stir 15 g whole-egg mayonnaise (1 tbsp) with 1 g peri peri seasoning or chilli powder, a pinch of garlic powder and a squeeze of lemon. A dip for halloumi fries, tofu fries or a toastie.',c:0.5,s:0.2,m:1,g:'fridge',tier:1,kc:0},
  {t:'One tablespoon of the real sauce',w:'If only tomato sauce will do, squeeze one tablespoon (about 18 g) onto the side of the plate and put the bottle away before you eat. One tablespoon is about 4 g of sugar.',c:4.5,s:4.4,m:0,g:'pantry',tier:3,kc:0}]},
-{id:'sweetchilli',n:'Sweet chilli, kecap manis, hoisin, teriyaki',cat:'meal',nova:4,sugar:14,kcal:62,cost:0.50,
+{id:'sweetchilli',n:'Sweet chilli, kecap manis, hoisin, teriyaki',cat:'meal',f:'meal',nova:4,sugar:14,kcal:62,cost:0.50,serve:'A generous pour, about 25 g',net:14,k:'kecap manis, hoisin, teriyaki, satay',
  why:'Sugar is the first or second ingredient in all four. A generous pour over a stir-fry is 14 g, which is a third of the daily ceiling on a dish that was otherwise fine.',
  alts:[
  {t:'Plain soy and sriracha',w:'10 mL soy and 5 mL sriracha (2 tsp and 1 tsp) over a stir-fry or tofu: salt and heat with about 1 g of sugar.',c:1.2,s:0.7,m:0,g:'pantry',tier:1,kc:0},
@@ -1834,16 +1834,16 @@ var CRAVE=[
  {t:'Miso butter instead of teriyaki',w:'Melt 10 g butter with 8 g white miso (about 1/2 tbsp) and a splash of soy, and brush it over tofu, eggplant or mushrooms in the last minute of cooking. It glazes and browns like teriyaki, with no syrup.',c:1.9,s:0.5,m:2,g:'fridge',tier:1,kc:0},
  {t:'One teaspoon of sweet chilli',w:'If it has to be sweet chilli, put one teaspoon (about 7 g) on the side as a dip, so you control how much you eat: about 4 g of sugar, against about 14 g in a generous pour.',c:4.1,s:3.8,m:0,g:'pantry',tier:3,kc:0}]},
 /* ================= EATING OUT AND TAKEAWAY ================= */
-{id:'pizza',n:'Pizza',cat:'out',nova:4,sugar:10,kcal:750,cost:15.00,
+{id:'pizza',n:'Pizza',cat:'out',f:'out',nova:4,sugar:10,kcal:750,cost:15.00,serve:'Three slices of a large chain cheese pizza',net:84,k:'Domino\'s, Pizza Hut, garlic pizza',
  why:'Three slices is about 90 g of carbohydrate. Almost all of it is in the base and the sweetened sauce.',
  alts:[
  {t:'Keto roti pizza',w:'Spread 20 g passata (1 tbsp) on a keto roti, add 40 g grated cheese, 10 g sliced capsicum, a few olives and oregano, then 5 to 6 minutes in the air fryer at 180 C or under the oven grill until the cheese bubbles.',c:5.2,s:2.7,m:8,g:'fridge',tier:1,kc:0},
  {t:'Herman Brot bread pizza toast',w:'Spread 15 g passata on each of two slices of Herman Brot bread, top each with 30 g grated cheese, 2 or 3 sliced olives and oregano, and give them 4 minutes under the grill or in the air fryer. Pizza for dinner in 5 minutes, about 7.3 g of carbs and 40 g of protein.',c:7.3,s:2.5,m:5,g:'pantry',tier:1,kc:0},
  {t:'Pizza mushrooms, air fried',w:'Pull the stems off 4 cup mushrooms (about 100 g), fill them with 15 g passata, 30 g grated cheese, oregano and chilli, and air fry at 180 C for 8 minutes or bake at 200 C for 12. Eat them hot with your hands.',c:3.5,s:2.7,m:10,g:'fridge',tier:1,kc:0},
- {t:'Cheese-crust pizza (D11)',w:'Make D11 as tonight’s dinner with 100 g tasty cheese and 20 g feta in place of 120 g and 30 g. The whole pizza is the meal, with about 42 g of protein. Its 9.5 g of sugar comes from the passata, capsicum and cheese, with none added, which puts it a little over the 8 g these swaps usually stay under.',c:11.1,s:9.5,m:20,g:'fridge',tier:2,kc:0},
+ {t:'Cheese-crust pizza',w:'Make D11 as tonight’s dinner with 100 g tasty cheese and 20 g feta in place of 120 g and 30 g. The whole pizza is the meal, with about 42 g of protein. Its 9.5 g of sugar comes from the passata, capsicum and cheese, with none added, which puts it a little over the 8 g these swaps usually stay under.',c:11.1,s:9.5,m:20,g:'fridge',tier:2,kc:0,rc:'D11'},
  {t:'Caprese or Greek salad, eggs first',w:'Where the shop sells salads, order a caprese (bocconcini, tomato, basil and olive oil) or a Greek salad with extra feta, and eat 2 boiled eggs from the fridge or your bag before it comes. The caprese with about 100 g of bocconcini and the eggs is about 7 g of carbs and 36 g of protein, against about 30 g of carbs in one slice of a large pizza.',c:7,s:5.4,m:0,g:'out',tier:2,kc:0},
  {t:'One slice and a side salad',w:'If the pizza is already on the table, take one slice and a side salad with oil, eat the salad first and stop at one. Domino\'s and Pizza Hut (the pizza chains) sell no side salads, so there, have cucumber, tomato and 30 g of cheese from the fridge as the salad. One slice of a large pizza is about 30 g of carbs.',c:31,s:3.7,m:0,g:'out',tier:3,kc:0}]},
-{id:'kebab',n:'Kebab or snack pack',cat:'out',nova:4,sugar:12,kcal:1100,cost:16.00,
+{id:'kebab',n:'Kebab or snack pack',cat:'out',f:'out',nova:4,sugar:12,kcal:1100,cost:16.00,serve:'A falafel or halloumi kebab with chips, or a snack pack',net:100,k:'HSP, halal snack pack, falafel, gozleme',
  why:'Bread, chips and a sweet chilli-garlic sauce. About 100 g of carbohydrate in one meal.',
  alts:[
  {t:'The night-shift snack box, before leaving',w:'Two boiled eggs, 30 g cheese, 20 g almonds and half a cucumber, packed in the morning and eaten before you leave work, so you are not driving past the kebab shop hungry. 25 g of protein.',c:4.3,s:2.6,m:0,g:'fridge',tier:1,kc:0},
@@ -1852,7 +1852,7 @@ var CRAVE=[
  {t:'Halloumi and salad plate, no bread',w:'Ask for a salad box with grilled halloumi and no bread or chips, with garlic sauce and no sweet chilli. Many kebab shops will make one if you ask; it is about 7 g of carbs.',c:6.8,s:5.5,m:0,g:'out',tier:2,kc:0},
  {t:'Home snack pack, cauliflower base',w:'Roast 150 g cauliflower florets in 10 mL oil at 220 C for 20 minutes (or air fry for 15) in place of the chips, then top with 80 g fried halloumi, 20 g grated cheese, garlic yoghurt (30 g Greek yoghurt and a crushed clove) and sriracha. The snack pack layers for about $4.',c:9.2,s:7,m:22,g:'fridge',tier:2,kc:0},
  {t:'Kebab with half the bread',w:'Order the halloumi kebab, open it at the table, and eat the filling with half the bread. Half a Lebanese bread is about 21 g of carbs, and the plate with the filling is about 24 g of carbs; the whole bread is about 41 g.',c:24,s:4,m:0,g:'out',tier:3,kc:0}]},
-{id:'nachos',n:'Nachos',cat:'out',nova:4,sugar:5,kcal:900,cost:12.00,
+{id:'nachos',n:'Nachos',cat:'out',f:'out',nova:4,sugar:5,kcal:900,cost:12.00,serve:'A pub or cafe plate, about 260 g',net:82,k:'Mexican, burrito, Guzman, taco',
  why:'A pub plate of nachos is about 82 g of carbohydrate, most of it in the corn chips. The cheese, sour cream and jalapeno fit the plan.',
  alts:[
  {t:'Cheese-crisp nachos',w:'Microwave 60 g grated cheese in small rounds on baking paper for 2 minutes to make crisps, then top with 30 g passata cooked with cumin and chilli, 20 g feta, 20 g sour cream and jalapenos, and grill or air fry for 3 minutes.',c:3.9,s:2.7,m:12,g:'fridge',tier:1,kc:0},
@@ -1861,53 +1861,53 @@ var CRAVE=[
  {t:'Loaded capsicum boats',w:'Halve a capsicum, fill both halves with 100 g crumbled tofu fried with cumin, paprika and chilli, top with 30 g grated cheese, and bake at 200 C for 15 minutes or air fry for 10.',c:9,s:6.9,m:18,g:'fridge',tier:2,kc:0},
  {t:'Tofu and cheese skillet with sour cream',w:'Fry 100 g crumbled tofu with cumin and paprika, melt 30 g grated cheese over it, and spoon it onto 150 g microwaved cauliflower rice with 30 g sour cream, 30 g salsa, a quarter avocado and jalapenos. All the nacho toppings, eaten with a fork.',c:9.5,s:6.2,m:10,g:'freezer',tier:2,kc:0},
  {t:'20 g of corn chips, loaded',w:'Weigh 20 g of plain corn chips (about 10 chips) onto a plate, top with 30 g cheese, salsa, 20 g sour cream and jalapenos, and grill for 3 minutes. Put the bag away before you sit down; the plate is about 14 g of carbs.',c:14,s:2,m:5,g:'pantry',tier:3,kc:0}]},
-{id:'ubereats',n:'Uber Eats delivery after 10 pm',cat:'out',nova:4,sugar:25,kcal:1200,cost:35.00,
+{id:'ubereats',n:'Uber Eats delivery after 10 pm',cat:'out',f:'out',nova:4,sugar:25,kcal:1200,cost:35.00,serve:'A late delivery order',net:100,k:'Menulog, DoorDash, delivery, order in',
  why:'A late order is usually pizza or fries with sauces. The sugar in sweet chilli sauce and ketchup alone can use up the day’s carb budget, and delivery fees add to the weekly cost.',
  alts:[
- {t:'Frozen frittata slice, two minutes',w:'One slice from the Sunday frittata bake, microwaved from frozen for 2 minutes. Hot food on the plate before a delivery order would even be confirmed.',c:2.6,s:1.4,m:2,g:'freezer',tier:1,kc:0},
+ {t:'Frozen frittata slice, two minutes',w:'One slice from the Sunday frittata bake, microwaved from frozen for 2 minutes. Hot food on the plate before a delivery order would even be confirmed.',c:2.6,s:1.4,m:2,g:'freezer',tier:1,kc:0,ahead:1},
  {t:'Two eggs and cheese, scrambled',w:'2 eggs and 20 g grated cheese scrambled in 5 g butter, with chilli flakes or sriracha. Four minutes from fridge to plate.',c:1.1,s:0.5,m:4,g:'fridge',tier:1,kc:0},
- {t:'Delete the app for a fortnight',w:'Delete the delivery app and log out of it in the browser. Ordering after 10 pm is often habit, and having to reinstall it puts a step between the urge and the order.',c:0,s:0,m:1,g:'free',tier:1,kc:0},
+ {t:'Delete the app for a fortnight',w:'Delete the delivery app and log out of it in the browser. Ordering after 10 pm is often habit, and having to reinstall it puts a step between the urge and the order.',c:0,s:0,m:1,g:'free',tier:1,kc:0,later:1},
  {t:'Paneer bhurji, ten minutes',w:'Fry 20 g onion and a green chilli in 5 g ghee, add 40 g chopped tomato, turmeric and garam masala, then crumble in 100 g paneer and cook 3 minutes. Hot Indian food in ten minutes, sooner than a delivery would arrive.',c:5.1,s:4,m:10,g:'fridge',tier:2,kc:0},
  {t:'Keto roti pizza',w:'Spread 20 g passata on a keto roti, add 40 g grated cheese, capsicum, olives and oregano, and air fry at 180 C for 6 minutes. Pizza at 10 pm in eight minutes for about $1.50.',c:5.2,s:2.7,m:8,g:'fridge',tier:1,kc:0},
  {t:'Order from the plan-friendly list',w:'If you do order: palak paneer and a dry vegetable sabzi such as gobi or beans, with no rice, naan or sweet drink. Eat it as that night’s dinner and nothing more; it is about 15 g of carbs.',c:15,s:9.7,m:0,g:'out',tier:3,kc:0}]},
-{id:'sushi',n:'Sushi rolls',cat:'out',nova:3,sugar:6,kcal:350,cost:9.00,
+{id:'sushi',n:'Sushi rolls',cat:'out',f:'out',nova:3,sugar:6,kcal:350,cost:9.00,serve:'Two avocado hand rolls',net:54,k:'hand roll, poke, Sushi Hub',
  why:'The rice is sweetened with sugar and vinegar. Two rolls is about 60 g of carbohydrate, and the teriyaki adds more.',
  alts:[
  {t:'Nori hand rolls, no rice',w:'Cut 2 nori sheets in half and roll each piece into a cone around strips of a 2-egg omelette, cucumber and a slice of avocado with a little sriracha mayo. Dip in soy; four cones in six minutes.',c:4.4,s:2.7,m:6,g:'fridge',tier:1,kc:0},
  {t:'Tofu poke bowl on greens instead of rice',w:'At a poke or sushi shop, order a bowl on salad greens in place of rice, with a double serve of plain grilled tofu, edamame, cucumber and avocado, and plain soy or sesame dressing on the side. Inari and teriyaki tofu are sweetened, and furikake and ponzu are usually made with bonito, which is fish, so leave those off with the fish roe, pickled ginger, seaweed salad, sweet sauces and crispy onion. About 8 g of carbs by estimate, with 37 g of protein.',c:8.4,s:4.5,m:0,g:'out',tier:2,kc:0},
  {t:'Salted edamame with chilli',w:'Microwave 100 g frozen edamame with a splash of water for 3 minutes, drain, then toss with flaky salt, chilli flakes and a few drops of sesame oil. The sushi-bar starter at home, with 11 g of protein.',c:3.6,s:2.2,m:4,g:'freezer',tier:1,kc:0},
- {t:'Tofu and cabbage slaw box (L9)',w:'A smaller L9: toss 100 g finely shredded cabbage and 30 g capsicum with 10 mL sesame oil, 10 mL soy, ginger and garlic, then add 150 g cold firm tofu cubes, spring onion and 15 g crushed peanuts. Eat it cold from the container.',c:9,s:6.1,m:8,g:'fridge',tier:2,kc:0},
+ {t:'Tofu and cabbage slaw box',w:'A smaller L9: toss 100 g finely shredded cabbage and 30 g capsicum with 10 mL sesame oil, 10 mL soy, ginger and garlic, then add 150 g cold firm tofu cubes, spring onion and 15 g crushed peanuts. Eat it cold from the container.',c:9,s:6.1,m:8,g:'fridge',tier:2,kc:0,rc:'L9'},
  {t:'Sushi bowl on cauliflower rice',w:'Microwave 120 g frozen cauliflower rice, squeeze it dry and season with 5 mL vinegar and salt, then top with 100 g tofu, cucumber, a quarter avocado and strips of nori, with soy and a few drops of sesame oil.',c:7.7,s:4,m:8,g:'freezer',tier:2,kc:0},
  {t:'One roll, with edamame',w:'If the group is at the sushi bar, order one avocado hand roll and a bowl of edamame, and eat the edamame first. The roll is about 30 g of carbs; skip the teriyaki and the sweet sauces.',c:33,s:5.2,m:0,g:'out',tier:3,kc:0}]},
-{id:'toastie',n:'Servo cheese toastie',cat:'out',nova:4,sugar:5,kcal:400,cost:7.00,
+{id:'toastie',n:'Servo cheese toastie',cat:'out',f:'out',nova:4,sugar:5,kcal:400,cost:7.00,serve:'One servo cheese toastie',net:34,k:'servo, 7-Eleven, cheese toastie, jaffle',
  why:'White bread and processed cheese, about 400 calories.',
  alts:[
  {t:'Toastie at home on Herman Brot bread',w:'Two slices of Herman Brot bread with 40 g sliced cheese and a little butter on the outside, in a sandwich press or a lidded frying pan for 5 minutes. 6 g of carbs and 34 g of protein.',c:5.5,s:1.1,m:6,g:'pantry',tier:1,kc:0},
  {t:'Chilli cheese toast, Bombay style',w:'Top one slice of Herman Brot bread with 30 g grated cheese mixed with finely chopped onion, green chilli and coriander, add a pinch of chaat masala, and air fry at 180 C for 4 minutes or grill until it bubbles.',c:4,s:1.1,m:6,g:'pantry',tier:1,kc:0},
- {t:'The night-shift snack box (S1)',w:'Before each shift, put 2 boiled eggs, 30 g cheese, 20 g almonds and half a Lebanese cucumber in a small cooler bag. When the servo sign comes up on the drive home, eat this in the car instead.',c:4.3,s:2.6,m:0,g:'fridge',tier:1,kc:0},
+ {t:'The night-shift snack box',w:'Before each shift, put 2 boiled eggs, 30 g cheese, 20 g almonds and half a Lebanese cucumber in a small cooler bag. When the servo sign comes up on the drive home, eat this in the car instead.',c:4.3,s:2.6,m:0,g:'fridge',tier:1,kc:0,rc:'S1'},
  {t:'Peanuts and cheese sticks',w:'From the servo shelf: a bag of salted peanuts and a cheese stick. Eat 30 g of the peanuts (a small handful) and one 20 g stick, and leave the rest of the bag in the car.',c:2,s:1.5,m:0,g:'shop',tier:1,kc:0},
- {t:'Supermarket eggs, cheese and cucumber (S5)',w:'If a supermarket is still open, it takes no longer than the servo: a cheese snack pack, a Lebanese cucumber and boiled eggs if the chilled section has them, eaten in the car. About 5 g of carbs.',c:5.3,s:2.9,m:5,g:'shop',tier:1,kc:0},
+ {t:'Supermarket eggs, cheese and cucumber',w:'If a supermarket is still open, it takes no longer than the servo: a cheese snack pack, a Lebanese cucumber and boiled eggs if the chilled section has them, eaten in the car. About 5 g of carbs.',c:5.3,s:2.9,m:5,g:'shop',tier:1,kc:0,rc:'S5'},
  {t:'Kimchi and cheese keto roti quesadilla',w:'Scatter 30 g grated cheese and 40 g chopped kimchi over one half of a keto roti, fold the other half over, and crisp it 2 minutes a side in 3 g butter in a lidded pan. Hot and melted like the servo toastie, about 2.3 g of carbs. Choose a kimchi with no fish sauce or prawns on the label.',c:2.3,s:1.9,m:4,g:'fridge',tier:1,kc:0}]},
-{id:'pie',n:'Vegie pie, pastie, spinach and ricotta roll',cat:'out',nova:4,sugar:4,kcal:450,cost:6.50,
+{id:'pie',n:'Vegie pie, pastie, spinach and ricotta roll',cat:'out',f:'out',nova:4,sugar:4,kcal:450,cost:6.50,serve:'One bakery or servo vegetable pie or pastie, 160 to 175 g',net:39,k:'pastie, sausage roll, bakery, Vili\'s',
  why:'Pastry is flour and fat. A pie is 35 to 45 g of carbohydrate before the sauce on top.',
  alts:[
- {t:'Frozen frittata slice',w:'One slice from the Sunday frittata bake (2 eggs, mushroom, spinach and feta in each), 2 minutes in the microwave from frozen. Hot and handheld, 17 g of protein.',c:2.6,s:1.4,m:2,g:'freezer',tier:1,kc:0},
- {t:'Two egg muffins (B12)',w:'Two from the B12 batch of six (6 eggs, 70 g feta, 90 g baby spinach and 50 g cheese), reheated for 40 seconds. About the size of a pie, with no pastry.',c:2.3,s:1,m:2,g:'fridge',tier:1,kc:0},
+ {t:'Frozen frittata slice',w:'One slice from the Sunday frittata bake (2 eggs, mushroom, spinach and feta in each), 2 minutes in the microwave from frozen. Hot and handheld, 17 g of protein.',c:2.6,s:1.4,m:2,g:'freezer',tier:1,kc:0,ahead:1},
+ {t:'Two egg muffins',w:'Two from the B12 batch of six (6 eggs, 70 g feta, 90 g baby spinach and 50 g cheese), reheated for 40 seconds. About the size of a pie, with no pastry.',c:2.3,s:1,m:2,g:'fridge',tier:1,kc:0,rc:'B12',ahead:1},
  {t:'Cheese and egg folded in a keto roti',w:'Cook 2 beaten eggs flat in 5 g butter, lay a keto roti on top, flip, add 30 g grated cheese and fold it in half, then press until both sides are crisp. Eat it from a paper towel like a pastie.',c:4.1,s:1.8,m:8,g:'fridge',tier:1,kc:0},
  {t:'Creamy mushroom pot pie, no pastry',w:'Fry 150 g sliced mushrooms in 5 g butter with garlic and thyme, stir in 30 mL cream, tip into a small ovenproof bowl, cover with 30 g grated cheese and air fry or grill at 200 C for 5 minutes until the top sets into a crisp lid.',c:5,s:4.1,m:15,g:'fridge',tier:2,kc:0},
  {t:'Curry jaffle on Herman Brot bread',w:'Spoon 50 g of leftover tofu or paneer curry and 20 g grated cheese between two slices of Herman Brot bread, butter the outsides with 5 g, and press it in a lidded pan 2 minutes a side. A curry pie you can hold, about 6.3 g of carbs. No curry left: crumble 40 g paneer with curry powder and chilli instead.',c:6.3,s:1.5,m:5,g:'fridge',tier:1,kc:0},
  {t:'One small spinach and ricotta roll',w:'Bake one roll from a frozen supermarket pack of twelve (about 38 g each), have it with half a cucumber, and put the box back. One roll is about 8 g of carbs and the plate with the cucumber about 10 g of carbs, against 35 to 45 g for a bakery pie or pastie.',c:10,s:1.7,m:20,g:'freezer',tier:3,kc:0}]},
 /* ================= SITUATIONS ================= */
-{id:'lateservo',n:'Late-night servo run',cat:'head',nova:0,sugar:35,kcal:700,cost:12.00,
+{id:'lateservo',n:'Late-night servo run',cat:'head',f:'head',nova:0,sugar:35,kcal:700,cost:12.00,serve:'Not one food: an occasion nine hours into a shift with nothing packed',net:0,k:'servo, petrol station, 7-Eleven, night shift',
  why:'This usually happens when there is no food in your bag nine hours into a shift. Pack food in the morning.',
  alts:[
- {t:'The night-shift snack box (S1)',w:'On every late or night shift, pack 2 boiled eggs, 30 g cheese, 20 g almonds and half a cucumber with the lunch box, and eat it at the halfway point. With food in the bag there is no reason to stop at the servo.',c:4.3,s:2.6,m:0,g:'fridge',tier:1,kc:394},
+ {t:'The night-shift snack box',w:'On every late or night shift, pack 2 boiled eggs, 30 g cheese, 20 g almonds and half a cucumber with the lunch box, and eat it at the halfway point. With food in the bag there is no reason to stop at the servo.',c:4.3,s:2.6,m:0,g:'fridge',tier:1,kc:394,rc:'S1'},
  {t:'The 200 g almond bag in the locker',w:'Keep a 200 g bag of almonds in the locker or the glovebox and eat 30 g (about 25 almonds) when nothing else is left. Refill it every Sunday.',c:1.7,s:1.3,m:0,g:'pantry',tier:1,kc:174},
- {t:'Salted water and a black coffee',w:'600 mL of water with a quarter teaspoon of salt (about 1.5 g) and a black coffee. Nine hours into a shift, thirst and tiredness can feel like hunger. Have decaf within six hours of sleep, and skip the salt if your blood pressure is high.',c:0,s:0,m:2,g:'free',tier:1,kc:0},
+ {t:'Salted water and a black coffee',w:'600 mL of water with a quarter teaspoon of salt (about 1.5 g) and a black coffee. Nine hours into a shift, thirst and tiredness can feel like hunger. Have decaf within six hours of sleep, and skip the salt if your blood pressure is high.',c:0,s:0,m:2,g:'free',tier:1,kc:0,caf:1},
  {t:'Peanuts and cheese sticks',w:'If you are already at the servo, take a bag of salted peanuts and a cheese stick from the shelf. Eat 30 g of peanuts (a small handful) and one 20 g stick, and leave the rest of the bag in the car.',c:2,s:1.5,m:0,g:'shop',tier:1,kc:253},
  {t:'Olives in a sealed tub for the shift',w:'Spoon 50 g of pitted kalamata olives and a little brine from the jar into a small sealed tub and keep it in your bag or locker for the halfway break. Salty and slow to eat, about 0.8 g of carbs and 105 calories.',c:0.8,s:0,m:0,g:'pantry',tier:1,kc:105},
  {t:'One 45 g bag of chips',w:'If you are at the counter anyway, buy the 45 g bag and eat it with water before you drive off. It is about 23 g of carbs, and the 170 g share bag is nearly four times that.',c:23,s:0.5,m:0,g:'shop',tier:3,kc:246}]},
-{id:'socialorder',n:'Everyone else is ordering',cat:'head',nova:0,sugar:20,kcal:800,cost:20.00,
+{id:'socialorder',n:'Everyone else is ordering',cat:'head',f:'head',nova:0,sugar:20,kcal:800,cost:20.00,serve:'Not one food: others ordering at work or with friends',net:0,k:'friends, work order, shout, lunch run',
  why:'Often the strongest pull on this list, and mostly social. Ordering something on plan is easier than refusing.',
  alts:[
  {t:'Order first',w:'Decide before anyone else orders and say it first: eggs with halloumi, spinach and avocado at a cafe, paneer tikka at an Indian place, a halloumi plate at a kebab shop, with no bread. The numbers here are for the cafe plate.',c:3.4,s:2.4,m:0,g:'out',tier:1,kc:0},
@@ -1916,16 +1916,16 @@ var CRAVE=[
  {t:'Palak paneer, no rice or naan',w:'At an Indian restaurant, order palak paneer or paneer tikka and pass the rice and naan along. Ask for a spoon and eat the curry like a stew; about 10 g of carbs.',c:9.6,s:6.1,m:0,g:'out',tier:2,kc:0},
  {t:'Soda water with lime or lemon, and stay',w:'If you have already eaten, order a soda water with fresh lime or lemon and sit with everyone. Holding a drink makes it easier to pass on the shared plates.',c:0.8,s:0.2,m:0,g:'out',tier:1,kc:3},
  {t:'One slice from the shared box',w:'If it is a shared pizza, take one slice, eat it slowly, then stop; one slice is about 30 g of carbs. Add a side salad if there is one on the table.',c:30,s:2.7,m:0,g:'out',tier:3,kc:0}]},
-{id:'bored',n:'Bored',cat:'head',nova:0,sugar:0,kcal:400,cost:5.00,
+{id:'bored',n:'Bored',cat:'head',f:'head',nova:0,sugar:0,kcal:400,cost:5.00,serve:'Not a food',net:0,k:'boredom, nothing to do',
  why:'Boredom eating is looking for stimulation. Food helps briefly, then the boredom returns, plus about 400 calories.',
  alts:[
- {t:'Ten minutes, timed',w:'Start the ten-minute timer on the Cravings tab, do something else until it ends, then decide whether you are hungry.',c:0,s:0,m:10,g:'free',tier:1,kc:0},
+ {t:'Ten minutes, timed',w:'Start the ten-minute timer on the Cravings tab, do something else until it ends, then decide whether you are hungry.',c:0,s:0,m:10,g:'free',tier:1,kc:0,act:'timer'},
  {t:'Leave the building',w:'Walk around the block or to the end of the street and back, about ten minutes. A change of place often ends the urge, and the walk counts toward the day.',c:0,s:0,m:10,g:'free',tier:1,kc:0},
- {t:'Black coffee or tea, made slowly',w:'Boil the kettle and brew a black coffee, black tea, or water simmered with chai spices, and drink it hot. Making it takes five minutes and gives your hands something to do; have decaf within six hours of sleep.',c:0,s:0,m:5,g:'free',tier:1,kc:0},
+ {t:'Black coffee or tea, made slowly',w:'Boil the kettle and brew a black coffee, black tea, or water simmered with chai spices, and drink it hot. Making it takes five minutes and gives your hands something to do; have decaf within six hours of sleep.',c:0,s:0,m:5,g:'free',tier:1,kc:0,caf:1},
  {t:'If eating: cucumber, salt, chilli',w:'One Lebanese cucumber (about 140 g) cut into spears, with chilli salt, chaat masala and lemon. A lot of crunch and chewing for 24 calories.',c:4.6,s:2.5,m:3,g:'fresh',tier:1,kc:24},
  {t:'Radishes with butter and flaky salt',w:'Halve 8 radishes (about 80 g), touch each cut side to 5 g of soft butter and a pinch of flaky salt, and eat them one at a time. Peppery and crunchy, about 1.5 g of carbs and 49 calories. A bunch keeps a week in the fridge.',c:1.5,s:1.5,m:2,g:'fresh',tier:1,kc:49},
  {t:'Gum or brush your teeth',w:'Chew two pieces of sugar-free gum, or brush your teeth if you are home. In a 2011 trial part-funded by Wrigley, chewing gum for 45 minutes lowered hunger and snack cravings and cut snack intake by about 10 per cent (Hetherington and Regan, Appetite).',c:0,s:0,m:2,g:'free',tier:1,kc:8}]},
-{id:'stressed',n:'Stressed',cat:'head',nova:0,sugar:0,kcal:450,cost:6.00,
+{id:'stressed',n:'Stressed',cat:'head',f:'head',nova:0,sugar:0,kcal:450,cost:6.00,serve:'Not a food',net:0,k:'anxious, worried, exams',
  why:'Cortisol raises blood sugar on its own, and sugar briefly blunts the stress response, which is why it works and why it repeats.',
  alts:[
  {t:'Salt, water, five minutes outside',w:'Drink 600 mL of water with a pinch of salt and stand outside for five minutes before deciding anything about food.',c:0,s:0,m:5,g:'free',tier:1,kc:0},
@@ -1934,16 +1934,16 @@ var CRAVE=[
  {t:'Cyclic sighing, five minutes',w:'Breathe in through the nose, take a second short breath in on top, then breathe out slowly through the mouth; repeat for five minutes. In a 2023 Stanford trial, five minutes a day of this improved mood more than the same time of mindfulness (Balban, Cell Reports Medicine).',c:0,s:0,m:5,g:'free',tier:1,kc:0},
  {t:'Masala peanuts, 30 g',w:'Toss 30 g peanuts (a small handful) with a few drops of oil, chilli powder, chaat masala and salt, and dry-roast them in a pan for 4 minutes. Something hard to crunch, measured before you start.',c:1.9,s:1.4,m:5,g:'pantry',tier:1,kc:190},
  {t:'Haldi doodh with almond milk',w:'Warm 200 mL unsweetened almond milk with 1/2 tsp turmeric, a pinch of black pepper and cinnamon, and 3 g ghee, and drink it slowly. A hot drink with no sugar and 58 calories.',c:0.6,s:0,m:4,g:'pantry',tier:1,kc:58}]},
-{id:'tired',n:'Wrecked after a shift',cat:'head',nova:0,sugar:0,kcal:700,cost:10.00,
+{id:'tired',n:'Wrecked after a shift',cat:'head',f:'head',nova:0,sugar:0,kcal:700,cost:10.00,serve:'Not a food',net:0,k:'tired, exhausted, after work, shift',
  why:'Short sleep raises ghrelin and lowers leptin, so you feel hungrier and make food decisions less well. Choose the meal in advance.',
  alts:[
- {t:'The dinner that is already cooked',w:'Cook a double batch of dinner on your day off and keep one serve in the fridge for the night you get in wrecked. Three minutes in the microwave; the app’s median dinner is about 515 calories and 11 g of carbs.',c:11,s:4,m:3,g:'fridge',tier:2,kc:0},
- {t:'Frozen frittata and a yoghurt',w:'One frittata slice from the freezer, 2 minutes in the microwave, and a 150 g pot of plain Chobani yoghurt. Three minutes and about 32 g of protein.',c:8.6,s:7.4,m:3,g:'freezer',tier:2,kc:335},
- {t:'Eat, then sleep',w:'Eat two boiled eggs, drink a glass of water and go to bed without opening the pantry. Leave any decision about food until after you have slept.',c:0.8,s:0.4,m:1,g:'fridge',tier:1,kc:144},
+ {t:'The dinner that is already cooked',w:'Cook a double batch of dinner on your day off and keep one serve in the fridge for the night you get in wrecked. Three minutes in the microwave; the app’s median dinner is about 515 calories and 11 g of carbs.',c:11,s:4,m:3,g:'fridge',tier:2,kc:0,ahead:1},
+ {t:'Frozen frittata and a yoghurt',w:'One frittata slice from the freezer, 2 minutes in the microwave, and a 150 g pot of plain Chobani yoghurt. Three minutes and about 32 g of protein.',c:8.6,s:7.4,m:3,g:'freezer',tier:2,kc:335,ahead:1},
+ {t:'Eat, then sleep',w:'Eat two boiled eggs, drink a glass of water and go to bed without opening the pantry. Leave any decision about food until after you have slept.',c:0.8,s:0.4,m:1,g:'fridge',tier:1,kc:144,ahead:1},
  {t:'Saag tofu in the microwave',w:'Put 100 g frozen spinach, 120 g firm tofu in cubes, 20 mL cream, 1 tsp ginger-garlic paste from the jar (the Indian grocer sells it), 2 g garam masala and salt in a covered bowl. Microwave 3 minutes, stir, then 1 minute more. Hot food with no pan to wash and 18 g of protein, a fast version of the Tofu saag dinner (D25).',c:4.9,s:2,m:4,g:'freezer',tier:1,kc:246},
  {t:'Peanut butter on Herman Brot bread',w:'One slice of Herman Brot bread, toasted or not, with 15 g natural peanut butter (1 tbsp) and a pinch of salt. No cooking, 16 g of protein.',c:4.3,s:1.3,m:2,g:'pantry',tier:1,kc:184},
  {t:'Shower first, then decide',w:'Take a hot shower before you go near the kitchen, then check whether you still want to eat. It puts ten minutes between the front door and the fridge.',c:0,s:0,m:10,g:'free',tier:1,kc:0}]},
-{id:'thirsty',n:'Possibly just thirsty',cat:'head',nova:0,sugar:0,kcal:0,cost:0,
+{id:'thirsty',n:'Possibly just thirsty',cat:'head',f:'head',nova:0,sugar:0,kcal:0,cost:0,serve:'Not a food',net:0,k:'thirst, water, dry',
  why:'Thirst and hunger share signalling pathways, and low-carb eating loses sodium and water fast, especially in week one.',
  alts:[
  {t:'Bottled water from the shop fridge',w:'Out and thirsty: buy a 500 mL bottle of plain water or sparkling mineral water from the servo or shop fridge and drink it before you buy anything else. Flavoured waters are often sweetened, so check the label.',c:0,s:0,m:1,g:'shop',tier:1,kc:0},
@@ -1951,26 +1951,26 @@ var CRAVE=[
  {t:'Hot salted broth',w:'250 mL boiling water with half a vegetable stock cube, drunk from a mug, about 14 calories. Use salt-reduced cubes if your blood pressure is high.',c:1.3,s:0.5,m:3,g:'pantry',tier:1,kc:14},
  {t:'Chaas with roasted cumin',w:'Whisk 50 g Greek yoghurt (about 3 tbsp) into 250 mL cold water with roasted ground cumin, a pinch of salt or black salt and a few mint leaves. The salted buttermilk served with Indian meals, made thin.',c:2.8,s:2.8,m:3,g:'fridge',tier:1,kc:45},
  {t:'Salted nimbu pani, no sugar',w:'The juice of half a lemon in 300 mL cold water with black salt, a pinch of roasted cumin and ice. Indian lemonade made sour and salty, with no sugar.',c:1.4,s:0.5,m:2,g:'free',tier:1,kc:6},
- {t:'Cold peppermint tea',w:'Brew two peppermint tea bags in 500 mL boiling water, cool it with ice and keep the bottle in the fridge for work. No caffeine, so it suits night shifts.',c:0,s:0,m:10,g:'free',tier:1,kc:0}]},
-{id:'reward',n:'I deserve a treat',cat:'head',nova:0,sugar:20,kcal:500,cost:8.00,
+ {t:'Cold peppermint tea',w:'Brew two peppermint tea bags in 500 mL boiling water, cool it with ice and keep the bottle in the fridge for work. No caffeine, so it suits night shifts.',c:0,s:0,m:10,g:'free',tier:1,kc:0,ahead:1}]},
+{id:'reward',n:'I deserve a treat',cat:'head',f:'head',nova:0,sugar:20,kcal:500,cost:8.00,serve:'Not a food',net:0,k:'treat, earned it, payday',
  why:'Wanting a reward is reasonable. Taking it as 60 g of sugar makes the next three days harder.',
  alts:[
- {t:'Cocoa peanut whip (B13)',w:'Whip 150 g Chobani yoghurt with 15 g peanut butter (1 tbsp) and 5 g cocoa (2 tsp) until it holds like mousse: a smaller B13, eaten from a glass with a spoon, with 20 g of protein.',c:8.8,s:6.8,m:2,g:'fridge',tier:2,kc:205},
- {t:'Cheese-crust pizza night (D11)',w:'Make Friday pizza night part of the plan: D11 with 100 g tasty cheese and 20 g feta in place of 120 g and 30 g. The whole pizza is your dinner, with about 42 g of protein. Its 9.5 g of sugar comes from the passata, capsicum and cheese, with none added.',c:11.1,s:9.5,m:20,g:'fridge',tier:2,kc:0},
+ {t:'Cocoa peanut whip',w:'Whip 150 g Chobani yoghurt with 15 g peanut butter (1 tbsp) and 5 g cocoa (2 tsp) until it holds like mousse: a smaller B13, eaten from a glass with a spoon, with 20 g of protein.',c:8.8,s:6.8,m:2,g:'fridge',tier:2,kc:205,rc:'B13'},
+ {t:'Cheese-crust pizza night',w:'Make Friday pizza night part of the plan: D11 with 100 g tasty cheese and 20 g feta in place of 120 g and 30 g. The whole pizza is your dinner, with about 42 g of protein. Its 9.5 g of sugar comes from the passata, capsicum and cheese, with none added.',c:11.1,s:9.5,m:20,g:'fridge',tier:2,kc:0,rc:'D11'},
  {t:'A reward that is not food',w:'Move the $8 you would have spent into a separate savings account or a jar, toward something you want (headphones, a game, boots), and check the total on Sundays.',c:0,s:0,m:0,g:'free',tier:1,kc:0},
  {t:'Molten chocolate mug cake',w:'Mix 30 g almond meal, 1 egg, 5 g cocoa (2 tsp), 5 g melted butter, a pinch of salt and 1/4 tsp baking powder in a mug, push 10 g of 85% chocolate (two squares) into the middle, and microwave for 70 to 80 seconds. The centre stays molten.',c:4.9,s:2.7,m:3,g:'pantry',tier:1,kc:358},
  {t:'Cheese board for one',w:'On a board or plate: 30 g cheese, 15 g almonds, a few olives and cucumber slices, eaten at the table with a soda water. About $1 of food, set out properly.',c:3.1,s:1.6,m:3,g:'fridge',tier:1,kc:253},
  {t:'Have it and log it',w:'Pick one small treat, such as one Magnum Mini ice cream (47 g, 152 calories), eat it sitting down, log it, and go back to plan at the next meal. That ice cream has 12 g of sugar.',c:13,s:12,m:0,g:'shop',tier:3,kc:152}]},
-{id:'hungry2h',n:'Hungry two hours after a meal',cat:'head',nova:0,sugar:0,kcal:300,cost:5.00,
+{id:'hungry2h',n:'Hungry two hours after a meal',cat:'head',f:'head',nova:0,sugar:0,kcal:300,cost:5.00,serve:'Not a food',net:0,k:'hungry, still hungry, after lunch',
  why:'Usually the meal was short on fat. Fix it in this order.',
  alts:[
- {t:'Put the oil back',w:'For the next box: add 1 tbsp (15 mL) olive oil or 10 g butter to the meal. When a meal is light on fat or protein, hunger often comes back within two hours.',c:0,s:0,m:1,g:'free',tier:1,kc:0},
- {t:'Then an egg or 30 g of cheese',w:'Now: one boiled egg, or 30 g cheese if there are no eggs, with a glass of water. Wait 20 minutes before deciding on anything else.',c:0.4,s:0.2,m:2,g:'fridge',tier:1,kc:72},
- {t:'Then a second slice of Herman Brot bread',w:'Still hungry after that: one more slice of Herman Brot bread with 5 g butter, 3 g of carbs and 12 g of protein.',c:2.6,s:0.5,m:2,g:'pantry',tier:1,kc:132},
- {t:'Check the meal really was 31 g of protein',w:'Look up the meal you ate in the app. A salad with a little feta is often under 20 g of protein; next time add 2 eggs, 100 g tofu or 50 g paneer.',c:0,s:0,m:1,g:'free',tier:1,kc:0},
+ {t:'Put the oil back',w:'For the next box: add 1 tbsp (15 mL) olive oil or 10 g butter to the meal. When a meal is light on fat or protein, hunger often comes back within two hours.',c:0,s:0,m:1,g:'free',tier:1,kc:0,later:1},
+ {t:'An egg or 30 g of cheese',w:'Now: one boiled egg, or 30 g cheese if there are no eggs, with a glass of water. Wait 20 minutes before deciding on anything else.',c:0.4,s:0.2,m:2,g:'fridge',tier:1,kc:72},
+ {t:'A second slice of Herman Brot bread',w:'Still hungry after that: one more slice of Herman Brot bread with 5 g butter, 3 g of carbs and 12 g of protein.',c:2.6,s:0.5,m:2,g:'pantry',tier:1,kc:132},
+ {t:'Check the meal really was 31 g of protein',w:'Look up the meal you ate in the app. A salad with a little feta is often under 20 g of protein; next time add 2 eggs, 100 g tofu or 50 g paneer.',c:0,s:0,m:1,g:'free',tier:1,kc:0,later:1},
  {t:'Toasted coconut chips, 15 g',w:'No eggs or cheese in the fridge: toast 15 g unsweetened coconut flakes (a small handful) in a dry pan for 2 to 3 minutes until golden, add a pinch of salt, and eat them slowly.',c:1,s:0.9,m:4,g:'pantry',tier:1,kc:99},
  {t:'Chobani yoghurt pot with hemp seeds',w:'Still hungry 20 minutes later, with the next meal more than three hours away: a 150 g pot of plain Chobani yoghurt with 10 g hemp seeds (1 tbsp), 18 g of protein for 160 calories.',c:6.3,s:6.2,m:1,g:'fridge',tier:2,kc:160}]},
-{id:'family',n:'The family is eating rice and roti',cat:'head',nova:0,sugar:5,kcal:400,cost:0,
+{id:'family',n:'The family is eating rice and roti',cat:'head',f:'head',nova:0,sugar:5,kcal:400,cost:0,serve:'Not a food',net:0,k:'home, mum, dinner, roti, rice',
  why:'Often the hardest situation. Decide what goes on your plate before you sit down.',
  alts:[
  {t:'Fill the plate with sabzi first',w:'Serve yourself first: a double serve of the paneer dish and a dry vegetable sabzi (about 100 g paneer in its gravy and a big spoon of gobi or beans) before any rice or roti reaches the plate. Skip the aloo dishes.',c:8.8,s:5.9,m:0,g:'free',tier:2,kc:0},
@@ -2078,7 +2078,25 @@ var ALT_RENAMED={
 'Then a second slice of Herman Brot':'Then a second slice of Herman Brot bread',
 'Yogurt, berries, almonds':'Yoghurt, berries, almonds',
 'Yogurt, berries, cinnamon':'Yoghurt, berries, cinnamon',
-'Yogurt, lemon, garlic, salt':'Yoghurt, lemon, garlic, salt'
+'Yogurt, lemon, garlic, salt':'Yoghurt, lemon, garlic, salt',
+/* 3.0.4 (16 Nov 2026): recipe codes left the titles (they are rc now), and three titles changed (crdesign DATA 3.7) */
+'Cheese-crust pizza (D11)':'Cheese-crust pizza',
+'Cheese-crust pizza night (D11)':'Cheese-crust pizza night',
+'Chia pudding jar (B5)':'Chia pudding jar',
+'Cocoa peanut whip (B13)':'Cocoa peanut whip',
+'Coriander chutney (P3)':'Coriander chutney',
+'Creamy mushroom skillet over zucchini (D14)':'Creamy mushroom skillet over zucchini',
+'Keto roti (P2)':'Keto roti',
+'Keto roti instead':'Keto roti',
+'Pesto zucchini noodles with tofu (D6)':'Pesto zucchini noodles with tofu',
+'Shakshuka (D2)':'Shakshuka',
+'Supermarket eggs, cheese and cucumber (S5)':'Supermarket eggs, cheese and cucumber',
+'The night-shift snack box (S1)':'The night-shift snack box',
+'The night-shift snack box (S1) at the halfway point':'The night-shift snack box at the halfway point',
+'Then a second slice of Herman Brot bread':'A second slice of Herman Brot bread',
+'Then an egg or 30 g of cheese':'An egg or 30 g of cheese',
+'Tofu and cabbage slaw box (L9)':'Tofu and cabbage slaw box',
+'Two egg muffins (B12)':'Two egg muffins'
 };
 /* The kcal of each craving whose usual serve was re-measured in the v2 change set, as it was before. migrate() stamps
    it as ck on old swaps without kc, so a tier 3 swap logged before keeps half the old serve (swapK in 07a_patterns.js). */
@@ -2097,11 +2115,27 @@ var CRAVE_OLD=[
 CRAVE.forEach(function(c){ c.kcal=c.kcal||0; });
 var CAT_LABEL={sugar:'Sweets and desserts',packet:'Chips and savoury snacks',drink:'Sugary drinks',meal:'Carbs and sauces at meals',out:'Eating out and takeaway',head:'Situations'};
 var CAT_ORDER=['sugar','packet','drink','meal','out','head'];
-var CAT_TINT={sugar:'rose',packet:'sand',drink:'sky',meal:'sage',out:'clay',head:'stone'};
 /* v2: the group kind (craving, meal, situation), the group notes and the two sheet headings (08_crave_rec.js) */
 var CAT_KIND={sugar:'craving',packet:'craving',drink:'craving',meal:'meal',out:'meal',head:'situation'};
 var CAT_NOTE={meal:'These go with a meal and take it past 20 g of carbs. Bottled dressing is not listed: two tablespoons of a regular one is 2 to 7 g; measure the light and fat-free ones, which run 8 to 9 g.',out:'A whole meal bought in place of a plan meal.',head:'Moments that lead to eating. The foods have their own entries.'};
 var CAT_SECTIONS=[{id:'craving',label:'Cravings',note:'Eaten between meals, over 10 g of carbs or 8 g of sugar in a usual serve, and hard to stop eating.',cats:['sugar','packet','drink']},{id:'other',label:'Not cravings',note:'Carbs and sauces at meals, meals bought out, and situations that lead to eating. They are here for their swaps.',cats:['meal','out','head']}];
+/* 3.0.4: serve and net are crv2/adjudication.json's, except that eight serve lines name the item after the brand (the
+   names rule: Tim Tam biscuits, Magnum ice cream, Mi Goreng instant noodles and so on; cereal says sugary cereal).
+   k: the words he might search for that the name does not hold (brands, other names). */
+/* 3.0.4: the eight groups of Something else, in order (crdesign DATA 2.1). The five feels hold the 33 cravings by what
+   they feel like; the three Not cravings groups are their data group (f equals cat). Each CRAVE id is in exactly one. */
+var CRAVE_FEELS=[
+{id:'sweet',label:'Sweet',ex:'Chocolate, biscuits, cake, donuts',sec:'craving',ids:['chocbar','timtam','lollies','nutella','muesli','donut','muffin','cheesecake','indiansweet']},
+{id:'cold',label:'Cold and creamy',ex:'Ice cream, ice blocks, custard, yoghurt',sec:'craving',ids:['icecream','magnum','iceblock','custard','flavyog']},
+{id:'crunchy',label:'Salty and crunchy',ex:'Chips, hot chips, bhujia, samosa',sec:'craving',ids:['chips','maccas','doritos','pringles','popcorn','namkeen','samosa','dimsim']},
+{id:'drink',label:'A sweet drink',ex:'Iced coffee, Coke, energy drinks, chai',sec:'craving',ids:['icedcoffee','softdrink','energy','bubbletea','juice','chocmilk','upandgo','chai']},
+{id:'filling',label:'Something filling',ex:'Noodles, cereal, toast',sec:'craving',ids:['noodles','cereal','jam']},
+{id:'meal',label:'Carbs and sauces at meals',ex:'',sec:'other',ids:['rice','naan','whitebread','pasta','cannedspag','hashbrown','garlicbread','tomsauce','sweetchilli']},
+{id:'out',label:'Eating out and takeaway',ex:'',sec:'other',ids:['pizza','kebab','nachos','ubereats','sushi','toastie','pie']},
+{id:'head',label:'Situations',ex:'',sec:'other',ids:['bored','stressed','tired','thirsty','reward','hungry2h','family','lateservo','socialorder']}
+];
+/* 3.0.4: the cravings common at each moment of the day, for day 1 and any moment with no history of his own (DATA 5.5) */
+var CRAVE_START={morning:['icedcoffee','muesli','upandgo'],afternoon:['chips','softdrink','bored'],work:['energy','maccas','socialorder'],dinner:['chocbar','icecream','chai'],shift:['tired','noodles','ubereats']};
 /* Substitutes: what to use when an ingredient is not at home (data only; helpers in 05_core.js).
    SUBING  new generic ingredients substitutes need, same fields as ING plus src (never merged into ING)
    SUBS    per ingredient key: {nm, cls:"special"|"common", alts:[{use:[part], note, gear?}]}, best first
@@ -4022,6 +4056,10 @@ function migrate(){
     if(!x||!x.res||x.kc!=null) return;
     if(x.tier==null&&x.alt&&typeof CRAVE_T0!=='undefined'&&CRAVE_T0[x.id]&&CRAVE_T0[x.id][x.alt]!=null) x.tier=CRAVE_T0[x.id][x.alt];
     if(x.ck==null&&typeof CRAVE_K0!=='undefined'&&CRAVE_K0[x.id]!=null) x.ck=CRAVE_K0[x.id]; }); }
+  /* 3.0.4: an old swap log gains the alternative's stable id (aid, id#index) by its title, renamed titles followed
+     (crdesign DATA 6.4). One that matches nothing keeps alt only. Nothing else on the log changes. */
+  for(var da in S.days){ (S.days[da].cr||[]).forEach(function(x){
+    if(!x||!x.res||x.aid||!x.alt) return; var a=altOfLog(x), cv=CMAP[x.id]; if(a&&cv) x.aid=x.id+'#'+cv.alts.indexOf(a); }); }
   if(!S.prepLog||typeof S.prepLog!=='object') S.prepLog={};
   migrateV2();
 }
@@ -4937,6 +4975,23 @@ if(typeof CRAVE_OLD!=='undefined') CRAVE_OLD.forEach(function(c){ if(!CMAP[c.id]
    out. Neither is between-meal eating (P3); P6 and Yours leave out ml 1, a swap inside a meal (07a_patterns.js). */
 function crMl(id){ var c=CMAP[id]; return !c?0:c.cat==='meal'?1:c.cat==='out'?2:0; }
 function crLog(o){ var ml=crMl(o.id); if(ml) o.ml=ml; return o; }
+/* 3.0.4: a logged swap title as it reads now. ALT_RENAMED maps an old title to the one that replaced it; a title renamed
+   twice (the brand pass, then the recipe code leaving it) is followed to the end of the chain. */
+function altTitle(t){ var n=0; while(t&&typeof ALT_RENAMED!=='undefined'&&ALT_RENAMED[t]&&ALT_RENAMED[t]!==t&&n++<6) t=ALT_RENAMED[t]; return t; }
+/* the alternative a logged swap names: by aid (id#index) when it has one, else by its title, old titles included */
+function altOfLog(x){ var cv=x&&CMAP[x.id]; if(!cv||!cv.alts) return null;
+  if(x.aid){ var m=/#(\d+)$/.exec(x.aid); if(m&&x.aid.split('#')[0]===x.id&&cv.alts[+m[1]]) return cv.alts[+m[1]]; }
+  if(!x.alt) return null; var t=altTitle(x.alt);
+  for(var i=0;i<cv.alts.length;i++) if(cv.alts[i].t===x.alt||cv.alts[i].t===t) return cv.alts[i];
+  return null; }
+/* 3.0.4: the group of every entry (CRAVE_FEELS, crdesign DATA 2.1): each CRAVE id in exactly one group, the five feels
+   holding only cravings (cat sugar, packet, drink) and the three others their own cat. false when an entry has no group. */
+function feelsOK(cr,fe){ var seen={}, ok=true, FEEL5=['sweet','cold','crunchy','drink','filling'];
+  (fe||[]).forEach(function(F){ F.ids.forEach(function(id){ if(seen[id]) ok=false; seen[id]=F.id; }); });
+  (cr||[]).forEach(function(c){ var f=seen[c.id]; if(!f||c.f!==f) ok=false;
+    var crav=['sugar','packet','drink'].indexOf(c.cat)>=0; if(crav!==(FEEL5.indexOf(f)>=0)||(!crav&&f!==c.cat)) ok=false; });
+  Object.keys(seen).forEach(function(id){ if(!(cr||[]).some(function(c){ return c.id===id; })) ok=false; });
+  return ok; }
 
 function allDays(){ return Object.keys(S.days).sort(); }
 
@@ -6086,7 +6141,7 @@ function fitDayCarbs(iso,k){
   ((d&&d.extra)||[]).forEach(function(e){ var r3=rec(e.c); if(r3) other+=macros(r3,1)[2]; else unknown=true; });
   ((d&&d.cr)||[]).forEach(function(x){
     if(!x.res){ unknown=true; return; }
-    var cv=CMAP[x.id], a=cv&&(cv.alts||[]).filter(function(y){ return y.t===x.alt; })[0];
+    var a=altOfLog(x);
     if(a&&a.c!=null) other+=a.c; else unknown=true;
   });
   ((d&&d.tm)||[]).forEach(function(x){ if(x.ate===true) unknown=true; });
@@ -7241,7 +7296,8 @@ function dayDetail(k){
   function dr(a2,b2){ return b2.length>22?'<div class="row two"><div class="m"><span class="t-body">'+esc(a2)+'</span><span class="t-sub c2">'+esc(b2)+'</span></div></div>':'<div class="row"><div class="m"><span class="t-body">'+esc(a2)+'</span></div><span class="det t-body">'+esc(b2)+'</span></div>'; }
   var rows=[];
   (d.extra||[]).forEach(function(e){ var r=rec(e.c); rows.push(dr('Extra',r?r.t:e.c)); });
-  (d.cr||[]).forEach(function(c){ var cv=CMAP[c.id]; rows.push(dr(c.ml===1?(c.res?'Swap at a meal':'Had it at a meal'):c.res?'Swapped':'Craving eaten',(cv?cv.n:c.id)+(c.res&&c.alt?' for '+((typeof ALT_RENAMED!=='undefined'&&ALT_RENAMED[c.alt])||c.alt):''))); });
+  /* 3.0.4: the title a swap reads now (by aid, else through ALT_RENAMED to the end of its chain) */
+  (d.cr||[]).forEach(function(c0){ var a0=c0.alt&&altOfLog(c0), c=c0.alt?Object.assign({},c0,{alt:a0?a0.t:altTitle(c0.alt)}):c0, cv=CMAP[c.id]; rows.push(dr(c.ml===1?(c.res?'Swap at a meal':'Had it at a meal'):c.res?'Swapped':'Craving eaten',(cv?cv.n:c.id)+(c.res&&c.alt?' for '+((typeof ALT_RENAMED!=='undefined'&&ALT_RENAMED[c.alt])||c.alt):''))); });
   (d.tm||[]).forEach(function(x){ rows.push(dr('Ten-minute timer',x.ate===false?'Ate nothing':x.ate===true?'Had something':'Started')); });
   if(d.eve===1) rows.push(dr('After dinner',d.nosnack===true?'Nothing':'Something'));
   if(rows.length) h+='<div class="list">'+rows.join('')+'</div>';
@@ -7352,7 +7408,7 @@ function extraK(e){ if(e.kc) return e.kc; var r=e.c&&typeof rec==='function'?rec
 /* a swap (res true): kc stored at log time; else the alternative's tier: 200, 120, or half the craving for a tier 3
    measured portion. Older swaps carry the alternative's title, which finds its tier in the craving table. */
 function swapK(c){ if(c.kc!=null) return c.kc; var cv=CMAP[c.id], tier=c.tier, ck=c.ck;
-  if(!tier&&cv&&c.alt) (cv.alts||[]).forEach(function(a){ if(a.t===c.alt||(typeof ALT_RENAMED!=='undefined'&&a.t===ALT_RENAMED[c.alt])) tier=a.tier; });
+  if(!tier&&cv&&c.alt){ var a0=typeof altOfLog==='function'?altOfLog({id:c.id,alt:c.alt}):null; if(a0) tier=a0.tier; else (cv.alts||[]).forEach(function(a){ if(a.t===c.alt||(typeof ALT_RENAMED!=='undefined'&&a.t===ALT_RENAMED[c.alt])) tier=a.tier; }); }
   if(!ck&&cv) ck=cv.kcal;
   return tier===3?(ck||300)/2:tier?K.swap[tier]:K.swap[1]; }
 /* ---------- statistics ---------- */
@@ -7439,12 +7495,16 @@ function facts(S,k){
      A swap with kc 0 (water, a walk) is not eating. */
   /* v2: a log stored with ml belongs to a meal (1 carbs and sauces at a meal, 2 a meal bought out): no between-meal episode.
      A meal bought out is logged on Today as off plan, where offKcal() prices it. */
-  (d.cr||[]).forEach(function(c){var h=c.t?(c.t-midnight(k))/3600e3:null,kc;f.cr.push({id:c.id,res:!!c.res,kind:c.res?'swap':'food',h:h,head:!!(CMAP[c.id]&&CMAP[c.id].cat==='head'),ml:c.ml||0});
+  /* 3.0.4: Did this on a situation's row with no food (nf, decision O11) is ridden out: he ate nothing, so no episode */
+  (d.cr||[]).forEach(function(c){var h=c.t?(c.t-midnight(k))/3600e3:null,kc;f.cr.push({id:c.id,res:!!c.res,kind:c.res?'swap':c.nf?'rode':'food',h:h,head:!!(CMAP[c.id]&&CMAP[c.id].cat==='head'),ml:c.ml||0});
     if(c.ml)return;
+    if(c.nf&&!c.res){f.rode++;return;}
     if(!c.res)ev.push({t:c.t||null,kc:c.kc||K.between});
     else{kc=swapK(c);if(kc>0){ev.push({t:c.t||null,kc:kc});f.swaps++;}}});
   /* the ten-minute timer: start and finish stored, then one question. Only "Ate nothing" is ridden out. */
-  (d.tm||[]).forEach(function(x){var h=x.t?(x.t-midnight(k))/3600e3:null;f.cr.push({id:x.id||'timer',res:x.ate===false,kind:x.ate===false?'rode':x.ate===true?'food':'open',h:h,head:false});
+  /* 3.0.4: a run closed by a swap or an eaten log on its craving (by, crdesign DATA 6.2) is that log, counted once there;
+     a run answered 'swap' is never ridden out or eaten. A run started from a craving carries its id. */
+  (d.tm||[]).forEach(function(x){if(!x||x.by||x.ate==='swap')return;var h=x.t?(x.t-midnight(k))/3600e3:null;f.cr.push({id:x.id||'timer',res:x.ate===false,kind:x.ate===false?'rode':x.ate===true?'food':'open',h:h,head:false});
     if(x.ate===true)ev.push({t:x.t||null,kc:K.unmarked});else if(x.ate===false)f.rode++;});
   var timed=ev.filter(function(e){return e.t;}).sort(function(a,b){return a.t-b.t;}),eps=[],last=null;
   timed.forEach(function(e){if(last!==null&&e.t-last<45*60e3){last=e.t;return;}eps.push((e.t-midnight(k))/3600e3);last=e.t;});
@@ -7616,7 +7676,7 @@ function P6(S,F,mon,p1,first){var wk=weeksOf(F,mon),keys=Object.keys(wk).sort(),
     var covNow=now.length/28,covFirst=ft.n/28;
     if(r.vsFirst==='better'&&((p1&&(p1.state==='slipping'||p1.state==='edging-worse'))||covFirst-covNow>.15))r.vsFirst='unclear';}}
   /* only the timer's "Ate nothing" is ridden out; "I had this" is a swap */
-  var e8=pool(wk,mondays(mon,8)),rode=0,swap=0,food=0,n=0,bins={},ids={},meals={},mn=0;e8.forEach(function(f){f.cr.forEach(function(x){if(x.ml===1&&x.id){meals[x.id]=(meals[x.id]||0)+1;mn++;}});crOf(f).forEach(function(x){n++;if(x.kind==='rode')rode++;else if(x.kind==='swap')swap++;else if(x.kind==='food')food++;if(x.id&&x.id!=='timer')ids[x.id]=(ids[x.id]||0)+1;if(x.h!=null){var b=Math.floor(((x.h%24)+24)%24/2)*2;bins[b]=(bins[b]||0)+1;}});
+  var e8=pool(wk,mondays(mon,8)),rode=0,swap=0,food=0,n=0,bins={},ids={},meals={},mn=0;e8.forEach(function(f){f.cr.forEach(function(x){if(x.ml===1&&x.id){meals[x.id]=(meals[x.id]||0)+1;mn++;}});crOf(f).forEach(function(x){n++;if(x.kind==='rode')rode++;else if(x.kind==='swap')swap++;else if(x.kind==='food')food++;if(x.id&&x.id!=='timer'&&x.kind!=='open')ids[x.id]=(ids[x.id]||0)+1;if(x.h!=null){var b=Math.floor(((x.h%24)+24)%24/2)*2;bins[b]=(bins[b]||0)+1;}});
     SL.forEach(function(s){if(f.slot[s].trig==='craving')ids.craving=(ids.craving||0)+1;});});
   if(n>=6)r.split={rode:rode,swap:swap,food:food,n:n};var top=null;for(var b in bins)if(top===null||bins[b]>bins[top])top=b;if(n>=5&&top!==null&&bins[top]/n>=.35)r.when={from:+top,to:+top+2,x:bins[top],n:n};
   /* his own most-logged cravings over 8 weeks, with the off-plan reason chip "Craving" counted toward them */
@@ -7774,6 +7834,22 @@ function backLine(r,your){
 }
 function crLast10(F){ var all=[]; F.forEach(function(f){ f.cr.forEach(function(x){ if(x.kind!=='open'&&x.ml!==1) all.push(x.kind); }); }); var l=all.slice(-10), o={swap:0,rode:0,food:0,n:l.length}; l.forEach(function(k){ o[k]++; }); return o; }
 function crLine(c){ return c.n?'Last '+c.n+(c.n===1?' craving: ':' cravings: ')+c.swap+' swapped, '+c.rode+' ridden out, '+c.food+' eaten.':''; }
+/* 3.0.4 (crdesign DATA 5.3): one craving's record over the 56 days Your usual ones uses, today included: its logs and
+   their outcomes (answered runs tied to it count; open runs and meal-carb logs count nowhere), the timed ones, those
+   from 15 minutes to 3 hours after that day's dinner (logged, else planned: P3's rule), and P6's window rule for this id
+   alone (the 2-hour bin with 35% or more of 5 or more timed logs), with how many of the bin's logs came on a late, night
+   or two-job day after that shift ended (the end of the last interval of SHAPES[sh].work). */
+function shiftEnd(sh){ var W=SHAPES[sh]&&SHAPES[sh].work; return W&&W.length?W[W.length-1][1]:null; }
+function lateDay(sh){ return sh==='late'||sh==='night'||sh==='double'; }
+function crOne(F,id,today){
+  today=today||appToday(); var from=addDays(today,-55), o={n:0,swap:0,rode:0,food:0,timed:0,afterDinner:0,win:null}, bins={}, late={};
+  (F||[]).forEach(function(f){ if(f.k<from||f.k>today) return; var dh=f.slot.d.h!=null?f.slot.d.h:planned(S,f.k,'d'), end=lateDay(f.sh)?shiftEnd(f.sh):null;
+    f.cr.forEach(function(x){ if(x.id!==id||x.kind==='open'||x.ml===1) return; o.n++; o[x.kind]=(o[x.kind]||0)+1;
+      if(x.h==null) return; o.timed++; if(x.h>dh+.25&&x.h<=dh+3) o.afterDinner++;
+      var b=Math.floor((((x.h%24)+24)%24)/2)*2; bins[b]=(bins[b]||0)+1; if(end!=null&&x.h>=end) late[b]=(late[b]||0)+1; }); });
+  var top=null; for(var b in bins) if(top===null||bins[b]>bins[top]) top=b;
+  if(o.timed>=5&&top!==null&&bins[top]/o.timed>=.35) o.win={from:+top,to:(+top+2)%24,x:bins[top],late:late[top]||0};
+  return o; }
 /* kind: 'on' (Ate it; it becomes 'next' when the tap closed an off-plan run), 'off', 'skip', 'eve' (v 1 Nothing,
    0 Something), 'rode', 'ate' (timer Had something or I ate it anyway), 'swap'. o: {k: date, s: slot}. Reads the
    state after the tap. */
@@ -7798,7 +7874,11 @@ function record(kind,o,st){
     var l14=ans.slice(-14), x=l14.filter(Boolean).length; out.n=l14.length; out.x=x;
     out.line=(o.v===0?'Logged. ':'')+'Nothing after dinner on '+x+' of the last '+l14.length+' evening'+(l14.length===1?'':'s')+'.'; return out; }
   if(kind==='rode'||kind==='ate'||kind==='swap'){ var c=crLast10(F); out.split=c;
-    var nx=nextText(nextSlot(st,appToday(),null)); out.line=((kind==='rode'?'Ridden out. ':kind==='swap'?'Swapped. ':'Logged. ')+crLine(c)+(kind==='ate'?' Next: '+nx+'.':'')).replace(/\s+$/,'').replace('  ',' '); return out; }
+    var nx=nextText(nextSlot(st,appToday(),null)), word=kind==='rode'?'Ridden out. ':kind==='swap'?'Swapped. ':'Logged. ';
+    /* 3.0.4 (crdesign DATA 6.1): the record of the last ten starts at 6; before that the line says where it stands */
+    var crRec=c.n>=6?crLine(c):c.n<=1?(kind==='ate'?'':'Your record of the last ten starts here.'):c.n+' cravings logged so far.';
+    out.next=kind==='ate'?'Next: '+nx+'.':'';
+    out.line=(word+crRec+(out.next?' '+out.next:'')).replace(/\s+$/,'').replace('  ',' '); return out; }
   return out;
 }
 
@@ -7851,7 +7931,7 @@ function reset(){ C.key=null; C.w=null; C.liveKey=null; }
 
 return {get:get,reset:reset,facts:function(a,b){ return typeof a==='string'?facts(S,a):facts(a,b); },series:series,judge:judge,runs:runs,
   P1:P1,P2:P2,P3:P3,P4:P4,P5:P5,P6:P6,P7:P7,mealsFor:mealsFor,coverage:coverage,slotCov:slotCov,covFell:covFell,weekClass:weekClass,
-  headline:headline,headlineText:headlineText,markerText:markerText,mealFrac:mealFrac,record:record,backLine:backLine,crLast10:crLast10,crLine:crLine,planned:planned,firstMonP1:firstMonP1,firstMonP3:firstMonP3,
+  headline:headline,headlineText:headlineText,markerText:markerText,mealFrac:mealFrac,record:record,backLine:backLine,crLast10:crLast10,crLine:crLine,crOne:crOne,shiftEnd:shiftEnd,planned:planned,firstMonP1:firstMonP1,firstMonP3:firstMonP3,
   cellLabel:cellLabel,patName:patName,patValue:patValue,num:num,in21:in21,perWk:perWk,perWkC:perWkC,clock:clock,longDate:longDate,
   offKcal:offKcal,weeksOf:weeksOf,mondays:mondays,p1At:p1At,p2At:p2At,p3At:p3At,hyst:hyst,hyst0:hyst0,
   util:{Phi:Phi,cmpProp:cmpProp,cmpRate:cmpRate,cmpMean:cmpMean,verdict:verdict,median:median,mean:mean,vari:vari,K:K,trimBase:trimBase,tot:tot}};
@@ -8387,7 +8467,6 @@ function applyAdj(a){
    The header is P6 (his craving times and his last-10 record) with the P3 token; then the ten-minute timer with its
    one question at the end, his own most-logged cravings, and the full list as before. */
 var CFILT={cat:'all',q:''};
-var TINTVAR={rose:'var(--rose)',sand:'var(--sand)',clay:'var(--clay)',sky:'var(--sky)',sage:'var(--sage)',lilac:'var(--lilac)',stone:'var(--stone)'};
 /* the two-hour window that holds 35% or more of 5 or more cravings (P6); "most" only when it really is most */
 function craveWhen(p6){ var w=p6&&p6.when; if(!w) return '';
   var span=PAT.clock(w.from)+' and '+PAT.clock(w.to);
@@ -8403,7 +8482,7 @@ function cravePolidori(p6,g){ var k0=S.profile.kg0, k=latestKg(); if(!p6||!k0||!
    counts toward them (6.7) */
 function yourCravings(g){
   var F=(g&&g.Flive)||[], from=addDays(appToday(),-55), ids={}, marked=0;
-  F.forEach(function(f){ if(f.k<from) return; f.cr.forEach(function(x){ if(x.id&&CMAP[x.id]&&!CMAP[x.id].old&&x.ml!==1) ids[x.id]=(ids[x.id]||0)+1; });
+  F.forEach(function(f){ if(f.k<from) return; f.cr.forEach(function(x){ if(x.id&&CMAP[x.id]&&!CMAP[x.id].old&&x.ml!==1&&x.kind!=='open') ids[x.id]=(ids[x.id]||0)+1; });
     ['b','l','d'].forEach(function(s){ if(f.slot[s].trig==='craving') marked++; }); });
   var list=Object.keys(ids).map(function(id){ return {id:id,n:ids[id]}; }).sort(function(a,b){ return b.n-a.n||(a.id<b.id?-1:1); });
   return {list:list.slice(0,6),marked:marked};
@@ -8510,6 +8589,22 @@ function startTimer(){
   if(!timerRun()) d.tm.push({t:Date.now()});
   save(); paintTimer(); timerTick();
 }
+/* 3.0.4 (crdesign DATA 6.2): one craving, one outcome. A craving logged while a run is open, or waiting for its answer
+   within 15 minutes of its end, closes that run: the run takes the log's craving (an untied run gets its id, a run tied
+   to another craving is re-tied), stores by 'cr' and the log's outcome, and PAT.facts() then counts the log alone.
+   byT names the log, so Undo can reopen the run as it was (id0 is the id it had). A log at a meal (ml 1) closes nothing. */
+function closeRunBy(x,k){
+  if(!x||x.ml===1) return null; var d=S.days[k||appToday()]; if(!d||!d.tm) return null; var t=x.t||Date.now();
+  for(var i=d.tm.length-1;i>=0;i--){ var r=d.tm[i]; if(!r||r.ate!==undefined||r.by) continue;
+    if(t<r.t||t-r.t>TIMER_MS+15*60e3) return null;
+    if(r.id!==x.id){ r.id0=r.id===undefined?null:r.id; r.id=x.id; }
+    r.by='cr'; r.byT=t; r.ate=x.res?'swap':x.nf?false:true; if(!r.done) r.done=Math.min(t,r.t+TIMER_MS); return r; }
+  return null; }
+/* Undo of a log that closed a run reopens the run as it was */
+function reopenRunBy(x,k){ var d=S.days[k||appToday()]; if(!d||!d.tm||!x) return null;
+  for(var i=d.tm.length-1;i>=0;i--){ var r=d.tm[i]; if(r&&r.by&&r.byT===x.t){ delete r.by; delete r.byT; delete r.ate;
+    if(r.id0!==undefined){ if(r.id0===null) delete r.id; else r.id=r.id0; delete r.id0; } return r; } }
+  return null; }
 function timerAnswer(ate){
   var x=timerRun(); if(!x) return;
   x.ate=!!ate; if(!x.done) x.done=Math.min(Date.now(),x.t+TIMER_MS);
@@ -9748,7 +9843,7 @@ document.addEventListener('click',function(ev){
     /* a craving happens now, so it belongs to the app day of now, whichever day Today is showing */
     case 'tookalt': {
       var id=t.getAttribute('data-id'),ix=+t.getAttribute('data-ix'),cv=CMAP[id],alt=cv.alts[ix],ck2=appToday();
-      day(ck2,true).cr.push(crLog({id:id,alt:alt.t,res:true,t:Date.now(),kc:altKc(cv,alt)}));
+      day(ck2,true).cr.push(crLog({id:id,alt:alt.t,aid:id+'#'+ix,res:true,t:Date.now(),kc:altKc(cv,alt)}));
       save(false,ck2); closeSheet(); render(); recordToast('swap',{k:ck2}); break; }
     case 'gavein': { var id2=t.getAttribute('data-id'), ck3=appToday(); day(ck3,true).cr.push(crLog({id:id2,res:false,t:Date.now()})); save(false,ck3); closeSheet(); render(); recordToast('ate',{k:ck3}); break; }
     case 'rk': RFILT.k=t.getAttribute('data-k'); renderMeals(); break;

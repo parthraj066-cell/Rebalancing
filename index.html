@@ -345,8 +345,8 @@ label.lab{display:block;font-size:13px;line-height:18px;font-weight:400;letter-s
 /* Press feedback (2.16): buttons, chips and rows give colour feedback; the current screens' cards and tiles scale */
 .gearbtn,.step3,.seg button{transition:transform var(--dur-press) var(--spring-press),background-color 200ms var(--ease-enter),color 200ms var(--ease-enter)}
 .gearbtn:active,.step3:active,.seg button:active{transform:scale(.97);transition:transform 100ms var(--ease-in-quick),background-color 200ms var(--ease-enter),color 200ms var(--ease-enter)}
-.rtile,.cbtn,.badges .bdg,.hcell[data-act],.shape[data-act]{transition:transform var(--dur-press) var(--spring-press),background-color 150ms var(--ease-enter)}
-.rtile:active,.cbtn:active,.badges .bdg:active,.hcell[data-act]:active,.shape[data-act]:active{transform:scale(.98);transition:transform 100ms var(--ease-in-quick),background-color 150ms var(--ease-enter)}
+.rtile,.badges .bdg,.hcell[data-act],.shape[data-act]{transition:transform var(--dur-press) var(--spring-press),background-color 150ms var(--ease-enter)}
+.rtile:active,.badges .bdg:active,.hcell[data-act]:active,.shape[data-act]:active{transform:scale(.98);transition:transform 100ms var(--ease-in-quick),background-color 150ms var(--ease-enter)}
 .iconbtn svg,.tabbtn svg{transition:transform var(--dur-press) var(--spring-press)}
 .iconbtn:active svg,.tabbtn:active svg{transform:scale(.88);transition:transform 100ms var(--ease-in-quick)}
 .li,.pslot,.rhead{transition:background-color 250ms ease-out}
@@ -618,22 +618,15 @@ ul.ings li+li{border-top:.5px solid var(--sep)}
 .rhead{padding:12px 16px;cursor:pointer;display:flex;gap:12px;align-items:center;min-height:48px}
 .rbody{display:none;padding:0 16px 16px}
 .rcard.open .rbody{display:block}
-.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:12px}
-.cbtn{background:var(--surface);border:0;border-radius:var(--r-ctl);padding:16px 12px;text-align:left;font-size:15px;line-height:20px;letter-spacing:var(--tr-sub);color:var(--ink);font-weight:400;min-height:64px}
-.tierhead{display:flex;align-items:baseline;gap:8px;margin:24px 0 4px}
 .alt{border-radius:var(--r-ctl);padding:12px 16px;margin-bottom:8px;background:var(--surface)}
 .alt-t{font-weight:600;font-size:17px;line-height:22px;margin-bottom:4px}
 .alt-w{font-size:15px;line-height:20px;letter-spacing:var(--tr-sub);color:var(--ink2);margin-bottom:8px}
 .alt-m{display:flex;gap:8px;flex-wrap:wrap;font-size:13px;line-height:18px;align-items:center}
-.tag{background:var(--fill);border-radius:var(--r-thumb);padding:2px 8px;line-height:18px;color:var(--ink2);font-family:var(--f-num);font-weight:600;font-size:13px;letter-spacing:0}
 
-/* ---------- the logging inputs: the morning question, quiet text links, the swap sheet's pair, the timer card ---------- */
+/* ---------- the logging inputs: the morning question, quiet text links, the swap sheet's pair ---------- */
 .lnk{background:none;border:0;padding:12px 0;min-height:44px;color:var(--tint);font-size:15px;line-height:20px;letter-spacing:var(--tr-sub);text-align:left}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
 .pair .btn{padding:6px 8px;font-size:15px;line-height:20px;letter-spacing:var(--tr-sub)}
-.tmcard{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.tm-l{flex:1;min-width:160px}
-.tm-b{display:flex;gap:8px}
 
 /* ---------- sheets (2.13): a panel on the grouped ground, sized to its content up to the large detent at the
    safe area plus 10; a 16 pt grabber strip; a 44 pt header on a three-column grid (an optional leading plain action,
@@ -1008,8 +1001,8 @@ details.earlier summary{font-size:15px;line-height:20px;color:var(--tint);paddin
   .card.tap:active,.tile:active{transform:none;opacity:.7;transition:opacity 100ms linear}
   .navbar{transition:opacity 150ms linear}
   .gearbtn:active,.step3:active,.seg button:active{transform:none;opacity:.6;transition:opacity 100ms linear}
-  .rtile:active,.cbtn:active,.badges .bdg:active,.hcell[data-act]:active,.shape[data-act]:active{transform:none;opacity:.7;transition:opacity 100ms linear}
-  .gearbtn,.step3,.seg button,.rtile,.cbtn,.badges .bdg,.hcell[data-act],.shape[data-act]{transition:opacity 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out}
+  .rtile:active,.badges .bdg:active,.hcell[data-act]:active,.shape[data-act]:active{transform:none;opacity:.7;transition:opacity 100ms linear}
+  .gearbtn,.step3,.seg button,.rtile,.badges .bdg,.hcell[data-act],.shape[data-act]{transition:opacity 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out}
   .iconbtn:active svg,.tabbtn:active svg{transform:none} .iconbtn:active,.tabbtn:active{opacity:.6}
   .sw i{transition:none} .sw:active i{width:27px} .sw.on:active i{transform:translateX(20px)} .sw{transition:background-color 150ms ease-out}
   .toast,.toast.on{transform:translateX(-50%);transition:opacity 150ms ease-out}
@@ -8554,11 +8547,10 @@ function applyAdj(a){
 /* ===================== CRAVINGS (6.7): opens on his craving pattern =====================
    The header is P6 (his craving times and his last-10 record) with the P3 token; then the ten-minute timer with its
    one question at the end, his own most-logged cravings, and the full list as before. */
-var CFILT={cat:'all',q:''};
 /* the two-hour window that holds 35% or more of 5 or more cravings (P6); "most" only when it really is most */
 function craveWhen(p6){ var w=p6&&p6.when; if(!w) return '';
-  var span=PAT.clock(w.from)+' and '+PAT.clock(w.to);
-  return w.x/w.n>0.5?'Most come between '+span+'.':'They come most often between '+span+'.'; }
+  var span=clockW(w.from)+' and '+clockW(w.to);
+  return w.x/w.n>0.5?'Most of your cravings come between '+span+'.':'Your cravings come most often between '+span+'.'; }
 /* after 10 kg down, a rise in cravings is framed with Polidori 2016 (P6) */
 /* P6 after 10 kg down: a rise in cravings framed with Polidori 2016. Never beside a rise in off-plan meals or between-meal
    eating (P1 or P3 Slipping, or higher on most of the last four weeks): there it would soften a real change (6.2). */
@@ -8581,43 +8573,6 @@ function cravePin(g){
   if(f.lever==='L2') return leverInfo('L2',g,{ctx:f.ctx});
   if(f.lever==='L1'){ var L=leverInfo('L1',g,{ctx:f.ctx}); if(/Cravings tab/.test(L.line)) return L; }
   return null;
-}
-function renderCravings(){
-  var g=null; try{ g=PAT.get(); }catch(e){ g=null; }
-  var p6=g&&g.P6, ready=p6&&p6.state==='ready', c10=g&&g.Flive?PAT.crLast10(g.Flive):{n:0}, pol=ready?cravePolidori(p6,g):'';
-  var h=largeTitle('Cravings');
-  var eye=ready?'<button class="pc-eye card-link" data-act="pattern" data-p="P6"><span class="t-foot w6 c2">Your cravings · Last 8 weeks</span>'+ICON.chev+'</button>':null;
-  h+=toolHead('Your cravings',eye,token('P3',g&&g.P3),[pol||(ready?craveWhen(p6):''),c10.n>=6?PAT.crLine(c10):'']);
-  var pin=cravePin(g);
-  if(pin) h+='<p class="sub tw-line">This week’s change: '+esc(pin.name)+'.</p>';
-  h+='<div class="card tmcard" id="timerCard">'+timerInner()+'</div>';
-  var y=yourCravings(g);
-  if(y.list.length){
-    h+='<div class="sec cap"><h2>Yours</h2></div><div class="chips wrap">'+y.list.map(function(x){ return '<button class="chip" data-act="crave" data-id="'+x.id+'" aria-label="'+esc(CMAP[x.id].n)+', logged '+x.n+' time'+(x.n===1?'':'s')+'">'+esc(CMAP[x.id].n)+' <span class="cn">'+x.n+'</span></button>'; }).join('')+'</div>';
-    if(y.marked) h+='<p class="tiny" style="margin:8px 0 0">Also '+y.marked+' off-plan meal'+(y.marked===1?'':'s')+' marked Craving.</p>';
-  }
-  h+='<div class="fgroup"><input type="search" id="cq" aria-label="Search cravings" placeholder="Chocolate, chips, noodles, bored" value="'+esc(CFILT.q)+'"></div>';
-  h+='<div class="chips scroll" style="margin-bottom:14px"><button class="chip'+(CFILT.cat==='all'?' on':'')+'" data-act="ccat" data-c="all">All</button>';
-  CAT_ORDER.forEach(function(c){ h+='<button class="chip'+(CFILT.cat===c?' on':'')+'" data-act="ccat" data-c="'+c+'">'+CAT_LABEL[c].split(',')[0].replace(/ and .*/,'')+'</button>'; });
-  h+='</div>';
-  var q=CFILT.q.toLowerCase().trim();
-  var list=CRAVE.filter(function(c){
-    if(CFILT.cat!=='all'&&c.cat!==CFILT.cat) return false;
-    if(!q) return true;
-    if(c.n.toLowerCase().indexOf(q)>=0||c.why.toLowerCase().indexOf(q)>=0) return true;
-    return c.alts.some(function(a){return a.t.toLowerCase().indexOf(q)>=0||a.w.toLowerCase().indexOf(q)>=0;});
-  });
-  if(!list.length) h+='<p class="sub">Nothing matches. Try sweet, chips or noodles.</p>';
-  /* v2: two headings, Cravings and Not cravings (CAT_SECTIONS), each with its note, its groups in CAT_ORDER */
-  var secs=(typeof CAT_SECTIONS!=='undefined'&&CAT_SECTIONS.length)?CAT_SECTIONS:[{id:'all',label:'All cravings',note:'',cats:CAT_ORDER}];
-  secs.forEach(function(s){
-    var l=list.filter(function(c){ return s.cats.indexOf(c.cat)>=0; }); if(!l.length) return;
-    h+='<div class="sec cap csec" data-sec="'+s.id+'"><h2>'+esc(s.label)+'</h2></div>'+(s.note?'<p class="tiny csec-note">'+esc(s.note)+'</p>':'');
-    h+='<div class="cgrid">'+l.map(function(c){ return '<button class="cbtn" data-act="crave" data-id="'+c.id+'">'+esc(c.n)+'</button>'; }).join('')+'</div>';
-  });
-  $('#pane-cravings').innerHTML=h; ltAfter('cravings'); timerTick();
-  var inp=$('#cq');
-  if(inp) inp.oninput=function(){CFILT.q=this.value;var p=this.selectionStart;renderCravings();var i2=$('#cq');i2.focus();i2.setSelectionRange(p,p);};
 }
 /* ===================== 3.0.4: the single-craving sheet (crdesign SPEC 3, DATA 4) =====================
    One sheet for every entry: what a usual serve costs him, his own record for it, the swaps with I had this on each row
@@ -8768,6 +8723,133 @@ function craveSheet(id,from){
   h+=craveBar(c);
   openSheet(h,{large:true,cls:'cs'}); if(lead) fitLead(); timerTick();
 }
+/* ===================== 3.0.4: the Cravings tab (crdesign SPEC 2, DATA 5) =====================
+   The header says his record (P6), the moment card names the craving he usually has now with the timer under it and one
+   swap ready below a hairline, Your usual ones are a tap each, and Something else reaches every other entry. */
+var CR_WATER='600'+NB+'mL of water with a pinch of salt, then decide.';
+var CR_HOLD=30*60e3;   /* a log or an answer from this tab holds the card on it for 30 minutes (DATA 6.3) */
+function crDayClass(sh){ return sh==='off'?'off':(sh==='late'||sh==='night'||sh==='double')?'late':'day'; }
+/* now in the app day's hours (past midnight reads 24 and on until the day turns at 4 am) */
+function crNowH(k){ var h=(Date.now()-parseISO(k).getTime())/3600e3; return h; }
+/* the moment (DATA 5.1): his logs within 90 minutes of now either side, across midnight, in the 56 days Your usual
+   ones uses; ranked by those on the same kind of day, then all of them, then the 8-week count; a craving needs 5 */
+function cravingsNow(F,o){
+  o=o||{}; var k=o.k||appToday(), nowH=o.h!=null?o.h:crNowH(k), from=addDays(k,-55), sh=shapeOf(k), cls=crDayClass(sh), mo={}, untied=0, all={};
+  var near=function(h){ return Math.abs(((h-nowH)%24+36)%24-12)<=1.5; };
+  (F||[]).forEach(function(f){ if(f.k<from||f.k>k) return; var end=PAT.shiftEnd(f.sh);
+    f.cr.forEach(function(x){ if(x.kind==='open'||x.ml===1) return; if(x.id&&x.id!=='timer') all[x.id]=(all[x.id]||0)+1;
+      if(x.h==null||!near(x.h)) return; if(x.id==='timer'){ untied++; return; }
+      var m=mo[x.id]=mo[x.id]||{id:x.id,n:0,same:0,kinds:{},late:0}; m.n++; if(crDayClass(f.sh)===cls) m.same++; m.kinds[x.kind]=(m.kinds[x.kind]||0)+1;
+      if(crDayClass(f.sh)==='late'&&end!=null&&x.h>=end) m.late++; }); });
+  var list=Object.keys(mo).map(function(id){ return mo[id]; }).filter(function(m){ return CMAP[m.id]&&!CMAP[m.id].old; })
+    .sort(function(a,b){ return b.same-a.same||b.n-a.n||(all[b.id]||0)-(all[a.id]||0)||(a.id<b.id?-1:1); });
+  var end=PAT.shiftEnd(sh), ctx=cls==='late'&&end!=null&&nowH>=end?'after late shifts':'around this time';
+  var pick=list.filter(function(m){ return m.n>=5; })[0]||null;
+  /* pinned (DATA 5.1): an open run tied to a craving holds the card on it; with a moment, so does a log or an answer
+     from this tab in the last 30 minutes (with none, the generic card shows that log: SPEC 2.3) */
+  var pin=o.pin, run=o.nopin?null:timerRun(), L=o.nopin?null:crLastNow();
+  if(pin===undefined) pin=run?(run.id&&CMAP[run.id]?run.id:null):pick&&L&&L.id&&CMAP[L.id]&&CMAP[L.id].cat!=='meal'?L.id:null;
+  if(run&&!pin&&!o.pin) return null;   /* an untied run counts down on the generic card */
+  if(pin&&(!pick||pick.id!==pin)) pick=mo[pin]||{id:pin,n:0,same:0,kinds:{},late:0};
+  if(!pick) return null;
+  return {id:pick.id,n:pick.n,same:pick.same,kinds:pick.kinds,late:pick.late,ctx:ctx,untied:untied,pinned:!!pin,list:list};
+}
+/* the card's line (DATA 5.2): the count alone with one kind of outcome, or while untied runs fall at this time; the
+   split once every run at this time names its craving (O9; declined: the split always) */
+function momentLine(k,ctx,untied){
+  if(!crKindsN(k)) return '';
+  return crKindsCount(k)>1&&(!untied||!CRDEC.O9)?crCap(ctx)+' in the last 8'+NB+'weeks: '+crSplit(k)+'.':crKindsN(k)+' logged '+ctx+' in the last 8'+NB+'weeks.';
+}
+/* the clock on the logged row: "8:26 pm" */
+function crTime(t){ var d=new Date(t); return crUnits(PAT.clock(d.getHours()+d.getMinutes()/60)); }
+/* the last log or answer from this tab, while it holds (30 minutes, the same app day) */
+function crLastNow(){ var L=S.ui&&S.ui.crLast; if(!L||L.k!==appToday()||Date.now()-L.t>CR_HOLD||Date.now()<L.t-60e3) return null; return L; }
+/* the logged row's words (SPEC 2.2): the outcome, then the time and what */
+function crLogged(L){
+  var d=S.days[L.k], x=null, what='', sub='';
+  if(L.run){ x=((d&&d.tm)||[]).filter(function(r){ return r&&r.t===L.run; })[0]; if(!x||x.ate===undefined) return null;
+    what=x.ate===false?'Ridden out':'Logged'; sub=x.ate===false?'Ate nothing after ten minutes':crNextLine(); }
+  else { x=((d&&d.cr)||[]).filter(function(c){ return c&&c.t===L.t&&c.id===L.id; })[0]; if(!x) return null;
+    what=x.res?'Swapped':x.nf?'Ridden out':'Logged'; sub=x.res||x.nf?pct(x.alt?((altOfLog(x)||{}).t||altTitle(x.alt)):''):crNextLine(); }
+  return {what:what,time:crTime(L.t),sub:sub}; }
+function crNextLine(){ var r=null; try{ r=PAT.record('ate',{k:appToday()}); }catch(e){ r=null; } return r&&r.next?crUnits(r.next):''; }
+function loggedRow(G){
+  return '<div class="swapblk logged"><span class="mchk on" aria-hidden="true"><i>'+ICON.check+'</i></span><div class="m"><span class="t-body">'+esc(G.what)+'</span><span class="t-foot c2">'+G.time+(G.sub?' · '+esc(G.sub).replace(/&amp;nbsp;/g,NB):'')+'</span></div><button class="plain undo" data-act="crundo">Undo</button></div>';
+}
+/* the card's swap row: the same row as the sheet's, its line led by "Swap" */
+function cardSwapRow(id,a,had){
+  var c=CMAP[id], label=capOf(c,a), ix=c.alts.indexOf(a);
+  return '<div class="swapblk g"><span class="t-body st">'+crUnits(esc(pct(a.t)))+'</span>'+(label?'<button class="had" data-act="tookalt" data-id="'+id+'" data-ix="'+ix+'" aria-label="'+label+': '+esc(pct(a.t))+'">'+label+'</button>':'')+
+    '<span class="t-foot c2 sm">'+crKeep('Swap')+' · '+swapMeta(a,c,had)+'</span></div>';
+}
+function crCountdown(x){ var l=timerLeft(x); return Math.floor(l/60)+':'+pad(l%60); }
+/* the moment card (SPEC 2.2): idle, running, done, logged */
+function momentCard(m,st){
+  var c=CMAP[m.id], nm=crName(c), x=st.run, line=momentLine(m.kinds,m.ctx,m.untied);
+  if(x&&timerLeft(x)>0) return '<section class="card moment run" id="timerCard"><div class="runhead"><p class="t-head">'+nm+'</p><p class="t-value" id="timerOut">'+crCountdown(x)+'</p></div><p class="t-sub c2 water">'+CR_WATER+'</p><button class="btn gray" data-act="tstop">Stop</button></section>';
+  if(x) return '<section class="card moment" id="timerCard"><p class="t-head">'+nm+'</p><p class="t-body q">Ten minutes done. Did you eat anything?</p><div class="btnpair stack"><button class="btn gray" data-act="tmans" data-v="0">Ate nothing</button><button class="btn gray" data-act="tmans" data-v="1">Had something</button></div>'+(CRDEC.O6?'<button class="plain block" data-act="tmswap" data-id="'+m.id+'">I had a swap</button>':'')+'</section>';
+  var top='<div class="pc-top" role="link" tabindex="0" data-act="crave" data-id="'+m.id+'" aria-label="'+esc(c.n)+': swaps and your record"><div class="card-head"><p class="t-head">'+nm+'</p>'+ICON.chev+'</div>'+(line?'<p class="mo-rec">'+recC(line)+'</p>':'')+'</div>';
+  if(st.logged) return '<section class="card moment">'+top+loggedRow(st.logged)+'</section>';
+  var his=swapHis(m.id), a=CRDEC.O8?cardSwap(m.id,{evening:crEvening()||m.ctx==='after late shifts',his:his}):null;
+  return '<section class="card moment" id="timerCard">'+top+'<button class="btn" data-act="timer" data-id="'+m.id+'">Start ten minutes</button>'+(a?cardSwapRow(m.id,a,his[m.id+'#'+c.alts.indexOf(a)]):'')+'</section>';
+}
+/* the generic timer card (SPEC 2.3): no craving is usual at this time, and day 1 */
+function timerCard(st){
+  var x=st.run;
+  if(x&&timerLeft(x)>0) return '<section class="card" id="timerCard"><div class="runhead"><p class="t-head">Ten minutes first</p><p class="t-value" id="timerOut">'+crCountdown(x)+'</p></div><p class="t-sub c2 water">'+CR_WATER+'</p><button class="btn gray" data-act="tstop">Stop</button></section>';
+  if(x) return '<section class="card" id="timerCard"><p class="t-body q0">Ten minutes done. Did you eat anything?</p><div class="btnpair stack"><button class="btn gray" data-act="tmans" data-v="0">Ate nothing</button><button class="btn gray" data-act="tmans" data-v="1">Had something</button></div>'+(CRDEC.O6?'<button class="plain block" data-act="tmswap">I had a swap</button>':'')+'</section>';
+  if(st.logged) return '<section class="card logcard">'+loggedRow(st.logged)+'</section>';
+  return '<section class="card" id="timerCard"><p class="t-head">Ten minutes first</p><p class="t-sub c2 water">'+CR_WATER+'</p><button class="btn" data-act="timer">Start ten minutes</button></section>';
+}
+/* the moments of the day for the common ones (DATA 5.5), read from the day shape */
+var CR_MOMENT={morning:['Morning','in the morning'],afternoon:['Afternoon','in the afternoon'],work:['At work','at work'],dinner:['After dinner','after dinner'],shift:['After a shift','after a shift']};
+function crMomentOf(k,h){
+  var sh=shapeOf(k), W=(SHAPES[sh]&&SHAPES[sh].work)||[], l=PAT.planned(S,k,'l'), dn=PAT.planned(S,k,'d'), end=PAT.shiftEnd(sh);
+  if(W.some(function(w){ return h>=w[0]&&h<w[1]; })) return 'work';
+  if((sh==='late'||sh==='night')&&end!=null&&h>=end&&h<end+3) return 'shift';
+  if(h>=dn+.25) return 'dinner';
+  if(h>=l) return 'afternoon';
+  return 'morning';
+}
+/* Your usual ones (DATA 5.4): his most logged in 8 weeks with 2 or more logs, the card's craving left out, three at
+   most, titles only (O10; declined: the count beside each). With none of his own: the moment's common ones, each with
+   its Swap line (none for a situation, none while a run is open or waits for its answer) */
+function usualList(g,skip,quiet){
+  var y0=yourCravings(g).list.filter(function(x){ return x.n>=2; }), y=y0.filter(function(x){ return x.id!==skip; }).slice(0,3);
+  if(y0.length&&!y.length) return '';
+  if(y.length) return crSec('Your usual ones')+'<div class="list">'+y.map(function(x){ return '<button class="row" data-act="crave" data-id="'+x.id+'"><div class="m"><span class="t-body">'+crName(CMAP[x.id])+'</span></div>'+(CRDEC.O10?'':'<span class="det t-body">'+x.n+' times</span>')+ICON.chev+'</button>'; }).join('')+'</div>'+crFoot('Most logged in the last 8'+NB+'weeks.');
+  var k=appToday(), mk=crMomentOf(k,crNowH(k)), M=CR_MOMENT[mk], ids=(CRAVE_START[mk]||[]).filter(function(id){ return id!==skip&&CMAP[id]; });
+  return crSec(M[0])+'<div class="list">'+ids.map(function(id){ var c=CMAP[id], a=quiet||c.cat==='head'?null:cardSwap(id,{evening:crEvening()});
+    return '<button class="row'+(a?' two':'')+'" data-act="crave" data-id="'+id+'"><div class="m"><span class="t-body">'+crName(c)+'</span>'+(a?'<span class="t-sub c2">Swap: '+crUnits(esc(pct(a.t)))+'</span>':'')+'</div>'+ICON.chev+'</button>'; }).join('')+'</div>'+crFoot('Common ones '+M[1]+', until you have your own.');
+}
+/* the header (SPEC 2.1): the large title with the magnifier, and under it P6's record in its short form */
+function cravHead(g){
+  var p6=g&&g.P6, c10=g&&g.Flive?PAT.crLast10(g.Flive):{n:0}, ready=p6&&p6.state==='ready';
+  var h=largeTitle('Cravings',{trail:'<button class="barbtn" data-act="find" data-focus="1" aria-label="Search cravings">'+ICON.search+'</button>'});
+  if(c10.n<6) return h;
+  var text=((ready?craveWhen(p6):'')?craveWhen(p6)+' ':'')+PAT.crLine(c10).replace(/^Last (\d+) cravings?:/,'Last $1:').replace(/(\d+) (swapped|ridden out|eaten)/g,function(m0,n,w){ return n+NB+w.replace(' ',NB); });
+  var pol=ready?cravePolidori(p6,g):''; if(pol) text+=' '+pol;
+  /* O5 declined: the record as ui2's Headline card above the moment card */
+  if(!CRDEC.O5) return h+'<button class="card tap p6card" data-act="pattern" data-p="P6"><p class="t-head">'+esc(ready&&craveWhen(p6)||'Your last 10 cravings')+'</p><p>'+recC(PAT.crLine(c10))+'</p></button>';
+  return h.replace(/<\/header>$/,'<button class="p6sub" data-act="pattern" data-p="P6" aria-label="'+esc(text.replace(/ /g,' '))+' Opens your craving pattern.">'+recC(text)+ICON.chev+'</button></header>');
+}
+function renderCravings(){
+  var g=null; try{ g=PAT.get(); }catch(e){ g=null; }
+  var run=timerRun(), L=crLastNow(), G=L?crLogged(L):null; if(L&&!G){ S.ui.crLast=null; L=null; }
+  /* the card: a run tied to a craving counts down on that craving's card, an untied one on the generic card; with a
+     moment, a log from this tab in the last 30 minutes holds the card on its craving; with none, the generic card
+     shows the logged row (SPEC 2.2, 2.3) */
+  var m=g&&g.Flive?cravingsNow(g.Flive):null;
+  var h=cravHead(g), pin=cravePin(g);
+  if(pin) h+=crSec('This week’s change','tw-sec')+'<div class="card tw"><p class="t-body">'+esc(ucFirst(pin.name))+'</p></div>';
+  var st={run:run,logged:G};
+  h+=m?momentCard(m,st):timerCard(st);
+  h+=usualList(g,m?m.id:null,!!run);
+  h+='<div class="list else"><button class="row" data-act="find"><span class="ico">'+ICON.search+'</span><div class="m"><span class="t-body">Something else</span></div>'+ICON.chev+'</button></div>';
+  $('#pane-cravings').innerHTML=h; ltAfter('cravings'); timerTick();
+}
+/* the run's question, the card and the record repaint together (a run's answer moves the P6 line) */
+function paintTimer(){ if(typeof TAB!=='undefined'&&TAB==='cravings'&&$('#pane-cravings')) renderCravings(); }
 /* a swap's energy as eaten (2.1): the alternative's own kc, else its tier's default (200, 120, or half the craving) */
 function altKc(cv,a){ if(a&&a.kc!=null) return a.kc; var t=a&&a.tier; return t===3?Math.round(((cv&&cv.kcal)||300)/2):t===2?120:200; }
 /* the ten-minute timer (5.4): Start stores {t}; at 0:00 the card asks one question, stored as ate (true or false).
@@ -8778,13 +8860,6 @@ function timerRun(){ var d=S.days[appToday()]; if(!d||!d.tm) return null;
 function timerLeft(x){ if(x.done&&x.done<=Date.now()) return 0; return Math.max(0,Math.round((x.t+TIMER_MS-Date.now())/1000)); }
 /* Stop ends the run early and shows the question */
 function timerStop(){ var x=timerRun(); if(!x) return; x.done=Math.min(Date.now(),x.t+TIMER_MS); save(); if(sheetOpen()&&CRSH.id&&$('#sheetPanel > .bbar')) craveSheet(CRSH.id,CRSH.from); paintTimer(); timerTick(); }
-function timerInner(){
-  var x=timerRun();
-  if(x&&timerLeft(x)>0){ var l=timerLeft(x); return '<div class="tm-l"><div class="t-headline">Ten minutes first</div><div class="tiny" id="timerOut" data-pre="Time left: ">Time left: '+Math.floor(l/60)+':'+pad(l%60)+'</div></div>'; }
-  if(x) return '<div class="tm-l"><div class="t-headline">Ten minutes done. Did you eat anything?</div></div><div class="tm-b"><button class="btn sm soft" data-act="tmans" data-v="0">Ate nothing</button><button class="btn sm soft" data-act="tmans" data-v="1">Had something</button></div>';
-  return '<div class="tm-l"><div class="t-headline">Ten minutes first</div><div class="tiny">600 mL of water with a pinch of salt, then decide.</div></div><button class="btn sm" data-act="timer">Start</button>';
-}
-function paintTimer(){ var c=$('#timerCard'); if(c) c.innerHTML=timerInner(); }
 /* the countdown runs only while the card is on screen; the run itself is in the log, so it resumes on the next visit */
 function timerTick(){
   clearInterval(tInt); var x=timerRun(); if(!x) return;
@@ -8792,7 +8867,7 @@ function timerTick(){
   tInt=setInterval(function(){
     var o=$('#timerOut'), sb=sheetOpen()?$('#sbarOut'):null, r=timerRun(); if((!o&&!sb)||!r){ clearInterval(tInt); return; }
     var left=timerLeft(r);
-    if(left>0){ if(o) o.textContent=(o.getAttribute('data-pre')||'')+Math.floor(left/60)+':'+pad(left%60); if(sb) sb.textContent=Math.floor(left/60)+':'+pad(left%60); return; }
+    if(left>0){ if(o) o.textContent=Math.floor(left/60)+':'+pad(left%60); if(sb) sb.textContent=Math.floor(left/60)+':'+pad(left%60); return; }
     clearInterval(tInt); if(!r.done){ r.done=r.t+TIMER_MS; save(); } paintTimer(); if(sb&&CRSH.id) craveSheet(CRSH.id,CRSH.from);
   },250);
 }
@@ -8818,10 +8893,20 @@ function reopenRunBy(x,k){ var d=S.days[k||appToday()]; if(!d||!d.tm||!x) return
   for(var i=d.tm.length-1;i>=0;i--){ var r=d.tm[i]; if(r&&r.by&&r.byT===x.t){ delete r.by; delete r.byT; delete r.ate;
     if(r.id0!==undefined){ if(r.id0===null) delete r.id; else r.id=r.id0; delete r.id0; } return r; } }
   return null; }
+/* the answer is stored, the card holds the logged row with Undo and the whole tab repaints, so the P6 line moves with
+   it; no toast on this tab (O12; declined: the record's toast) */
 function timerAnswer(ate){
   var x=timerRun(); if(!x) return;
   x.ate=!!ate; if(!x.done) x.done=Math.min(Date.now(),x.t+TIMER_MS);
-  save(); paintTimer(); recordToast(ate?'ate':'rode',{k:appToday()});
+  S.ui.crLast={id:x.id||null,t:Date.now(),kind:ate?'ate':'rode',k:appToday(),run:x.t};
+  save(); render(); if(!(TAB==='cravings'&&CRDEC.O12)) recordToast(ate?'ate':'rode',{k:appToday()});
+}
+/* Undo (DATA 6.3): the log goes (a run it closed reopens as it was), or the run's answer clears; the tab repaints */
+function crUndo(){
+  var L=S.ui&&S.ui.crLast; if(!L) return; var d=S.days[L.k];
+  if(d&&L.run){ (d.tm||[]).forEach(function(r){ if(r&&r.t===L.run){ delete r.ate; delete r.by; } }); }
+  else if(d){ for(var i=(d.cr||[]).length-1;i>=0;i--){ var c=d.cr[i]; if(c&&c.t===L.t&&c.id===L.id){ d.cr.splice(i,1); reopenRunBy(c,L.k); break; } } }
+  S.ui.crLast=null; save(false,L.k); render();
 }
 /* ===================== MEALS (6.7): opens on the weak spot =====================
    The header is P5's weak spot (else the bright spot) with the P1 token. The first chip is the weak spot; under it,
@@ -8943,6 +9028,15 @@ function recFiltersSheet(){
   h+='</div><button class="btn full" data-close="1" style="margin-top:18px">Show '+recipeList().length+' recipes</button>';
   openSheet(h);
 }
+
+/* Stand-in for release 3.0.4 part 3 only: every craving under its group, until stage 5's designed
+   Something else sheet (search, Recent, group lists) replaces it. */
+if(typeof findSheet!=='function'){ var findSheet=function(){
+  var h='<div class="sheet-h named"><h2 class="t-title3">Something else</h2>'+closeBtn()+'</div>';
+  CRAVE_FEELS.forEach(function(F){ var ids=F.ids.filter(function(id){ return CMAP[id]&&!CMAP[id].old; }); if(!ids.length) return;
+    h+=crSec(esc(F.label))+'<div class="list">'+ids.map(function(id){ return '<button class="row" data-act="crave" data-from="find" data-id="'+id+'"><div class="m"><span class="t-body">'+crName(CMAP[id])+'</span></div>'+ICON.chev+'</button>'; }).join('')+'</div>'; });
+  openSheet(h,{large:true});
+}; }
 /* ===================== PREP AND SHOP ===================== */
 var SWAPS={D1:'D14',D4:'D10',D13:'D14',L1:'L9',L12:'L9',L4:'L8',B9:'B10',B2:'B7',B4:'B10',D11:'D12',L10:'L13',D15:'D12',D8:'D10',B3:'B10',B1:'B10',L2:'L13',D2:'D16'};
 var AISLE_ORDER=['Dairy and eggs','Protein','Produce','Frozen','Nuts, seeds, bread','Pantry','Fresh extras','Spices'];
@@ -10049,9 +10143,13 @@ document.addEventListener('click',function(ev){
     case 'badge': badgeSheet(t.getAttribute('data-id')); break;
     case 'share': shareCard(); break;
     case 'copytext': copyText(); break;
-    case 'crave': craveSheet(t.getAttribute('data-id')); break;
-    case 'ccat': CFILT.cat=t.getAttribute('data-c'); renderCravings(); window.scrollTo(0,0); break;
-    case 'timer': startTimer(t.getAttribute('data-id')||undefined); if(sheetOpen()) closeSheet(); toast('Timer started: ten minutes.'); break;
+    case 'find': if(typeof findSheet==='function') findSheet(); break;
+    case 'crave': craveSheet(t.getAttribute('data-id'),t.getAttribute('data-from')||undefined); break;
+    /* 3.0.4: the card shows the run, so no toast; from the sheet the run is tied to its craving and the sheet closes */
+    case 'timer': startTimer(t.getAttribute('data-id')||undefined); if(sheetOpen()) closeSheet(); break;
+    case 'crundo': crUndo(); break;
+    /* I had a swap at 0:00: the run's craving sheet, or Something else for a run with no craving */
+    case 'tmswap': { var rn=timerRun(), rid=t.getAttribute('data-id')||(rn&&rn.id); if(rid&&CMAP[rid]) craveSheet(rid); else if(typeof findSheet==='function') findSheet(); break; }
     case 'tmans': buzz(); if(sheetOpen()) closeSheet(); timerAnswer(t.getAttribute('data-v')==='1'); break;
     case 'tstop': timerStop(); break;
     /* 3.0.4: a swap row opens in place; the first time any row is opened, the first-use open row stops */
@@ -10068,10 +10166,10 @@ document.addEventListener('click',function(ev){
       else e2={id:id,alt:alt.t,aid:id+'#'+ix,res:true,t:Date.now(),kc:altKc(cv,alt)};
       crLog(e2); day(ck2,true).cr.push(e2); if(CRDEC.O6) closeRunBy(e2,ck2);
       var kd=e2.res?'swap':e2.nf?'rode':'ate'; if(e2.ml!==1) S.ui.crLast={id:id,t:e2.t,kind:kd,k:ck2};
-      save(false,ck2); closeSheet(); render(); if(e2.ml===1) toast('Logged with the meal.'); else recordToast(kd,{k:ck2}); break; }
+      save(false,ck2); closeSheet(); render(); if(e2.ml===1) toast('Logged with the meal.'); else if(!(TAB==='cravings'&&CRDEC.O12)) recordToast(kd,{k:ck2}); break; }
     case 'gavein': { var id2=t.getAttribute('data-id'), ck3=appToday(), e3=crLog({id:id2,res:false,t:Date.now()}); day(ck3,true).cr.push(e3); if(CRDEC.O6) closeRunBy(e3,ck3);
       if(e3.ml!==1) S.ui.crLast={id:id2,t:e3.t,kind:'ate',k:ck3};
-      save(false,ck3); closeSheet(); render(); if(e3.ml===1) toast('Logged with the meal.'); else recordToast('ate',{k:ck3}); break; }
+      save(false,ck3); closeSheet(); render(); if(e3.ml===1) toast('Logged with the meal.'); else if(!(TAB==='cravings'&&CRDEC.O12)) recordToast('ate',{k:ck3}); break; }
     case 'rk': RFILT.k=t.getAttribute('data-k'); renderMeals(); break;
     case 'rtag': RFILT.tag=t.getAttribute('data-t'); renderMeals(); if(sheetOpen()) recFiltersSheet(); break;
     case 'rall': RFILT.all=!RFILT.all; t.classList.toggle('on',RFILT.all); t.setAttribute('aria-checked',RFILT.all?'true':'false'); renderMeals(); break;

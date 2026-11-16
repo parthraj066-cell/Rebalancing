@@ -169,9 +169,8 @@ section.tabpane.on{display:block}
 .navbar-in .avatar::after{inset:-6px}
 .navbar.snap{transition:none}   /* a tab switch restores the bar at once (tab switch 0 ms) */
 .pstart{margin:0}
-/* the recipe sheet's title, under its photo; the craving sheet's, at the top of its content */
+/* the recipe sheet's title, under its photo */
 .rs-t{margin:0 0 4px}
-.cs-t{margin:0 0 12px}
 /* a check row's mark (the prep day sheet) */
 .row .rchk{width:20px;height:20px;color:var(--tint);flex:none}
 .row .rchk svg{width:20px;height:20px;display:block}
@@ -774,6 +773,89 @@ div.kv:not(.list) > b{font-family:var(--f-num);font-weight:600;text-align:right;
 .toast .tmk{flex:none;width:16px;height:16px;display:block}
 .toast .tchk{border-radius:50%;background:var(--tint);color:var(--on-tint);display:grid;place-items:center}
 .toast .tchk svg{width:10px;height:10px}
+
+/* ---------- CRAVINGS (3.0.4, crdesign SPEC; ported from crdesign/final/src/cravings.css) ---------- Tokens only (no colour literal: U2), radii from ui2 2.3 (U8),
+   no new shadow (U9), every control 44 pt or grown to 44 by ::after (U5), type pairs from ui2 2.2 only (U1). */
+/* the mockups' paragraphs carry no margin of their own (the base p has 12 below); zero specificity, so each rule below
+   still sets its own */
+:where(#sheetIn.cs,#pane-cravings,.list.swl) p{margin:0}
+/* the P6 line under the large title: the clock sentence (when P6 has one) and the record; opens the P6 sheet */
+.p6sub{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;margin:-2px 0 -8px;text-align:left}
+.p6sub .recl{flex:1;min-width:0}
+.p6sub .chev{margin-top:1px}
+/* the moment card: the craving usual at this time, the timer, the swap for now (or the logged row) */
+.moment .pc-top{padding-bottom:14px}
+.moment .pc-top .card-head{margin-bottom:2px}
+.mo-rec{margin:0}
+.swapblk{display:flex;align-items:center;gap:12px;border-top:.5px solid var(--sep);margin:16px -16px 0;padding:12px 16px 0}
+.pc-top + .swapblk{margin-top:0}
+.swapblk .m{flex:1;min-width:0;display:flex;flex-direction:column}
+.swapblk.g{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:2px;align-items:start;padding-bottom:0}
+.swapblk.g .st{grid-column:1;grid-row:1}
+.swapblk.g .sm{grid-column:1 / -1;grid-row:2}
+.swapblk .btn.small{flex:none;width:auto;padding:0 14px}
+.swapblk .mchk{width:26px;height:26px;margin:0}
+.swapblk .undo{flex:none;position:relative}
+.swapblk .undo::after{content:"";position:absolute;top:0;bottom:0;left:-8px;right:-8px}
+.logcard{padding-top:12px}
+.logcard .swapblk{border-top:0;margin:0;padding:0}
+/* the timer's states in the card: running (name and countdown on one line), done (the question and three answers) */
+.runhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.runhead .t-head{min-width:0}
+.water{margin:2px 0 16px}
+.moment .q{margin:4px 0 14px}
+.q0{margin-bottom:14px}
+.plain.block{margin-top:4px}
+/* the list row that opens Something else */
+.list.else{margin-top:24px}
+/* the single-craving sheet */
+.sheet-h.back{grid-template-columns:auto 1fr 72px}
+.sheet-h.back .lead{gap:6px;max-width:180px;overflow:hidden}
+.sheet-h.back .lead span{min-width:0;overflow:hidden;text-overflow:ellipsis}   /* the build swaps in "Back" when the name overflows (fitLead) */
+.sheet-h .bk{width:12px;height:20px;flex:none}
+.sheet-h.named{display:flex;align-items:flex-start;gap:12px;min-height:44px;padding:0}   /* #sheetHead carries the gutter */
+.sheet-h.named h2{flex:1;min-width:0;padding-top:9px;text-wrap:balance;font-size:20px;line-height:25px;letter-spacing:var(--tr-title3);text-align:left;white-space:normal;overflow:visible}   /* Title 3 over the shell's centred Headline */
+.sheet-h.named .done{flex:none}
+#sheetIn.cs{padding-top:0}
+.cs-t{margin:4px 0 4px;text-wrap:balance}
+.sheet-h.back h2{min-width:0}
+.cs-l{margin-top:4px}
+.cs-l .recl{display:inline}
+.sec.cs-sec{margin-top:20px}
+.list.swl .swrow{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:2px;align-items:start;padding:11px 16px;position:relative;background:var(--surface);transition:background-color 250ms ease-out}
+.list.swl .swrow:active{background:var(--hl);transition:none}
+.swrow + .swrow::before,.xpand + .swrow::before{content:"";position:absolute;top:0;left:16px;right:0;height:.5px;background:var(--sep)}
+.swrow .st{grid-column:1;grid-row:1}
+.swrow .sm{grid-column:1 / -1;grid-row:2}
+.swrow.nocap .st{grid-column:1 / -1}   /* a tip for next time: no capsule, the title takes the row */
+/* "I had this": a 30 pt capsule on the row's trailing edge, grown to 44 by ::after; lighter than a gray small button */
+.had{grid-column:2;grid-row:1;align-self:start;margin:-4px 0;height:30px;padding:0 12px;border-radius:var(--r-pill);background:var(--fill);color:var(--tint);font-size:13px;line-height:18px;font-weight:600;letter-spacing:var(--tr-foot);display:inline-flex;align-items:center;white-space:nowrap;position:relative}
+.had::after{content:"";position:absolute;left:-6px;right:-6px;top:-7px;bottom:-7px}
+.had:active{background:var(--fill2)}
+.list.swl .xpand{padding:0 16px 12px}
+.xpand .sf{margin-top:6px}
+.xpand .rc{min-height:44px;margin:2px 0 -10px}
+.list.why{margin-top:16px}
+.list.grp{margin-top:12px}   /* a group's rows under its Title 3 label */
+/* the sheet's bottom bar: the timer and I ate it, always on screen (ui2 2.13). Opaque (--bar-solid), so no row text
+   shows through it at rest, under the buttons or in the home-indicator strip */
+.sheet-panel .bbar{background:var(--bar-solid);-webkit-backdrop-filter:none;backdrop-filter:none}
+#sheetPanel > .bbar{position:absolute;z-index:2}   /* openSheet() moves the bar to the panel's foot, out of the scroll */
+.sheet-panel.large{height:calc(100vh - var(--safe-t) - 10px);height:calc(100dvh - var(--safe-t) - 10px)}   /* the large detent */
+.bbar .barrow.run{grid-template-columns:minmax(0,1fr) auto}
+.bbar .barrow.run .t-value{margin:0}
+.bbar .barrow.run .btn{min-width:120px}
+.bbar .barrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}
+.bbar .barrow .plain{min-width:96px;min-height:50px}
+.sheet-panel.barred .sheet-in{padding-bottom:132px}   /* only a sheet with a bar */
+/* Something else: the search field, then the groups as rows */
+.search.fs{margin:0 0 4px}
+.sec.first{margin-top:16px}
+.srch .count{margin:4px 16px 8px}
+/* the toast's leading check */
+.toastchk{width:20px;height:20px}
+.toastchk i{width:20px;height:20px}
+.toastchk svg{width:12px;height:12px}
 
 /* ---------- PATTERNS (3.2, 2.14): This week's change, Last 4 weeks, Weight, the list at the foot ---------- */
 /* the base p margin (12 below) does not apply inside these components: each sets its own spacing */
@@ -5129,11 +5211,17 @@ function sheetOpen(){ return SH.open&&!SH.closing; }
 /* the header's three columns (72, 1fr, 72): a sheet passes <div class="sheet-h"><h2>Title</h2>Done</div>, with an
    optional <button class="lead"> before the title (Weight details: Weigh in); an empty leading slot is added when
    there is none, so the title stays centred */
-function sheetHeadGrid(hd){ if(!hd||hd.querySelector('.lead')) return; var ld=document.createElement('span'); ld.className='lead'; ld.setAttribute('aria-hidden','true'); hd.insertBefore(ld,hd.firstChild); }
-function openSheet(html){
+function sheetHeadGrid(hd){ if(!hd||hd.querySelector('.lead')||hd.classList.contains('named')) return; var ld=document.createElement('span'); ld.className='lead'; ld.setAttribute('aria-hidden','true'); hd.insertBefore(ld,hd.firstChild); }
+/* o (3.0.4): large grows the panel to the large detent; cls adds a class to the body (#sheetIn); a .bbar the html
+   carries at its top level moves out of the scroll area to the panel's foot, always on screen (2.13) */
+function openSheet(html,o){
+  o=o||{};
   var e=shEls(), wasOpen=SH.open&&!SH.closing, resume=SH.open&&SH.closing, oldH=wasOpen?e.p.offsetHeight:0;
   if(!SH.open) SH.opener=document.activeElement;
   e.body.innerHTML=html; e.head.innerHTML='';
+  e.body.className='sheet-in'+(o.cls?' '+o.cls:''); e.p.classList.toggle('large',!!o.large);
+  var ob=e.p.querySelector(':scope > .bbar'); if(ob) ob.remove();
+  var bar=e.body.querySelector(':scope > .bbar'); if(bar) e.p.appendChild(bar); e.p.classList.toggle('barred',!!bar);
   var first=e.body.firstElementChild;
   if(first&&first.classList.contains('sheet-h')){ e.head.appendChild(first); sheetHeadGrid(first); }
   e.sh.classList.add('on'); SH.open=true; SH.closing=false;
@@ -8531,32 +8619,154 @@ function renderCravings(){
   var inp=$('#cq');
   if(inp) inp.oninput=function(){CFILT.q=this.value;var p=this.selectionStart;renderCravings();var i2=$('#cq');i2.focus();i2.setSelectionRange(p,p);};
 }
-function craveSheet(id){
-  var c=CMAP[id]; if(!c) return;
-  /* the name is the sheet's content, so it sits in Title 3 under the header, as the recipe sheet's title does (3.7); in the
-     header it was cut short at 390 and 320 once the brand names said what each item is */
-  var h='<div class="sheet-h">'+closeBtn()+'</div><h2 class="t-title3 cs-t">'+esc(c.n)+'</h2>';
-  /* v2: a situation names no food, so its sheet shows no serve numbers (they stay in the data for old logs) */
-  if(c.cat!=='head') h+='<div class="stats" style="margin-bottom:6px"><div class="stat c3"><b>'+c.sugar+' g</b><span>sugar in a usual serve</span></div><div class="stat c3"><b>'+c.kcal+'</b><span>calories in it</span></div><div class="stat"><b>'+money(c.cost)+'</b><span>what it costs</span></div></div>';
-  if(c.nova===4) h+='<div class="tiny" style="margin-bottom:12px">Ultra-processed (Nova group 4). In a 2019 inpatient trial at the US National Institutes of Health, 20 adults offered food freely ate about 500 calories a day more on the ultra-processed diet than on the unprocessed one (Hall et al., Cell Metabolism).</div>';
-  h+='<div class="note red">'+esc(c.why)+'</div>';
-  TIERS.forEach(function(T){
-    var alts=c.alts.filter(function(a){return a.tier===T.n;});
-    if(!alts.length) return;
-    h+='<div class="tierhead t'+T.n+'"><h3>'+T.lab+'</h3></div><div class="tiny" style="margin-bottom:8px">'+T.sub+'</div>';
-    alts.forEach(function(a){
-      var ix=c.alts.indexOf(a);
-      h+='<div class="alt t'+T.n+'"><div class="alt-t">'+esc(a.t)+'</div><div class="alt-w">'+esc(a.w)+'</div><div class="alt-m">';
-      h+='<span class="tag">'+a.s+' g sugar</span><span class="tag">'+a.c+' g carbs</span><span class="tag">'+(a.m?a.m+' min':'now')+'</span>';
-      h+='<span class="tag">'+({fridge:'in the fridge',pantry:'in the cupboard',fresh:'fresh',shop:'from the shop',out:'eating out',free:'free'}[a.g]||a.g)+'</span>';
-      h+='<button class="btn sm" style="margin-left:auto" data-act="tookalt" data-id="'+c.id+'" data-ix="'+ix+'">I had this instead</button>';
-      h+='</div></div>';
-    });
-  });
-  h+='<div class="rule"></div>';
-  h+='<div class="btnset"><button class="btn ghost sm" data-act="gavein" data-id="'+c.id+'">I ate it anyway</button></div>';
-  h+='<div class="tiny" style="margin-top:10px">'+(c.cat==='meal'?'These go with a meal, so logging one counts as neither a craving nor between-meal eating.':c.cat==='out'?'Log the meal itself on Today as off plan, which counts its energy. Logged here, it counts as a craving and adds no between-meal eating.':'Logging the ones you eat shows when they happen. They count as between-meal eating.')+'</div>';
-  openSheet(h);
+/* ===================== 3.0.4: the single-craving sheet (crdesign SPEC 3, DATA 4) =====================
+   One sheet for every entry: what a usual serve costs him, his own record for it, the swaps with I had this on each row
+   (What to do for a situation), a measured portion, and a bottom bar with Start ten minutes and the eaten button, so
+   swapped, ridden out and eaten are all on the first screen. The decisions the behaviour owner has not signed off are
+   in CRDEC, each built as proposed; false builds its "If declined" column (crdesign SPEC 10). */
+var CRDEC={O5:true,O6:true,O7:true,O8:true,O9:true,O10:true,O11:true,O12:true};
+var NB=' ';
+var CR_WHERE={pantry:'cupboard',fridge:'fridge',freezer:'freezer',fresh:'fresh',shop:'shop',out:'eating out',free:'nothing to buy'};
+var CR_HOME=['fridge','pantry','freezer','fresh','free'];
+function crKeep(t){ return String(t).replace(/ /g,NB); }
+function crNum(v){ return String(Math.round(v*10)/10); }
+/* a number and its unit never part (U18) */
+function crUnits(t){ return String(t).replace(/(\d) (g|mL|min|C|kg|cups?|pm|am|minutes|hours?|tbsp|tsp|calories|days?|weeks?)\b/g,'$1'+NB+'$2'); }
+/* the clock in the Cravings lines: "midnight" and "midday" where PAT.clock says 12 am and 12 pm (DATA 5.8) */
+function clockW(h){ h=((Math.round(h)%24)+24)%24; return h===0?'midnight':h===12?'midday':(h%12)+NB+(h<12?'am':'pm'); }
+/* no percent sign on the tab: "85% dark chocolate" reads "85 per cent dark chocolate" there; sheets keep the label */
+function pct(t){ return String(t).replace(/(\d+)%/g,'$1'+NB+'per cent'); }
+function noFood(a){ return a.c===0&&a.g==='free'; }
+/* a craving's name and a method as shown: units held to their numbers, and no recipe code in brackets (U19) */
+function crName(c){ return crUnits(esc(c.n)); }
+function crW(t){ return crUnits(esc(String(t).replace(/\s*\([A-Z]\d+\)/g,''))); }
+/* the evening order holds from 6 pm to 5 am (and after late shifts: the moment's words, crdesign DATA 4.5) */
+function crEvening(){ var h=new Date(Date.now()).getHours(); return h>=18||h<5; }
+/* the bands (DATA 4.3): A ready at home, B to make now, C made ahead, D a shop or eating out, then tips for next time */
+function crBand(a){ return a.later?4:a.ahead?2:CR_HOME.indexOf(a.g)<0?3:a.m<=5?0:1; }
+/* his own swaps of a craving in the last 56 days, by aid: {aid: count} */
+function swapHis(id){ var out={}, from=addDays(appToday(),-55);
+  Object.keys(S.days).forEach(function(k){ if(k<from||k>appToday()) return; (S.days[k].cr||[]).forEach(function(x){ if(x&&x.res&&x.aid&&x.id===id) out[x.aid]=(out[x.aid]||0)+1; }); });
+  return out; }
+/* the order of a craving's swaps (DATA 4): tier 3 leaves the list, the timer is the bar; a situation keeps the editor's
+   steps with only its tips for next time last; every other entry by band, a lead row first, in the evening the
+   caffeine-free rows of a band first, else the editor's order; his own (o.his) first, most used first */
+function swapOrder(id,o){
+  o=o||{}; var c=CMAP[id]; if(!c||!c.alts) return [];
+  var alts=c.alts.filter(function(a){ return a.tier<3&&a.act!=='timer'; }), ix=function(a){ return c.alts.indexOf(a); }, s;
+  if(c.cat==='head') s=alts.filter(function(a){ return !a.later; }).concat(alts.filter(function(a){ return a.later; }));
+  else s=alts.slice().sort(function(x,y){ return crBand(x)-crBand(y)||(y.lead||0)-(x.lead||0)||(o.evening?(x.caf||0)-(y.caf||0):0)||ix(x)-ix(y); });
+  var his=o.his||{}, n=function(a){ return his[id+'#'+ix(a)]||0; };
+  var mine=s.filter(function(a){ return n(a)>0&&!a.later; }).sort(function(x,y){ return n(y)-n(x)||s.indexOf(x)-s.indexOf(y); });
+  return mine.concat(s.filter(function(a){ return mine.indexOf(a)<0; }));
+}
+/* the one swap the moment card and a day-1 row offer (DATA 4.8): the first food or drink with something in it that is
+   not a tip for next time; for a situation, its first step that is not for next time */
+function cardSwap(id,o){
+  var c=CMAP[id]; if(!c) return null; var s=swapOrder(id,o), now=s.filter(function(a){ return !a.later; });
+  if(c.cat==='head') return now[0]||null;
+  return now.filter(function(a){ return !noFood(a); })[0]||now[0]||null;
+}
+/* what the capsule logs (DATA 4): I had this (a swap), I ate this (the measured portion, eaten under O7), Did this (a
+   situation's row with no food, ridden out under O11), none on a tip for next time */
+function capOf(c,a){ if(a.later) return ''; if(a.tier===3) return CRDEC.O7?'I ate this':'I had this'; if(c&&c.cat==='head'&&noFood(a)) return 'Did this'; return 'I had this'; }
+function crMinutes(a){ return a.m?(a.m>=60?(a.m/60)+(a.m>60?' hours':' hour'):a.m+' min'):null; }
+/* the meta line: net carbs, minutes (or made ahead), where it is kept; each part whole; minutes only for a situation's
+   row with no food; "For next time" on a tip; "had 3 times" first when he has had it (a count of his logs only) */
+function swapMeta(a,c,had){
+  if(a.later) return 'For next time';
+  var lead=had?[crKeep('had '+had+(had===1?' time':' times'))]:[];
+  if(c&&c.cat==='head'&&noFood(a)){ var m=crMinutes(a); return lead.concat(m?[crKeep(m)]:[]).join(' · '); }
+  return lead.concat([crNum(a.c)+' g carbs',a.ahead?'made ahead':crMinutes(a),CR_WHERE[a.g]||a.g].filter(Boolean).map(crKeep)).join(' · ');
+}
+/* the opened row's second line: sugar and the energy as eaten, calories only when the method already gives the sugar */
+function swapFacts(c,a){ var sug=/\d+(\.\d+)?\s*g of sugars?\b/.test(a.w);
+  return [sug?null:crNum(a.s)+' g sugar',altKc(c,a)+' calories'].filter(Boolean).map(crKeep).join(' · '); }
+/* the swap row (SPEC 3.3): title in Body, the capsule on the trailing edge, the meta line under both; a tap outside the
+   capsule opens the method in place */
+function swapRow(c,a,open,had){
+  var ix=c.alts.indexOf(a), label=capOf(c,a), meta=swapMeta(a,c,had), quiet=a.later||(c.cat==='head'&&noFood(a));
+  var h='<div class="swrow'+(open?' open':'')+(label?'':' nocap')+'" role="button" tabindex="0" aria-expanded="'+(!!open)+'" data-act="altx" data-id="'+c.id+'" data-ix="'+ix+'"><span class="t-body st">'+crUnits(esc(a.t))+'</span>'+
+    (label?'<button class="had" data-act="tookalt" data-id="'+c.id+'" data-ix="'+ix+'" aria-label="'+label+': '+esc(a.t)+'">'+label+'</button>':'')+(meta?'<span class="t-foot c2 sm">'+meta+'</span>':'')+'</div>';
+  return h+'<div class="xpand"'+(open?'':' hidden')+'><p class="t-sub">'+crW(a.w)+'</p>'+(quiet?'':'<p class="t-foot c2 sf">'+swapFacts(c,a)+'</p>')+(a.rc?'<button class="plain rc" data-act="recipe" data-c="'+a.rc+'">Open the recipe</button>':'')+'</div>';
+}
+/* the group's words (SPEC 3.1): the section title, the portion's footer, the sheet's footer */
+var CR_KIND={
+  craving:{sec:'Swaps',por:'A small serve of the food itself, on a plate and sitting down. It counts as eaten.',foot:'Swaps you log and the ones you eat both count as between-meal eating.'},
+  head:{sec:'What to do',por:'A small serve of the food itself, on a plate and sitting down. It counts as eaten.',foot:''},
+  meal:{sec:'Swaps',por:'A small serve of the food itself, measured onto the plate.',foot:''},
+  out:{sec:'Swaps',por:'',foot:'Log the meal itself on Today as off plan.'}};
+function crKind(c){ return ['meal','out','head'].indexOf(c.cat)>=0?c.cat:'craving'; }
+/* O7 declined: the portion logs as a swap, so its footer loses "It counts as eaten." */
+function crPorFoot(c){ var t=CR_KIND[crKind(c)].por; return CRDEC.O7?t:t.replace(/ It counts as eaten\.$/,''); }
+/* the eaten button follows the group */
+function ateLabel(c){ return c.cat==='meal'?'I had it with the meal':c.cat==='out'?'I ordered it':c.cat==='head'?'I ate':c.f==='drink'?'I drank it':'I ate it'; }
+/* the record words (DATA 5): outcomes in the app's order, zeros left out, each count joined to its word */
+function crSplit(k){ return [['swap','swapped'],['rode','ridden out'],['food','eaten']].filter(function(x){ return k[x[0]]; }).map(function(x){ return k[x[0]]+NB+x[1].replace(' ',NB); }).join(', '); }
+function crKindsN(k){ return (k.swap||0)+(k.rode||0)+(k.food||0); }
+function crKindsCount(k){ return ['swap','rode','food'].filter(function(x){ return k[x]; }).length; }
+function crCap(t){ return t.charAt(0).toUpperCase()+t.slice(1); }
+/* the sheet's time clause, window first (DATA 5.3): P6's 2-hour rule for this craving with the card's shift words; "after
+   dinner" only when no window qualifies and 3 in 4 of 5 or more timed logs came within 3 hours after dinner */
+function timeOf(p){
+  if(p.win){ var w=p.win, late=w.late&&w.late===w.x?'all after late shifts':w.late*2>w.x?'most after late shifts':'';
+    return {win:w.x+' of them between '+clockW(w.from)+' and '+clockW(w.to)+(late?', '+late:'')}; }
+  if(p.timed>=5&&p.afterDinner/p.timed>=.75) return {after:p.afterDinner===p.timed?'all after dinner':'mostly after dinner'};
+  return {};
+}
+function sheetRecord(p){
+  if(!p||!p.n) return '';
+  var t=timeOf(p), head=p.n+' logged in the last 8'+NB+'weeks';
+  if(crKindsCount(p)>1) return head+': '+crSplit(p)+'.'+(t.win?' '+t.win+'.':t.after?' '+crCap(t.after)+'.':'');
+  return t.after?head+', '+t.after+'.':head+'.'+(t.win?' '+t.win+'.':'');
+}
+/* only his counts in the rounded 600 ink face: a number followed by logged, swapped, ridden out, eaten or times (U17) */
+var CR_COUNT=/(\d+)(?=[  ](?:logged|swapped|ridden|eaten|times)\b)/g;
+function recC(t){ return '<span class="recl">'+esc(t).replace(CR_COUNT,'<span class="rn">$1</span>')+'</span>'; }
+function crSec(t,cls){ return '<div class="sec'+(cls?' '+cls:'')+'"><h2 class="t-title3">'+t+'</h2></div>'; }
+function crFoot(t){ return '<p class="t-foot c2 foot">'+t+'</p>'; }
+/* a pushed panel's back row: ‹ and the previous panel's name, or Back when the name does not fit 180 pt (fitLead) */
+var CR_BACK='<svg class="bk" viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 2 2 10l8 8"/></svg>';
+function crBackHead(lead,act,attr){ return '<div class="sheet-h back"><button class="lead" data-act="'+act+'"'+(attr||'')+' aria-label="Back to '+esc(lead)+'">'+CR_BACK+'<span>'+esc(lead)+'</span></button><h2 class="t-head"></h2>'+closeBtn()+'</div>'; }
+/* after a pushed panel renders: a back label wider than its 180 pt reads Back */
+function fitLead(){ $$('#sheetHead .sheet-h.back .lead span').forEach(function(s){ if(s.scrollWidth>s.clientWidth+1){ s.textContent='Back'; } }); }
+/* the bottom bar (SPEC 3.1): the timer and the eaten button; a run's time left and Stop while one is open; the two
+   answers at 0:00; at a meal only "I had it with the meal" */
+function craveBar(c){
+  var x=timerRun(), lab=ateLabel(c);
+  if(c.cat==='meal') return '<div class="bbar"><button class="btn gray" data-act="gavein" data-id="'+c.id+'">'+lab+'</button></div>';
+  if(x&&timerLeft(x)>0){ var l=timerLeft(x); return '<div class="bbar"><div class="barrow run"><p class="t-value" id="sbarOut" aria-label="Time left">'+Math.floor(l/60)+':'+pad(l%60)+'</p><button class="btn gray" data-act="tstop">Stop</button></div></div>'; }
+  if(x) return '<div class="bbar"><div class="btnpair"><button class="btn gray" data-act="tmans" data-v="0">Ate nothing</button><button class="btn gray" data-act="tmans" data-v="1">Had something</button></div></div>';
+  return '<div class="bbar"><div class="barrow"><button class="btn" data-act="timer" data-id="'+c.id+'">Start ten minutes</button><button class="plain" data-act="gavein" data-id="'+c.id+'">'+lab+'</button></div></div>';
+}
+/* what is in a usual serve: the why text, sugar and cost, the NOVA 4 note, the group's note (none for situations) */
+function serveDetail(c){
+  var h='<p class="t-sub">'+crW(c.why)+'</p><p class="t-foot c2 xp-src">'+crUnits('A usual serve: '+c.sugar+' g of sugar, about '+money(c.cost)+'.')+'</p>';
+  if(c.nova===4) h+='<p class="t-foot c2 xp-src">'+crUnits('Ultra-processed (Nova group 4). In a 2019 inpatient trial at the US National Institutes of Health, 20 adults offered food freely ate about 500 calories a day more on the ultra-processed diet than on the unprocessed one (Hall et al., Cell Metabolism).')+'</p>';
+  var note=(typeof CAT_NOTE!=='undefined'&&CAT_NOTE[c.cat])||(['sugar','packet','drink'].indexOf(c.cat)>=0&&CAT_SECTIONS[0]?CAT_SECTIONS[0].note:'');
+  if(note) h+='<p class="t-foot c2 xp-src">'+crUnits(esc(note))+'</p>';
+  return h;
+}
+/* the sheet (SPEC 3.1, 3.4). from: the group (a CRAVE_FEELS id) or 'find' it was pushed from, for its back row */
+var CRSH={id:null,from:null};
+function craveSheet(id,from){
+  var c=CMAP[id]; if(!c||c.old) return; CRSH.id=id; CRSH.from=from||null;
+  var kind=crKind(c), K=CR_KIND[kind], his=swapHis(id), swaps=swapOrder(id,{evening:crEvening(),his:his}), por=c.alts.filter(function(a){ return a.tier===3; });
+  var openA=S.ui&&S.ui.swapOpened?null:swaps.filter(function(a){ return !a.later; })[0];
+  var g=null; try{ g=PAT.get(); }catch(e){ g=null; }
+  var rec=g&&g.Flive?sheetRecord(PAT.crOne(g.Flive,id)):'';
+  var lead=from==='find'?'Something else':from?((CRAVE_FEELS.filter(function(F){ return F.id===from; })[0]||{}).label||'Back'):'';
+  var h=lead?crBackHead(lead,'sback','data-to="'+esc(from)+'"'):'<div class="sheet-h named"><h2 class="t-title3">'+crName(c)+'</h2>'+closeBtn()+'</div>';
+  if(lead) h+='<h2 class="t-title3 cs-t">'+crName(c)+'</h2>';
+  if(kind!=='head') h+='<p class="t-sub c2 cs-l">'+crUnits(esc(c.serve)+': about '+c.net+' g of carbs and '+c.kcal+' calories.')+'</p>';
+  if(kind==='meal') h+='<p class="t-sub c2 cs-l">Eaten with a meal, so nothing logged here counts as a craving.</p>';
+  if(rec) h+='<p class="cs-l">'+recC(rec)+'</p>';
+  h+=crSec(K.sec,'cs-sec')+'<div class="list swl">'+swaps.map(function(a){ return swapRow(c,a,a===openA,his[id+'#'+c.alts.indexOf(a)]); }).join('')+'</div>';
+  if(por.length){ var pf=crPorFoot(c); h+=crSec('A measured portion')+'<div class="list swl">'+por.map(function(a){ return swapRow(c,a,false,0); }).join('')+'</div>'+(pf?crFoot(pf):''); }
+  if(K.foot) h+=crFoot(K.foot);
+  if(kind!=='head') h+='<div class="list disc why">'+discRow('What is in a usual serve',serveDetail(c))+'</div>';
+  h+=craveBar(c);
+  openSheet(h,{large:true,cls:'cs'}); if(lead) fitLead(); timerTick();
 }
 /* a swap's energy as eaten (2.1): the alternative's own kc, else its tier's default (200, 120, or half the craving) */
 function altKc(cv,a){ if(a&&a.kc!=null) return a.kc; var t=a&&a.tier; return t===3?Math.round(((cv&&cv.kcal)||300)/2):t===2?120:200; }
@@ -8565,10 +8775,12 @@ function altKc(cv,a){ if(a&&a.kc!=null) return a.kc; var t=a&&a.tier; return t==
 var TIMER_MS=600000, tInt=null;
 function timerRun(){ var d=S.days[appToday()]; if(!d||!d.tm) return null;
   for(var i=d.tm.length-1;i>=0;i--){ if(d.tm[i]&&d.tm[i].ate===undefined) return d.tm[i]; } return null; }
-function timerLeft(x){ return Math.max(0,Math.round((x.t+TIMER_MS-Date.now())/1000)); }
+function timerLeft(x){ if(x.done&&x.done<=Date.now()) return 0; return Math.max(0,Math.round((x.t+TIMER_MS-Date.now())/1000)); }
+/* Stop ends the run early and shows the question */
+function timerStop(){ var x=timerRun(); if(!x) return; x.done=Math.min(Date.now(),x.t+TIMER_MS); save(); if(sheetOpen()&&CRSH.id&&$('#sheetPanel > .bbar')) craveSheet(CRSH.id,CRSH.from); paintTimer(); timerTick(); }
 function timerInner(){
   var x=timerRun();
-  if(x&&timerLeft(x)>0){ var l=timerLeft(x); return '<div class="tm-l"><div class="t-headline">Ten minutes first</div><div class="tiny" id="timerOut">Time left: '+Math.floor(l/60)+':'+pad(l%60)+'</div></div>'; }
+  if(x&&timerLeft(x)>0){ var l=timerLeft(x); return '<div class="tm-l"><div class="t-headline">Ten minutes first</div><div class="tiny" id="timerOut" data-pre="Time left: ">Time left: '+Math.floor(l/60)+':'+pad(l%60)+'</div></div>'; }
   if(x) return '<div class="tm-l"><div class="t-headline">Ten minutes done. Did you eat anything?</div></div><div class="tm-b"><button class="btn sm soft" data-act="tmans" data-v="0">Ate nothing</button><button class="btn sm soft" data-act="tmans" data-v="1">Had something</button></div>';
   return '<div class="tm-l"><div class="t-headline">Ten minutes first</div><div class="tiny">600 mL of water with a pinch of salt, then decide.</div></div><button class="btn sm" data-act="timer">Start</button>';
 }
@@ -8578,15 +8790,16 @@ function timerTick(){
   clearInterval(tInt); var x=timerRun(); if(!x) return;
   if(timerLeft(x)<=0){ if(!x.done){ x.done=x.t+TIMER_MS; save(); } return; }
   tInt=setInterval(function(){
-    var o=$('#timerOut'), r=timerRun(); if(!o||!r){ clearInterval(tInt); return; }
+    var o=$('#timerOut'), sb=sheetOpen()?$('#sbarOut'):null, r=timerRun(); if((!o&&!sb)||!r){ clearInterval(tInt); return; }
     var left=timerLeft(r);
-    if(left>0){ o.textContent='Time left: '+Math.floor(left/60)+':'+pad(left%60); return; }
-    clearInterval(tInt); if(!r.done){ r.done=r.t+TIMER_MS; save(); } paintTimer();
+    if(left>0){ if(o) o.textContent=(o.getAttribute('data-pre')||'')+Math.floor(left/60)+':'+pad(left%60); if(sb) sb.textContent=Math.floor(left/60)+':'+pad(left%60); return; }
+    clearInterval(tInt); if(!r.done){ r.done=r.t+TIMER_MS; save(); } paintTimer(); if(sb&&CRSH.id) craveSheet(CRSH.id,CRSH.from);
   },250);
 }
-function startTimer(){
+/* 3.0.4: a run started from a craving (the moment card or its sheet) is tied to it: {t, id} (DATA 6.1) */
+function startTimer(id){
   var d=day(appToday(),true); if(!d.tm) d.tm=[];
-  if(!timerRun()) d.tm.push({t:Date.now()});
+  if(!timerRun()) d.tm.push(id&&CMAP[id]?{t:Date.now(),id:id}:{t:Date.now()});
   save(); paintTimer(); timerTick();
 }
 /* 3.0.4 (crdesign DATA 6.2): one craving, one outcome. A craving logged while a run is open, or waiting for its answer
@@ -9838,14 +10051,27 @@ document.addEventListener('click',function(ev){
     case 'copytext': copyText(); break;
     case 'crave': craveSheet(t.getAttribute('data-id')); break;
     case 'ccat': CFILT.cat=t.getAttribute('data-c'); renderCravings(); window.scrollTo(0,0); break;
-    case 'timer': startTimer(); toast('Timer started: ten minutes.'); break;
-    case 'tmans': buzz(); timerAnswer(t.getAttribute('data-v')==='1'); break;
+    case 'timer': startTimer(t.getAttribute('data-id')||undefined); if(sheetOpen()) closeSheet(); toast('Timer started: ten minutes.'); break;
+    case 'tmans': buzz(); if(sheetOpen()) closeSheet(); timerAnswer(t.getAttribute('data-v')==='1'); break;
+    case 'tstop': timerStop(); break;
+    /* 3.0.4: a swap row opens in place; the first time any row is opened, the first-use open row stops */
+    case 'altx': { var on2=t.getAttribute('aria-expanded')!=='true', xp=t.nextElementSibling; t.setAttribute('aria-expanded',on2?'true':'false'); t.classList.toggle('open',on2);
+      if(xp&&xp.classList.contains('xpand')) xp.hidden=!on2; if(on2&&!S.ui.swapOpened){ S.ui.swapOpened=1; save(); } break; }
+    case 'sback': { var to=t.getAttribute('data-to'); if(to==='find'&&typeof findSheet==='function') findSheet(); else if(to&&typeof groupSheet==='function') groupSheet(to); break; }
     /* a craving happens now, so it belongs to the app day of now, whichever day Today is showing */
+    /* 3.0.4: every log stores the alternative's aid; the measured portion is eaten (O7) and a situation's row with no food
+       ridden out (O11); a log on a craving closes the run it falls in (O6, DATA 6.2); crLast holds the card on it */
     case 'tookalt': {
-      var id=t.getAttribute('data-id'),ix=+t.getAttribute('data-ix'),cv=CMAP[id],alt=cv.alts[ix],ck2=appToday();
-      day(ck2,true).cr.push(crLog({id:id,alt:alt.t,aid:id+'#'+ix,res:true,t:Date.now(),kc:altKc(cv,alt)}));
-      save(false,ck2); closeSheet(); render(); recordToast('swap',{k:ck2}); break; }
-    case 'gavein': { var id2=t.getAttribute('data-id'), ck3=appToday(); day(ck3,true).cr.push(crLog({id:id2,res:false,t:Date.now()})); save(false,ck3); closeSheet(); render(); recordToast('ate',{k:ck3}); break; }
+      var id=t.getAttribute('data-id'),ix=+t.getAttribute('data-ix'),cv=CMAP[id],alt=cv.alts[ix],ck2=appToday(),e2;
+      if(alt.tier===3&&CRDEC.O7) e2={id:id,alt:alt.t,aid:id+'#'+ix,res:false,por:1,t:Date.now(),kc:altKc(cv,alt)};
+      else if(cv.cat==='head'&&noFood(alt)&&CRDEC.O11) e2={id:id,alt:alt.t,aid:id+'#'+ix,res:false,rode:1,nf:1,t:Date.now(),kc:0};
+      else e2={id:id,alt:alt.t,aid:id+'#'+ix,res:true,t:Date.now(),kc:altKc(cv,alt)};
+      crLog(e2); day(ck2,true).cr.push(e2); if(CRDEC.O6) closeRunBy(e2,ck2);
+      var kd=e2.res?'swap':e2.nf?'rode':'ate'; if(e2.ml!==1) S.ui.crLast={id:id,t:e2.t,kind:kd,k:ck2};
+      save(false,ck2); closeSheet(); render(); if(e2.ml===1) toast('Logged with the meal.'); else recordToast(kd,{k:ck2}); break; }
+    case 'gavein': { var id2=t.getAttribute('data-id'), ck3=appToday(), e3=crLog({id:id2,res:false,t:Date.now()}); day(ck3,true).cr.push(e3); if(CRDEC.O6) closeRunBy(e3,ck3);
+      if(e3.ml!==1) S.ui.crLast={id:id2,t:e3.t,kind:'ate',k:ck3};
+      save(false,ck3); closeSheet(); render(); if(e3.ml===1) toast('Logged with the meal.'); else recordToast('ate',{k:ck3}); break; }
     case 'rk': RFILT.k=t.getAttribute('data-k'); renderMeals(); break;
     case 'rtag': RFILT.tag=t.getAttribute('data-t'); renderMeals(); if(sheetOpen()) recFiltersSheet(); break;
     case 'rall': RFILT.all=!RFILT.all; t.classList.toggle('on',RFILT.all); t.setAttribute('aria-checked',RFILT.all?'true':'false'); renderMeals(); break;

@@ -621,7 +621,6 @@ ul.ings li+li{border-top:.5px solid var(--sep)}
 .alt{border-radius:var(--r-ctl);padding:12px 16px;margin-bottom:8px;background:var(--surface)}
 .alt-t{font-weight:600;font-size:17px;line-height:22px;margin-bottom:4px}
 .alt-w{font-size:15px;line-height:20px;letter-spacing:var(--tr-sub);color:var(--ink2);margin-bottom:8px}
-.alt-m{display:flex;gap:8px;flex-wrap:wrap;font-size:13px;line-height:18px;align-items:center}
 
 /* ---------- the logging inputs: the morning question, quiet text links, the swap sheet's pair ---------- */
 .lnk{background:none;border:0;padding:12px 0;min-height:44px;color:var(--tint);font-size:15px;line-height:20px;letter-spacing:var(--tr-sub);text-align:left}
@@ -845,6 +844,15 @@ div.kv:not(.list) > b{font-family:var(--f-num);font-weight:600;text-align:right;
 .search.fs{margin:0 0 4px}
 .sec.first{margin-top:16px}
 .srch .count{margin:4px 16px 8px}
+/* the field sits under the header (the shell's form-field rule, 44 tall on its own fill, is for forms); while a search
+   is typed the header goes, Cancel shows beside the field and the field stays at the top as the results scroll
+   (SPEC 4.3, the Meals search state of ui2 3.9) */
+.fsb{padding:0;margin:0 0 4px}   /* the margin collapses into the section header's, as the mockup's field does */
+.search input[type=search]{height:auto;background:none;padding:0;border-radius:0}
+.search input[type=search]::-webkit-search-cancel-button,.search input[type=search]::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
+.fsb .plain[hidden]{display:none}
+.sheet-panel.srch #sheetHead{display:none}
+.sheet-panel.srch .fsb{position:sticky;top:-8px;z-index:1;background:var(--bg);margin-top:-8px;padding:14px 0 0}
 /* the toast's leading check */
 .toastchk{width:20px;height:20px}
 .toastchk i{width:20px;height:20px}
@@ -2198,12 +2206,13 @@ var CAT_SECTIONS=[{id:'craving',label:'Cravings',note:'Eaten between meals, over
    names rule: Tim Tam biscuits, Magnum ice cream, Mi Goreng instant noodles and so on; cereal says sugary cereal).
    k: the words he might search for that the name does not hold (brands, other names). */
 /* 3.0.4: the eight groups of Something else, in order (crdesign DATA 2.1). The five feels hold the 33 cravings by what
-   they feel like; the three Not cravings groups are their data group (f equals cat). Each CRAVE id is in exactly one. */
+   they feel like; the three Not cravings groups are their data group (f equals cat). Each CRAVE id is in exactly one.
+   A sweet drink's examples say "soft drinks" where DATA 2.1 has "Coke": a brand is always named with its item. */
 var CRAVE_FEELS=[
 {id:'sweet',label:'Sweet',ex:'Chocolate, biscuits, cake, donuts',sec:'craving',ids:['chocbar','timtam','lollies','nutella','muesli','donut','muffin','cheesecake','indiansweet']},
 {id:'cold',label:'Cold and creamy',ex:'Ice cream, ice blocks, custard, yoghurt',sec:'craving',ids:['icecream','magnum','iceblock','custard','flavyog']},
 {id:'crunchy',label:'Salty and crunchy',ex:'Chips, hot chips, bhujia, samosa',sec:'craving',ids:['chips','maccas','doritos','pringles','popcorn','namkeen','samosa','dimsim']},
-{id:'drink',label:'A sweet drink',ex:'Iced coffee, Coke, energy drinks, chai',sec:'craving',ids:['icedcoffee','softdrink','energy','bubbletea','juice','chocmilk','upandgo','chai']},
+{id:'drink',label:'A sweet drink',ex:'Iced coffee, soft drinks, energy drinks, chai',sec:'craving',ids:['icedcoffee','softdrink','energy','bubbletea','juice','chocmilk','upandgo','chai']},
 {id:'filling',label:'Something filling',ex:'Noodles, cereal, toast',sec:'craving',ids:['noodles','cereal','jam']},
 {id:'meal',label:'Carbs and sauces at meals',ex:'',sec:'other',ids:['rice','naan','whitebread','pasta','cannedspag','hashbrown','garlicbread','tomsauce','sweetchilli']},
 {id:'out',label:'Eating out and takeaway',ex:'',sec:'other',ids:['pizza','kebab','nachos','ubereats','sushi','toastie','pie']},
@@ -5183,7 +5192,7 @@ var PENDING_MILES=[];
    the grabber or header (or on the body when it is scrolled to the top) follows the finger,
    rubber-bands upward, and on release either springs back or carries its velocity into a
    dismiss. SH.y is the panel's downward offset in px. */
-var SH={y:0,h:0,open:false,closing:false,anim:null,opener:null,hold:false,drag:null};
+var SH={y:0,h:0,open:false,closing:false,anim:null,opener:null,hold:false,drag:null,stack:[],page:null};
 function shEls(){ return {sh:$('#sheet'),bg:$('#sheet .sheet-bg'),p:$('#sheetPanel'),head:$('#sheetHead'),body:$('#sheetIn')}; }
 function sheetSetY(y){
   var e=shEls(); SH.y=y; if(!e.p) return;
@@ -5201,18 +5210,28 @@ function sheetFade(show,done){
   SH.anim=tween(200,function(q){ var o=show?q:from*(1-q); e.p.style.opacity=String(o); e.bg.style.opacity=String(o); },function(){ SH.anim=null; if(show){ e.p.style.opacity=''; sheetSetY(0); } if(done) done(); });
 }
 function sheetOpen(){ return SH.open&&!SH.closing; }
+/* 3.0.4: pages pushed inside the open sheet (Something else, a group, a craving; crdesign SPEC 4.2). A page passes
+   openSheet() o.page, how to draw it again; sheetPush(next) keeps the page showing (that function and its scroll) on a
+   back stack and draws the next one; sheetBack() draws the page under it again where he left it, and says whether there
+   was one. A sheet opened while none is open starts with an empty stack. sheetPage() updates the page showing in place
+   (a search query typed into it). */
+function sheetPage(fn){ SH.page=fn||null; }
+function sheetPush(next){ var b=$('#sheetIn'); if(sheetOpen()&&SH.page) SH.stack.push({draw:SH.page,y:b?b.scrollTop:0}); next(); }
+function sheetBack(){ var p=SH.stack.pop(); if(!p||!sheetOpen()) return false; p.draw(); var b=$('#sheetIn'); if(b) b.scrollTop=p.y; return true; }
 /* the header's three columns (72, 1fr, 72): a sheet passes <div class="sheet-h"><h2>Title</h2>Done</div>, with an
    optional <button class="lead"> before the title (Weight details: Weigh in); an empty leading slot is added when
    there is none, so the title stays centred */
 function sheetHeadGrid(hd){ if(!hd||hd.querySelector('.lead')||hd.classList.contains('named')) return; var ld=document.createElement('span'); ld.className='lead'; ld.setAttribute('aria-hidden','true'); hd.insertBefore(ld,hd.firstChild); }
 /* o (3.0.4): large grows the panel to the large detent; cls adds a class to the body (#sheetIn); a .bbar the html
-   carries at its top level moves out of the scroll area to the panel's foot, always on screen (2.13) */
+   carries at its top level moves out of the scroll area to the panel's foot, always on screen (2.13); page is how to
+   draw this page again, for the back stack */
 function openSheet(html,o){
   o=o||{};
   var e=shEls(), wasOpen=SH.open&&!SH.closing, resume=SH.open&&SH.closing, oldH=wasOpen?e.p.offsetHeight:0;
   if(!SH.open) SH.opener=document.activeElement;
+  if(!wasOpen) SH.stack=[]; SH.page=o.page||null;
   e.body.innerHTML=html; e.head.innerHTML='';
-  e.body.className='sheet-in'+(o.cls?' '+o.cls:''); e.p.classList.toggle('large',!!o.large);
+  e.body.className='sheet-in'+(o.cls?' '+o.cls:''); e.p.classList.toggle('large',!!o.large); e.p.classList.remove('srch');   /* srch: a search typed in Something else hides the header */
   var ob=e.p.querySelector(':scope > .bbar'); if(ob) ob.remove();
   var bar=e.body.querySelector(':scope > .bbar'); if(bar) e.p.appendChild(bar); e.p.classList.toggle('barred',!!bar);
   var first=e.body.firstElementChild;
@@ -5249,7 +5268,7 @@ function closeSheet(vPxPerMs){
 }
 function sheetDone(){
   var e=shEls(); sheetStop();
-  SH.open=false; SH.closing=false; SH.hold=false; SH.y=0;
+  SH.open=false; SH.closing=false; SH.hold=false; SH.y=0; SH.stack=[]; SH.page=null;
   e.sh.classList.remove('on'); e.p.style.transform=''; e.p.style.opacity=''; e.p.style.willChange=''; e.bg.style.opacity='';
   var op=SH.opener; SH.opener=null;
   try{ var ae=document.activeElement; if(op&&op.focus&&document.body.contains(op)&&(!ae||ae===document.body||e.sh.contains(ae))) op.focus({preventScroll:true}); }catch(x){}
@@ -8702,7 +8721,8 @@ function serveDetail(c){
   if(note) h+='<p class="t-foot c2 xp-src">'+crUnits(esc(note))+'</p>';
   return h;
 }
-/* the sheet (SPEC 3.1, 3.4). from: the group (a CRAVE_FEELS id) or 'find' it was pushed from, for its back row */
+/* the sheet (SPEC 3.1, 3.4). from: the page it was pushed from, for its back row: a group (a CRAVE_FEELS id, whose
+   label it reads, or Back when that does not fit), or Something else (find: Recent; search: a search's results) */
 var CRSH={id:null,from:null};
 function craveSheet(id,from){
   var c=CMAP[id]; if(!c||c.old) return; CRSH.id=id; CRSH.from=from||null;
@@ -8710,7 +8730,7 @@ function craveSheet(id,from){
   var openA=S.ui&&S.ui.swapOpened?null:swaps.filter(function(a){ return !a.later; })[0];
   var g=null; try{ g=PAT.get(); }catch(e){ g=null; }
   var rec=g&&g.Flive?sheetRecord(PAT.crOne(g.Flive,id)):'';
-  var lead=from==='find'?'Something else':from?((CRAVE_FEELS.filter(function(F){ return F.id===from; })[0]||{}).label||'Back'):'';
+  var lead=from==='find'||from==='search'?'Something else':from?((crFeel(from)||{}).label||'Back'):'';
   var h=lead?crBackHead(lead,'sback','data-to="'+esc(from)+'"'):'<div class="sheet-h named"><h2 class="t-title3">'+crName(c)+'</h2>'+closeBtn()+'</div>';
   if(lead) h+='<h2 class="t-title3 cs-t">'+crName(c)+'</h2>';
   if(kind!=='head') h+='<p class="t-sub c2 cs-l">'+crUnits(esc(c.serve)+': about '+c.net+' g of carbs and '+c.kcal+' calories.')+'</p>';
@@ -8721,7 +8741,7 @@ function craveSheet(id,from){
   if(K.foot) h+=crFoot(K.foot);
   if(kind!=='head') h+='<div class="list disc why">'+discRow('What is in a usual serve',serveDetail(c))+'</div>';
   h+=craveBar(c);
-  openSheet(h,{large:true,cls:'cs'}); if(lead) fitLead(); timerTick();
+  openSheet(h,{large:true,cls:'cs',page:function(){ craveSheet(id,from); }}); if(lead) fitLead(); timerTick();
 }
 /* ===================== 3.0.4: the Cravings tab (crdesign SPEC 2, DATA 5) =====================
    The header says his record (P6), the moment card names the craving he usually has now with the timer under it and one
@@ -8850,6 +8870,89 @@ function renderCravings(){
 }
 /* the run's question, the card and the record repaint together (a run's answer moves the P6 line) */
 function paintTimer(){ if(typeof TAB!=='undefined'&&TAB==='cravings'&&$('#pane-cravings')) renderCravings(); }
+/* ===================== 3.0.4: Something else (crdesign SPEC 4, DATA 5.6, 5.7) =====================
+   Every entry by what it feels like (the five feels) and the Not cravings by their data group, Recent on top, and a
+   search over the names and the brands he might type. From the Something else row it opens unfocused, for browsing;
+   from the title's magnifier the field takes the keyboard. A group and a craving are pushed inside the same sheet and
+   the back row returns to the page under it, where he left it (sheetPush, sheetBack). Only CRAVE is listed, so an old
+   id (CRAVE_OLD: dressing) is offered nowhere; its logs still count in P6. */
+var CRFIND={q:''};
+function crFeel(f){ return CRAVE_FEELS.filter(function(F){ return F.id===f; })[0]||null; }
+function feelOf(id){ return CRAVE_FEELS.filter(function(F){ return F.ids.indexOf(id)>=0; })[0]||null; }
+/* a row that pushes a craving: the name in Body (wrapping), in search results a second line, the chevron. from is the
+   page it is pushed from (a group's id, find or search), for the craving sheet's back row. The space between the two
+   lines is not drawn (the row's text is a flex column) but keeps them apart when the row is read aloud */
+function crRow(id,from,sub){ var c=CMAP[id]; return '<button class="row'+(sub?' two':'')+'" data-act="crave" data-id="'+id+'" data-from="'+from+'"><div class="m"><span class="t-body">'+crName(c)+'</span>'+(sub?' <span class="t-sub c2">'+sub+'</span>':'')+'</div>'+ICON.chev+'</button>'; }
+/* what the tab shows: the card's craving and the rows under it */
+function crOnTab(){ var p=$('#pane-cravings'); return p?$$('[data-act=crave][data-id]',p).map(function(e){ return e.getAttribute('data-id'); }):[]; }
+/* Recent (DATA 5.6): up to three cravings from his logs in the last 56 days (a craving log, or a timer run answered on
+   its craving), newest first, that the tab does not already show */
+function crRecent(skip){
+  var from=addDays(appToday(),-55), to=appToday(), logs=[], out=[];
+  Object.keys(S.days).forEach(function(k){ if(k<from||k>to) return; var d=S.days[k];
+    (d.cr||[]).forEach(function(x,i){ if(x&&x.id) logs.push({id:x.id,k:k,t:x.t||0,i:i}); });
+    (d.tm||[]).forEach(function(x,i){ if(x&&x.id&&x.ate!==undefined&&!x.by) logs.push({id:x.id,k:k,t:x.t||0,i:i}); }); });
+  logs.sort(function(a,b){ return a.k<b.k?1:a.k>b.k?-1:(b.t-a.t)||(b.i-a.i); });
+  logs.forEach(function(x){ var c=CMAP[x.id]; if(out.length<3&&c&&!c.old&&out.indexOf(x.id)<0&&(skip||[]).indexOf(x.id)<0) out.push(x.id); });
+  return out; }
+/* search (DATA 5.7): word starts only, case-insensitive, never inside a word; names first, then the keywords (the result
+   names the word, "· Kit Kat"), then the group labels; swap titles and the why text are not searched */
+function craveSearch(q){
+  q=String(q||'').replace(/\s+/g,' ').trim(); if(!q) return [];
+  var re=new RegExp('(^|[^a-z0-9])'+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i'), seen={}, out=[];
+  CRAVE.forEach(function(c){ if(re.test(c.n)){ seen[c.id]=1; out.push({id:c.id}); } });
+  CRAVE.forEach(function(c){ if(seen[c.id]) return; var w=String(c.k||'').split(/,\s*/).filter(function(x){ return re.test(x); })[0]; if(w){ seen[c.id]=1; out.push({id:c.id,via:w}); } });
+  CRAVE_FEELS.forEach(function(F){ if(!re.test(F.label)) return; F.ids.forEach(function(id){ if(!seen[id]&&CMAP[id]&&!CMAP[id].old){ seen[id]=1; out.push({id:id}); } }); });
+  return out; }
+/* a typed search (SPEC 4.3): the results and the count line, "1 match" or "5 matches" (a result can be a craving, a
+   meal carb or a situation), or what to do when nothing matches */
+function searchState(q){
+  var t=String(q||'').replace(/\s+/g,' ').trim(), hits=craveSearch(t);
+  return {q:t,hits:hits,line:hits.length===1?'1 match':hits.length?hits.length+' matches':'Nothing called “'+t+'”. Try a group below.'}; }
+/* the groups (SPEC 4.1): Cravings on its five feels with their examples, Not cravings on three one-line rows; each
+   section's note is its list's footer, so all five feels are on the first screen at 320 */
+function crGroups(first){
+  var g=function(sec){ return '<div class="list">'+CRAVE_FEELS.filter(function(F){ return F.sec===sec; }).map(function(F){
+    return '<button class="row'+(F.ex?' two':'')+'" data-act="feel" data-f="'+F.id+'"><div class="m"><span class="t-body">'+esc(F.label)+'</span>'+(F.ex?' <span class="t-sub c2">'+esc(F.ex)+'</span>':'')+'</div>'+ICON.chev+'</button>'; }).join('')+'</div>'; };
+  return crSec(esc(CAT_SECTIONS[0].label),first)+g('craving')+crFoot(crUnits(esc(CAT_SECTIONS[0].note)))+crSec(esc(CAT_SECTIONS[1].label))+g('other')+crFoot(crUnits(esc(CAT_SECTIONS[1].note)));
+}
+/* the body under the field: Recent and the groups, or a typed search's count and results */
+function crFindBody(q){
+  if(String(q||'').trim()){ var st=searchState(q);
+    return '<p class="t-foot c2 count" role="status">'+esc(st.line)+'</p>'+(st.hits.length?'<div class="list">'+st.hits.map(function(x){ var F=feelOf(x.id); return crRow(x.id,'search',esc(F?F.label:'')+(x.via?' · '+esc(x.via):'')); }).join('')+'</div>':crGroups('first')); }
+  var rec=crRecent(crOnTab());
+  return (rec.length?crSec('Recent','first')+'<div class="list">'+rec.map(function(id){ return crRow(id,'find'); }).join('')+'</div>':'')+crGroups(rec.length?'':'first');
+}
+/* the field (ui2 2.8: 36 tall, the text 17/22, a 44 pt target) and Cancel, shown while a search is typed */
+function crField(q){ return '<div class="searchbar fsb"><label class="search">'+ICON.search+'<input type="search" id="crq" enterkeyhint="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Search cravings and brands" aria-label="Search cravings and brands" value="'+esc(q||'')+'"></label><button class="plain" data-act="fcancel"'+(String(q||'').trim()?'':' hidden')+'>Cancel</button></div>'; }
+/* the sheet (SPEC 4.1): "Something else" and Done, the field, Recent, the groups. focus: from the magnifier the field
+   takes the keyboard. q: a search to show again (back from a craving opened from its results) */
+function findSheet(focus,q){
+  q=q||''; CRFIND.q=q;
+  openSheet('<div class="sheet-h"><h2>Something else</h2>'+closeBtn()+'</div>'+crField(q)+'<div id="crRes">'+crFindBody(q)+'</div>',{large:true,cls:'fs',page:function(){ findSheet(false,q); }});
+  if(String(q).trim()) $('#sheetPanel').classList.add('srch');
+  var i=$('#crq'); if(focus&&i){ try{ i.focus({preventScroll:true}); }catch(e){ i.focus(); } }
+}
+/* typing (SPEC 4.3): the field stays where it is, with the keyboard; while it holds a search the header goes, Cancel
+   shows beside the field and the count and the results replace the groups. Cleared, the groups come back */
+function crSearchInput(v){
+  var res=$('#crRes'), p=$('#sheetPanel'), cn=$('#sheetIn .fsb [data-act=fcancel]'); if(!res||!p) return;
+  var on=!!String(v||'').trim(); CRFIND.q=v||'';
+  p.classList.toggle('srch',on); if(cn) cn.hidden=!on;
+  res.innerHTML=crFindBody(v); var b=$('#sheetIn'); if(b) b.scrollTop=0;
+  sheetPage(function(){ findSheet(false,v); });
+}
+/* Cancel: the search clears and the keyboard goes; the sheet is Something else again */
+function crSearchCancel(){ var i=$('#crq'); if(i){ i.value=''; try{ i.blur(); }catch(e){} } crSearchInput(''); }
+/* a group (SPEC 4.2), pushed inside the sheet in the craving sheet's layout: the back row "‹ Something else" with Done,
+   the label in Title 3 under it (a long one wraps at 320), one row per entry in its order; the three Not cravings
+   groups end with their note */
+function groupSheet(f){
+  var F=crFeel(f); if(!F) return;
+  var note=F.sec==='other'&&typeof CAT_NOTE!=='undefined'?CAT_NOTE[f]:'';
+  var h=crBackHead('Something else','sback','data-to="find"')+'<h2 class="t-title3 cs-t">'+esc(F.label)+'</h2><div class="list grp">'+F.ids.filter(function(id){ return CMAP[id]&&!CMAP[id].old; }).map(function(id){ return crRow(id,f); }).join('')+'</div>'+(note?crFoot(crUnits(esc(note))):'');
+  openSheet(h,{large:true,cls:'cs',page:function(){ groupSheet(f); }}); fitLead();
+}
 /* a swap's energy as eaten (2.1): the alternative's own kc, else its tier's default (200, 120, or half the craving) */
 function altKc(cv,a){ if(a&&a.kc!=null) return a.kc; var t=a&&a.tier; return t===3?Math.round(((cv&&cv.kcal)||300)/2):t===2?120:200; }
 /* the ten-minute timer (5.4): Start stores {t}; at 0:00 the card asks one question, stored as ate (true or false).
@@ -9028,15 +9131,6 @@ function recFiltersSheet(){
   h+='</div><button class="btn full" data-close="1" style="margin-top:18px">Show '+recipeList().length+' recipes</button>';
   openSheet(h);
 }
-
-/* Stand-in for release 3.0.4 part 3 only: every craving under its group, until stage 5's designed
-   Something else sheet (search, Recent, group lists) replaces it. */
-if(typeof findSheet!=='function'){ var findSheet=function(){
-  var h='<div class="sheet-h named"><h2 class="t-title3">Something else</h2>'+closeBtn()+'</div>';
-  CRAVE_FEELS.forEach(function(F){ var ids=F.ids.filter(function(id){ return CMAP[id]&&!CMAP[id].old; }); if(!ids.length) return;
-    h+=crSec(esc(F.label))+'<div class="list">'+ids.map(function(id){ return '<button class="row" data-act="crave" data-from="find" data-id="'+id+'"><div class="m"><span class="t-body">'+crName(CMAP[id])+'</span></div>'+ICON.chev+'</button>'; }).join('')+'</div>'; });
-  openSheet(h,{large:true});
-}; }
 /* ===================== PREP AND SHOP ===================== */
 var SWAPS={D1:'D14',D4:'D10',D13:'D14',L1:'L9',L12:'L9',L4:'L8',B9:'B10',B2:'B7',B4:'B10',D11:'D12',L10:'L13',D15:'D12',D8:'D10',B3:'B10',B1:'B10',L2:'L13',D2:'D16'};
 var AISLE_ORDER=['Dairy and eggs','Protein','Produce','Frozen','Nuts, seeds, bread','Pantry','Fresh extras','Spices'];
@@ -10143,8 +10237,15 @@ document.addEventListener('click',function(ev){
     case 'badge': badgeSheet(t.getAttribute('data-id')); break;
     case 'share': shareCard(); break;
     case 'copytext': copyText(); break;
-    case 'find': if(typeof findSheet==='function') findSheet(); break;
-    case 'crave': craveSheet(t.getAttribute('data-id'),t.getAttribute('data-from')||undefined); break;
+    /* 3.0.4: a craving row inside Something else (data-from) is pushed inside the sheet, with a back row to the page under
+       it; anywhere else the craving sheet opens on its own */
+    case 'crave': { var cid=t.getAttribute('data-id'), cfr=t.getAttribute('data-from')||undefined;
+      if(cfr&&sheetOpen()&&t.closest('#sheet')) sheetPush(function(){ craveSheet(cid,cfr); }); else craveSheet(cid,cfr); break; }
+    /* 3.0.4: Something else (crdesign SPEC 4): the magnifier opens it with the field focused, the row unfocused; a group
+       is pushed inside it; Cancel ends a search */
+    case 'find': findSheet(!!t.getAttribute('data-focus')); break;
+    case 'feel': { var ff=t.getAttribute('data-f'); if(sheetOpen()) sheetPush(function(){ groupSheet(ff); }); else groupSheet(ff); break; }
+    case 'fcancel': crSearchCancel(); break;
     /* 3.0.4: the card shows the run, so no toast; from the sheet the run is tied to its craving and the sheet closes */
     case 'timer': startTimer(t.getAttribute('data-id')||undefined); if(sheetOpen()) closeSheet(); break;
     case 'crundo': crUndo(); break;
@@ -10155,7 +10256,8 @@ document.addEventListener('click',function(ev){
     /* 3.0.4: a swap row opens in place; the first time any row is opened, the first-use open row stops */
     case 'altx': { var on2=t.getAttribute('aria-expanded')!=='true', xp=t.nextElementSibling; t.setAttribute('aria-expanded',on2?'true':'false'); t.classList.toggle('open',on2);
       if(xp&&xp.classList.contains('xpand')) xp.hidden=!on2; if(on2&&!S.ui.swapOpened){ S.ui.swapOpened=1; save(); } break; }
-    case 'sback': { var to=t.getAttribute('data-to'); if(to==='find'&&typeof findSheet==='function') findSheet(); else if(to&&typeof groupSheet==='function') groupSheet(to); break; }
+    /* the back row: the page under this one, where he left it; a page opened on its own goes to the page it names */
+    case 'sback': { if(sheetBack()) break; var to=t.getAttribute('data-to'); if(to==='search') findSheet(false,CRFIND.q); else if(to==='find') findSheet(); else if(to) groupSheet(to); break; }
     /* a craving happens now, so it belongs to the app day of now, whichever day Today is showing */
     /* 3.0.4: every log stores the alternative's aid; the measured portion is eaten (O7) and a situation's row with no food
        ridden out (O11); a log on a craving closes the run it falls in (O6, DATA 6.2); crLast holds the card on it */
@@ -10276,6 +10378,8 @@ document.addEventListener('input',function(ev){
   var t=ev.target;
   /* a note feeds no reading, so it is saved against today and never moves the weekly caches */
   if(t.getAttribute&&t.getAttribute('data-act')==='note'){ day(t.getAttribute('data-k')||curDate(),true).note=t.value; save(false,appToday()); }
+  /* 3.0.4: the search in Something else, on every letter */
+  if(t.id==='crq') crSearchInput(t.value);
 });
 /* ===================== BOOT ===================== */
 load();

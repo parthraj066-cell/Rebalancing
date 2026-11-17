@@ -789,7 +789,7 @@ div.kv:not(.list) > b{font-family:var(--f-num);font-weight:600;text-align:right;
 .swapblk .mchk{width:26px;height:26px;margin:0}
 .swapblk .undo{flex:none;position:relative}
 .swapblk .undo::after{content:"";position:absolute;top:0;bottom:0;left:-8px;right:-8px}
-.logcard{padding-top:12px}
+#pane-cravings .logcard{padding:12px 16px 16px}   /* scoped: the Log sheet's month card (Patterns) is also .logcard, with its own padding */
 .logcard .swapblk{border-top:0;margin:0;padding:0}
 /* the timer's states in the card: running (name and countdown on one line), done (the question and three answers) */
 .runhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
@@ -827,7 +827,7 @@ div.kv:not(.list) > b{font-family:var(--f-num);font-weight:600;text-align:right;
 .list.swl .xpand{padding:0 16px 12px}
 .xpand .sf{margin-top:6px}
 .xpand .rc{min-height:44px;margin:2px 0 -10px}
-.list.why{margin-top:16px}
+.list.why,.foot + .list.why{margin-top:16px}   /* also after a footer, where the shell gives a disclosure 24 */
 .list.grp{margin-top:12px}   /* a group's rows under its Title 3 label */
 /* the sheet's bottom bar: the timer and I ate it, always on screen (ui2 2.13). Opaque (--bar-solid), so no row text
    shows through it at rest, under the buttons or in the home-indicator strip */
@@ -4415,6 +4415,13 @@ function mergeDay(A,B,pref){
     else if(!xs&&!ys&&!x&&y) out.m[s]=clone(y);
   });
   ['extra','cr','tm'].forEach(function(f){ var u=unionEvents(A[f],B[f]); if(u) out[f]=u; });
+  /* 3.0.4: a craving log removed by Undo on the Cravings tab leaves its time in crGone, so
+     an older copy that still holds it (IndexedDB written 0.7 s later, the GitHub copy 20 s later) cannot bring it back;
+     a timer run reopened by Undo carries re (when), and the copy with the later re wins over the older answer */
+  var g0=A.crGone||[], gone=g0.concat((B.crGone||[]).filter(function(t){ return g0.indexOf(t)<0; }));
+  if(gone.length){ out.crGone=gone; if(out.cr) out.cr=out.cr.filter(function(e){ return !(e&&e.t!=null&&gone.indexOf(e.t)>=0); }); }
+  if(out.tm){ var byT=function(L){ var o={}; (L||[]).forEach(function(e){ if(e&&e.t!=null) o[e.t]=e; }); return o; }, ta=byT(A.tm), tb=byT(B.tm);
+    out.tm=out.tm.map(function(e){ var x=e&&e.t!=null?ta[e.t]:null, y=e&&e.t!=null?tb[e.t]:null; return x&&y&&(x.re||0)!==(y.re||0)?clone((x.re||0)>(y.re||0)?x:y):e; }); }
   if(B.eve===1&&A.eve!==1){ out.eve=1; out.nosnack=B.nosnack; }
   else if(A.eve!==1&&(out.nosnack===undefined||out.nosnack===null)&&B.nosnack!==undefined&&B.nosnack!==null) out.nosnack=B.nosnack;
   var na=A.note||'', nb=B.note||'';
@@ -8993,7 +9000,7 @@ function closeRunBy(x,k){
   return null; }
 /* Undo of a log that closed a run reopens the run as it was */
 function reopenRunBy(x,k){ var d=S.days[k||appToday()]; if(!d||!d.tm||!x) return null;
-  for(var i=d.tm.length-1;i>=0;i--){ var r=d.tm[i]; if(r&&r.by&&r.byT===x.t){ delete r.by; delete r.byT; delete r.ate;
+  for(var i=d.tm.length-1;i>=0;i--){ var r=d.tm[i]; if(r&&r.by&&r.byT===x.t){ delete r.by; delete r.byT; delete r.ate; r.re=Date.now();
     if(r.id0!==undefined){ if(r.id0===null) delete r.id; else r.id=r.id0; delete r.id0; } return r; } }
   return null; }
 /* the answer is stored, the card holds the logged row with Undo and the whole tab repaints, so the P6 line moves with
@@ -9004,11 +9011,14 @@ function timerAnswer(ate){
   S.ui.crLast={id:x.id||null,t:Date.now(),kind:ate?'ate':'rode',k:appToday(),run:x.t};
   save(); render(); if(!(TAB==='cravings'&&CRDEC.O12)) recordToast(ate?'ate':'rode',{k:appToday()});
 }
-/* Undo (DATA 6.3): the log goes (a run it closed reopens as it was), or the run's answer clears; the tab repaints */
+/* a removed craving log leaves its time behind, so the merge of an older copy cannot bring it back (05_core mergeDay) */
+function crGone(d,c){ if(d&&c&&c.t!=null){ d.crGone=d.crGone||[]; if(d.crGone.indexOf(c.t)<0) d.crGone.push(c.t); } }
+/* Undo (DATA 6.3): the log goes (a run it closed reopens as it was), or the run's answer clears; the tab repaints.
+   Either leaves a mark (crGone, the run's re) that keeps it undone when an older copy is merged in */
 function crUndo(){
   var L=S.ui&&S.ui.crLast; if(!L) return; var d=S.days[L.k];
-  if(d&&L.run){ (d.tm||[]).forEach(function(r){ if(r&&r.t===L.run){ delete r.ate; delete r.by; } }); }
-  else if(d){ for(var i=(d.cr||[]).length-1;i>=0;i--){ var c=d.cr[i]; if(c&&c.t===L.t&&c.id===L.id){ d.cr.splice(i,1); reopenRunBy(c,L.k); break; } } }
+  if(d&&L.run){ (d.tm||[]).forEach(function(r){ if(r&&r.t===L.run){ delete r.ate; delete r.by; r.re=Date.now(); } }); }
+  else if(d){ for(var i=(d.cr||[]).length-1;i>=0;i--){ var c=d.cr[i]; if(c&&c.t===L.t&&c.id===L.id){ d.cr.splice(i,1); crGone(d,c); reopenRunBy(c,L.k); break; } } }
   S.ui.crLast=null; save(false,L.k); render();
 }
 /* ===================== MEALS (6.7): opens on the weak spot =====================

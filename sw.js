@@ -2,7 +2,7 @@
    Page: network first, so a new version arrives; cached copy when offline.
    photos/index.json: network first, so new photos show up.
    photos/*: cache first in their own cache, which survives app updates. */
-const VERSION = 'rebalancing-3.0.4-p4';
+const VERSION = 'rebalancing-3.0.4-p5';
 const PHOTOS = 'rebalancing-photos';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png'];
 self.addEventListener('install', e => {

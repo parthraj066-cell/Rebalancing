@@ -829,6 +829,8 @@ div.kv:not(.list) > b{font-family:var(--f-num);font-weight:600;text-align:right;
 .xpand .rc{min-height:44px;margin:2px 0 -10px}
 .list.why,.foot + .list.why{margin-top:16px}   /* also after a footer, where the shell gives a disclosure 24 */
 .list.grp{margin-top:12px}   /* a group's rows under its Title 3 label */
+/* no one-word last line in a footer or a row's name on this tab and its sheets ("own." alone, "jar" alone) */
+:is(#pane-cravings,#sheetIn.cs,#sheetIn.fs) :is(.foot,.row .t-body){text-wrap:pretty}
 /* the sheet's bottom bar: the timer and I ate it, always on screen (ui2 2.13). Opaque (--bar-solid), so no row text
    shows through it at rest, under the buttons or in the home-indicator strip */
 .sheet-panel .bbar{background:var(--bar-solid);-webkit-backdrop-filter:none;backdrop-filter:none}
@@ -839,7 +841,13 @@ div.kv:not(.list) > b{font-family:var(--f-num);font-weight:600;text-align:right;
 .bbar .barrow.run .btn{min-width:120px}
 .bbar .barrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}
 .bbar .barrow .plain{min-width:96px;min-height:50px}
-.sheet-panel.barred .sheet-in{padding-bottom:132px}   /* only a sheet with a bar */
+/* only a sheet with a bar: the bar (12 + 50 + 12 + the home strip) and 24 clear under the last row, so the end of the
+   list scrolls clear of the bar (132 at 390 with its 34 strip). By id: the shell's #sheetIn padding outranks a class */
+#sheetPanel.barred #sheetIn{padding-bottom:calc(98px + var(--safe-b))}
+/* a run on another craving, in this sheet's bar: its name (one line) over its time left, and this sheet's eaten button */
+.bbar .barrow.other .m{display:flex;flex-direction:column;min-width:0}
+.bbar .barrow.other .oname{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bbar .barrow.other .t-value{margin:0}
 /* Something else: the search field, then the groups as rows */
 .search.fs{margin:0 0 4px}
 .sec.first{margin-top:16px}
@@ -1544,7 +1552,7 @@ var CRAVE=[
  {t:'Hot cocoa with cream and chilli',w:'Whisk 5 g cocoa (2 tsp) into 150 mL hot almond milk with 30 mL cream, cinnamon, a pinch of salt and a pinch of chilli if you like the heat. A hot chocolate drink with about 1 g of sugar.',c:2.4,s:1,m:3,g:'pantry',tier:1,kc:136},
  {t:'Cocoa peanut whip',w:'Whip 150 g Chobani yoghurt with 15 g peanut butter (1 tbsp) and 5 g cocoa (2 tsp) until it holds like mousse: a smaller B13, eaten from a glass with a spoon, with 20 g of protein.',c:8.8,s:6.8,m:2,g:'fridge',tier:2,kc:205,rc:'B13'},
  {t:'Two squares of the real bar, then put it away',w:'Two squares, no more than 20 g, then the rest goes in the cupboard: about 11 g of sugar and 104 calories. Buy the small bar, because two squares is harder to stop at with a family block in the house.',c:12,s:11,m:0,g:'shop',tier:3,kc:104}]},
-{id:'timtam',n:'Tim Tams or other biscuits',cat:'sugar',f:'sweet',nova:4,sugar:25,kcal:290,cost:4.50,serve:'Three Original Tim Tam biscuits (3 x 18.3 g)',net:35,k:'Arnott\'s, Oreo, Marie, Parle-G, cookies, Monte Carlo',
+{id:'timtam',n:'Tim Tams or other biscuits',cat:'sugar',f:'sweet',nova:4,sugar:25,kcal:290,cost:4.50,serve:'Three Original Tim Tam biscuits (3 x 18.3 g)',net:35,k:'Arnott’s, Oreo, Marie, Parle-G, cookies, Monte Carlo',
  why:'The biscuit is flour, sugar and palm oil under a chocolate coat. Three biscuits are about 25 g of sugar and 290 calories, and two are about 17 g.',
  alts:[
  {t:'Almonds with the coffee',w:'30 g (about 25 almonds), bagged in advance. Keep the tea break and swap the biscuit for the almonds.',c:1.7,s:1.3,m:0,g:'pantry',tier:1,kc:174,caf:1},
@@ -1598,7 +1606,7 @@ var CRAVE=[
  {t:'Cheesecake in a glass',w:'Whip 100 g Chobani yoghurt with 30 mL cream, lemon zest and vanilla, and top with 10 g crushed almonds.',c:5.6,s:5.5,m:4,g:'fridge',tier:2,kc:233},
  {t:'Berries and whipped cream',w:'60 g berries (thawed frozen ones are fine) under 30 mL cream whipped with a drop of vanilla.',c:5.4,s:4.5,m:3,g:'freezer',tier:2,kc:132},
  {t:'Half the slice, with coffee, out of the house',w:'For birthdays. Eat half at the table with everyone else: about 15 g of sugar, 18 g of carbs and 225 calories.',c:17.5,s:15.5,m:0,g:'out',tier:3,kc:225,caf:1}]},
-{id:'lollies',n:'Lollies, gummies, snakes',cat:'sugar',f:'sweet',nova:4,sugar:23,kcal:165,cost:4.00,serve:'A 50 g handful of jelly snakes',net:37,k:'Allen\'s, Natural Confectionery, candy, Skittles, gummy bears',
+{id:'lollies',n:'Lollies, gummies, snakes',cat:'sugar',f:'sweet',nova:4,sugar:23,kcal:165,cost:4.00,serve:'A 50 g handful of jelly snakes',net:37,k:'Allen’s, Natural Confectionery, candy, Skittles, gummy bears',
  why:'Sugar and glucose syrup with no fat or protein to fill you up. A 50 g handful of snakes is about 23 g of sugar and 37 g of carbohydrate. Many gummies are set with gelatine, so check the label.',
  alts:[
  {t:'Olives, 20 g',w:'About six kalamata olives, eaten one at a time like lollies. Salt and fat, no sugar.',c:0.3,s:0,m:0,g:'pantry',tier:1,kc:23},
@@ -1634,7 +1642,7 @@ var CRAVE=[
  {t:'Plain Chobani yoghurt with berries and cinnamon',w:'120 g plain Chobani yoghurt, 30 g berries and cinnamon. About a third of the sugar in a flavoured pot, all of it from the yoghurt and fruit.',c:7.2,s:6.6,m:1,g:'fridge',tier:2,kc:100,lead:1},
  {t:'Plain Chobani yoghurt with cocoa and hemp seeds',w:'120 g plain Chobani yoghurt with 3 g cocoa (1 tsp) and 10 g hemp seeds. Chocolate-flavoured, with 16 g of protein.',c:5.7,s:5,m:1,g:'fridge',tier:2,kc:146},
  {t:'Mint and cucumber raita',w:'100 g Chobani yoghurt, 60 g grated cucumber, chopped mint, salt and a pinch of roasted cumin (jeera). Cold and savoury, 10 g of protein.',c:5.9,s:5,m:4,g:'fridge',tier:2,kc:81}]},
-{id:'muesli',n:'Muesli bar or snack bar',cat:'sugar',f:'sweet',nova:4,sugar:5,kcal:122,cost:2.50,serve:'One 31 g Uncle Tobys Chewy Choc Chip bar',net:19,k:'Uncle Tobys, protein bar, Carman\'s, Nice and Natural',
+{id:'muesli',n:'Muesli bar or snack bar',cat:'sugar',f:'sweet',nova:4,sugar:5,kcal:122,cost:2.50,serve:'One 31 g Uncle Tobys Chewy Choc Chip bar',net:19,k:'Uncle Tobys, protein bar, Carman’s, Nice and Natural',
  why:'Oats and rice crisps held together with glucose syrup. A 31 g chewy bar is about 19 g of carbohydrate and 5 g of sugar, so it is the carbs that break the day. A protein bar with under 10 g of net carbs and 8 g of sugar on the label is not this craving. Most bars reach those numbers with sugar alcohols or sweeteners, so treat one as a step down, the way the soft drink entry treats Coke No Sugar cola.',
  alts:[
  {t:'Bagged almonds, 30 g',w:'Portion them into small bags at the start of the week so you never eat from the big bag. Keep one in your work bag.',c:1.7,s:1.3,m:0,g:'pantry',tier:1,kc:174},
@@ -1655,7 +1663,7 @@ var CRAVE=[
 {id:'indiansweet',n:'Gulab jamun, barfi, ladoo',cat:'sugar',f:'sweet',nova:3,sugar:40,kcal:316,cost:3.00,serve:'Two gulab jamun with syrup, about 100 g',net:55,k:'mithai, jalebi, rasgulla, halwa, Diwali sweets',
  why:'Sugar syrup, milk solids and flour, fried in ghee or oil. One gulab jamun with its syrup is about 20 g of sugar, and two is the usual serve: about 40 g of sugar and 316 calories.',
  alts:[
- {t:'Shrikhand, no added sugar',w:'150 g Chobani yoghurt with ground cardamom, a few saffron threads soaked in a spoon of warm water and 10 g chopped almonds. The only sugar is the yoghurt\'s own.',c:6.6,s:6.4,m:3,g:'fridge',tier:2,kc:163},
+ {t:'Shrikhand, no added sugar',w:'150 g Chobani yoghurt with ground cardamom, a few saffron threads soaked in a spoon of warm water and 10 g chopped almonds. The only sugar is the yoghurt’s own.',c:6.6,s:6.4,m:3,g:'fridge',tier:2,kc:163},
  {t:'Paneer with cardamom and cocoa',w:'Mash 60 g paneer with 3 g cocoa (1 tsp), cardamom and 10 mL cream, press it flat and cut squares. It has the crumbly texture of barfi.',c:2.1,s:1.6,m:4,g:'fridge',tier:1,kc:200},
  {t:'Masala chai with cream, no sugar',w:'Black tea simmered with crushed cardamom, ginger and cinnamon, finished with 30 mL cream. Keep the chai and leave out the sugar.',c:0.9,s:0.9,m:5,g:'fridge',tier:1,kc:102,caf:1},
  {t:'Saffron cardamom malai',w:'Whip 40 mL cream with a pinch of cardamom and three or four saffron threads, then top with 10 g crushed almonds. The cardamom and saffron of rabri, with no sugar.',c:1.8,s:1.6,m:4,g:'fridge',tier:1,kc:194},
@@ -1689,7 +1697,7 @@ var CRAVE=[
  {t:'Herman Brot bread rusks to dunk',w:'Cut 3 slices of Herman Brot bread into fingers, brush them with 15 g melted ghee and a pinch of cinnamon, and dry them in the air fryer or oven at 150 C for 10 to 12 minutes, until hard right through. Cool them and keep them in a jar. One slice’s worth (four fingers) holds up in hot chai like a rusk, about 2.6 g of carbs.',c:2.6,s:0.7,m:0,g:'pantry',tier:1,kc:141,ahead:1,caf:1},
  {t:'Unsweetened chai and one Marie biscuit',w:'Make the chai with no sugar in the pot and put one Marie biscuit on the saucer, then put the packet away before you sit down. About 11 g of carbs and 98 calories, against about 30 g for sweet chai with three or four biscuits.',c:11.2,s:6.5,m:5,g:'pantry',tier:3,kc:98,caf:1}]},
 /* ================= CHIPS AND SAVOURY SNACKS ================= */
-{id:'chips',n:'Potato chips',cat:'packet',f:'crunchy',nova:4,sugar:1,kcal:246,cost:4.50,serve:'One 45 g bag of Smith\'s Crinkle Cut Original',net:23,k:'crisps, Smith\'s, Kettle, Red Rock Deli, Lay\'s',
+{id:'chips',n:'Potato chips',cat:'packet',f:'crunchy',nova:4,sugar:1,kcal:246,cost:4.50,serve:'One 45 g bag of Smith’s Crinkle Cut Original',net:23,k:'crisps, Smith’s, Kettle, Red Rock Deli, Lay’s',
  why:'Potato starch, seed oil and salt, easy to keep eating past fullness. A 45 g bag is about 23 g of carbohydrate and a 170 g share bag about 87 g. The swaps keep the salt and the crunch.',
  alts:[
  {t:'Cheese crisps',w:'30 g tasty cheese in small piles on baking paper, 180 C for six minutes or 60 to 90 seconds in the microwave. Cool until they snap.',c:0.3,s:0.1,m:8,g:'fridge',tier:1,kc:124},
@@ -1717,7 +1725,7 @@ var CRAVE=[
  {t:'Roasted seaweed snack, one pack',w:'One 5 g pack from the Asian aisle of the supermarket: thin crisp sheets, about 27 calories and 1 g of carbs. Buy plain or sea salt flavour, since some flavours contain prawn or fish.',c:1,s:0.1,m:0,g:'shop',tier:1,kc:27},
  {t:'Roasted papad with cracked pepper',w:'One medium urad dal papad (about 12 g) from the Indian grocer, held over the gas flame with tongs or microwaved for about 60 seconds until it blisters all over, with cracked pepper on top. Thin and crisp like a cracker, about 5 g of carbs and 45 calories. Papads vary, so check the pack, and add no salt.',c:5,s:0,m:2,g:'pantry',tier:2,kc:45}]},
 {id:'popcorn',n:'Microwave or cinema popcorn',cat:'packet',f:'crunchy',nova:4,sugar:1,kcal:400,cost:3.00,serve:'One 85 g microwave bag, butter flavour',net:40,k:'cinema, movie popcorn',
- why:'An 85 g microwave bag is about 40 g of carbohydrate, with the oil, salt and flavouring that make it easy to finish. Plain popcorn is a whole grain: 15 g of kernels popped in a pan makes about two cups with 9.5 g of carbs, and it is one of the swaps. Weigh the kernels; a big bowl is over the day\'s room.',
+ why:'An 85 g microwave bag is about 40 g of carbohydrate, with the oil, salt and flavouring that make it easy to finish. Plain popcorn is a whole grain: 15 g of kernels popped in a pan makes about two cups with 9.5 g of carbs, and it is one of the swaps. Weigh the kernels; a big bowl is over the day’s room.',
  alts:[
  {t:'Roasted edamame',w:'100 g frozen edamame with salt, 200 C for 12 minutes or 10 in the air fryer. The same handful-at-a-time habit, with 11 g of protein.',c:3.5,s:2.2,m:14,g:'freezer',tier:1,kc:120},
  {t:'Roasted pumpkin seeds',w:'20 g pepitas in a dry pan with salt for 3 minutes until they pop. 6 g of protein.',c:0.6,s:0.3,m:4,g:'pantry',tier:1,kc:112},
@@ -1725,7 +1733,7 @@ var CRAVE=[
  {t:'Cheese crisps',w:'30 g tasty cheese baked at 180 C for six minutes or microwaved 60 to 90 seconds into crisps: salty and crunchy, in a set portion.',c:0.3,s:0.1,m:8,g:'fridge',tier:1,kc:124},
  {t:'Sunflower seeds in the shell, 30 g',w:'Weigh 30 g of plain salted sunflower seeds in the shell into one bowl, with a second bowl for the shells, and crack them one at a time. Middle Eastern and Asian grocers sell them; the caramel and coconut ones are sugared, so check the label on any flavoured pack. That is about 15 g of kernels: 0.6 g of carbs and 88 calories, eaten as slowly as a bowl of popcorn.',c:0.6,s:0.4,m:0,g:'pantry',tier:1,kc:88},
  {t:'Popcorn, 15 g, popped in a pan',w:'Pop 15 g kernels (a heaped tablespoon) in 3 g ghee or oil in a covered pot, then toss with 3 g melted butter and salt. About two cups, 9.5 g of carbs and 107 calories, against about 40 g of carbs in an 85 g microwave bag. Weigh the kernels, and count it in the day’s 45 g.',c:9.5,s:0.1,m:5,g:'pantry',tier:2,kc:107}]},
-{id:'namkeen',n:'Bhujia, sev or namkeen mix',cat:'packet',f:'crunchy',nova:3,sugar:1,kcal:280,cost:1.00,serve:'A 50 g bowl of aloo bhujia',net:23,k:'Haldiram\'s, bhujia, sev, mixture, chakli',
+{id:'namkeen',n:'Bhujia, sev or namkeen mix',cat:'packet',f:'crunchy',nova:3,sugar:1,kcal:280,cost:1.00,serve:'A 50 g bowl of aloo bhujia',net:23,k:'Haldiram’s, bhujia, sev, mixture, chakli',
  why:'Gram flour and potato fried in oil with salt and spices. A 50 g bowl of aloo bhujia is about 23 g of carbohydrate and 280 calories, and even a 30 g handful is about 13 g of carbohydrate.',
  alts:[
  {t:'Seed and coconut chivda from the jar',w:'Make a jar on Sunday: 100 g pepitas, 80 g sunflower seeds and 50 g peanuts fried for 4 minutes in 20 g ghee with curry leaves, hing, turmeric, chilli and salt, with 50 g coconut flakes added for the last minute, then cooled. A 30 g serve (a small bowl) is 1.4 g of carbs and 185 calories, against about 23 g of carbs in a 50 g bowl of bhujia.',c:1.4,s:1,m:0,g:'pantry',tier:1,kc:185,ahead:1},
@@ -1752,8 +1760,8 @@ var CRAVE=[
  {t:'Paneer tikka with chutney',w:'100 g paneer and tofu tikka from the Sunday tray, reheated in a hot pan or the air fryer for 4 minutes so the edges char, with 20 g coriander chutney. The samosa spices and the chutney, with no flour.',c:5.5,s:4.1,m:6,g:'fridge',tier:2,kc:209},
  {t:'Masala papad, roasted',w:'At an Indian restaurant, order masala papad in place of the samosa and ask for it roasted: a papad under chopped onion, tomato, green chilli and coriander. At home, roast one urad papad (about 12 g) over the gas flame or for 45 seconds in the microwave and top it with 15 g each of chopped onion and tomato, lemon and chaat masala. About 7 g of carbs and 57 calories.',c:7,s:1.2,m:0,g:'out',tier:2,kc:57},
  {t:'One samosa, with chutney not tamarind',w:'At the shop or the Indian grocer, one cocktail-size samosa (about 40 g) with coriander chutney on the side. Leave the tamarind and date chutney, which is mostly sugar. About 13 g of carbs and 134 calories, against about 31 g for a full-size shop samosa.',c:12.8,s:1.5,m:0,g:'out',tier:3,kc:134}]},
-{id:'maccas',n:'Hot chips or Maccas fries',cat:'packet',f:'crunchy',nova:4,sugar:0,kcal:296,cost:5.00,serve:'One medium McDonald\'s Australia fries',net:31,k:'McDonald\'s, fries, hot chips, Hungry Jack\'s, KFC chips',
- why:'A medium serve of McDonald\'s fries is about 34 g of carbohydrate and 296 calories, and a large about 52 g and 450. The swaps keep the salt and the crunch and remove the starch.',
+{id:'maccas',n:'Hot chips or Maccas fries',cat:'packet',f:'crunchy',nova:4,sugar:0,kcal:296,cost:5.00,serve:'One medium McDonald’s Australia fries',net:31,k:'McDonald’s, fries, hot chips, Hungry Jack’s, KFC chips',
+ why:'A medium serve of McDonald’s fries is about 34 g of carbohydrate and 296 calories, and a large about 52 g and 450. The swaps keep the salt and the crunch and remove the starch.',
  alts:[
  {t:'Halloumi fries',w:'Cut 100 g halloumi (about half a block) into batons and fry in a dry non-stick pan for 2 to 3 minutes a side until golden, or air fry at 200 C for 8 minutes. Squeeze lemon over and add dried oregano and chilli flakes; 22 g of protein.',c:2.3,s:2.1,m:8,g:'fridge',tier:1,kc:331},
  {t:'Peri peri tofu fries',w:'Press 150 g firm tofu dry in paper towel, cut into fries, toss with 5 mL oil (1 tsp), 2 g peri peri seasoning and salt, and air fry at 200 C for 15 minutes, shaking once (or 20 minutes on a tray at 220 C). About 85 cents of tofu and 18 g of protein.',c:2.6,s:0.8,m:18,g:'fridge',tier:1,kc:227},
@@ -1781,7 +1789,7 @@ var CRAVE=[
  {t:'Chobani yoghurt pot and a black coffee',w:'If the iced coffee is your breakfast, have a plain Chobani yoghurt pot (about 160 g) and a black coffee: 16 g of protein.',c:6.4,s:6.4,m:1,g:'fridge',tier:2,kc:112,caf:1},
  {t:'Iced cocoa shaken in a jar',w:'Whisk 5 g cocoa (2 tsp) into 1 tbsp hot water until smooth, then shake it hard in a lidded jar with 150 mL cold full-cream milk and a handful of ice. A cold chocolate milk with about 7 g of sugar, all of it the milk’s own, against 52 g in a 600 mL Farmers Union iced coffee carton.',c:8.2,s:7.3,m:3,g:'fridge',tier:2,kc:103}]},
 {id:'softdrink',n:'Coke or other soft drink',cat:'drink',f:'drink',nova:4,sugar:64,kcal:258,cost:4.00,serve:'One 600 mL Coca-Cola Classic',net:64,k:'Coke, Pepsi, Sprite, Fanta, Solo, lemonade, cola',
- why:'A 600 mL bottle is about 64 g of sugar, more than the plan\'s whole day of carbs.',
+ why:'A 600 mL bottle is about 64 g of sugar, more than the plan’s whole day of carbs.',
  alts:[
  {t:'Soda water with lemon and ice',w:'Fizzy and cold, with no sugar. Keep a bottle of soda water in the fridge and a lemon in the fruit bowl.',c:0.7,s:0.3,m:1,g:'free',tier:1,kc:2},
  {t:'Soda water with a splash of apple cider vinegar',w:'10 mL (2 tsp) apple cider vinegar in a glass of soda water over ice. Sour and sharp, closer to a soft drink than plain water is.',c:0,s:0,m:1,g:'pantry',tier:1,kc:2},
@@ -1845,7 +1853,7 @@ var CRAVE=[
  {t:'Two-egg wrap',w:'Whisk 2 eggs with a pinch of salt, pour into a wide non-stick pan with 3 g butter, tilt to spread it thin, cook 1 minute, flip for 20 seconds and slide it out. Fill and roll it like a tortilla.',c:0.8,s:0.4,m:4,g:'fridge',tier:1,kc:0},
  {t:'One slice of white toast',w:'If it has to be white bread, toast one slice only, put the loaf away before it pops, and spread it with 5 g butter. One slice is about 15 g of carbs; a crumpet is about 17 g.',c:15,s:1,m:3,g:'pantry',tier:3,kc:0}]},
 {id:'rice',n:'Rice',cat:'meal',f:'meal',nova:1,sugar:0,kcal:205,cost:1.00,serve:'One cup of cooked white rice, 158 g',net:44,k:'biryani, fried rice, pulao, jeera rice',
- why:'A cup of cooked rice is about 44 g of carbohydrate, more than twice a meal\'s 20 g. It is also what your family eats, so a small measured serve may work better than refusing it.',
+ why:'A cup of cooked rice is about 44 g of carbohydrate, more than twice a meal’s 20 g. It is also what your family eats, so a small measured serve may work better than refusing it.',
  alts:[
  {t:'Cauliflower rice, properly dried',w:'Microwave 200 g frozen cauliflower rice for 4 minutes, squeeze it hard in a clean tea towel or sieve, then fry it in 5 g ghee with cumin seeds until the grains separate. Drying it stops it going soggy under curry.',c:6.2,s:3.8,m:8,g:'freezer',tier:2,kc:0},
  {t:'Konjac rice with cumin seeds',w:'Rinse 200 g konjac rice (Slendier Rice Style), dry-fry it in a hot pan for 3 minutes, then add 5 g ghee and toasted cumin seeds. It spoons like rice under dal or curry, with about 1 g of carbs.',c:1.2,s:0,m:5,g:'pantry',tier:1,kc:0},
@@ -1881,7 +1889,7 @@ var CRAVE=[
  {t:'Konjac spaghetti in tomato',w:'Rinse 200 g konjac spaghetti, dry-fry it for 2 minutes, then stir in 50 g passata, 10 g butter and a pinch of salt and simmer for 2 minutes until it coats. Top with 20 g grated cheese; soft noodles in buttery tomato, close to the tinned kind.',c:3.8,s:2.5,m:5,g:'pantry',tier:1,kc:0},
  {t:'Half a can of beans, with eggs',w:'Heat half a 220 g can of baked beans (about 110 g) and serve it with 2 fried eggs; keep the other half in the fridge for the next day. The half can is about 14 g of carbs and 5 g of sugar.',c:15,s:5.6,m:5,g:'pantry',tier:3,kc:0}]},
 {id:'hashbrown',n:'Hash browns and frozen chips',cat:'meal',f:'meal',nova:4,sugar:1,kcal:280,cost:4.00,serve:'A 200 g plate of oven chips from frozen',net:44,k:'oven chips, McCain, wedges',
- why:'Potato, a starch coating and seed oil, par-fried at the factory and finished at home. A 200 g plate of oven chips is about 44 g of carbohydrate, more than a whole meal\'s 20 g.',
+ why:'Potato, a starch coating and seed oil, par-fried at the factory and finished at home. A 200 g plate of oven chips is about 44 g of carbohydrate, more than a whole meal’s 20 g.',
  alts:[
  {t:'Roasted cauliflower with salt',w:'150 g cauliflower in big pieces with 10 mL olive oil and salt, 200 C for 25 minutes until the edges catch.',c:4.5,s:2.9,m:28,g:'fresh',tier:1,kc:0},
  {t:'Halloumi fries',w:'60 g halloumi (a third of a block) in batons, about 4 minutes in a hot dry pan, turning them until golden on each side, with lemon and dried oregano.',c:1.5,s:1.3,m:5,g:'fridge',tier:1,kc:0},
@@ -1917,7 +1925,7 @@ var CRAVE=[
  {t:'Miso butter instead of teriyaki',w:'Melt 10 g butter with 8 g white miso (about 1/2 tbsp) and a splash of soy, and brush it over tofu, eggplant or mushrooms in the last minute of cooking. It glazes and browns like teriyaki, with no syrup.',c:1.9,s:0.5,m:2,g:'fridge',tier:1,kc:0},
  {t:'One teaspoon of sweet chilli',w:'If it has to be sweet chilli, put one teaspoon (about 7 g) on the side as a dip, so you control how much you eat: about 4 g of sugar, against about 14 g in a generous pour.',c:4.1,s:3.8,m:0,g:'pantry',tier:3,kc:0}]},
 /* ================= EATING OUT AND TAKEAWAY ================= */
-{id:'pizza',n:'Pizza',cat:'out',f:'out',nova:4,sugar:10,kcal:750,cost:15.00,serve:'Three slices of a large chain cheese pizza',net:84,k:'Domino\'s, Pizza Hut, garlic pizza',
+{id:'pizza',n:'Pizza',cat:'out',f:'out',nova:4,sugar:10,kcal:750,cost:15.00,serve:'Three slices of a large chain cheese pizza',net:84,k:'Domino’s, Pizza Hut, garlic pizza',
  why:'Three slices is about 90 g of carbohydrate. Almost all of it is in the base and the sweetened sauce.',
  alts:[
  {t:'Keto roti pizza',w:'Spread 20 g passata (1 tbsp) on a keto roti, add 40 g grated cheese, 10 g sliced capsicum, a few olives and oregano, then 5 to 6 minutes in the air fryer at 180 C or under the oven grill until the cheese bubbles.',c:5.2,s:2.7,m:8,g:'fridge',tier:1,kc:0},
@@ -1925,7 +1933,7 @@ var CRAVE=[
  {t:'Pizza mushrooms, air fried',w:'Pull the stems off 4 cup mushrooms (about 100 g), fill them with 15 g passata, 30 g grated cheese, oregano and chilli, and air fry at 180 C for 8 minutes or bake at 200 C for 12. Eat them hot with your hands.',c:3.5,s:2.7,m:10,g:'fridge',tier:1,kc:0},
  {t:'Cheese-crust pizza',w:'Make D11 as tonight’s dinner with 100 g tasty cheese and 20 g feta in place of 120 g and 30 g. The whole pizza is the meal, with about 42 g of protein. Its 9.5 g of sugar comes from the passata, capsicum and cheese, with none added, which puts it a little over the 8 g these swaps usually stay under.',c:11.1,s:9.5,m:20,g:'fridge',tier:2,kc:0,rc:'D11'},
  {t:'Caprese or Greek salad, eggs first',w:'Where the shop sells salads, order a caprese (bocconcini, tomato, basil and olive oil) or a Greek salad with extra feta, and eat 2 boiled eggs from the fridge or your bag before it comes. The caprese with about 100 g of bocconcini and the eggs is about 7 g of carbs and 36 g of protein, against about 30 g of carbs in one slice of a large pizza.',c:7,s:5.4,m:0,g:'out',tier:2,kc:0},
- {t:'One slice and a side salad',w:'If the pizza is already on the table, take one slice and a side salad with oil, eat the salad first and stop at one. Domino\'s and Pizza Hut (the pizza chains) sell no side salads, so there, have cucumber, tomato and 30 g of cheese from the fridge as the salad. One slice of a large pizza is about 30 g of carbs.',c:31,s:3.7,m:0,g:'out',tier:3,kc:0}]},
+ {t:'One slice and a side salad',w:'If the pizza is already on the table, take one slice and a side salad with oil, eat the salad first and stop at one. Domino’s and Pizza Hut (the pizza chains) sell no side salads, so there, have cucumber, tomato and 30 g of cheese from the fridge as the salad. One slice of a large pizza is about 30 g of carbs.',c:31,s:3.7,m:0,g:'out',tier:3,kc:0}]},
 {id:'kebab',n:'Kebab or snack pack',cat:'out',f:'out',nova:4,sugar:12,kcal:1100,cost:16.00,serve:'A falafel or halloumi kebab with chips, or a snack pack',net:100,k:'HSP, halal snack pack, falafel, gozleme',
  why:'Bread, chips and a sweet chilli-garlic sauce. About 100 g of carbohydrate in one meal.',
  alts:[
@@ -1971,7 +1979,7 @@ var CRAVE=[
  {t:'Peanuts and cheese sticks',w:'From the servo shelf: a bag of salted peanuts and a cheese stick. Eat 30 g of the peanuts (a small handful) and one 20 g stick, and leave the rest of the bag in the car.',c:2,s:1.5,m:0,g:'shop',tier:1,kc:0},
  {t:'Supermarket eggs, cheese and cucumber',w:'If a supermarket is still open, it takes no longer than the servo: a cheese snack pack, a Lebanese cucumber and boiled eggs if the chilled section has them, eaten in the car. About 5 g of carbs.',c:5.3,s:2.9,m:5,g:'shop',tier:1,kc:0,rc:'S5'},
  {t:'Kimchi and cheese keto roti quesadilla',w:'Scatter 30 g grated cheese and 40 g chopped kimchi over one half of a keto roti, fold the other half over, and crisp it 2 minutes a side in 3 g butter in a lidded pan. Hot and melted like the servo toastie, about 2.3 g of carbs. Choose a kimchi with no fish sauce or prawns on the label.',c:2.3,s:1.9,m:4,g:'fridge',tier:1,kc:0}]},
-{id:'pie',n:'Vegie pie, pastie, spinach and ricotta roll',cat:'out',f:'out',nova:4,sugar:4,kcal:450,cost:6.50,serve:'One bakery or servo vegetable pie or pastie, 160 to 175 g',net:39,k:'pastie, sausage roll, bakery, Vili\'s',
+{id:'pie',n:'Vegie pie, pastie, spinach and ricotta roll',cat:'out',f:'out',nova:4,sugar:4,kcal:450,cost:6.50,serve:'One bakery or servo vegetable pie or pastie, 160 to 175 g',net:39,k:'pastie, sausage roll, bakery, Vili’s',
  why:'Pastry is flour and fat. A pie is 35 to 45 g of carbohydrate before the sauce on top.',
  alts:[
  {t:'Frozen frittata slice',w:'One slice from the Sunday frittata bake (2 eggs, mushroom, spinach and feta in each), 2 minutes in the microwave from frozen. Hot and handheld, 17 g of protein.',c:2.6,s:1.4,m:2,g:'freezer',tier:1,kc:0,ahead:1},
@@ -5223,8 +5231,16 @@ function sheetOpen(){ return SH.open&&!SH.closing; }
    was one. A sheet opened while none is open starts with an empty stack. sheetPage() updates the page showing in place
    (a search query typed into it). */
 function sheetPage(fn){ SH.page=fn||null; }
-function sheetPush(next){ var b=$('#sheetIn'); if(sheetOpen()&&SH.page) SH.stack.push({draw:SH.page,y:b?b.scrollTop:0}); next(); }
-function sheetBack(){ var p=SH.stack.pop(); if(!p||!sheetOpen()) return false; p.draw(); var b=$('#sheetIn'); if(b) b.scrollTop=p.y; return true; }
+function sheetPush(next,from){ var b=$('#sheetIn'); if(sheetOpen()&&SH.page) SH.stack.push({draw:SH.page,y:b?b.scrollTop:0,foc:sheetKey(from)}); next(); sheetFocus(null); }
+function sheetBack(){ var p=SH.stack.pop(); if(!p||!sheetOpen()) return false; p.draw(); var b=$('#sheetIn'); if(b) b.scrollTop=p.y; sheetFocus(p.foc); return true; }
+/* focus on a pushed page (its back button, else its title) and, back, on the row that pushed it, so a VoiceOver or
+   keyboard user keeps his place (the tapped control is gone with the page it was on). key: the row's data attributes */
+function sheetKey(el){ if(!el||!el.getAttribute||!el.getAttribute('data-act')) return null; var k='[data-act="'+el.getAttribute('data-act')+'"]';
+  ['data-id','data-f','data-from'].forEach(function(a){ var v=el.getAttribute(a); if(v!=null) k+='['+a+'="'+String(v).replace(/["\\]/g,'')+'"]'; }); return k; }
+function sheetFocus(key){ var e=null; try{ e=key?$('#sheetIn '+key):null; }catch(x){ e=null; }
+  if(!e) e=$('#sheetHead .sheet-h.back .lead');
+  if(!e){ e=$('#sheetHead h2')||$('#sheetIn h2'); if(e&&!e.hasAttribute('tabindex')) e.setAttribute('tabindex','-1'); }
+  if(e){ try{ e.focus({preventScroll:true}); }catch(x){ try{ e.focus(); }catch(y){} } } }
 /* the header's three columns (72, 1fr, 72): a sheet passes <div class="sheet-h"><h2>Title</h2>Done</div>, with an
    optional <button class="lead"> before the title (Weight details: Weigh in); an empty leading slot is added when
    there is none, so the title stays centred */
@@ -5275,7 +5291,7 @@ function closeSheet(vPxPerMs){
 }
 function sheetDone(){
   var e=shEls(); sheetStop();
-  SH.open=false; SH.closing=false; SH.hold=false; SH.y=0; SH.stack=[]; SH.page=null;
+  SH.open=false; SH.closing=false; SH.hold=false; SH.y=0; SH.stack=[]; SH.page=null; if(typeof CRSH!=='undefined') CRSH.forRun=null;
   e.sh.classList.remove('on'); e.p.style.transform=''; e.p.style.opacity=''; e.p.style.willChange=''; e.bg.style.opacity='';
   var op=SH.opener; SH.opener=null;
   try{ var ae=document.activeElement; if(op&&op.focus&&document.body.contains(op)&&(!ae||ae===document.body||e.sh.contains(ae))) op.focus({preventScroll:true}); }catch(x){}
@@ -6247,6 +6263,7 @@ function fitDayCarbs(iso,k){
   });
   ((d&&d.extra)||[]).forEach(function(e){ var r3=rec(e.c); if(r3) other+=macros(r3,1)[2]; else unknown=true; });
   ((d&&d.cr)||[]).forEach(function(x){
+    if(x.nf&&!x.res) return;   /* 3.0.4: Did this (O11) ate nothing */
     if(!x.res){ unknown=true; return; }
     var a=altOfLog(x);
     if(a&&a.c!=null) other+=a.c; else unknown=true;
@@ -7403,9 +7420,12 @@ function dayDetail(k){
   function dr(a2,b2){ return b2.length>22?'<div class="row two"><div class="m"><span class="t-body">'+esc(a2)+'</span><span class="t-sub c2">'+esc(b2)+'</span></div></div>':'<div class="row"><div class="m"><span class="t-body">'+esc(a2)+'</span></div><span class="det t-body">'+esc(b2)+'</span></div>'; }
   var rows=[];
   (d.extra||[]).forEach(function(e){ var r=rec(e.c); rows.push(dr('Extra',r?r.t:e.c)); });
-  /* 3.0.4: the title a swap reads now (by aid, else through ALT_RENAMED to the end of its chain) */
-  (d.cr||[]).forEach(function(c0){ var a0=c0.alt&&altOfLog(c0), c=c0.alt?Object.assign({},c0,{alt:a0?a0.t:altTitle(c0.alt)}):c0, cv=CMAP[c.id]; rows.push(dr(c.ml===1?(c.res?'Swap at a meal':'Had it at a meal'):c.res?'Swapped':'Craving eaten',(cv?cv.n:c.id)+(c.res&&c.alt?' for '+((typeof ALT_RENAMED!=='undefined'&&ALT_RENAMED[c.alt])||c.alt):''))); });
-  (d.tm||[]).forEach(function(x){ rows.push(dr('Ten-minute timer',x.ate===false?'Ate nothing':x.ate===true?'Had something':'Started')); });
+  /* 3.0.4: the title a swap reads now (by aid, else through ALT_RENAMED to the end of its chain); Did this (nf, O11) is
+     ridden out, with what he did ("Bored: Leave the building") */
+  (d.cr||[]).forEach(function(c0){ var a0=c0.alt&&altOfLog(c0), c=c0.alt?Object.assign({},c0,{alt:a0?a0.t:altTitle(c0.alt)}):c0, cv=CMAP[c.id];
+    rows.push(dr(c.ml===1?(c.res?'Swap at a meal':'Had it at a meal'):c.res?'Swapped':c.nf?'Ridden out':'Craving eaten',(cv?cv.n:c.id)+(c.res&&c.alt?' for '+((typeof ALT_RENAMED!=='undefined'&&ALT_RENAMED[c.alt])||c.alt):'')+(c.nf&&!c.res&&c.alt?': '+c.alt:''))); });
+  /* a run closed by a craving log (by, DATA 6.2) is that log's outcome, already in its row above: one craving, one row */
+  (d.tm||[]).forEach(function(x){ if(x&&x.by) return; rows.push(dr('Ten-minute timer',x.ate===false?'Ate nothing':x.ate===true?'Had something':x.ate==='swap'?'Swapped':'Started')); });
   if(d.eve===1) rows.push(dr('After dinner',d.nosnack===true?'Nothing':'Something'));
   if(rows.length) h+='<div class="list">'+rows.join('')+'</div>';
   h+='<label class="t-sub c2 flab" for="dayNote">Note to self</label><textarea class="field" id="dayNote" data-act="note" data-k="'+k+'" placeholder="Energy, hunger, sleep, what nearly happened.">'+esc(d.note||'')+'</textarea>';
@@ -7833,7 +7853,7 @@ function headline(S,F,today,mon,pre){pre=pre||{};var p1=pre.p1||P1(S,F,mon),p2=p
   var slip=[['P1',p1],['P3',p3],['P2',p2]].filter(function(x){return x[1].state==='slipping';});
   if(slip.length&&(dow>=1&&dow<=3))return {rule:1,kind:'regression',pattern:slip[0][0],strip:slip.map(function(x){return x[0];})};
   var strip=slip.map(function(x){return x[0];}),d=S.days[today],bad=false;
-  if(d){SL.forEach(function(s){if(d.m&&d.m[s]&&d.m[s].st==='off')bad=true;});(d.cr||[]).forEach(function(c){if(!c.res&&c.ml!==1)bad=true;});(d.tm||[]).forEach(function(x){if(x.ate===true)bad=true;});}
+  if(d){SL.forEach(function(s){if(d.m&&d.m[s]&&d.m[s].st==='off')bad=true;});(d.cr||[]).forEach(function(c){if(!c.res&&!c.nf&&c.ml!==1)bad=true;});(d.tm||[]).forEach(function(x){if(x.ate===true)bad=true;});}
   /* Something to the morning question was logged today: the answer sits on yesterday's date */
   var y=S.days[addDays(today,-1)];if(y&&y.eve===1&&y.nosnack===false)bad=true;
   /* today's off-plan meals, and whether the lapse they belong to already went past the next meal (an off-plan meal
@@ -7931,6 +7951,13 @@ function nextSlot(S,k,after){ var i=after?SL.indexOf(after)+1:0, d=S.days[k];
    a time that has already passed. Outside the app day's own hours the clock says nothing, so the time stays. */
 function ahead(n){ if(n.tomorrow) return true; var h=(Date.now()-midnight(n.k))/3600e3; if(!(h>=4&&h<32)) return true; return n.h>h; }
 function nextText(n){ return SLOTNAME[n.s].toLowerCase()+(ahead(n)?' at '+clock(n.h):'')+(n.tomorrow?' tomorrow':''); }
+/* 3.0.4: the meal after a craving (its "Next:" line): the first slot after the last one logged today that is still to
+   come (planned within the last hour or later, so a meal running late is still next); none left: tomorrow's breakfast.
+   A breakfast never logged, its time long gone, is not "next" at 8:27 pm */
+function nextMealAfter(S,k){ var d=S.days[k], i=0, h=(Date.now()-midnight(k))/3600e3, inDay=h>=4&&h<32;
+  SL.forEach(function(s,j){ var x=d&&d.m&&d.m[s]; if(x&&x.st) i=j+1; });
+  for(;i<3;i++){ var ph=planned(S,k,SL[i]); if(!inDay||ph>h-1) return {s:SL[i],h:ph,k:k}; }
+  var t=addDays(k,1); return {s:'b',h:planned(S,t,'b'),k:t,tomorrow:true}; }
 /* the back-on-plan record as one sentence: K of the last N known returns, and the unknown ones said plainly (T3i) */
 function backLine(r,your){
   var u=r.lastUnknown||0, last=(your?'your ':'the ')+'last ';
@@ -7981,7 +8008,7 @@ function record(kind,o,st){
     var l14=ans.slice(-14), x=l14.filter(Boolean).length; out.n=l14.length; out.x=x;
     out.line=(o.v===0?'Logged. ':'')+'Nothing after dinner on '+x+' of the last '+l14.length+' evening'+(l14.length===1?'':'s')+'.'; return out; }
   if(kind==='rode'||kind==='ate'||kind==='swap'){ var c=crLast10(F); out.split=c;
-    var nx=nextText(nextSlot(st,appToday(),null)), word=kind==='rode'?'Ridden out. ':kind==='swap'?'Swapped. ':'Logged. ';
+    var nx=nextText(nextMealAfter(st,appToday())), word=kind==='rode'?'Ridden out. ':kind==='swap'?'Swapped. ':'Logged. ';
     /* 3.0.4 (crdesign DATA 6.1): the record of the last ten starts at 6; before that the line says where it stands */
     var crRec=c.n>=6?crLine(c):c.n<=1?(kind==='ate'?'':'Your record of the last ten starts here.'):c.n+' cravings logged so far.';
     out.next=kind==='ate'?'Next: '+nx+'.':'';
@@ -8623,6 +8650,9 @@ function crName(c){ return crUnits(esc(c.n)); }
 function crW(t){ return crUnits(esc(String(t).replace(/\s*\([A-Z]\d+\)/g,''))); }
 /* the evening order holds from 6 pm to 5 am (and after late shifts: the moment's words, crdesign DATA 4.5) */
 function crEvening(){ var h=new Date(Date.now()).getHours(); return h>=18||h<5; }
+/* the evening order's whole rule (DATA 4.5): 6 pm to 5 am, and whenever the moment's words are "after late shifts"
+   (today a late, night or two-job day, and its shift over), on the card, in the sheet and on the day-1 rows alike */
+function crEveningNow(){ if(crEvening()) return true; var k=appToday(), sh=shapeOf(k), end=PAT.shiftEnd(sh); return crDayClass(sh)==='late'&&end!=null&&crNowH(k)>=end; }
 /* the bands (DATA 4.3): A ready at home, B to make now, C made ahead, D a shop or eating out, then tips for next time */
 function crBand(a){ return a.later?4:a.ahead?2:CR_HOME.indexOf(a.g)<0?3:a.m<=5?0:1; }
 /* his own swaps of a craving in the last 56 days, by aid: {aid: count} */
@@ -8712,10 +8742,15 @@ function crBackHead(lead,act,attr){ return '<div class="sheet-h back"><button cl
 /* after a pushed panel renders: a back label wider than its 180 pt reads Back */
 function fitLead(){ $$('#sheetHead .sheet-h.back .lead span').forEach(function(s){ if(s.scrollWidth>s.clientWidth+1){ s.textContent='Back'; } }); }
 /* the bottom bar (SPEC 3.1): the timer and the eaten button; a run's time left and Stop while one is open; the two
-   answers at 0:00; at a meal only "I had it with the meal" */
+   answers at 0:00; at a meal only "I had it with the meal". While a run on another craving is open, the bar names that
+   run with its time left (or "Ten minutes done") and keeps this sheet's eaten button: its answers and Stop stay on the
+   run's own card and sheet, so nothing tapped here is stored on the other craving (an eaten log here re-ties the run to
+   this one, DATA 6.2) */
 function craveBar(c){
   var x=timerRun(), lab=ateLabel(c);
   if(c.cat==='meal') return '<div class="bbar"><button class="btn gray" data-act="gavein" data-id="'+c.id+'">'+lab+'</button></div>';
+  if(x&&x.id&&x.id!==c.id&&CMAP[x.id]){ var lo=timerLeft(x), on=crName(CMAP[x.id]);
+    return '<div class="bbar"><div class="barrow other"><div class="m"><span class="t-foot c2 oname">'+on+'</span>'+(lo>0?'<span class="t-value" id="sbarOut" aria-label="Time left">'+Math.floor(lo/60)+':'+pad(lo%60)+'</span>':'<span class="t-sub">Ten minutes done</span>')+'</div><button class="plain" data-act="gavein" data-id="'+c.id+'">'+lab+'</button></div></div>'; }
   if(x&&timerLeft(x)>0){ var l=timerLeft(x); return '<div class="bbar"><div class="barrow run"><p class="t-value" id="sbarOut" aria-label="Time left">'+Math.floor(l/60)+':'+pad(l%60)+'</p><button class="btn gray" data-act="tstop">Stop</button></div></div>'; }
   if(x) return '<div class="bbar"><div class="btnpair"><button class="btn gray" data-act="tmans" data-v="0">Ate nothing</button><button class="btn gray" data-act="tmans" data-v="1">Had something</button></div></div>';
   return '<div class="bbar"><div class="barrow"><button class="btn" data-act="timer" data-id="'+c.id+'">Start ten minutes</button><button class="plain" data-act="gavein" data-id="'+c.id+'">'+lab+'</button></div></div>';
@@ -8733,7 +8768,7 @@ function serveDetail(c){
 var CRSH={id:null,from:null};
 function craveSheet(id,from){
   var c=CMAP[id]; if(!c||c.old) return; CRSH.id=id; CRSH.from=from||null;
-  var kind=crKind(c), K=CR_KIND[kind], his=swapHis(id), swaps=swapOrder(id,{evening:crEvening(),his:his}), por=c.alts.filter(function(a){ return a.tier===3; });
+  var kind=crKind(c), K=CR_KIND[kind], his=swapHis(id), swaps=swapOrder(id,{evening:crEveningNow(),his:his}), por=c.alts.filter(function(a){ return a.tier===3; });
   var openA=S.ui&&S.ui.swapOpened?null:swaps.filter(function(a){ return !a.later; })[0];
   var g=null; try{ g=PAT.get(); }catch(e){ g=null; }
   var rec=g&&g.Flive?sheetRecord(PAT.crOne(g.Flive,id)):'';
@@ -8766,8 +8801,8 @@ function cravingsNow(F,o){
   (F||[]).forEach(function(f){ if(f.k<from||f.k>k) return; var end=PAT.shiftEnd(f.sh);
     f.cr.forEach(function(x){ if(x.kind==='open'||x.ml===1) return; if(x.id&&x.id!=='timer') all[x.id]=(all[x.id]||0)+1;
       if(x.h==null||!near(x.h)) return; if(x.id==='timer'){ untied++; return; }
-      var m=mo[x.id]=mo[x.id]||{id:x.id,n:0,same:0,kinds:{},late:0}; m.n++; if(crDayClass(f.sh)===cls) m.same++; m.kinds[x.kind]=(m.kinds[x.kind]||0)+1;
-      if(crDayClass(f.sh)==='late'&&end!=null&&x.h>=end) m.late++; }); });
+      var m=mo[x.id]=mo[x.id]||{id:x.id,n:0,same:0,kinds:{},late:0,lk:{}}; m.n++; if(crDayClass(f.sh)===cls) m.same++; m.kinds[x.kind]=(m.kinds[x.kind]||0)+1;
+      if(crDayClass(f.sh)==='late'&&end!=null&&x.h>=end){ m.late++; m.lk[x.kind]=(m.lk[x.kind]||0)+1; } }); });
   var list=Object.keys(mo).map(function(id){ return mo[id]; }).filter(function(m){ return CMAP[m.id]&&!CMAP[m.id].old; })
     .sort(function(a,b){ return b.same-a.same||b.n-a.n||(all[b.id]||0)-(all[a.id]||0)||(a.id<b.id?-1:1); });
   var end=PAT.shiftEnd(sh), ctx=cls==='late'&&end!=null&&nowH>=end?'after late shifts':'around this time';
@@ -8777,9 +8812,12 @@ function cravingsNow(F,o){
   var pin=o.pin, run=o.nopin?null:timerRun(), L=o.nopin?null:crLastNow();
   if(pin===undefined) pin=run?(run.id&&CMAP[run.id]?run.id:null):pick&&L&&L.id&&CMAP[L.id]&&CMAP[L.id].cat!=='meal'?L.id:null;
   if(run&&!pin&&!o.pin) return null;   /* an untied run counts down on the generic card */
-  if(pin&&(!pick||pick.id!==pin)) pick=mo[pin]||{id:pin,n:0,same:0,kinds:{},late:0};
+  if(pin&&(!pick||pick.id!==pin)) pick=mo[pin]||{id:pin,n:0,same:0,kinds:{},late:0,lk:{}};
   if(!pick) return null;
-  return {id:pick.id,n:pick.n,same:pick.same,kinds:pick.kinds,late:pick.late,ctx:ctx,untied:untied,pinned:!!pin,list:list};
+  /* "after late shifts" counts only the logs made after a late, night or two-job shift had ended; with none of those
+     the line says "around this time" over all of them */
+  if(ctx==='after late shifts'&&!pick.late) ctx='around this time';
+  return {id:pick.id,n:pick.n,same:pick.same,kinds:ctx==='after late shifts'?pick.lk:pick.kinds,late:pick.late,ctx:ctx,untied:untied,pinned:!!pin,list:list};
 }
 /* the card's line (DATA 5.2): the count alone with one kind of outcome, or while untied runs fall at this time; the
    split once every run at this time names its craving (O9; declined: the split always) */
@@ -8793,7 +8831,7 @@ function crTime(t){ var d=new Date(t); return crUnits(PAT.clock(d.getHours()+d.g
 function crLastNow(){ var L=S.ui&&S.ui.crLast; if(!L||L.k!==appToday()||Date.now()-L.t>CR_HOLD||Date.now()<L.t-60e3) return null; return L; }
 /* the logged row's words (SPEC 2.2): the outcome, then the time and what */
 function crLogged(L){
-  var d=S.days[L.k], x=null, what='', sub='';
+  var d=S.days[L.run&&L.rk||L.k], x=null, what='', sub='';
   if(L.run){ x=((d&&d.tm)||[]).filter(function(r){ return r&&r.t===L.run; })[0]; if(!x||x.ate===undefined) return null;
     what=x.ate===false?'Ridden out':'Logged'; sub=x.ate===false?'Ate nothing after ten minutes':crNextLine(); }
   else { x=((d&&d.cr)||[]).filter(function(c){ return c&&c.t===L.t&&c.id===L.id; })[0]; if(!x) return null;
@@ -8813,12 +8851,12 @@ function crCountdown(x){ var l=timerLeft(x); return Math.floor(l/60)+':'+pad(l%6
 /* the moment card (SPEC 2.2): idle, running, done, logged */
 function momentCard(m,st){
   var c=CMAP[m.id], nm=crName(c), x=st.run, line=momentLine(m.kinds,m.ctx,m.untied);
-  if(x&&timerLeft(x)>0) return '<section class="card moment run" id="timerCard"><div class="runhead"><p class="t-head">'+nm+'</p><p class="t-value" id="timerOut">'+crCountdown(x)+'</p></div><p class="t-sub c2 water">'+CR_WATER+'</p><button class="btn gray" data-act="tstop">Stop</button></section>';
-  if(x) return '<section class="card moment" id="timerCard"><p class="t-head">'+nm+'</p><p class="t-body q">Ten minutes done. Did you eat anything?</p><div class="btnpair stack"><button class="btn gray" data-act="tmans" data-v="0">Ate nothing</button><button class="btn gray" data-act="tmans" data-v="1">Had something</button></div>'+(CRDEC.O6?'<button class="plain block" data-act="tmswap" data-id="'+m.id+'">I had a swap</button>':'')+'</section>';
+  if(x&&timerLeft(x)>0) return '<section class="card moment run" id="timerCard" data-cr="'+m.id+'"><div class="runhead"><p class="t-head">'+nm+'</p><p class="t-value" id="timerOut">'+crCountdown(x)+'</p></div><p class="t-sub c2 water">'+CR_WATER+'</p><button class="btn gray" data-act="tstop">Stop</button></section>';
+  if(x) return '<section class="card moment" id="timerCard" data-cr="'+m.id+'"><p class="t-head">'+nm+'</p><p class="t-body q">Ten minutes done. Did you eat anything?</p><div class="btnpair stack"><button class="btn gray" data-act="tmans" data-v="0">Ate nothing</button><button class="btn gray" data-act="tmans" data-v="1">Had something</button></div>'+(CRDEC.O6?'<button class="plain block" data-act="tmswap" data-id="'+m.id+'">I had a swap</button>':'')+'</section>';
   var top='<div class="pc-top" role="link" tabindex="0" data-act="crave" data-id="'+m.id+'" aria-label="'+esc(c.n)+': swaps and your record"><div class="card-head"><p class="t-head">'+nm+'</p>'+ICON.chev+'</div>'+(line?'<p class="mo-rec">'+recC(line)+'</p>':'')+'</div>';
-  if(st.logged) return '<section class="card moment">'+top+loggedRow(st.logged)+'</section>';
-  var his=swapHis(m.id), a=CRDEC.O8?cardSwap(m.id,{evening:crEvening()||m.ctx==='after late shifts',his:his}):null;
-  return '<section class="card moment" id="timerCard">'+top+'<button class="btn" data-act="timer" data-id="'+m.id+'">Start ten minutes</button>'+(a?cardSwapRow(m.id,a,his[m.id+'#'+c.alts.indexOf(a)]):'')+'</section>';
+  if(st.logged) return '<section class="card moment" data-cr="'+m.id+'">'+top+loggedRow(st.logged)+'</section>';
+  var his=swapHis(m.id), a=CRDEC.O8?cardSwap(m.id,{evening:crEveningNow(),his:his}):null;
+  return '<section class="card moment" id="timerCard" data-cr="'+m.id+'">'+top+'<button class="btn" data-act="timer" data-id="'+m.id+'">Start ten minutes</button>'+(a?cardSwapRow(m.id,a,his[m.id+'#'+c.alts.indexOf(a)]):'')+'</section>';
 }
 /* the generic timer card (SPEC 2.3): no craving is usual at this time, and day 1 */
 function timerCard(st){
@@ -8846,7 +8884,7 @@ function usualList(g,skip,quiet){
   if(y0.length&&!y.length) return '';
   if(y.length) return crSec('Your usual ones')+'<div class="list">'+y.map(function(x){ return '<button class="row" data-act="crave" data-id="'+x.id+'"><div class="m"><span class="t-body">'+crName(CMAP[x.id])+'</span></div>'+(CRDEC.O10?'':'<span class="det t-body">'+x.n+' times</span>')+ICON.chev+'</button>'; }).join('')+'</div>'+crFoot('Most logged in the last 8'+NB+'weeks.');
   var k=appToday(), mk=crMomentOf(k,crNowH(k)), M=CR_MOMENT[mk], ids=(CRAVE_START[mk]||[]).filter(function(id){ return id!==skip&&CMAP[id]; });
-  return crSec(M[0])+'<div class="list">'+ids.map(function(id){ var c=CMAP[id], a=quiet||c.cat==='head'?null:cardSwap(id,{evening:crEvening()});
+  return crSec(M[0])+'<div class="list">'+ids.map(function(id){ var c=CMAP[id], a=quiet||c.cat==='head'?null:cardSwap(id,{evening:crEveningNow()});
     return '<button class="row'+(a?' two':'')+'" data-act="crave" data-id="'+id+'"><div class="m"><span class="t-body">'+crName(c)+'</span>'+(a?'<span class="t-sub c2">Swap: '+crUnits(esc(pct(a.t)))+'</span>':'')+'</div>'+ICON.chev+'</button>'; }).join('')+'</div>'+crFoot('Common ones '+M[1]+', until you have your own.');
 }
 /* the header (SPEC 2.1): the large title with the magnifier, and under it P6's record in its short form */
@@ -8890,8 +8928,9 @@ function feelOf(id){ return CRAVE_FEELS.filter(function(F){ return F.ids.indexOf
    page it is pushed from (a group's id, find or search), for the craving sheet's back row. The space between the two
    lines is not drawn (the row's text is a flex column) but keeps them apart when the row is read aloud */
 function crRow(id,from,sub){ var c=CMAP[id]; return '<button class="row'+(sub?' two':'')+'" data-act="crave" data-id="'+id+'" data-from="'+from+'"><div class="m"><span class="t-body">'+crName(c)+'</span>'+(sub?' <span class="t-sub c2">'+sub+'</span>':'')+'</div>'+ICON.chev+'</button>'; }
-/* what the tab shows: the card's craving and the rows under it */
-function crOnTab(){ var p=$('#pane-cravings'); return p?$$('[data-act=crave][data-id]',p).map(function(e){ return e.getAttribute('data-id'); }):[]; }
+/* what the tab shows: the card's craving (data-cr, in every state of the card, while it counts down or asks too) and the
+   rows under it */
+function crOnTab(){ var p=$('#pane-cravings'), out=[]; if(p) $$('[data-cr],[data-act=crave][data-id]',p).forEach(function(e){ var id=e.getAttribute('data-cr')||e.getAttribute('data-id'); if(id&&out.indexOf(id)<0) out.push(id); }); return out; }
 /* Recent (DATA 5.6): up to three cravings from his logs in the last 56 days (a craving log, or a timer run answered on
    its craving), newest first, that the tab does not already show */
 function crRecent(skip){
@@ -8903,14 +8942,20 @@ function crRecent(skip){
   logs.forEach(function(x){ var c=CMAP[x.id]; if(out.length<3&&c&&!c.old&&out.indexOf(x.id)<0&&(skip||[]).indexOf(x.id)<0) out.push(x.id); });
   return out; }
 /* search (DATA 5.7): word starts only, case-insensitive, never inside a word; names first, then the keywords (the result
-   names the word, "· Kit Kat"), then the group labels; swap titles and the why text are not searched */
+   names the word, "· Kit Kat"), then the group labels; swap titles and the why text are not searched. An apostrophe,
+   straight or curly (the iPhone keyboard types a curly one), or none, matches either: "mcdonald’s", "mcdonald's" and
+   "mcdonalds" all find McDonald’s */
+function crApos(t){ return String(t).replace(/['‘’ʼ`´]/g,''); }
 function craveSearch(q){
-  q=String(q||'').replace(/\s+/g,' ').trim(); if(!q) return [];
-  var re=new RegExp('(^|[^a-z0-9])'+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i'), seen={}, out=[];
-  CRAVE.forEach(function(c){ if(re.test(c.n)){ seen[c.id]=1; out.push({id:c.id}); } });
-  CRAVE.forEach(function(c){ if(seen[c.id]) return; var w=String(c.k||'').split(/,\s*/).filter(function(x){ return re.test(x); })[0]; if(w){ seen[c.id]=1; out.push({id:c.id,via:w}); } });
-  CRAVE_FEELS.forEach(function(F){ if(!re.test(F.label)) return; F.ids.forEach(function(id){ if(!seen[id]&&CMAP[id]&&!CMAP[id].old){ seen[id]=1; out.push({id:id}); } }); });
+  q=crApos(String(q||'').replace(/\s+/g,' ').trim()).trim(); if(!q) return [];
+  var re=new RegExp('(^|[^a-z0-9])'+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i'), hit=function(t){ return re.test(crApos(t)); }, seen={}, out=[];
+  CRAVE.forEach(function(c){ if(hit(c.n)){ seen[c.id]=1; out.push({id:c.id}); } });
+  CRAVE.forEach(function(c){ if(seen[c.id]) return; var w=String(c.k||'').split(/,\s*/).filter(hit)[0]; if(w){ seen[c.id]=1; out.push({id:c.id,via:w}); } });
+  CRAVE_FEELS.forEach(function(F){ if(!hit(F.label)) return; F.ids.forEach(function(id){ if(!seen[id]&&CMAP[id]&&!CMAP[id].old){ seen[id]=1; out.push({id:id}); } }); });
   return out; }
+/* the word a result shows after its group: a brand or product name ("· Kit Kat", "· McDonald’s"), never a plain word
+   (cookies, yogurt, candy are only there to be typed) */
+function crVia(w){ return w&&!/^[a-z]/.test(w)?w:''; }
 /* a typed search (SPEC 4.3): the results and the count line, "1 match" or "5 matches" (a result can be a craving, a
    meal carb or a situation), or what to do when nothing matches */
 function searchState(q){
@@ -8926,12 +8971,12 @@ function crGroups(first){
 /* the body under the field: Recent and the groups, or a typed search's count and results */
 function crFindBody(q){
   if(String(q||'').trim()){ var st=searchState(q);
-    return '<p class="t-foot c2 count" role="status">'+esc(st.line)+'</p>'+(st.hits.length?'<div class="list">'+st.hits.map(function(x){ var F=feelOf(x.id); return crRow(x.id,'search',esc(F?F.label:'')+(x.via?' · '+esc(x.via):'')); }).join('')+'</div>':crGroups('first')); }
+    return '<p class="t-foot c2 count" role="status">'+esc(st.line)+'</p>'+(st.hits.length?'<div class="list">'+st.hits.map(function(x){ var F=feelOf(x.id); return crRow(x.id,'search',esc(F?F.label:'')+(crVia(x.via)?' · '+esc(crVia(x.via)):'')); }).join('')+'</div>':crGroups('first')); }
   var rec=crRecent(crOnTab());
   return (rec.length?crSec('Recent','first')+'<div class="list">'+rec.map(function(id){ return crRow(id,'find'); }).join('')+'</div>':'')+crGroups(rec.length?'':'first');
 }
 /* the field (ui2 2.8: 36 tall, the text 17/22, a 44 pt target) and Cancel, shown while a search is typed */
-function crField(q){ return '<div class="searchbar fsb"><label class="search">'+ICON.search+'<input type="search" id="crq" enterkeyhint="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Search cravings and brands" aria-label="Search cravings and brands" value="'+esc(q||'')+'"></label><button class="plain" data-act="fcancel"'+(String(q||'').trim()?'':' hidden')+'>Cancel</button></div>'; }
+function crField(q){ return '<div class="searchbar fsb"><label class="search">'+ICON.search+'<input type="search" id="crq" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search cravings and brands" aria-label="Search cravings and brands" value="'+esc(q||'')+'"></label><button class="plain" data-act="fcancel"'+(String(q||'').trim()?'':' hidden')+'>Cancel</button></div>'; }
 /* the sheet (SPEC 4.1): "Something else" and Done, the field, Recent, the groups. focus: from the magnifier the field
    takes the keyboard. q: a search to show again (back from a craving opened from its results) */
 function findSheet(focus,q){
@@ -8963,22 +9008,33 @@ function groupSheet(f){
 /* a swap's energy as eaten (2.1): the alternative's own kc, else its tier's default (200, 120, or half the craving) */
 function altKc(cv,a){ if(a&&a.kc!=null) return a.kc; var t=a&&a.tier; return t===3?Math.round(((cv&&cv.kcal)||300)/2):t===2?120:200; }
 /* the ten-minute timer (5.4): Start stores {t}; at 0:00 the card asks one question, stored as ate (true or false).
-   Only "Ate nothing" is ever called ridden out. The question waits on the card until it is answered or the app day ends. */
-var TIMER_MS=600000, tInt=null;
-function timerRun(){ var d=S.days[appToday()]; if(!d||!d.tm) return null;
-  for(var i=d.tm.length-1;i>=0;i--){ if(d.tm[i]&&d.tm[i].ate===undefined) return d.tm[i]; } return null; }
+   Only "Ate nothing" is ever called ridden out. The question waits on the card until it is answered or the app day ends;
+   a run still counting or asking at the 4 am turn of the app day stays open for ten minutes and 15 more from its start,
+   on the day it began (timerAt: the run and its day). */
+var TIMER_MS=600000, CR_LATE=15*60e3, tInt=null;
+function crOpenRun(d){ if(!d||!d.tm) return null; for(var i=d.tm.length-1;i>=0;i--){ var r=d.tm[i]; if(r&&r.ate===undefined&&!r.by) return r; } return null; }
+function timerAt(){ var k=appToday(), x=crOpenRun(S.days[k]); if(x) return {x:x,k:k};
+  var p=addDays(k,-1), y=crOpenRun(S.days[p]), now=Date.now();
+  if(y&&y.t!=null&&now>=y.t&&(now-y.t<=TIMER_MS+CR_LATE||y.t===CRSH.forRun)) return {x:y,k:p}; return null; }
+function timerRun(){ var a=timerAt(); return a?a.x:null; }
+function timerDay(){ var a=timerAt(); return a?a.k:appToday(); }
 function timerLeft(x){ if(x.done&&x.done<=Date.now()) return 0; return Math.max(0,Math.round((x.t+TIMER_MS-Date.now())/1000)); }
-/* Stop ends the run early and shows the question */
-function timerStop(){ var x=timerRun(); if(!x) return; x.done=Math.min(Date.now(),x.t+TIMER_MS); save(); if(sheetOpen()&&CRSH.id&&$('#sheetPanel > .bbar')) craveSheet(CRSH.id,CRSH.from); paintTimer(); timerTick(); }
-/* the countdown runs only while the card is on screen; the run itself is in the log, so it resumes on the next visit */
+/* a craving sheet open over the tab draws again in place (its bar follows the run), where he left it */
+function crSheetAgain(){ if(!sheetOpen()||!CRSH.id||!$('#sheetPanel > .bbar')) return; var b=$('#sheetIn'), y=b?b.scrollTop:0; craveSheet(CRSH.id,CRSH.from); b=$('#sheetIn'); if(b) b.scrollTop=y; }
+/* Stop ends the run early and shows the question; with no run left (the app day has turned) the tab and the sheet
+   draw again, so no Stop stays on screen that does nothing */
+function timerStop(){ var a=timerAt(); if(a){ var x=a.x; x.done=Math.min(Date.now(),x.t+TIMER_MS); save(false,a.k); } crSheetAgain(); paintTimer(); timerTick(); }
+/* the countdown runs only while the card is on screen; the run itself is in the log, so it resumes on the next visit.
+   If the run goes while its countdown shows (the app day turned and its 25 minutes passed) both draw again */
 function timerTick(){
-  clearInterval(tInt); var x=timerRun(); if(!x) return;
-  if(timerLeft(x)<=0){ if(!x.done){ x.done=x.t+TIMER_MS; save(); } return; }
+  clearInterval(tInt); var a=timerAt(), x=a&&a.x; if(!x) return;
+  if(timerLeft(x)<=0){ if(!x.done){ x.done=x.t+TIMER_MS; save(false,a.k); } return; }
   tInt=setInterval(function(){
-    var o=$('#timerOut'), sb=sheetOpen()?$('#sbarOut'):null, r=timerRun(); if((!o&&!sb)||!r){ clearInterval(tInt); return; }
+    var o=$('#timerOut'), sb=sheetOpen()?$('#sbarOut'):null, A=timerAt(), r=A&&A.x; if(!o&&!sb){ clearInterval(tInt); return; }
+    if(!r){ clearInterval(tInt); paintTimer(); if(sb) crSheetAgain(); return; }
     var left=timerLeft(r);
     if(left>0){ if(o) o.textContent=Math.floor(left/60)+':'+pad(left%60); if(sb) sb.textContent=Math.floor(left/60)+':'+pad(left%60); return; }
-    clearInterval(tInt); if(!r.done){ r.done=r.t+TIMER_MS; save(); } paintTimer(); if(sb&&CRSH.id) craveSheet(CRSH.id,CRSH.from);
+    clearInterval(tInt); if(!r.done){ r.done=r.t+TIMER_MS; save(false,A.k); } paintTimer(); if(sb) crSheetAgain();
   },250);
 }
 /* 3.0.4: a run started from a craving (the moment card or its sheet) is tied to it: {t, id} (DATA 6.1) */
@@ -8990,36 +9046,45 @@ function startTimer(id){
 /* 3.0.4 (crdesign DATA 6.2): one craving, one outcome. A craving logged while a run is open, or waiting for its answer
    within 15 minutes of its end, closes that run: the run takes the log's craving (an untied run gets its id, a run tied
    to another craving is re-tied), stores by 'cr' and the log's outcome, and PAT.facts() then counts the log alone.
-   byT names the log, so Undo can reopen the run as it was (id0 is the id it had). A log at a meal (ml 1) closes nothing. */
+   byT names the log, so Undo can reopen the run as it was (id0 is the id it had; doneBy marks an end the log set while
+   the run was still counting). A log at a meal (ml 1) closes nothing. The run waiting in the sheet that "I had a swap"
+   opened (CRSH.forRun) closes with no time limit: he came back to answer it. A run of the app day before (timerAt)
+   closes the same way. */
 function closeRunBy(x,k){
-  if(!x||x.ml===1) return null; var d=S.days[k||appToday()]; if(!d||!d.tm) return null; var t=x.t||Date.now();
-  for(var i=d.tm.length-1;i>=0;i--){ var r=d.tm[i]; if(!r||r.ate!==undefined||r.by) continue;
-    if(t<r.t||t-r.t>TIMER_MS+15*60e3) return null;
-    if(r.id!==x.id){ r.id0=r.id===undefined?null:r.id; r.id=x.id; }
-    r.by='cr'; r.byT=t; r.ate=x.res?'swap':x.nf?false:true; if(!r.done) r.done=Math.min(t,r.t+TIMER_MS); return r; }
-  return null; }
-/* Undo of a log that closed a run reopens the run as it was */
-function reopenRunBy(x,k){ var d=S.days[k||appToday()]; if(!d||!d.tm||!x) return null;
-  for(var i=d.tm.length-1;i>=0;i--){ var r=d.tm[i]; if(r&&r.by&&r.byT===x.t){ delete r.by; delete r.byT; delete r.ate; r.re=Date.now();
-    if(r.id0!==undefined){ if(r.id0===null) delete r.id; else r.id=r.id0; delete r.id0; } return r; } }
+  if(!x||x.ml===1) return null; k=k||appToday(); var t=x.t||Date.now(), fr=CRSH.forRun||null, r=crOpenRun(S.days[k]);
+  if(!r) r=crOpenRun(S.days[addDays(k,-1)]);
+  if(!r||t<r.t||(t-r.t>TIMER_MS+CR_LATE&&r.t!==fr)) return null;
+  if(r.id!==x.id){ r.id0=r.id===undefined?null:r.id; r.id=x.id; }
+  r.by='cr'; r.byT=t; r.ate=x.res?'swap':x.nf?false:true; if(!r.done){ r.done=Math.min(t,r.t+TIMER_MS); r.doneBy=1; } return r; }
+/* Undo of a log that closed a run reopens the run as it was (still counting, if the log ended it early) */
+function reopenRunBy(x,k){ if(!x) return null; k=k||appToday();
+  for(var j=0;j<2;j++){ var d=S.days[j?addDays(k,-1):k]; if(!d||!d.tm) continue;
+    for(var i=d.tm.length-1;i>=0;i--){ var r=d.tm[i]; if(r&&r.by&&r.byT===x.t){ delete r.by; delete r.byT; delete r.ate; r.re=Date.now();
+      if(r.doneBy){ delete r.done; delete r.doneBy; }
+      if(r.id0!==undefined){ if(r.id0===null) delete r.id; else r.id=r.id0; delete r.id0; } return r; } } }
   return null; }
 /* the answer is stored, the card holds the logged row with Undo and the whole tab repaints, so the P6 line moves with
-   it; no toast on this tab (O12; declined: the record's toast) */
+   it; no toast on this tab (O12; declined: the record's toast). rk is the run's day when it began before 4 am. With no
+   run left to answer (the app day turned), the tab draws again */
 function timerAnswer(ate){
-  var x=timerRun(); if(!x) return;
+  var a=timerAt(); if(!a){ paintTimer(); return; } var x=a.x;
   x.ate=!!ate; if(!x.done) x.done=Math.min(Date.now(),x.t+TIMER_MS);
-  S.ui.crLast={id:x.id||null,t:Date.now(),kind:ate?'ate':'rode',k:appToday(),run:x.t};
-  save(); render(); if(!(TAB==='cravings'&&CRDEC.O12)) recordToast(ate?'ate':'rode',{k:appToday()});
+  S.ui.crLast={id:x.id||null,t:Date.now(),kind:ate?'ate':'rode',k:appToday(),run:x.t}; if(a.k!==appToday()) S.ui.crLast.rk=a.k;
+  save(false,a.k); render(); crFocus('#pane-cravings .swapblk.logged .undo'); if(!(TAB==='cravings'&&CRDEC.O12)) recordToast(ate?'ate':'rode',{k:a.k});
 }
+/* focus after the tab draws again (a log, an answer, Undo): the control that now holds his place, so a VoiceOver or
+   keyboard user is not sent back to the top. While a sheet is still closing it takes the focus when the sheet is gone */
+function crFocus(sel){ if(typeof TAB==='undefined'||TAB!=='cravings') return; var e=$(sel); if(!e) return;
+  if(SH.open){ SH.opener=e; return; } try{ e.focus({preventScroll:true}); }catch(x){ try{ e.focus(); }catch(y){} } }
 /* a removed craving log leaves its time behind, so the merge of an older copy cannot bring it back (05_core mergeDay) */
 function crGone(d,c){ if(d&&c&&c.t!=null){ d.crGone=d.crGone||[]; if(d.crGone.indexOf(c.t)<0) d.crGone.push(c.t); } }
 /* Undo (DATA 6.3): the log goes (a run it closed reopens as it was), or the run's answer clears; the tab repaints.
    Either leaves a mark (crGone, the run's re) that keeps it undone when an older copy is merged in */
 function crUndo(){
-  var L=S.ui&&S.ui.crLast; if(!L) return; var d=S.days[L.k];
+  var L=S.ui&&S.ui.crLast; if(!L) return; var rk=L.run&&L.rk||L.k, d=S.days[rk];
   if(d&&L.run){ (d.tm||[]).forEach(function(r){ if(r&&r.t===L.run){ delete r.ate; delete r.by; r.re=Date.now(); } }); }
   else if(d){ for(var i=(d.cr||[]).length-1;i>=0;i--){ var c=d.cr[i]; if(c&&c.t===L.t&&c.id===L.id){ d.cr.splice(i,1); crGone(d,c); reopenRunBy(c,L.k); break; } } }
-  S.ui.crLast=null; save(false,L.k); render();
+  S.ui.crLast=null; save(false,rk); render(); crFocus('#pane-cravings .card.moment .pc-top, #pane-cravings #timerCard .btn');
 }
 /* ===================== MEALS (6.7): opens on the weak spot =====================
    The header is P5's weak spot (else the bright spot) with the P1 token. The first chip is the weak spot; under it,
@@ -10250,24 +10315,25 @@ document.addEventListener('click',function(ev){
     /* 3.0.4: a craving row inside Something else (data-from) is pushed inside the sheet, with a back row to the page under
        it; anywhere else the craving sheet opens on its own */
     case 'crave': { var cid=t.getAttribute('data-id'), cfr=t.getAttribute('data-from')||undefined;
-      if(cfr&&sheetOpen()&&t.closest('#sheet')) sheetPush(function(){ craveSheet(cid,cfr); }); else craveSheet(cid,cfr); break; }
+      if(cfr&&sheetOpen()&&t.closest('#sheet')) sheetPush(function(){ craveSheet(cid,cfr); },t); else craveSheet(cid,cfr); break; }
     /* 3.0.4: Something else (crdesign SPEC 4): the magnifier opens it with the field focused, the row unfocused; a group
        is pushed inside it; Cancel ends a search */
     case 'find': findSheet(!!t.getAttribute('data-focus')); break;
-    case 'feel': { var ff=t.getAttribute('data-f'); if(sheetOpen()) sheetPush(function(){ groupSheet(ff); }); else groupSheet(ff); break; }
+    case 'feel': { var ff=t.getAttribute('data-f'); if(sheetOpen()) sheetPush(function(){ groupSheet(ff); },t); else groupSheet(ff); break; }
     case 'fcancel': crSearchCancel(); break;
     /* 3.0.4: the card shows the run, so no toast; from the sheet the run is tied to its craving and the sheet closes */
     case 'timer': startTimer(t.getAttribute('data-id')||undefined); if(sheetOpen()) closeSheet(); break;
     case 'crundo': crUndo(); break;
-    /* I had a swap at 0:00: the run's craving sheet, or Something else for a run with no craving */
-    case 'tmswap': { var rn=timerRun(), rid=t.getAttribute('data-id')||(rn&&rn.id); if(rid&&CMAP[rid]) craveSheet(rid); else if(typeof findSheet==='function') findSheet(); break; }
+    /* I had a swap at 0:00: the run's craving sheet, or Something else for a run with no craving. The run waits for this
+       sheet (CRSH.forRun, until it closes), so the swap logged in it closes the run however long after its end */
+    case 'tmswap': { var rn=timerRun(), rid=t.getAttribute('data-id')||(rn&&rn.id); if(rid&&CMAP[rid]) craveSheet(rid); else if(typeof findSheet==='function') findSheet(); CRSH.forRun=rn?rn.t:null; break; }
     case 'tmans': buzz(); if(sheetOpen()) closeSheet(); timerAnswer(t.getAttribute('data-v')==='1'); break;
     case 'tstop': timerStop(); break;
     /* 3.0.4: a swap row opens in place; the first time any row is opened, the first-use open row stops */
     case 'altx': { var on2=t.getAttribute('aria-expanded')!=='true', xp=t.nextElementSibling; t.setAttribute('aria-expanded',on2?'true':'false'); t.classList.toggle('open',on2);
       if(xp&&xp.classList.contains('xpand')) xp.hidden=!on2; if(on2&&!S.ui.swapOpened){ S.ui.swapOpened=1; save(); } break; }
     /* the back row: the page under this one, where he left it; a page opened on its own goes to the page it names */
-    case 'sback': { if(sheetBack()) break; var to=t.getAttribute('data-to'); if(to==='search') findSheet(false,CRFIND.q); else if(to==='find') findSheet(); else if(to) groupSheet(to); break; }
+    case 'sback': { if(sheetBack()) break; var to=t.getAttribute('data-to'); if(to==='search') findSheet(false,CRFIND.q); else if(to==='find') findSheet(); else if(to) groupSheet(to); sheetFocus(null); break; }
     /* a craving happens now, so it belongs to the app day of now, whichever day Today is showing */
     /* 3.0.4: every log stores the alternative's aid; the measured portion is eaten (O7) and a situation's row with no food
        ridden out (O11); a log on a craving closes the run it falls in (O6, DATA 6.2); crLast holds the card on it */
@@ -10278,10 +10344,10 @@ document.addEventListener('click',function(ev){
       else e2={id:id,alt:alt.t,aid:id+'#'+ix,res:true,t:Date.now(),kc:altKc(cv,alt)};
       crLog(e2); day(ck2,true).cr.push(e2); if(CRDEC.O6) closeRunBy(e2,ck2);
       var kd=e2.res?'swap':e2.nf?'rode':'ate'; if(e2.ml!==1) S.ui.crLast={id:id,t:e2.t,kind:kd,k:ck2};
-      save(false,ck2); closeSheet(); render(); if(e2.ml===1) toast('Logged with the meal.'); else if(!(TAB==='cravings'&&CRDEC.O12)) recordToast(kd,{k:ck2}); break; }
+      save(false,ck2); closeSheet(); render(); if(e2.ml!==1) crFocus('#pane-cravings .swapblk.logged .undo'); if(e2.ml===1) toast('Logged with the meal.'); else if(!(TAB==='cravings'&&CRDEC.O12)) recordToast(kd,{k:ck2}); break; }
     case 'gavein': { var id2=t.getAttribute('data-id'), ck3=appToday(), e3=crLog({id:id2,res:false,t:Date.now()}); day(ck3,true).cr.push(e3); if(CRDEC.O6) closeRunBy(e3,ck3);
       if(e3.ml!==1) S.ui.crLast={id:id2,t:e3.t,kind:'ate',k:ck3};
-      save(false,ck3); closeSheet(); render(); if(e3.ml===1) toast('Logged with the meal.'); else if(!(TAB==='cravings'&&CRDEC.O12)) recordToast('ate',{k:ck3}); break; }
+      save(false,ck3); closeSheet(); render(); if(e3.ml!==1) crFocus('#pane-cravings .swapblk.logged .undo'); if(e3.ml===1) toast('Logged with the meal.'); else if(!(TAB==='cravings'&&CRDEC.O12)) recordToast('ate',{k:ck3}); break; }
     case 'rk': RFILT.k=t.getAttribute('data-k'); renderMeals(); break;
     case 'rtag': RFILT.tag=t.getAttribute('data-t'); renderMeals(); if(sheetOpen()) recFiltersSheet(); break;
     case 'rall': RFILT.all=!RFILT.all; t.classList.toggle('on',RFILT.all); t.setAttribute('aria-checked',RFILT.all?'true':'false'); renderMeals(); break;
@@ -10410,7 +10476,7 @@ PHOTOS_READY.then(function(changed){ if(changed) render(); });
 try{ if(!isIOS()&&window.REBAL_PWA){ var ml=document.createElement('link'); ml.rel='manifest'; ml.href='manifest.webmanifest'; document.head.appendChild(ml); } }catch(e){}
 window.addEventListener('pagehide',function(){ save(true); vaultFlush(); cloudBeacon(); });
 document.addEventListener('visibilitychange',function(){ if(document.hidden){ save(true); vaultFlush(); cloudBeacon(); } else {
-  if(VIEWDATE===null&&TAB==='today') renderToday(); cloudPull();
+  if(VIEWDATE===null&&TAB==='today') renderToday(); if(TAB==='cravings'){ paintTimer(); if($('#sbarOut')||$('#sheetPanel > .bbar [data-act=tmans]')||$('#sheetPanel > .bbar .barrow.other')) crSheetAgain(); } cloudPull();
   /* a new app week that began while the app sat open in the background */
   if(S.ui.seen&&S.ui.v2&&!sheetOpen()&&!$('#onboard').classList.contains('on')&&!$('#road').classList.contains('on')&&reviewDue()) showReview(); } });
 try{ if(window.REBAL_PWA&&'serviceWorker' in navigator&&location.protocol==='https:') navigator.serviceWorker.register('sw.js').catch(function(){}); }catch(e){}

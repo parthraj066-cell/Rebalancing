@@ -415,6 +415,61 @@ label.lab{display:block;font-size:13px;line-height:18px;font-weight:400;letter-s
 .recl .rn{font-family:var(--f-num);font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink);letter-spacing:0}
 p.recl{margin:0}
 .dlab{margin-top:2px}
+/* ---------- the lotus (06c_lotus.js, 3.0.5; wf/lotus/final SPEC): the three four-week patterns in one drawing. Its
+   styles are patternShape.css (the same text); only tokens, so no new colour. Motion is the weekly review's only. ---------- */
+.lotus{display:block;overflow:visible}
+.lotus .lt-rot{transform-box:view-box;transform-origin:0 0}
+.lotus .lt-was{opacity:0}
+.lotus.lt-review .lt-mv .lt-rot{animation:ltTurn var(--dur-gentle,740ms) var(--spring-gentle,cubic-bezier(.25,.8,.25,1)) both;animation-delay:calc(var(--i,0) * 40ms)}
+@keyframes ltTurn{from{transform:var(--t0)}to{transform:var(--t1)}}
+.lotus.lt-review .lt-was{animation:ltOut 200ms ease-out 420ms both}
+.lotus.lt-review .lt-now{animation:ltIn 200ms ease-out 420ms both}
+@keyframes ltIn{from{opacity:0}to{opacity:1}}@keyframes ltOut{from{opacity:1}to{opacity:0}}
+.lt-rm .lotus.lt-review .lt-mv .lt-rot,.lotus.lt-review.lt-rm .lt-mv .lt-rot{animation:none}
+.lt-rm .lotus.lt-review .lt-was,.lotus.lt-review.lt-rm .lt-was{animation:ltOut 150ms ease-out both}
+.lt-rm .lotus.lt-review .lt-now,.lotus.lt-review.lt-rm .lt-now{animation:ltIn 150ms ease-out both}
+.lotus .lt-dot.pop{transform-box:fill-box;transform-origin:center;animation:ltPop var(--dur-pop,850ms) var(--spring-pop,cubic-bezier(.34,1.56,.64,1)) both}
+@keyframes ltPop{from{transform:scale(.6)}to{transform:scale(1)}}
+.lotus [role=button]{cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
+.lotus [role=button]:focus-visible .lt-out{stroke:var(--tint);stroke-width:2.5px}
+.lotus .lt-dots[role=button]:focus-visible circle{stroke:var(--tint)}
+.lotus-w{position:relative;flex:none}
+.lotus-w>.lotus{position:absolute;left:0;top:0;width:100%;height:100%}
+.lt-val{position:absolute;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;pointer-events:none;white-space:nowrap}
+.lt-val .lt-n{font-family:var(--f-num);font-variant-numeric:tabular-nums;font-size:17px;line-height:22px;font-weight:600;color:var(--ink)}
+.lt-val .lt-u{font-size:13px;line-height:18px;font-weight:400;color:var(--ink2);margin-top:-2px}
+.lt-rec{position:absolute;left:0;right:0;text-align:center;pointer-events:none;white-space:nowrap}
+.lt-lab{position:absolute;white-space:nowrap;pointer-events:none}
+.lt-lab.lt-am{transform:translateX(-50%);text-align:center}.lt-lab.lt-ar{transform:translateX(-100%);text-align:right}
+@media (prefers-reduced-motion:reduce){.lotus.lt-review .lt-mv .lt-rot{animation:none}.lotus.lt-review .lt-was{animation:ltOut 150ms ease-out both}.lotus.lt-review .lt-now{animation:ltIn 150ms ease-out both}.lotus .lt-dot.pop{animation:ltIn 150ms ease-out both}}
+/* Today and the review (SPEC 7): the 140 pt lotus (116 under 360 pt) with its dots and record, beside the two tokens
+   stacked, each token's name led by its petal's 22 pt key */
+.lt-today{display:flex;align-items:center;gap:14px;margin:2px 0 0}
+.lt-fig{flex:none;margin-left:-4px}
+.lt-today.is-bud .lt-fig{width:140px;display:flex;justify-content:center}
+.lt-tk{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1}
+.lt-tk .token .tk-l{white-space:nowrap}
+.tk-l.tk-key{padding-left:0}
+.tk-l .lt-keyi{display:inline-block;vertical-align:-1px;margin-right:6px}
+p.recl.lt-r0{margin-top:6px}
+@media (max-width:359px){ .lt-today{gap:10px} .lt-today.is-bud .lt-fig{width:116px} .lt-fig .lt-rec{font-size:13px;line-height:18px;letter-spacing:var(--tr-foot)} }
+/* Patterns (SPEC 7): the lotus as the top cell of "Last 4 weeks", the three rows under it, then last week's row */
+/* 14 under it (the mockup's 10, plus 4): the dots' 46 pt band reaches 13 pt under the drawing, and it must stay clear of
+   the first row, so the dots keep a 44 pt circle of their own (T7) */
+.lt-hero{display:flex;justify-content:center;padding:16px 8px 14px;position:relative}
+.lt-list .lt-hero + .row::before{content:"";position:absolute;top:0;left:16px;right:0;height:.5px;background:var(--sep)}
+/* before the first reading: the bud card (the bud, the engine's start sentence, its line) */
+.lt-budcard{padding:16px 16px 14px}
+.lt-budfig{display:flex;justify-content:center;margin:0 0 10px}
+.lt-budcard .lt-bud1{margin-top:6px}
+/* the week sheet: Earlier week and Later week */
+.wk-nav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.wk-nav .btn svg{width:8px;height:13px;margin:0 6px}
+.wk-nav .btn .chev.wk-prev{transform:scaleX(-1)}
+.wk-nav .btn[disabled]{opacity:1;color:var(--ink2)}
+/* a sheet titled with a week range: "2 to 8 November" gives way to "2 to 8 Nov" under 360 pt */
+.sheet-h h2 .short{display:none}
+@media (max-width:359px){ .sheet-h h2 .long{display:none} .sheet-h h2 .short{display:inline} }
 
 /* the pattern card (patternCard): the headline, the tokens, the dots; one footer slot (morningCard or oneRow). The top
    section links to Patterns (role=link, not a button: it holds block content) unless the slot row already goes there. */
@@ -5669,7 +5724,9 @@ function tokenValue(key,r){
    glyph, value and label flush left. Before the first reading: "From 30 Nov" in Headline ink2 over its label.
    opts.from: last Monday's glyph, which cross-fades to this one (200 ms) as the weekly review opens; a pattern called
    for the first time has nothing to fade from, so its glyph only fades in. opts.v, opts.u: a shown value of its own;
-   opts.label: a label of its own (the onboarding demo). data-p stays as the hook. */
+   opts.label: a label of its own (the onboarding demo). data-p stays as the hook. 3.0.5 opts.key: beside the lotus
+   (Today, the review), the label starts with its petal's 22 pt key (patternShape.key: the three petals, that one inked)
+   and loses its indent, so the token says which petal it is; the key is aria-hidden, the lotus's own name says it. */
 function token(key,r,opts){
   opts=opts||{};
   var g=glyphKind(key,r), tv=opts.v!=null?{v:opts.v,u:opts.u||''}:tokenValue(key,r), lab=opts.label||PATLABEL[key]||key, w=stateWord(key,r);
@@ -5678,7 +5735,7 @@ function token(key,r,opts){
   if(now&&opts.from&&opts.from!==g){ var was=glyph(opts.from,18);
     gl='<span class="gx">'+(was?was.replace('class="glyph','class="glyph g-old'):'')+now.replace('class="glyph','class="glyph g-new')+'</span>'; }
   var val=tv.early?'<span class="early">'+esc(tv.v)+'</span>':'<b>'+esc(tv.v)+'</b>'+(tv.u?'<small>'+tv.u+'</small>':'');
-  return '<div class="token'+(now?'':' nog')+'" data-p="'+esc(key)+'" role="img" aria-label="'+esc(aria)+'"><span class="tk-v">'+gl+val+'</span><span class="tk-l">'+esc(lab)+'</span></div>';
+  return '<div class="token'+(now?'':' nog')+'" data-p="'+esc(key)+'" role="img" aria-label="'+esc(aria)+'"><span class="tk-v">'+gl+val+'</span><span class="tk-l'+(opts.key?' tk-key':'')+'">'+(opts.key?patternShape.key(key,{w:22,ink:1.25,dots:false}):'')+esc(lab)+'</span></div>';
 }
 /* dotRow(dots,opts): up to 10 closed off-plan runs, oldest left. 1 back on plan at the next meal: a gold dot with a
    gold-edge rim; 0 later: a 2 pt ink2 ring; -1 unknown (followed by unlogged meals): the ring dashed. Size 14 with 8
@@ -5750,19 +5807,24 @@ function todayLead(g){
   }
   return out;
 }
-/* the pattern card (3.1): the headline, the two tokens, the dot row and its label, then one footer slot. The top
-   section links to Patterns (a role=link div: it holds block content) unless the slot row already goes there, so each
-   destination has one target; before the first reading it is static. */
+/* the pattern card (3.1): the headline, then (3.0.5, lotus SPEC 7) the lotus beside the two tokens stacked, each
+   token's name led by its petal's key; the lotus carries the dot row and its record (none when the headline is the P2
+   sentence, O3), and before the first off-plan meal the line that starts the dots. Then one footer slot. The top section
+   links to Patterns (a role=link div: it holds block content) unless the slot row already goes there, so each
+   destination has one target; the lotus is one image inside it; before the first reading it is static. */
 function patternCard(g,anim,slot,lead,o){
-  o=o||{}; var nolab=o.nolab;
+  o=o||{};
   /* o.moved: the footer slot sits under the next meal's buttons (the smallest phones); it still decides the link */
   var p1=g.P1, p3=g.P3, ready=(p1&&p1.state!=='early')||(p3&&p3.state!=='early'), link=ready&&!/data-tab="patterns"/.test((slot||'')+(o.moved||''));
   lead=lead||todayLead(g);
   var h='<section class="pcard card" aria-label="Your patterns"><div class="pc-top"'+(link?' role="link" tabindex="0" data-act="tab" data-tab="patterns" aria-label="Patterns, last 4 weeks"':'')+'>';
   h+='<div class="card-head"><p class="t-head pc-head">'+nb(esc(lead.text))+'</p>'+(link?ICON.chev:'')+'</div>';
-  h+='<div class="tokens pc-tok">'+token('P1',p1)+token('P3',p3)+'</div>';
-  h+='<div class="pc-dots" id="pcDots">'+dotLine(g.P2,anim,{bare:lead.kind==='backonplan',nolab:nolab})+'</div></div>';
-  return h+(slot||'')+'</section>';
+  /* the tap that decided a run pops the newest dot, as dotLine() does */
+  var narrow=(innerWidth||390)<360, closed=!!(anim&&anim.rec&&(anim.rec.kind==='next'||(anim.rec.kind==='off'&&anim.prevAll!=null&&(g.P2.closedAll||0)>anim.prevAll)));
+  var M=patternShape.model(g), fig=patternShape(g,{id:'td',w:narrow?116:140,count:lead.kind!=='backonplan',pop:closed,label:'Your patterns'});
+  h+='<div class="lt-today'+(M.bud?' is-bud':'')+'"><div class="lt-fig" id="pcDots">'+fig+'</div><div class="lt-tk">'+token('P1',p1,{key:1})+token('P3',p3,{key:1})+'</div></div>';
+  if(M.bud&&!(g.P2.dots||[]).length) h+='<p class="recl lt-r0">'+nb(esc(g.P2&&g.P2.openRun?'Back on plan: a gold dot appears when the next meal is on plan.':'Back on plan: dots start with your first off-plan meal.'))+'</p>';
+  return h+'</div>'+(slot||'')+'</section>';
 }
 function nextSlotOf(iso0){ var d=S.days[iso0], sl=['b','l','d']; for(var i=0;i<3;i++){ var x=d&&d.m&&d.m[sl[i]]; if(!(x&&x.st)) return sl[i]; } return null; }
 function timingOf(r){ if(!r) return ''; var g=needs(r).length; return r.min?(g?r.min+' min · '+gearNames(r):r.min+' min, no cooking'):'No cooking'; }
@@ -6159,6 +6221,628 @@ function recipeSheet(c,opts){
 /* 3.0: nothing is awarded while logging. Awards are decided and stamped in the weekly review only (6.10), so this
    no longer shows anything; the callers in 11_card.js go with the daily card in step 11. */
 function checkMiles(){ return newlyEarned(); }
+/* ===================== THE LOTUS: patternShape(g, opts) (src/06c_lotus.js, 3.0.5; wf/lotus/final/lotus.js) =====================
+   One drawing of the three four-week patterns, made only from what PAT.get() computes. Plain ES5: no let, const,
+   arrow functions, template strings, Object.assign or Array.prototype.includes; no clock, no random numbers, no DOM.
+   The same g and opts always give the same markup, so the drawing can change only when PAT.get() does: its readings
+   are cached by the Monday (07a_patterns.js get()), and the one live part, the dot row, moves on the tap that closes
+   an off-plan run, exactly as dotRow() does.
+
+   THE PARTS. Each part is one pattern and carries data-p, so a tap opens that pattern's sheet (12_events.js,
+   data-act="pattern"):
+     left petal    P1  Off-plan meals            g.P1.state, perWeek, prevPerWeek, settled     changes on Mondays
+     centre petal  P2  Back on plan (8 weeks)     g.P2.state                                    changes on Mondays
+     right petal   P3  Between meals             g.P3.state, perWeek, prevPerWeek, settled     changes on Mondays
+     dot row       P2  the last 10 off-plan meals g.P2.dots (1 gold, 0 ring, -1 dashed ring)    changes on the tap
+                                                                                                that closes a run
+   The centre petal is in front, as in a lotus seen from the side; the two side petals stand behind it and curl out
+   at the tips. The dot row lies under the bloom where the water would be.
+
+   WHAT A PETAL SHOWS. Its kind is glyphKind() of 06_today.js (copied below for use outside the app), plus 'early':
+     early  no reading yet (state 'early', or no number)   closed: a slender petal of its own beside the centre one,
+                                                            white, thin outline, no mark, no value
+     ring   a number with no word yet (first reading,      open, white, --mark outline, no mark
+            edging, unsettled)
+     dash   Steady                                         open, white with --steady-t at the tip, --ink2 outline, a dash
+     up     Improving                                      open and turned 6 degrees further out, white with two layers
+                                                            of --up-t at the tip, --up outline, an up chevron
+     down   Slipping                                       open and drawn 6 degrees in, white with two layers of
+                                                            --down-t at the tip, --down outline, a down chevron
+   Marks are drawn upright, never turned with the petal, so up always means better. Petal size never encodes an
+   amount: nothing fills toward a target and nothing reads as a score. When every petal is early the lotus is a closed
+   bud on a short stem over a waterline, with no colour, no mark and no target.
+
+   opts (all optional):
+     w        rendered width in px (default 312). Strokes, marks, dots and type keep their pt size at every width.
+     values   true: each open side petal carries its value as token() says it ("5.5" over "in 21"), where it fits
+     units    false: the value alone (default: units at 260 px and wider)
+     dots     false: leave the dot row out (the review's "Last Monday" drawing)
+     count    true: the record under the dots ("7 of the last 10"), as recordLine() draws it (Today, the review, the
+              bud; Patterns and the share card leave it to the row or column beside it)
+     tap      true: each part is a role=button with data-act="pattern" (Patterns). Default: one image (a card links)
+     prev     last Monday's readings {P1, P2, P3} as reviewTokens() computes them; with motion 'review' the drawing
+              starts in last Monday's pose and colours and moves to this Monday's
+     motion   'review': the weekly review's opening (see css below). Petals that did not change do not move.
+     pop      true: the newest dot springs in (the tap that closed its run), as dotRow({pop}) does
+     labels   true: the names past the petal tips, with hairline leaders (the Guide's example)
+     focus    'P1' | 'P2' | 'P3' | 'dots': that part in ink and the rest faint (patternShape.key() is the Guide's and
+              the tokens' key icon; patternShape.petalKey() the Colours rows' single petal)
+     marks    false: no marks (default: marks from 40 px wide)
+     svgText  true: values and labels as SVG <text> with literal fonts, for drawing on a canvas (the share card)
+     scale    a pt multiplier for strokes, marks, dots and type (the share card draws at 2.7)
+     colors   literal colours keyed like CSSVAR, for an <img> or canvas; or use patternShape.inline() on the markup
+     id       a prefix for the gradient ids. Pass one per place (BUILD.md: td, pt, pb, rv, rvp, gx, gl, gb, sc): a page
+              holds several lotuses and a gradient found in a hidden pane paints nothing. Default: a hash of the options
+              and the kinds, deterministic and different for different drawings
+     label    the accessible name of the whole drawing (default "Your patterns")
+   Returns markup: an <svg> (with svgText, or when there is no text to place) or a <div class="lotus-w"> holding the
+   svg and the value spans, positioned in percent so the block scales with its width. Text is HTML in the type scale
+   (U1 of the UI lint allows only 11 pt SVG text). */
+var patternShape = (function () {
+  var VW = 320;                                                   /* viewBox width; heights follow the content */
+  var OX = 160, OY = 170;                                         /* O: where the side petals' bases meet */
+  var NAME = { P1: 'Off-plan meals', P2: 'Back on plan', P3: 'Between meals' };
+  var LONG = { P1: 'Off-plan meals', P2: 'Back on plan at the next meal', P3: 'Between meals' };
+  var WORD = { up: 'Improving', down: 'Slipping', dash: 'Steady' };
+  var MINCH = { P1: 1, P2: 0.15, P3: 1 };                         /* R6, as 06_today.js MINCH */
+  var CSSVAR = { surface: 'var(--surface)', ink: 'var(--ink)', ink2: 'var(--ink2)', mark: 'var(--mark)', sep: 'var(--sep)',
+    up: 'var(--up)', upT: 'var(--up-t)', down: 'var(--down)', downT: 'var(--down-t)', steadyT: 'var(--steady-t)',
+    gold: 'var(--gold)', goldEdge: 'var(--gold-edge)', tint: 'var(--tint)', font: 'var(--f-num)', fontText: 'var(--f)' };
+
+  /* ---------- geometry, in viewBox units ----------
+     Each petal is drawn in its own frame: base at (0,0), tip at (0,-L). hwL and hwR are the half-widths to the left
+     and right of the midrib (a side petal is foreshortened on its inner half), wp the height of its widest point as a
+     share of L, bend how far the tip curls out (x += bend * t^2, t the share of the length), bx and by where its base
+     sits from O, a its angle from upright in its open pose. */
+  var GEO = {
+    P2: { L: 150, hwL: 36, hwR: 36, wp: 0.57, bend: 0, bx: 0, by: 8, a: 0 },
+    P1: { L: 168, hwL: 44, hwR: 31, wp: 0.50, bend: 26, bx: -5, by: 0, a: -52 },
+    P3: { L: 168, hwL: 31, hwR: 44, wp: 0.50, bend: -26, bx: 5, by: 0, a: 52 }
+  };
+  var LEAN = { up: 6, down: -6 };                                 /* Improving opens out, Slipping draws in */
+  /* the closed pose: the petal narrowed and shortened about its base, nearly upright, so the three make a bud. A side
+     petal with no reading in an open flower (FOLD) closes into a slender petal of its own, turned 40 degrees out with
+     its base 20 units out from O, so a clear wedge of white (18 pt at the 116 pt Today size) shows between it and the
+     centre petal and its tip points out on its own; nothing of it hides behind the centre petal */
+  var BUD = { P2: { a: 0, sx: 0.54, sy: 0.84, dy: 0 }, P1: { a: -9, sx: 0.64, sy: 0.68, dy: 3 }, P3: { a: 9, sx: 0.64, sy: 0.68, dy: 3 } };
+  var FOLD = { P1: { a: -40, sx: 0.44, sy: 0.68, dx: -20 }, P3: { a: 40, sx: 0.44, sy: 0.68, dx: 20 }, P2: { a: 0, sx: 0.62, sy: 0.86 } };
+  var DOTY = 26;                                                  /* the dot row's centre, under O, in pt at the hero */
+  var ORDER = ['P1', 'P3', 'P2'];                                  /* painted back to front: the centre petal in front */
+
+  function f1(v) { return (Math.round(v * 10) / 10).toString(); }
+  function f2(v) { return (Math.round(v * 100) / 100).toString(); }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function ext(a, b) { var o = {}, k; for (k in a) if (a.hasOwnProperty(k)) o[k] = a[k]; for (k in b) if (b && b.hasOwnProperty(k)) o[k] = b[k]; return o; }
+
+  /* ---------- the engine's words: the app's own functions when they are loaded, else the same rules ---------- */
+  function num(v) { if (v == null || !isFinite(v)) return ''; var r = v < 5.75 ? Math.round(v * 2) / 2 : Math.round(v); return String(r); }
+  function perWk(v) { if (v < 0.25) return 'less than once a fortnight'; if (v < 0.75) return 'about once a fortnight'; if (v <= 1.5) return 'about once a week'; return 'about ' + num(v) + ' a week'; }
+  function perWkC(v) { if (v < 0.25) return 'under 0.5 a week'; if (v < 0.75) return 'about 0.5 a week'; return perWk(v); }
+  function P() { return (typeof PAT !== 'undefined' && PAT.num) ? PAT : { num: num, perWk: perWk, perWkC: perWkC, in21: function (v) { return 'about ' + num(v) + ' in 21'; } }; }
+  function kindOf(key, r) {
+    if (!r || r.state === 'early' || !r.state) return 'early';
+    if (key !== 'P2' && r.perWeek == null) return 'early';
+    if (typeof glyphKind === 'function') return glyphKind(key, r);
+    if (r.state === 'improving') return 'up';
+    if (r.state === 'slipping') return 'down';
+    if (r.state === 'holding') {
+      if (r.settled) return 'dash';
+      var d = (r.perWeek != null && r.prevPerWeek != null) ? Math.abs(r.perWeek - r.prevPerWeek) : 0;
+      return d >= (MINCH[key] || 1) ? 'ring' : 'dash';
+    }
+    return 'ring';
+  }
+  function wordOf(key, r, k) { return WORD[k] || (k === 'ring' && r && r.state === 'first' ? 'First reading' : ''); }
+  /* the value as token() says it (R8): "5.5" "in 21", "2.5" "a week", "under 0.5" "a week" */
+  function valueOf(key, r) {
+    if (typeof tokenValue === 'function') return tokenValue(key, r);
+    if (!r || r.state === 'early' || r.perWeek == null) return { v: 'Not yet', u: '', early: true };
+    if (key === 'P1') return { v: P().num(r.perWeek), u: 'in 21' };
+    if (key === 'P2') return { v: r.lastNext + ' of ' + r.lastN, u: '' };
+    var t = P().perWkC(r.perWeek), m = t.match(/^(?:about )?((?:under )?\d[\d.]*) a week$/);
+    return m ? { v: m[1], u: 'a week' } : { v: t.replace(/^about /, ''), u: '' };
+  }
+  /* a part's accessible name, the same words as its row on Patterns (patternRow's aria-label) */
+  function phrase(key, r, k) {
+    if (k === 'early') return LONG[key] + ': no reading yet';
+    /* the centre petal is the eight-week reading, which changes only on Mondays; its live record ("7 of the last 10")
+       belongs to the dot row's name, which changes on the tap that closes a run */
+    if (key === 'P2') return 'Back on plan at the next meal, last eight weeks: ' + (wordOf(key, r, k) || 'no word yet');
+    var val, from = '';
+    val = key === 'P1' ? P().in21(r.perWeek) : P().perWkC(r.perWeek);
+    if (typeof hasMove === 'function' && typeof pFrom === 'function') { if (hasMove(key, r)) from = pFrom(key, r); }
+    else if (r.prevPerWeek != null && !r.settled && (/improving|slipping|edging/.test(r.state) || (r.state === 'holding' && Math.abs(r.perWeek - r.prevPerWeek) >= (MINCH[key] || 1))))
+      from = key === 'P2' ? 'from about ' + Math.round(Math.max(0, Math.min(1, 1 - r.prevPerWeek)) * 10) + ' in 10' : 'from about ' + P().num(r.prevPerWeek);
+    var w = wordOf(key, r, k);
+    return (key === 'P2' ? 'Back on plan' : NAME[key]) + ': ' + val.charAt(0).toUpperCase() + val.slice(1) + (from ? ', ' + from : '') + (w ? ', ' + w : '');
+  }
+  function dotsPhrase(dots, p2) {
+    var nx = 0, lt = 0, un = 0, i;
+    for (i = 0; i < dots.length; i++) { if (dots[i] === 1) nx++; else if (dots[i] === 0) lt++; else un++; }
+    if (!dots.length) return (p2 && p2.openRun) ? 'Back on plan: a gold dot appears when the next meal is on plan' : 'Back on plan: dots start with your first off-plan meal';
+    return nx + ' back on plan at the next meal' + (lt ? ', ' + lt + ' later' : '') + (un ? ', ' + un + ' followed by unlogged meals' : '');
+  }
+
+  /* ---------- the model: one entry per part, from the engine's values only ---------- */
+  function model(g) {
+    g = g || {};
+    var m = { bud: true }, i, key;
+    for (i = 0; i < 3; i++) {
+      key = ['P1', 'P2', 'P3'][i];
+      var r = g[key], k = kindOf(key, r);
+      m[key] = { key: key, kind: k, open: k !== 'early', word: wordOf(key, r, k), say: phrase(key, r, k) };
+      if (k !== 'early' && key !== 'P2') m[key].value = valueOf(key, r);
+      if (k !== 'early') m.bud = false;
+    }
+    var p2 = g.P2 || {}, dots = (p2.dots || []).slice(-10), nx = 0, kn = 0;
+    for (i = 0; i < dots.length; i++) { if (dots[i] === 1) nx++; if (dots[i] >= 0) kn++; }
+    m.dots = { list: dots, say: dotsPhrase(dots, p2), next: p2.lastNext != null ? p2.lastNext : nx, n: p2.lastN != null ? p2.lastN : kn };
+    return m;
+  }
+  /* a petal's pose for its kind: angle from upright, scale about its base, base offset */
+  function pose(key, kind, bud) {
+    var G = GEO[key];
+    if (kind === 'early' && bud) { var B = BUD[key]; return { a: B.a, sx: B.sx, sy: B.sy, x: OX, y: OY + (key === 'P2' ? G.by : B.dy) }; }
+    if (kind === 'early') { var F = FOLD[key]; return { a: F.a, sx: F.sx, sy: F.sy, x: OX + (F.dx != null ? F.dx : G.bx * 0.5), y: OY + G.by + (F.dy || 0) }; }
+    var side = key === 'P1' ? -1 : key === 'P3' ? 1 : 0;
+    return { a: G.a + side * (LEAN[kind] || 0), sx: 1, sy: 1, x: OX + G.bx, y: OY + G.by };
+  }
+
+  /* ---------- the petal outline: four cubic Beziers, the tip curled out along a parabola ---------- */
+  function ctrl(key) {
+    var G = GEO[key], L = G.L, wl = G.hwL, wr = G.hwR, w = G.wp;
+    function B(x, y) { var t = -y / L; return [x + G.bend * t * t, y]; }
+    return [B(0, 0), B(0.26 * wr, -0.03 * L), B(wr, -(w - 0.32) * L), B(wr, -w * L),
+      B(wr, -(w + 0.22) * L), B(0.16 * wr, -0.87 * L), B(0, -L),
+      B(-0.16 * wl, -0.87 * L), B(-wl, -(w + 0.22) * L), B(-wl, -w * L),
+      B(-wl, -(w - 0.32) * L), B(-0.26 * wl, -0.03 * L), B(0, 0)];
+  }
+  var PATH = {}, POLY = {};
+  function petalD(key) {
+    if (PATH[key]) return PATH[key];
+    var c = ctrl(key), q = function (i) { return f2(c[i][0]) + ' ' + f2(c[i][1]); };
+    return (PATH[key] = 'M' + q(0) + 'C' + q(1) + ' ' + q(2) + ' ' + q(3) + 'C' + q(4) + ' ' + q(5) + ' ' + q(6) + 'C' + q(7) + ' ' + q(8) + ' ' + q(9) + 'C' + q(10) + ' ' + q(11) + ' ' + q(12) + 'Z');
+  }
+  /* the same curve sampled into points, in the petal's own frame */
+  function localPoly(key) {
+    if (POLY[key]) return POLY[key];
+    var c = ctrl(key), out = [], s, j, t, u;
+    for (s = 0; s < 4; s++) for (j = 0; j < 14; j++) {
+      t = j / 14; u = 1 - t; var a = c[s * 3], b = c[s * 3 + 1], d = c[s * 3 + 2], e = c[s * 3 + 3];
+      out.push([u * u * u * a[0] + 3 * u * u * t * b[0] + 3 * u * t * t * d[0] + t * t * t * e[0], u * u * u * a[1] + 3 * u * u * t * b[1] + 3 * u * t * t * d[1] + t * t * t * e[1]]);
+    }
+    return (POLY[key] = out);
+  }
+  function place(pt, ps) {                                       /* a point of the petal's frame into the viewBox */
+    var r = ps.a * Math.PI / 180, x = pt[0] * ps.sx, y = pt[1] * ps.sy;
+    return [ps.x + x * Math.cos(r) - y * Math.sin(r), ps.y + x * Math.sin(r) + y * Math.cos(r)];
+  }
+  function polyAt(key, ps) { var p = localPoly(key), out = [], i; for (i = 0; i < p.length; i++) out.push(place(p[i], ps)); return out; }
+  /* fine veins from the claw, bowing with the petal (no straight midrib, which reads as a clove). They run only in the
+     lower part of the petal: a side petal's to half its length, the centre petal's to 0.4 of it, and every vein ends
+     below the value or mark (top, a height in the petal's own frame), so no line is ever drawn above or through them.
+     Each is the first part of a quadratic curve, cut where it reaches that height (de Casteljau). */
+  function veinsD(key, top) {
+    var G = GEO[key], L = G.L, s = '', js = key === 'P2' ? [-1.4, 1.4] : [-2, -0.8, 0.8, 2], i, cap = (key === 'P2' ? 0.4 : 0.5) * L;
+    var h = Math.min(cap, top == null ? cap : top);
+    if (h < 0.18 * L) return '';
+    function B(x, y) { var t = -y / L; return [x + G.bend * t * t, y]; }
+    for (i = 0; i < js.length; i++) {
+      var j = js[i], hw = j < 0 ? G.hwL : G.hwR, k = j / 2.6, end = Math.abs(j) > 1.5 ? 0.70 : 0.78;
+      var p0 = B(k * 0.10 * hw, -0.08 * L), p1 = B(k * 1.30 * hw, -0.46 * L), p2 = B(k * 0.22 * hw, -end * L);
+      /* y(t) = (1-t)^2 y0 + 2t(1-t) y1 + t^2 y2 = -h: the first t in [0, 1] */
+      var a = p0[1] - 2 * p1[1] + p2[1], b = 2 * (p1[1] - p0[1]), c = p0[1] + h, t = 1;
+      if (Math.abs(a) < 1e-9) t = -c / b; else { var dd = b * b - 4 * a * c; if (dd >= 0) { var r1 = (-b - Math.sqrt(dd)) / (2 * a), r2 = (-b + Math.sqrt(dd)) / (2 * a); t = (r1 >= 0 && r1 <= 1) ? r1 : r2; } }
+      t = Math.max(0, Math.min(1, t));
+      var q1 = [p0[0] + (p1[0] - p0[0]) * t, p0[1] + (p1[1] - p0[1]) * t], u1 = 1 - t;
+      var q2 = [u1 * u1 * p0[0] + 2 * t * u1 * p1[0] + t * t * p2[0], u1 * u1 * p0[1] + 2 * t * u1 * p1[1] + t * t * p2[1]];
+      s += 'M' + f1(p0[0]) + ' ' + f1(p0[1]) + 'Q' + f1(q1[0]) + ' ' + f1(q1[1]) + ' ' + f1(q2[0]) + ' ' + f1(q2[1]);
+    }
+    return s;
+  }
+  /* a viewBox point in a petal's own frame (the inverse of place), for measuring along its axis */
+  function unplace(pt, ps) {
+    var r = -ps.a * Math.PI / 180, x = pt[0] - ps.x, y = pt[1] - ps.y;
+    return [(x * Math.cos(r) - y * Math.sin(r)) / ps.sx, (x * Math.sin(r) + y * Math.cos(r)) / ps.sy];
+  }
+  /* the height in the petal's frame where a clear zone (the ellipse round its value or mark) begins */
+  function clearFrom(cl, ps) {
+    var lo = 1e9, i;
+    for (i = 0; i < 32; i++) { var a = i * Math.PI / 16, p = unplace([cl.x + cl.rx * Math.cos(a), cl.y + cl.ry * Math.sin(a)], ps); if (-p[1] < lo) lo = -p[1]; }
+    return lo;
+  }
+  /* the top of a petal's outline, from its widest point on one side over the tip to the other: the only part of the
+     bud's centre petal whose halo cuts the side petals, so their outlines meet the centre petal's at the base */
+  function topD(key) {
+    var c = ctrl(key), q = function (i) { return f2(c[i][0]) + ' ' + f2(c[i][1]); };
+    return 'M' + q(3) + 'C' + q(4) + ' ' + q(5) + ' ' + q(6) + 'C' + q(7) + ' ' + q(8) + ' ' + q(9);
+  }
+
+  /* ---------- geometry helpers for placing text and marks ---------- */
+  function inPoly(x, y, R) { var c = false, i, j; for (i = 0, j = R.length - 1; i < R.length; j = i++) { var a = R[i], b = R[j]; if (((a[1] > y) !== (b[1] > y)) && (x < (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1]) + a[0])) c = !c; } return c; }
+  function edgeDist(x, y, R) { var d = 1e9, i, j; for (i = 0, j = R.length - 1; i < R.length; j = i++) { var a = R[j], b = R[i], dx = b[0] - a[0], dy = b[1] - a[1], l = dx * dx + dy * dy, t = l ? ((x - a[0]) * dx + (y - a[1]) * dy) / l : 0; t = Math.max(0, Math.min(1, t)); var px = a[0] + t * dx - x, py = a[1] + t * dy - y, e = px * px + py * py; if (e < d) d = e; } return Math.sqrt(d); }
+  /* signed clearance of a point: how far inside R it is and outside every polygon in front of it */
+  function clear(x, y, R, front) {
+    var c = inPoly(x, y, R) ? edgeDist(x, y, R) : -edgeDist(x, y, R), i;
+    for (i = 0; i < front.length; i++) { var f = inPoly(x, y, front[i]) ? -edgeDist(x, y, front[i]) : edgeDist(x, y, front[i]); if (f < c) c = f; }
+    return c;
+  }
+  /* where a block sits best inside what shows of a petal. pts are the block's test points relative to its centre
+     (the corners of each line of text, the ends of a mark); the best centre has the most clearance (capped at 6 units),
+     then lies nearest the target point. Searched on a 1-unit grid; deterministic; cached by pose and block. */
+  var SPOT = {};
+  function spot(R, front, pts, tx, ty, ck) {
+    if (SPOT.hasOwnProperty(ck)) return SPOT[ck];
+    var x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9, i, best = null, need = 1e9;
+    for (i = 0; i < R.length; i++) { x0 = Math.min(x0, R[i][0]); x1 = Math.max(x1, R[i][0]); y0 = Math.min(y0, R[i][1]); y1 = Math.max(y1, R[i][1]); }
+    for (i = 0; i < pts.length; i++) need = Math.min(need, Math.max(Math.abs(pts[i][0]), Math.abs(pts[i][1])));
+    function test(x, y) {
+      var c0 = clear(x, y, R, front); if (c0 < need * 0.5) return;            /* too near an edge for the block's middle */
+      var m = c0;
+      for (var j = 0; j < pts.length && m >= 0; j++) { var c = clear(x + pts[j][0], y + pts[j][1], R, front); if (c < m) m = c; }
+      if (m < 0) return;
+      var dd = (x - tx) * (x - tx) + (y - ty) * (y - ty), sc = Math.min(m, 6) * 1000 - dd;
+      if (!best || sc > best.sc) best = { x: x, y: y, m: m, sc: sc };
+    }
+    var x, y;
+    for (y = Math.ceil(y0); y <= y1; y += 3) for (x = Math.ceil(x0); x <= x1; x += 3) test(x, y);
+    if (best) { var bx0 = best.x, by0 = best.y; for (y = by0 - 3; y <= by0 + 3; y++) for (x = bx0 - 3; x <= bx0 + 3; x++) test(x, y); }
+    return (SPOT[ck] = best);
+  }
+  function boxPts(w, h, m) { var a = w / 2 + m, b = h / 2 + m; return [[-a, -b], [0, -b], [a, -b], [a, 0], [a, b], [0, b], [-a, b], [-a, 0]]; }
+
+  /* the marks of glyph(): a chevron or a short dash, upright, z the half-width in units */
+  function markD(k, x, y, z) {
+    var b = z * 0.5;
+    if (k === 'up') return 'M' + f1(x - z) + ' ' + f1(y + b) + 'L' + f1(x) + ' ' + f1(y - b) + 'L' + f1(x + z) + ' ' + f1(y + b);
+    if (k === 'down') return 'M' + f1(x - z) + ' ' + f1(y - b) + 'L' + f1(x) + ' ' + f1(y + b) + 'L' + f1(x + z) + ' ' + f1(y - b);
+    if (k === 'dash') return 'M' + f1(x - z) + ' ' + f1(y) + 'L' + f1(x + z) + ' ' + f1(y);
+    return '';
+  }
+  /* a pose as a CSS transform, for the review's keyframes (px are viewBox units inside an svg) */
+  function trCss(ps) { return 'translate(' + f2(ps.x) + 'px,' + f2(ps.y) + 'px) rotate(' + f2(ps.a) + 'deg) scale(' + f2(ps.sx) + ',' + f2(ps.sy) + ')'; }
+  function tintOf(k, C) { return k === 'up' ? [C.upT, C.up] : k === 'down' ? [C.downT, C.down] : k === 'dash' ? [C.steadyT, C.ink2] : [C.surface, C.mark]; }
+
+  /* ---------- the layout: where everything goes for this g and these opts (also used by the tests) ---------- */
+  function layout(g, o) {
+    o = o || {};
+    var M = model(g), w = o.w || 312, sc = o.scale || 1, s = w / VW / sc;      /* s: px per unit, at pt scale */
+    var u = function (pt) { return pt / s; };                                    /* pt to viewBox units */
+    var big = w / sc >= 240, tiny = w / sc < 90;
+    var L = { M: M, w: w, s: s, sc: sc, big: big, parts: {}, order: ORDER };
+    var poses = {}, polys = {}, i, key;
+    for (i = 0; i < 3; i++) { key = ORDER[i]; poses[key] = pose(key, M[key].kind, M.bud); polys[key] = polyAt(key, poses[key]); }
+    for (i = 0; i < 3; i++) {
+      key = ORDER[i];
+      var part = { key: key, kind: M[key].kind, pose: poses[key], poly: polys[key] }, front = [];
+      if (key !== 'P2') front.push(polys.P2);
+      /* the value block: mark, then the number, then its unit; it goes where it fits, else the mark alone */
+      var k = part.kind, hasMark = k === 'up' || k === 'down' || k === 'dash';
+      var mz = big ? 7 : tiny ? 3.5 : 6;                                          /* the chevron's half-width in pt */
+      if (key === 'P2') mz += big ? 2 : 1;
+      var wantV = o.values && M[key].value && key !== 'P2' && !M.bud;
+      var units = o.units === false ? false : (o.units === true || w / sc >= 260);
+      var V = wantV ? M[key].value : null, vw = 0, vh = 0;
+      /* as token() lays it out: the mark, then the number on one line; the unit under the number */
+      var lead = hasMark ? 2 * mz + 6 : 0, nw = 0;
+      if (V) { nw = V.v.length * 9.4 + 2; vw = Math.max(lead + nw, lead + (units && V.u ? V.u.length * 7.6 + 4 : 0)); vh = 22 + (units && V.u ? 16 : 0); }
+      var bw = V ? vw : (hasMark ? 2 * mz + 6 : 0), bh = V ? vh : (hasMark ? mz + 8 : 0);
+      var ax = place([0, -(key === 'P2' ? 0.6 : 0.52) * GEO[key].L], part.pose); part.ax = ax;
+      if (part.kind !== 'early' && (hasMark || V) && o.marks !== false && (!tiny || o.marks === true || o.focus)) {
+        var sp = null, ck, pts, uw, uh, i2;
+        if (V) {
+          /* first stacked (the mark over the number, the unit under it, one centred column), then as token() lays it out
+             (the mark beside the number); if neither fits, the mark alone, and the row under the lotus carries the value */
+          var uTry = units && V.u ? [true, false] : [false], uI, tries = [1, 0], tI, useU = false;
+          for (uI = 0; uI < uTry.length && !sp; uI++) {
+          useU = uTry[uI];                                                          /* then without the unit (judge 3: units go first) */
+          vw = Math.max(lead + nw, lead + (useU ? V.u.length * 7.6 + 4 : 0)); vh = 22 + (useU ? 16 : 0);
+          var lu = useU ? u(V.u.length * 7.6 + 4) : 0;
+          for (tI = 0; tI < tries.length && !sp; tI++) {
+            var stack = tries[tI] === 1 && hasMark, l1, cx2, ox;
+            if (!stack) { bw = vw; bh = vh; uw = u(bw); uh = u(bh); var colw = u(bw - lead); cx2 = -uw / 2 + u(lead) + colw / 2; l1 = u(nw);
+              /* the number and its unit share one column after the mark, both centred on it */
+              pts = boxPts(l1, u(22), u(2)); for (i2 = 0; i2 < pts.length; i2++) { pts[i2][0] += cx2; pts[i2][1] += -uh / 2 + u(11); }
+              if (hasMark) pts.push([-uw / 2 - u(2), -uh / 2 + u(11) - u(mz / 2) - u(2)], [-uw / 2 - u(2), -uh / 2 + u(11) + u(mz / 2) + u(2)], [-uw / 2 + u(2 * mz) + u(2), -uh / 2 + u(11)]); }
+            else { if (tries[tI] === 1 && !hasMark) continue; bw = Math.max(nw, useU ? V.u.length * 7.6 + 4 : 0, 2 * mz); bh = mz + 7 + vh; uw = u(bw); uh = u(bh); l1 = u(nw); cx2 = 0;
+              pts = boxPts(l1, u(22), u(2)); for (i2 = 0; i2 < pts.length; i2++) pts[i2][1] += -uh / 2 + u(mz + 7 + 11);
+              pts.push([-u(mz) - u(2), -uh / 2 - u(2)], [u(mz) + u(2), -uh / 2 - u(2)]); }
+            if (lu) { var p2 = boxPts(lu, u(16), u(2)), base = stack ? u(mz + 7) : 0; for (i2 = 0; i2 < p2.length; i2++) pts.push([p2[i2][0] + cx2, p2[i2][1] - uh / 2 + base + u(22 + 8)]); }
+            ck = key + '|' + k + '|v' + (stack ? 's' : '') + '|' + f1(l1) + '|' + f1(lu) + '|' + f1(uh);
+            sp = spot(part.poly, front, pts, ax[0], ax[1], ck);
+            if (sp) { part.stack = stack; part.units = useU; }
+          }
+          }
+          if (!sp) { V = null; bw = 2 * mz + 6; bh = mz + 8; }
+        }
+        if (!V && hasMark) {
+          var mm = tiny ? 1 : 3; uw = u(mz); pts = [[-uw - u(mm), -u(mz / 2) - u(mm)], [uw + u(mm), -u(mz / 2) - u(mm)], [-uw - u(mm), u(mz / 2) + u(mm)], [uw + u(mm), u(mz / 2) + u(mm)], [0, 0]];
+          ck = key + '|' + k + '|m|' + f1(uw);
+          sp = spot(part.poly, front, pts, ax[0], ax[1], ck);
+        }
+        if (sp) {
+          var top = sp.y - u(bh) / 2, left = sp.x - u(bw) / 2;
+          if (hasMark) part.mark = { kind: k, x: V && !part.stack ? left + u(mz) : sp.x, y: V ? (part.stack ? top + u(mz / 2 + 1) : top + u(11.5)) : sp.y, z: u(mz) };
+          /* a number narrower than its unit sits closer to its mark: the column is the unit's width */
+          if (V) part.val = { v: V.v, u: part.units ? V.u : '', x: part.stack ? sp.x : left + u(lead) + u(bw - lead) / 2, y: part.stack ? top + u(mz + 7) : top, h: u(vh) };
+          part.clear = { x: sp.x, y: sp.y, rx: u(bw) / 2 + u(5), ry: u(bh) / 2 + u(4) };
+          /* the veins stop 2 pt before the clear zone begins, measured along the petal's axis from its base */
+          part.veinTop = clearFrom(part.clear, part.pose) - u(2) / part.pose.sy;
+        }
+      }
+      L.parts[key] = part;
+    }
+    /* the dot row: straight, oldest left, centred; pt sizes as dotRow() (14 and 8 on Patterns, smaller where the
+       lotus is narrow); none at all: a waterline, under the bud's stem */
+    var dz = o.dotPx || (big ? 14 : w / sc >= 140 ? 11 : w / sc >= 120 ? 10 : 8), gap = o.dotGap || (big ? 8 : w / sc >= 140 ? 4 : 3.5);
+    var dy = OY + u(DOTY * (big ? 1 : 0.62)) + (M.bud ? u(4) : 0);
+    /* under the bud the dots sit 14 pt below its base, with no stem (the stem and waterline are drawn only while
+       there are no dots), so the bud and the row never read as one mark */
+    if (M.bud && M.dots.list.length && o.dots !== false) dy = OY + GEO.P2.by + u(14) + u(dz) / 2;
+    L.dots = null;
+    if (o.dots !== false) {
+      var list = M.dots.list, n = list.length, step = u(dz + gap), x0 = OX - (n - 1) * step / 2, ds = [];
+      for (i = 0; i < n; i++) ds.push({ v: list[i], x: x0 + i * step, y: dy, r: u(dz) / 2 });
+      L.dots = { list: ds, y: dy, r: u(dz) / 2, n: n, say: M.dots.say, next: M.dots.next, kn: M.dots.n, x0: n ? x0 - u(dz) / 2 : OX, x1: n ? x0 + (n - 1) * step + u(dz) / 2 : OX };
+    }
+    /* the frame: from the top of the tallest open petal (fixed, so the lotus never jumps between Mondays) to under
+       the dots and the record */
+    var topY = OY + GEO.P2.by - GEO.P2.L - u(3), botY = OY + GEO.P2.by + u(4);
+    if (L.dots) botY = Math.max(botY, dy + u(dz) / 2 + u(3));
+    if (o.count && L.dots && L.dots.n) { L.count = { y: dy + u(dz) / 2 + u(big ? 8 : 4) }; botY = L.count.y + u(20); }
+    if (M.bud && !(L.dots && L.dots.n)) botY = Math.max(botY, dy + u(3));
+    /* the Guide's names: one row over the three tips, each name just above its own petal's tip and set toward it (the
+       side names on two lines, so the three never overlap down to the 256 pt example), all starting on one line; the
+       dots' name under the row, on a short hairline. Positions only: the text is HTML in the Footnote style. */
+    if (o.labels && !M.bud) {
+      var tipC = place(localPoly('P2')[28], poses.P2), tipL = place(localPoly('P1')[28], poses.P1), tipR = place(localPoly('P3')[28], poses.P3);
+      var lt = Math.min(tipC[1] - u(6) - u(18), Math.min(tipL[1], tipR[1]) - u(6) - u(36));
+      L.labels = [{ t: ['Off-plan', 'meals'], x: tipL[0] - u(3), y: lt, al: 'l' }, { t: ['Back on plan'], x: OX, y: lt, al: 'm' }, { t: ['Between', 'meals'], x: tipR[0] + u(3), y: lt, al: 'r' }];
+      topY = Math.min(topY, lt - u(2));
+      if (L.dots && L.dots.n) {
+        var dly = dy + u(dz) / 2 + u(12);
+        L.labels.push({ t: ['The last 10 off-plan meals'], x: OX, y: dly, al: 'm', line: 'M' + OX + ' ' + f1(dy + u(dz) / 2 + u(3)) + 'V' + f1(dly - u(1)) });
+        botY = Math.max(botY, dly + u(20));
+      }
+    }
+    /* one lotus, one style: if one side petal had to leave its unit out, both do */
+    if (o.units !== false && L.parts.P1.val && L.parts.P3.val && L.parts.P1.units !== L.parts.P3.units) return layout(g, ext(o, { units: false }));
+    L.vb = [0, f1(topY), VW, f1(botY - topY)];
+    L.h = (botY - topY) * s * sc;
+    return L;
+  }
+
+  /* ---------- drawing ---------- */
+  /* ids for the gradients: a page holds several lotuses (Today, Patterns, the review, the Guide), and a gradient whose
+     first copy sits in a hidden pane paints nothing in a visible one, so every call names its own prefix (opts.id,
+     BUILD.md). Without one, the prefix is a hash of the options and the kinds, so the markup stays deterministic and
+     two different drawings on one page never share ids. */
+  function autoId(o, M) {
+    var k = [o.w, o.scale, o.values, o.units, o.count, o.tap, o.dots, o.labels, o.focus, o.motion, o.svgText, o.marks, M.P1.kind, M.P2.kind, M.P3.kind, M.bud].join('|'), h = 5381, i;
+    for (i = 0; i < k.length; i++) h = ((h * 33) ^ k.charCodeAt(i)) >>> 0;
+    return 'lt' + h.toString(36);
+  }
+  /* how many layers of the state's tint the tip carries: the tokens are 12 to 14 per cent, so two layers give about
+     1.9 times that at the tip third (Steady keeps one: it is the quiet word) */
+  var TIPN = { up: 2, down: 2, dash: 1 };
+  function draw(g, o) {
+    o = o || {};
+    var L = layout(g, o), M = L.M, C = o.colors || CSSVAR, sc = L.sc, s = L.s, id = o.id || autoId(o, M), i, key;
+    var pt = function (v) { return f2(v * sc); };                                /* stroke widths: px, non-scaling */
+    var u = function (v) { return v / s; };
+    var tap = !!o.tap && !M.bud, prev = o.prev ? model(o.prev) : null, motion = o.motion === 'review' && prev;
+    var rm = motion && (o.rm || (typeof RM !== 'undefined' && RM));             /* the app's reduced-motion flag */
+    var defs = '', body = '', marks = '', html = '', lead = '', made = {};
+    var VE = ' vector-effect="non-scaling-stroke"';
+    var thin = !L.big;                                                           /* no veins under 240 pt */
+    /* a petal's paint, in its own frame: a lightness-only shade at the base (the white body's depth), then the state's
+       tint only at the tip, fading to nothing by mid-length, as a lotus petal colours. No colour while it is white. */
+    function paint(key, k, flat) {
+      var d = petalD(key), out = '', n;
+      if (!flat) {
+        var gs = id + '-gs' + key;
+        if (!made[gs]) { made[gs] = 1; defs += '<linearGradient id="' + gs + '" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="' + (-GEO[key].L) + '"><stop offset="0" stop-color="' + C.steadyT + '" stop-opacity=".55"/><stop offset=".45" stop-color="' + C.steadyT + '" stop-opacity="0"/></linearGradient>'; }
+        out += '<path class="lt-fill" d="' + d + '" fill="url(#' + gs + ')"/>';
+      }
+      if (TIPN[k]) {
+        var gt = id + '-g' + key + k;
+        if (!made[gt]) { made[gt] = 1; defs += '<linearGradient id="' + gt + '" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="' + (-GEO[key].L) + '"><stop offset=".5" stop-color="' + tintOf(k, C)[0] + '" stop-opacity="0"/><stop offset=".68" stop-color="' + tintOf(k, C)[0] + '"/></linearGradient>'; }
+        for (n = 0; n < TIPN[k]; n++) out += '<path class="lt-tip" d="' + d + '" fill="url(#' + gt + ')"/>';
+      }
+      return out;
+    }
+    function veinP(d, col, k) { return '<path class="lt-vein" d="' + d + '" fill="none" stroke="' + col + '" stroke-width="' + pt(0.6) + '" stroke-linecap="round" opacity="' + (k === 'ring' ? 0.42 : 0.38) + '"' + VE + '/>'; }
+    function outP(d, col, k, cls, wd) { return '<path class="lt-out' + (cls || '') + '" d="' + d + '" fill="none" stroke="' + col + '" stroke-width="' + pt(wd != null ? wd : (k === 'ring' || k === 'early') ? 1.25 : 1.5) + '" stroke-linejoin="round"' + VE + '/>'; }
+    for (i = 0; i < 3; i++) {
+      key = L.order[i];
+      var part = L.parts[key], k = part.kind, ps = part.pose, t = tintOf(k, C), d = petalD(key);
+      var was = prev ? prev[key].kind : k, wps = prev ? pose(key, was, prev.bud) : ps;
+      var moved = motion && (was !== k || wps.a !== ps.a || wps.sx !== ps.sx || wps.y !== ps.y || wps.x !== ps.x), chg = motion && was !== k;
+      var focus = o.focus ? (o.focus === key) : null;
+      var tr = 'translate(' + f2(ps.x) + ' ' + f2(ps.y) + ') rotate(' + f2(ps.a) + ') scale(' + f2(ps.sx) + ' ' + f2(ps.sy) + ')';
+      var rot = '<g class="lt-rot" transform="' + tr + '"' + (moved ? ' style="--t0:' + trCss(wps) + ';--t1:' + trCss(ps) + ';--i:' + (key === 'P2' ? 0 : 1) + '"' : '') + '>';
+      var attrs = ' class="lt-part lt-' + key + (moved ? ' lt-mv' : '') + (chg ? ' lt-chg' : '') + '" data-p="' + key + '" data-k="' + k + '"' +
+        (tap ? ' data-act="pattern" role="button" tabindex="0" aria-label="' + esc(M[key].say) + '"' : '');
+      /* the halo: each petal's own white, with a 3 pt edge, so a front petal cuts a clean line through the ones behind.
+         In the bud the centre petal's edge cuts only at its top, so the side petals' outlines run down to its base. */
+      var halo = M.bud && key === 'P2' ?
+        '<path class="lt-halo" d="' + d + '" fill="' + C.surface + '"/><path class="lt-halo" d="' + topD(key) + '" fill="none" stroke="' + C.surface + '" stroke-width="' + pt(3) + '" stroke-linecap="round"' + VE + '/>' :
+        '<path class="lt-halo" d="' + d + '" fill="' + C.surface + '" stroke="' + C.surface + '" stroke-width="' + pt(3) + '" stroke-linejoin="round"' + VE + '/>';
+      var fill = paint(key, k, focus !== null);
+      /* in the review a petal whose word changed carries last Monday's paint, veins, outline and mark on top, opaque,
+         in this Monday's frame: they fade out as this Monday's fade in, so no frame mixes the two Mondays' colours */
+      var pet = '<g' + attrs + '>' + rot + halo + (chg ? '<g class="lt-now">' + fill + '</g><g class="lt-was"><path d="' + d + '" fill="' + C.surface + '"/>' + paint(key, was) + '</g>' : fill) + '</g>';
+      var vd = k !== 'early' && !thin && focus === null ? veinsD(key, part.veinTop) : '';
+      if (vd) pet += rot + (chg ? '<g class="lt-now">' + veinP(vd, t[1], k) + '</g>' + (was !== 'early' ? '<g class="lt-was">' + veinP(vd, tintOf(was, C)[1], was) + '</g>' : '') : veinP(vd, t[1], k)) + '</g>';
+      if (focus === null) pet += rot + outP(d, t[1], k, chg ? ' lt-now' : '') + (chg ? outP(d, tintOf(was, C)[1], was, ' lt-was') : '') + '</g>';
+      else pet += rot + '<path class="lt-out" d="' + d + '" fill="none" stroke="' + (focus ? C.ink : C.mark) + '" stroke-width="' + pt(focus ? 2 : 1) + '"' + (focus ? '' : ' stroke-opacity=".25"') + ' stroke-linejoin="round"' + VE + '/></g>';
+      if (tap) pet += '<path class="lt-hit" d="' + d + '" transform="' + tr + '" fill="transparent"/>';
+      pet += '</g>';
+      body += pet;
+      /* the mark, upright; in the review a changed petal also carries last Monday's mark, which fades out */
+      var mk = part.mark || (chg && /up|down|dash/.test(was) ? { x: part.ax[0], y: part.ax[1], z: u(L.big ? 7 : 6) } : null);
+      if (part.mark) marks += '<path class="lt-mk' + (chg ? ' lt-now' : '') + '" data-p="' + key + '" d="' + markD(part.mark.kind, part.mark.x, part.mark.y, part.mark.z) + '" fill="none" stroke="' + t[1] + '" stroke-width="' + pt(L.big ? 2.4 : 2) + '" stroke-linecap="round" stroke-linejoin="round"' + VE + '/>';
+      if (chg && mk) { var pw = markD(was, mk.x, mk.y, mk.z); if (pw) marks += '<path class="lt-mk lt-was" d="' + pw + '" fill="none" stroke="' + tintOf(was, C)[1] + '" stroke-width="' + pt(L.big ? 2.4 : 2) + '" stroke-linecap="round" stroke-linejoin="round"' + VE + '/>'; }
+      /* the value, as HTML in the type scale (or SVG text for a canvas) */
+      if (part.val) {
+        var V = part.val;
+        if (o.svgText) {
+          marks += '<text x="' + f1(V.x) + '" y="' + f1(V.y + u(16.5)) + '" text-anchor="middle" font-family="' + C.font + '" font-size="' + f1(u(17)) + '" font-weight="600" fill="' + C.ink + '">' + esc(V.v) + '</text>';
+          if (V.u) marks += '<text x="' + f1(V.x) + '" y="' + f1(V.y + u(33)) + '" text-anchor="middle" font-family="' + C.fontText + '" font-size="' + f1(u(13)) + '" fill="' + C.ink2 + '">' + esc(V.u) + '</text>';
+        } else {
+          html += '<span class="lt-val" aria-hidden="true" style="left:' + f2((V.x / VW) * 100) + '%;top:' + f2(((V.y - L.vb[1]) / L.vb[3]) * 100) + '%"><b class="lt-n">' + esc(V.v) + '</b>' + (V.u ? '<small class="lt-u">' + esc(V.u) + '</small>' : '') + '</span>';
+        }
+      }
+    }
+    /* the bud's stem and the waterline: drawn only before the first reading and only while there are no dots; they
+       belong to no pattern and carry no colour, mark or target */
+    if (M.bud && !(L.dots && L.dots.n)) {
+      var bb = OY + GEO.P2.by, wl = L.dots ? L.dots.y : OY + u(30);
+      body = '<path class="lt-water" d="M' + f1(OX - 56) + ' ' + f1(wl) + 'H' + f1(OX + 56) + '" stroke="' + C.mark + '" stroke-width="' + pt(1) + '" stroke-linecap="round"' + VE + '/>' +
+        '<path class="lt-stem" d="M' + OX + ' ' + f1(bb - 2) + 'C' + f1(OX + 1.5) + ' ' + f1(bb + 10) + ' ' + f1(OX - 1) + ' ' + f1(wl - 14) + ' ' + OX + ' ' + f1(wl) + '" fill="none" stroke="' + C.mark + '" stroke-width="' + pt(1.25) + '" stroke-linecap="round"' + VE + '/>' + body;
+    }
+    /* the dot row: the dotRow() component drawn on the lotus's own scale */
+    var dots = '';
+    if (L.dots) {
+      var D = L.dots;
+      for (i = 0; i < D.list.length; i++) {
+        var q = D.list[i], cls = 'lt-dot' + (o.pop && i === D.list.length - 1 ? ' pop' : '');
+        if (q.v === 1) dots += '<circle class="' + cls + '" cx="' + f2(q.x) + '" cy="' + f2(q.y) + '" r="' + f2(q.r - u(0.65)) + '" fill="' + C.gold + '" stroke="' + C.goldEdge + '" stroke-width="' + pt(1.25) + '"' + VE + '/>';
+        else dots += '<circle class="' + cls + '" cx="' + f2(q.x) + '" cy="' + f2(q.y) + '" r="' + f2(q.r - u(1)) + '" fill="' + C.surface + '" stroke="' + C.ink2 + '" stroke-width="' + pt(2) + '"' + (q.v < 0 ? ' stroke-dasharray="' + pt(2) + ' ' + pt(2) + '"' : '') + VE + '/>';
+      }
+      if (tap && D.n) dots = '<rect class="lt-hit" x="' + f1(D.x0 - u(6)) + '" y="' + f1(D.y - u(23)) + '" width="' + f1(D.x1 - D.x0 + u(12)) + '" height="' + f1(u(46)) + '" fill="transparent"/>' + dots;
+      dots = '<g class="lt-dots" data-p="P2"' + (o.focus && o.focus !== 'dots' ? ' opacity=".25"' : '') + (tap && D.n ? ' data-act="pattern" role="button" tabindex="0" aria-label="' + esc('Back on plan at the next meal: ' + D.next + ' of the last ' + D.kn) + '"' : '') + '>' + dots + '</g>';
+      if (L.count && !o.svgText) html += '<span class="lt-rec recl" aria-hidden="true" style="top:' + f2(((L.count.y - L.vb[1]) / L.vb[3]) * 100) + '%"><span class="rn">' + D.next + '</span> of the last <span class="rn">' + D.kn + '</span></span>';
+      if (L.count && o.svgText) marks += '<text x="' + OX + '" y="' + f1(L.count.y + u(15)) + '" text-anchor="middle" font-family="' + C.fontText + '" font-size="' + f1(u(15)) + '" fill="' + C.ink2 + '"><tspan font-family="' + C.font + '" font-weight="600" fill="' + C.ink + '">' + D.next + '</tspan> of the last <tspan font-family="' + C.font + '" font-weight="600" fill="' + C.ink + '">' + D.kn + '</tspan></text>';
+    }
+    /* the Guide's names (labels: true), placed by labelSpots() so none crosses a petal or another name */
+    if (o.labels && !M.bud) {
+      var LS = L.labels, li;
+      for (li = 0; li < LS.length; li++) {
+        var lb = LS[li];
+        if (lb.line) lead += '<path d="' + lb.line + '" fill="none" stroke="' + C.ink2 + '" stroke-width="' + pt(0.75) + '" stroke-linecap="round"' + VE + '/>';
+        if (o.svgText) for (var lj = 0; lj < lb.t.length; lj++) lead += '<text x="' + f1(lb.x) + '" y="' + f1(lb.y + u(13 + 18 * lj)) + '" text-anchor="' + (lb.al === 'l' ? 'start' : lb.al === 'r' ? 'end' : 'middle') + '" font-family="' + C.fontText + '" font-size="' + f1(u(13)) + '" font-weight="600" fill="' + C.ink2 + '">' + esc(lb.t[lj]) + '</text>';
+        else html += '<span class="lt-lab t-foot w6 c2 lt-a' + lb.al + '" style="left:' + f2(lb.x / VW * 100) + '%;top:' + f2(((lb.y - L.vb[1]) / L.vb[3]) * 100) + '%">' + lb.t.map(esc).join('<br>') + '</span>';
+      }
+    }
+    /* the review on the Monday the first readings come: last Monday's stem and waterline fade as the bud opens (only
+       when there are no dots under it, as the bud draws its stem) */
+    if (motion && prev.bud && !M.bud && !(L.dots && L.dots.n)) {
+      var bb0 = OY + GEO.P2.by, wl0 = L.dots ? L.dots.y : OY + u(30);
+      body = '<g class="lt-was"><path d="M' + OX + ' ' + f1(bb0 - 2) + 'V' + f1(wl0) + '" stroke="' + C.mark + '" stroke-width="' + pt(1.25) + '" stroke-linecap="round"' + VE + '/><path d="M' + f1(OX - 56) + ' ' + f1(wl0) + 'H' + f1(OX + 56) + '" stroke="' + C.mark + '" stroke-width="' + pt(1) + '" stroke-linecap="round"' + VE + '/></g>' + body;
+    }
+    var cls = 'lotus' + (motion ? ' lt-review' + (rm ? ' lt-rm' : '') : '') + (M.bud ? ' lt-bud' : '') + (o.focus ? ' lt-key' : '');
+    var name = o.label || (M.bud ? 'Your patterns: not started yet' : 'Your patterns');
+    var a11y = tap ? ' role="group" aria-label="' + esc(name) + '"' : (o.focus ? ' aria-hidden="true"' : ' role="img" aria-label="' + esc(name + '. ' + text(g)) + '"');
+    var hh = f1(L.h);
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" class="' + cls + '" viewBox="' + L.vb.join(' ') + '" width="' + f1(L.w) + '" height="' + hh + '"' + a11y + ' focusable="false">' +
+      (defs ? '<defs>' + defs + '</defs>' : '') + lead + body + dots + marks + '</svg>';
+    if (!html) return svg;
+    return '<div class="lotus-w' + (o.labels ? ' lt-labelled' : '') + '" style="width:' + f1(L.w) + 'px;height:' + hh + 'px">' + svg + html + '</div>';
+  }
+
+  /* ---------- the Guide's keys ---------- */
+  /* key(part, o): the three petals, open and white, with one part inked (a 2 pt --ink outline, drawn whole; the rest
+     at 30 per cent). o.w the width in px (40 in the Guide, 16 beside a token's name on Today), o.dots false to leave the
+     three dots out. An image: aria-hidden, since the text beside it names the part. */
+  function key(part, o) {
+    o = o || {}; var C = o.colors || CSSVAR, w = o.w || 40, withDots = o.dots !== false, i, k;
+    var x0 = 6, x1 = 314, y0 = 22, y1 = withDots ? 222 : 182, s = w / (x1 - x0), b = '', VE = ' vector-effect="non-scaling-stroke"';
+    var ink = o.ink || (w >= 32 ? 2 : 1.5), faint = w >= 32 ? 1 : 0.75;
+    /* the faint parts first, back to front, then the inked part over them, whole, so its own shape reads even where
+       the centre petal would hide it */
+    var seq = ORDER.filter(function (x) { return x !== part; }).concat(part === 'dots' ? [] : [part]);
+    for (i = 0; i < seq.length; i++) {
+      k = seq[i]; var ps = pose(k, 'ring', false), on = part === k, d = petalD(k);
+      b += '<g transform="translate(' + f2(ps.x) + ' ' + f2(ps.y) + ') rotate(' + f2(ps.a) + ')"><path d="' + d + '" fill="' + C.surface + '" stroke="' + C.surface + '" stroke-width="' + f2(on ? ink + 2 : faint + 1.5) + '"' + VE + '/>' +
+        '<path d="' + d + '" fill="none" stroke="' + (on ? C.ink : C.mark) + '" stroke-width="' + f2(on ? ink : faint) + '"' + (on ? '' : ' stroke-opacity=".3"') + ' stroke-linejoin="round"' + VE + '/></g>';
+    }
+    if (withDots) for (i = -1; i <= 1; i++) b += '<circle cx="' + f1(OX + i * 44) + '" cy="203" r="15" fill="' + C.gold + '" stroke="' + C.goldEdge + '" stroke-width="1"' + (part === 'dots' ? '' : ' opacity=".3"') + VE + '/>';
+    return '<svg xmlns="http://www.w3.org/2000/svg" class="lotus lt-keyi" viewBox="' + x0 + ' ' + y0 + ' ' + (x1 - x0) + ' ' + (y1 - y0) + '" width="' + f1(w) + '" height="' + f1((y1 - y0) * s) + '" aria-hidden="true" focusable="false">' + b + '</svg>';
+  }
+  /* petalKey(kind, o): one centre petal in a colour and its single mark, for the Guide's Colours rows. o.h the height
+     in px (default 40). */
+  function petalKey(kind, o) {
+    o = o || {}; var C = o.colors || CSSVAR, h = o.h || 40, G = GEO.P2, id = (o.id || 'ltk') + kind, t = tintOf(kind, C), VE = ' vector-effect="non-scaling-stroke"';
+    var x0 = OX - 44, y0 = OY + G.by - G.L - 6, vw = 88, vh = G.L + 12, s = h / vh, d = petalD('P2'), tr = 'translate(' + OX + ' ' + (OY + G.by) + ')', n, b = '', defs = '';
+    defs += '<linearGradient id="' + id + 's" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="' + (-G.L) + '"><stop offset="0" stop-color="' + C.steadyT + '" stop-opacity=".55"/><stop offset=".45" stop-color="' + C.steadyT + '" stop-opacity="0"/></linearGradient>';
+    b += '<path d="' + d + '" fill="' + C.surface + '"/><path d="' + d + '" fill="url(#' + id + 's)"/>';
+    if (TIPN[kind]) { defs += '<linearGradient id="' + id + 't" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="' + (-G.L) + '"><stop offset=".5" stop-color="' + t[0] + '" stop-opacity="0"/><stop offset=".68" stop-color="' + t[0] + '"/></linearGradient>';
+      for (n = 0; n < TIPN[kind]; n++) b += '<path d="' + d + '" fill="url(#' + id + 't)"/>'; }
+    b += '<path d="' + d + '" fill="none" stroke="' + t[1] + '" stroke-width="' + (kind === 'ring' ? 1.25 : 1.5) + '" stroke-linejoin="round"' + VE + '/>';
+    var mz = 5 / s, mp = markD(kind, 0, -0.56 * G.L, mz);
+    if (mp) b += '<path d="' + mp + '" fill="none" stroke="' + t[1] + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"' + VE + '/>';
+    return '<svg xmlns="http://www.w3.org/2000/svg" class="lotus lt-keyi" viewBox="' + x0 + ' ' + y0 + ' ' + vw + ' ' + vh + '" width="' + f1(vw * s) + '" height="' + f1(h) + '" aria-hidden="true" focusable="false"><defs>' + defs + '</defs><g transform="' + tr + '">' + b + '</g></svg>';
+  }
+
+  /* the accessible text equivalent: one sentence for each part, in the rows' own words */
+  var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  /* "Monday 30 November", as PAT.longDate() says it; outside the app the weekday comes from Zeller's rule (no Date) */
+  function longDate(k) {
+    if (typeof PAT !== 'undefined' && PAT.longDate) return PAT.longDate(k);
+    var p = String(k).split('-'), y = +p[0], m = +p[1], d = +p[2]; if (m < 3) { m += 12; y -= 1; }
+    var h = (d + Math.floor(13 * (m + 1) / 5) + y % 100 + Math.floor((y % 100) / 4) + Math.floor(y / 400) - 2 * Math.floor(y / 100)) % 7, dow = ((h + 6) % 7 + 7) % 7;
+    return DAYS[dow] + ' ' + (+p[2]) + ' ' + MONTHS[+p[1] - 1];
+  }
+  function text(g) {
+    var M = model(g);
+    if (M.bud) {
+      var fm = g && g.P1 && g.P1.firstMon, ld = fm ? longDate(fm) : '';
+      return 'A closed bud: no pattern has a reading yet.' + (ld ? ' Your patterns start on ' + ld + '.' : '') + (M.dots.list.length ? ' Dots: ' + M.dots.say + ', ' + M.dots.next + ' of the last ' + M.dots.n + '.' : '');
+    }
+    var out = [], i, ks = ['P1', 'P3', 'P2'];
+    for (i = 0; i < 3; i++) { var p = M[ks[i]], sy = p.say.replace(/: About /, ': about '); out.push((ks[i] === 'P1' ? 'Left petal, ' : ks[i] === 'P3' ? 'Right petal, ' : 'Centre petal, ') + (sy.charAt(0).toLowerCase() + sy.slice(1)) + '.'); }
+    if (M.dots.list.length) out.push('Dots: ' + M.dots.say + ', ' + M.dots.next + ' of the last ' + M.dots.n + '.');
+    return out.join(' ');
+  }
+  /* the markup with its colour tokens written in, for drawing on a canvas as an image (an SVG drawn as an image cannot
+     read the page's CSS variables). get(name) returns a token's value; in the app, getComputedStyle of :root. */
+  function inline(markup, get) {
+    if (!get && typeof getComputedStyle === 'function' && typeof document !== 'undefined') { var cs = getComputedStyle(document.documentElement); get = function (n) { return cs.getPropertyValue(n).trim(); }; }
+    return String(markup).replace(/var\((--[a-z0-9-]+)\)/g, function (m, n) { var v = get ? get(n) : ''; return v || m; });
+  }
+
+  draw.model = model; draw.layout = layout; draw.text = text; draw.inline = inline; draw.kindOf = kindOf; draw.valueOf = valueOf;
+  draw.phrase = phrase; draw.FOLD = FOLD; draw.BUD = BUD; draw.key = key; draw.petalKey = petalKey; draw.veinsD = veinsD; draw.unplace = unplace; draw.place = place; draw.clearFrom = clearFrom; draw.ORDER = ORDER; draw.NAME = NAME; draw.GEO = GEO; draw.petalD = petalD; draw.polyAt = polyAt; draw.pose = pose; draw.inPoly = inPoly;
+  /* the styles (lotus.css holds the same text). Motion is the weekly review's only: each petal whose pose changed
+     turns, opens or closes from last Monday's transform to this Monday's on the app's gentle spring (740 ms, the
+     sampled linear() curve of 01_head.html), the centre petal first and the sides 40 ms later; a petal whose colour
+     changed carries last Monday's paint, veins, outline and mark (lt-was, opaque, in the petal's own frame) over this
+     Monday's (lt-now, at opacity 0); from 420 ms the first fade out over 200 ms as the second fade in. Nothing that did
+     not change moves. Reduced motion (the media query or the app's RM flag, class lt-rm): no transform runs; every
+     petal is in this Monday's pose and only its colour cross-fades, over 150 ms. */
+  draw.css = [
+    '.lotus{display:block;overflow:visible}',
+    '.lotus .lt-rot{transform-box:view-box;transform-origin:0 0}',
+    '.lotus .lt-was{opacity:0}',
+    '.lotus.lt-review .lt-mv .lt-rot{animation:ltTurn var(--dur-gentle,740ms) var(--spring-gentle,cubic-bezier(.25,.8,.25,1)) both;animation-delay:calc(var(--i,0) * 40ms)}',
+    '@keyframes ltTurn{from{transform:var(--t0)}to{transform:var(--t1)}}',
+    '.lotus.lt-review .lt-was{animation:ltOut 200ms ease-out 420ms both}',
+    '.lotus.lt-review .lt-now{animation:ltIn 200ms ease-out 420ms both}',
+    '@keyframes ltIn{from{opacity:0}to{opacity:1}}@keyframes ltOut{from{opacity:1}to{opacity:0}}',
+    '.lt-rm .lotus.lt-review .lt-mv .lt-rot,.lotus.lt-review.lt-rm .lt-mv .lt-rot{animation:none}',
+    '.lt-rm .lotus.lt-review .lt-was,.lotus.lt-review.lt-rm .lt-was{animation:ltOut 150ms ease-out both}',
+    '.lt-rm .lotus.lt-review .lt-now,.lotus.lt-review.lt-rm .lt-now{animation:ltIn 150ms ease-out both}',
+    '.lotus .lt-dot.pop{transform-box:fill-box;transform-origin:center;animation:ltPop var(--dur-pop,850ms) var(--spring-pop,cubic-bezier(.34,1.56,.64,1)) both}',
+    '@keyframes ltPop{from{transform:scale(.6)}to{transform:scale(1)}}',
+    '.lotus [role=button]{cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}',
+    '.lotus [role=button]:focus-visible .lt-out{stroke:var(--tint);stroke-width:2.5px}',
+    '.lotus .lt-dots[role=button]:focus-visible circle{stroke:var(--tint)}',
+    '.lotus-w{position:relative;flex:none}',
+    '.lotus-w>.lotus{position:absolute;left:0;top:0;width:100%;height:100%}',
+    '.lt-val{position:absolute;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;pointer-events:none;white-space:nowrap}',
+    '.lt-val .lt-n{font-family:var(--f-num);font-variant-numeric:tabular-nums;font-size:17px;line-height:22px;font-weight:600;color:var(--ink)}',
+    '.lt-val .lt-u{font-size:13px;line-height:18px;font-weight:400;color:var(--ink2);margin-top:-2px}',
+    '.lt-rec{position:absolute;left:0;right:0;text-align:center;pointer-events:none;white-space:nowrap}',
+    '.lt-lab{position:absolute;white-space:nowrap;pointer-events:none}',
+    '.lt-lab.lt-am{transform:translateX(-50%);text-align:center}.lt-lab.lt-ar{transform:translateX(-100%);text-align:right}',
+    /* last, so it wins over the pop above (the same specificity): with reduced motion the newest dot only fades in */
+    '@media (prefers-reduced-motion:reduce){.lotus.lt-review .lt-mv .lt-rot{animation:none}.lotus.lt-review .lt-was{animation:ltOut 150ms ease-out both}' +
+      '.lotus.lt-review .lt-now{animation:ltIn 150ms ease-out both}.lotus .lt-dot.pop{animation:ltIn 150ms ease-out both}}'
+  ].join('\n');
+  return draw;
+})();
+if (typeof module !== 'undefined' && module.exports) module.exports = patternShape;
 /* ===================== FIT NOTE ON THE RECIPE SHEET (task 31) =====================
    In place of the generic Dr Ekberg card, the recipe sheet says what this dish does on his plan (fitBlock):
    - the personal line, above the stats (fitPersonal): his own record with this recipe, else the pattern it answers;
@@ -6559,13 +7243,18 @@ function thinNote(g){
   return 'Few days logged in the last four weeks, so these numbers rest on fewer meals than usual.';
 }
 /* "Last 4 weeks": the three four-week patterns, P1, P3, P2, each once it has a first number; a note on thin or patchy
-   logging is the list's footer */
+   logging is the list's footer. 3.0.5 (lotus SPEC 7): the lotus is the list's top cell, its petals and dots the ways into
+   the pattern sheets, with no record under its dots (the Back on plan row under it carries it); last week's row closes
+   the list and opens the week sheet */
 function rowsSection(g){
   var rows='';
   ['P1','P3','P2'].forEach(function(k){ if(pReady(k,g[k])) rows+=patternRow(k,g[k],g); });
   if(!rows) return '';
   var cov=g.coverage||{}, note=cov.label==='patchy'?'Fewer days logged lately, so this reading is less sure.':cov.label==='thin'?thinNote(g):'';
-  return secHead('Last 4 weeks')+'<div class="list prows">'+rows+'</div>'+(note?'<p class="t-foot c2 foot pr-cov">'+esc(note)+'</p>':'');
+  var w=Math.min((innerWidth||390)-48,312), lm=addDays(g.mon,-7), lw=lastWeek(g);
+  var hero='<div class="lt-hero">'+patternShape(g,{id:'pt',w:w,values:true,count:false,tap:true})+'</div>';
+  var last=lw.logged?'<button class="row two" data-act="week" data-mon="'+lm+'"><span class="m"><span class="t-body">Last week, '+esc(weekRange(lm))+'</span><span class="t-sub c2">'+esc(offOfLogged(lw))+'</span></span>'+ICON.chev+'</button>':'';
+  return secHead('Last 4 weeks')+'<div class="list prows lt-list">'+hero+rows+last+'</div>'+(note?'<p class="t-foot c2 foot pr-cov">'+esc(note)+'</p>':'');
 }
 /* a section header (2.6): Title 3, an optional trailing plain button ({label, act, attrs}) */
 function secHead(t,btn,cls){
@@ -7189,10 +7878,11 @@ function reviewDue(){ return S.ui.reviewOn!==false&&S.ui.reviewWeek!==weekKey(ap
 var DAYPL={off:'days off',early:'early-shift days',day:'day-shift days',late:'late-shift days',night:'night-shift days',double:'two-job days'};
 function weekRange(m){ var e=addDays(m,6), a=parseISO(m), b=parseISO(e);
   return a.getMonth()===b.getMonth()?a.getDate()+' to '+b.getDate()+' '+MONTH[b.getMonth()]:a.getDate()+' '+MONTH[a.getMonth()]+' to '+b.getDate()+' '+MONTH[b.getMonth()]; }
-/* last week's raw counts from the day facts */
-function lastWeek(g){
-  var prev=addDays(g.mon,-7), o={off:0,logged:0,skipDays:0,shapes:{},eve:0,held:0,known:0,betwDays:0,cells:{}};
-  g.F.forEach(function(f){ if(f.k<prev||f.k>=g.mon) return;
+/* last week's raw counts from the day facts; weekCounts(F,mon) the same for the week from mon (the week sheet) */
+function lastWeek(g){ return weekCounts(g.F,addDays(g.mon,-7)); }
+function weekCounts(F,prev){
+  var end=addDays(prev,7), o={off:0,logged:0,skipDays:0,shapes:{},eve:0,held:0,known:0,betwDays:0,cells:{}};
+  F.forEach(function(f){ if(f.k<prev||f.k>=end) return;
     o.off+=f.off; o.logged+=f.on+f.off; if(f.skip>0){ o.skipDays++; o.shapes[f.sh]=(o.shapes[f.sh]||0)+1; }
     if(f.eve){ o.eve++; if(f.held) o.held++; } if(f.known){ o.known++; if(f.betw>0) o.betwDays++; }
     ['b','l','d'].forEach(function(s){ if(f.slot[s].st==='off'){ var k=f.sh+'|'+s; o.cells[k]=(o.cells[k]||0)+1; } }); });
@@ -7299,7 +7989,25 @@ function reviewWeightLine0(fv,g){
 function noteOfWeek(mon){ var all=EKB.concat(BERG); return all[hash(mon)%all.length]; }
 function weekNoteSheet(mon){ var e=noteOfWeek(mon||PAT.get().mon); if(!e) return;
   openSheet('<div class="sheet-h"><h2>'+esc(e.h||'Dr Ekberg')+'</h2>'+closeBtn()+'</div><section class="card ekb-card"><p class="t-body">'+esc(e.t)+'</p>'+(e.src?'<p class="t-foot c2 xp-src">'+esc(e.src)+'</p>':'')+'</section>'); }
-function weekStripStatic(mon){ var h='<div class="wk rv-wk" role="img" aria-label="Last week, day by day">'; for(var i=0;i<7;i++){ var k=addDays(mon,i); h+='<div class="wkc"><span class="d">'+'MTWTFSS'.charAt(i)+'</span>'+dayDots(k)+'</div>'; } return h+'</div>'; }
+function weekStripStatic(mon,lab){ var h='<div class="wk rv-wk" role="img" aria-label="'+esc(lab||'Last week, day by day')+'">'; for(var i=0;i<7;i++){ var k=addDays(mon,i); h+='<div class="wkc"><span class="d">'+'MTWTFSS'.charAt(i)+'</span>'+dayDots(k)+'</div>'; } return h+'</div>'; }
+/* the week's two counts in the words of the Last week row and the week sheet (lotus SPEC 7) */
+function offOfLogged(w){ return w.logged?'Off plan: '+w.off+' of the '+w.logged+' meal'+(w.logged===1?'':'s')+' you logged.':'Nothing logged.'; }
+function heldOfEves(w){ return w.eve?'Nothing after dinner on '+w.held+' of the '+w.eve+' evening'+(w.eve===1?'':'s')+' you answered.':'No evenings answered.'; }
+/* a sheet title that is a week range: the long form, and the short one ("2 to 8 Nov") under 360 pt */
+function shortRange(t){ return String(t).replace(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/g,function(m){ return m.slice(0,3); }); }
+function rangeTitle(t){ return '<span class="long">'+esc(t)+'</span><span class="short">'+esc(shortRange(t))+'</span>'; }
+/* the week sheet (3.0.5, lotus SPEC 7, from lotus-weeks): one complete week's strip and its two counts, with Earlier
+   week and Later week; no pattern rows, since those are the current four weeks and Patterns is one tap back. Later
+   stops at last week, Earlier at the week he started. */
+function weekSheet(mon){
+  var st=weekKey(S.profile.start||appToday()), last=addDays(weekKey(appToday()),-7);
+  if(!mon||mon>last) mon=last; if(mon<st) mon=st;
+  var w=weekCounts(PAT.series(S,addDays(mon,6),mon),mon), rg=weekRange(mon);
+  openSheet('<div class="sheet-h"><span class="lead" aria-hidden="true"></span><h2>'+rangeTitle(rg)+'</h2>'+closeBtn()+'</div>'+
+    '<section class="card rv-week wk-sh">'+weekStripStatic(mon,rg+', day by day')+'<div class="rv-hr" aria-hidden="true"></div><p class="t-body rv-p">'+esc(offOfLogged(w))+'</p><p class="t-body rv-p">'+esc(heldOfEves(w))+'</p></section>'+
+    '<div class="wk-nav"><button class="btn gray small" data-act="week" data-mon="'+addDays(mon,-7)+'"'+(mon<=st?' disabled':'')+'>'+ICON.chev.replace('class="chev"','class="chev wk-prev"')+'Earlier week</button>'+
+    '<button class="btn gray small" data-act="week" data-mon="'+addDays(mon,7)+'"'+(mon>=last?' disabled':'')+'>Later week'+ICON.chev+'</button></div>');
+}
 /* the week's paragraph with its class word in 600 ("A usual week:", "A harder week:", "Last week:"), 3.3 */
 function classWord(t){ var m=String(t).match(/^([A-Z][^:.]{2,40}:)( .*)$/); return m?'<b class="w6">'+esc(m[1])+'</b>'+esc(m[2]):esc(t); }
 /* the weekly review as cards (3.3): the week (the static strip, a hairline, the paragraph; on a regression the glyph and
@@ -7357,7 +8065,8 @@ function renderPatterns(){
   /* the order of 3.2: the header with "Week N" (and the Monday of the readings once there are any); This week's change,
      its header carrying Review, the way into this week's review all week; Last 4 weeks; Weight with Weigh in; the list */
   var h=largeTitle('Patterns',{sub:'Week '+weekNum()+(ready?' · Updated '+PAT.longDate(g.mon):'')});
-  if(!ready&&g&&g.P1&&g.P1.firstMon) h+='<section class="card"><p class="t-head ph-sub pstart">Your patterns start on '+esc(PAT.longDate(g.P1.firstMon))+', once about 30 meals are in.</p></section>';
+  /* 3.0.5 (lotus SPEC 3, 7): before the first reading, the closed bud over the engine's start sentence */
+  if(!ready&&g&&g.P1&&g.P1.firstMon) h+='<div class="list"><div class="lt-budcard"><div class="lt-budfig">'+patternShape(g,{id:'pb',w:(innerWidth||390)<360?150:170})+'</div><p class="t-head ph-sub pstart">Your patterns start on '+esc(PAT.longDate(g.P1.firstMon))+', once about 30 meals are in.</p><p class="t-sub c2 lt-bud1">Each petal opens on the Monday its pattern has a first number.</p></div></div>';
   /* with the review sheet off, the top of Patterns is the review: the awards are decided here */
   if(g&&S.ui.reviewOn===false&&closedWeek()){ try{ decideAwards(g); }catch(e){} }
   if(g&&ready){ h+=secHead('This week’s change',closedWeek()?{label:'Review',act:'review',attrs:' aria-label="This week’s review"'}:null,'sec-chg')+topCard(g); }
@@ -10244,6 +10953,8 @@ document.addEventListener('click',function(ev){
     case 'goToday': VIEWDATE=null; renderToday(); break;
     /* a pattern token or row opens the pattern's sheet (6.8) */
     case 'pattern': patternSheet(t.getAttribute('data-p')); break;
+    /* 3.0.5: the Last week row on Patterns, and Earlier week and Later week inside the week sheet */
+    case 'week': weekSheet(t.getAttribute('data-mon')); break;
     case 'wdetails': weightSheet(); break;
     /* a disclosure row expands in place (2.6); How this is worked out is one in Weight details */
     case 'howworked': if(t.classList.contains('disc-r')) discToggle(t); else howSheet(); break;
@@ -10442,7 +11153,8 @@ document.addEventListener('click',function(ev){
 document.addEventListener('keydown',function(ev){
   if(ev.key==='Escape'){ if(sheetOpen()) closeSheet(); else if($('#road').classList.contains('on')) closeReview(); return; }
   var role=ev.target&&ev.target.getAttribute&&ev.target.getAttribute('role');
-  if(((ev.key==='Enter'||ev.key===' ')&&role==='button')||(ev.key==='Enter'&&role==='link')){ ev.preventDefault(); ev.target.click(); }
+  /* 3.0.5: a focused part of the lotus is an SVG element, which has no click() (lotus BUILD.md, TESTS T7) */
+  if(((ev.key==='Enter'||ev.key===' ')&&role==='button')||(ev.key==='Enter'&&role==='link')){ ev.preventDefault(); var kt=ev.target; if(typeof kt.click==='function') kt.click(); else kt.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true})); }
 });
 /* the swap sheet's time pull-down (a native select under its tint label) */
 document.addEventListener('change',function(ev){
